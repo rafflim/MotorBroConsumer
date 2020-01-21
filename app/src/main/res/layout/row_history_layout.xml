@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dp"
+    android:background="#F6F5F5">
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="January 2020"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="21sp"
+        android:textColor="@color/textColorBlack"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/white_rounded_background">
+
+        <ImageView
+            android:id="@+id/icon_main"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/calendar_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="15dp"
+            />
+
+        <TextView
+            android:id="@+id/historyTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Parking Payment"
+            app:layout_constraintStart_toEndOf="@id/icon_main"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/textColorBlack"
+            />
+
+        <TextView
+            android:id="@+id/historyKilometers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5000 Km"
+            android:textColor="@color/textColorBlack"
+            app:layout_constraintStart_toEndOf="@id/icon_main"
+            app:layout_constraintTop_toBottomOf="@id/historyTitle"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            />
+
+        <TextView
+            android:id="@+id/historyDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="January 25, 2020"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            />
+
+        <TextView
+            android:id="@+id/historyCash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$0.000"
+            android:textColor="@color/textColorBlack"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/historyKilometers"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

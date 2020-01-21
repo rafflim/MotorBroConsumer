@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Dashboard.Fragments.ShopFragment">
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F6F5F5"
+            android:paddingBottom="20dp"
+            >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/topImageLayout"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="#F6F5F5"
+            >
+
+            <RelativeLayout
+                            android:id="@+id/linearLayoutTop"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:layout_constraintTop_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+
+                            android:layout_marginTop="2dp"
+                            android:layout_marginRight="-60dp"
+                            android:layout_marginLeft="50dp"
+                            />
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="0dp"
+                            android:layout_height="120dp"
+                            app:layout_constraintTop_toTopOf="@id/linearLayoutTop"
+                            app:layout_constraintEnd_toEndOf="@id/linearLayoutTop"
+                            app:layout_constraintStart_toStartOf="@id/linearLayoutTop"
+                            android:background="@drawable/white_rounded_background"
+                            android:layout_marginTop="20dp"
+                            >
+
+                            <ImageView
+                                android:id="@+id/shopHeaderIcon"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:layout_marginLeft="20dp"
+                                android:src="@drawable/shopheadericon"
+                                />
+
+                            <TextView
+                                android:id="@+id/shopHeaderText"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="Welcome to the Store"
+                                android:textSize="18sp"
+                                android:fontFamily="@font/open_sans_bold"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/shopHeaderIcon"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="#4484AA"
+
+                                />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="Find everything you need here"
+                                android:textSize="13sp"
+                                android:fontFamily="@font/open_sans"
+                                app:layout_constraintTop_toBottomOf="@+id/shopHeaderText"
+                                app:layout_constraintStart_toEndOf="@id/shopHeaderIcon"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@color/textColorBlack"
+
+                                />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="150dp"
+                android:layout_height="35dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rounded_light_blue"
+
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Featured Items"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#fff"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/shopRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="100dp"
+                app:layout_constraintTop_toBottomOf="@id/topImageLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="#F6F5F5"
+                />
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/linearLayoutTop"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                app:layout_constraintTop_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+
+<!--                android:layout_marginTop="2dp"-->
+<!--                android:layout_marginRight="-60dp"-->
+<!--                android:layout_marginLeft="50dp"-->
+<!--                />-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="200dp"-->
+<!--                android:layout_height="300dp"-->
+<!--                app:layout_constraintTop_toTopOf="@id/linearLayoutTop"-->
+<!--                app:layout_constraintEnd_toEndOf="@id/linearLayoutTop"-->
+<!--                app:layout_constraintStart_toStartOf="@id/linearLayoutTop"-->
+<!--                android:background="#fff"-->
+<!--                >-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="dada"-->
+<!--                    android:textSize="50sp"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    />-->
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</FrameLayout>
