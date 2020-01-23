@@ -12,13 +12,10 @@ import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_parts.*
 import kotlinx.android.synthetic.main.row_parts.view.*
 import android.app.Activity
-
+import com.elevintech.motorbro.Constants
 
 
 class TypeOfPartsActivity : AppCompatActivity() {
-
-
-    var listOfParts = listOf<String>("Headlight", "Tires", "Brakes", "Helmet", "Back Seat", "Front Seat", "Accelerator", "Battery")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +28,7 @@ class TypeOfPartsActivity : AppCompatActivity() {
     private fun displayParts() {
         var partsListAdapter = GroupAdapter<ViewHolder>()
 
-        for (part in listOfParts) {
+        for (part in Constants.TYPE_OF.parts) {
             partsListAdapter.add(partsItem(part))
         }
 
