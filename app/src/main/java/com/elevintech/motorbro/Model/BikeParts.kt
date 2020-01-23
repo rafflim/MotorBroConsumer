@@ -1,6 +1,6 @@
 package com.elevintech.motorbro.Model
 
-class BikeParts {
+class BikeParts{
     var userId: String = ""
     var date: Double = 0.0
     var odometer: Double = 0.0

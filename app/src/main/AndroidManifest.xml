@@ -15,15 +15,17 @@
         <activity android:name="com.elevintech.motorbro.ViewParts.ViewPartsActivity" />
         <activity android:name="com.elevintech.motorbro.AddParts.AddPartsActivity" />
         <activity android:name="com.elevintech.motorbro.BikeRegistration.BikeRegistrationActivity" />
-        <activity android:name="com.elevintech.motorbro.Dashboard.DashboardActivity">
+        <activity android:name="com.elevintech.motorbro.Dashboard.DashboardActivity"/>
+        <activity android:name="com.elevintech.motorbro.CreateAccount.CreateAccountActivity" />
+        <activity android:name="com.elevintech.motorbro.MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name="com.elevintech.motorbro.CreateAccount.CreateAccountActivity" />
-        <activity android:name="com.elevintech.motorbro.MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

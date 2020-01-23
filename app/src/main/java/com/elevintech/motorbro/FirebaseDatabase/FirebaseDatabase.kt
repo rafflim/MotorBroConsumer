@@ -58,7 +58,8 @@ class FirebaseDatabase {
     fun saveBikeParts(bikeParts: BikeParts, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
 
-        db.collection("bikeParts").document(FirebaseAuth.getInstance().uid!!)
+        db.collection("users").document(FirebaseAuth.getInstance().uid!!).collection("bike-parts")
+            .document()
             .set(bikeParts)
             .addOnSuccessListener {
                 callback()

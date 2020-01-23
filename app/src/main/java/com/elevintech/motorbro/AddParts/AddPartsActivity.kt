@@ -93,11 +93,11 @@ class AddPartsActivity : AppCompatActivity() {
 
     fun saveBikePartsData() {
 
-        val createdDate = dateText.toString().toDouble()
-        val odometer = odometerText.toString().toDouble()
-        val typeOfParts = typeOfPartsText.toString()
-        val brand = brandText.toString()
-        val price = priceText.toString().toDouble()
+        val createdDate = dateText.text.toString().toDouble()
+        val odometer = odometerText.text.toString().toDouble()
+        val typeOfParts = typeOfPartsText.text.toString()
+        val brand = brandText.text.toString()
+        val price = priceText.text.toString().toDouble()
 
         val bikeParts = BikeParts("", createdDate, odometer, typeOfParts, brand, price)
         val database = FirebaseDatabase()
