@@ -11,6 +11,9 @@ import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_parts.*
 import kotlinx.android.synthetic.main.row_parts.view.*
+import android.app.Activity
+
+
 
 class TypeOfPartsActivity : AppCompatActivity() {
 
@@ -41,6 +44,12 @@ class TypeOfPartsActivity : AppCompatActivity() {
         override fun bind(viewHolder: ViewHolder, position: Int) {
 
             viewHolder.itemView.parts_name.text = part
+            viewHolder.itemView.setOnClickListener {
+                val returnIntent = Intent()
+                returnIntent.putExtra("selectedPart", part)
+                setResult(Activity.RESULT_OK, returnIntent)
+                finish()
+            }
         }
 
         override fun getLayout(): Int {

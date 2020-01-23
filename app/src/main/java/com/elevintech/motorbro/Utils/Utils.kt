@@ -1,5 +1,7 @@
 package com.elevintech.motorbro.Utils
 
+import android.app.ProgressDialog
+import android.content.Context
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -29,6 +31,15 @@ class Utils {
 
     fun getAgeFromDate(): Int{
         return 29
+    }
+
+    fun convertDateToTimestamp(date: String, format: String):Long{
+
+        val unixTime = SimpleDateFormat(format).parse( date ).time.toString().toLong()
+        val timestamp = unixTime / 1000
+
+        return timestamp
+
     }
 
     fun convertFromDuration(timeInSeconds: Long): Map<String, Long> {
@@ -73,6 +84,15 @@ class Utils {
         return lastActiveAgoText
 
 
+    }
+
+    fun showDismissableDialog(context: Context, message: String): ProgressDialog{
+        var progressDialog = ProgressDialog(context)
+        progressDialog.setMessage(message)
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+
+        return progressDialog
     }
 
 }
