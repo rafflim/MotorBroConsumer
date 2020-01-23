@@ -1,9 +1,7 @@
 package com.elevintech.motorbro.FirebaseDatabase
 
 import android.util.Log
-import com.elevintech.motorbro.Model.BikeInfo
-import com.elevintech.motorbro.Model.BikeParts
-import com.elevintech.motorbro.Model.User
+import com.elevintech.motorbro.Model.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -61,6 +59,36 @@ class FirebaseDatabase {
         db.collection("users").document(FirebaseAuth.getInstance().uid!!).collection("bike-parts")
             .document()
             .set(bikeParts)
+            .addOnSuccessListener {
+                callback()
+            }
+            .addOnFailureListener {
+                    e -> println(e)
+                callback()
+            }
+    }
+
+    fun saveHistory(history: History, callback: () -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("users").document(FirebaseAuth.getInstance().uid!!).collection("history")
+            .document()
+            .set(history)
+            .addOnSuccessListener {
+                callback()
+            }
+            .addOnFailureListener {
+                    e -> println(e)
+                callback()
+            }
+    }
+
+    fun saveReminder(reminder: Reminders, callback: () -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("users").document(FirebaseAuth.getInstance().uid!!).collection("reminders")
+            .document()
+            .set(reminder)
             .addOnSuccessListener {
                 callback()
             }

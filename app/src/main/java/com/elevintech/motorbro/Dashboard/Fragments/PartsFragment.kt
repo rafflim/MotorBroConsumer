@@ -36,7 +36,6 @@ class PartsFragment : Fragment() {
         displayParts()
 
         add_parts_floating_button.setOnClickListener {
-            print("Hi there")
             val intent = Intent(context, AddPartsActivity::class.java)
             startActivity(intent)
         }

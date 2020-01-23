@@ -1,20 +1,12 @@
 package com.elevintech.motorbro.Model
 
 
-class History {
-    var userId: String = ""
-    var title: String = ""
-    var kilometers: String = ""
-    var date: Double = 0.0
-    var price: String = ""
-
-
-    constructor(userId: String, title: String, kilometers: String, date: Double, price: String) {
-        this.userId = userId
-        this.title = title
-        this.kilometers = kilometers
-        this.date = date
-        this.price = price
-
-    }
-}
+class History (
+    var userId: String = "",
+    var title: String = "",
+    var kilometers: Double = 0.00,
+    var date: String = "",
+    var dateLong: Long = 0.toLong(),
+    var price: Double = 0.00,
+    var typeOfHistory: String = "",
+    var brand: String ="")

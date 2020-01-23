@@ -9,22 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.elevintech.motorbro.ViewBrand.ViewBrandActivity"></activity>
+        <activity android:name="com.elevintech.motorbro.AddHistory.AddHistoryActivity"></activity>
+        <activity android:name="com.elevintech.motorbro.AddReminders.AddRemindersActivity" />
+        <activity android:name="com.elevintech.motorbro.ViewBrand.ViewBrandActivity" />
         <activity android:name="com.elevintech.motorbro.TypeOf.AddTypeOfParts" />
         <activity android:name="com.elevintech.motorbro.TypeOf.TypeOfPartsActivity" />
         <activity android:name="com.elevintech.motorbro.ViewParts.ViewPartsActivity" />
         <activity android:name="com.elevintech.motorbro.AddParts.AddPartsActivity" />
         <activity android:name="com.elevintech.motorbro.BikeRegistration.BikeRegistrationActivity" />
-        <activity android:name="com.elevintech.motorbro.Dashboard.DashboardActivity"/>
+        <activity android:name="com.elevintech.motorbro.Dashboard.DashboardActivity" />
         <activity android:name="com.elevintech.motorbro.CreateAccount.CreateAccountActivity" />
         <activity android:name="com.elevintech.motorbro.MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <meta-data
