@@ -5,5 +5,5 @@
     <!-- The radius makes the corners rounded -->
     <corners android:radius="10dp"/>
 
-    <solid android:color="#517BD1"/>
+    <solid android:color="#0984e3"/>
 </shape>

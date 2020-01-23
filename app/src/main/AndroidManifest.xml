@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.elevintech.motorbro.ViewParts.ViewPartsActivity"></activity>
+        <activity android:name="com.elevintech.motorbro.ViewBrand.ViewBrandActivity"></activity>
+        <activity android:name="com.elevintech.motorbro.TypeOf.AddTypeOfParts" />
+        <activity android:name="com.elevintech.motorbro.TypeOf.TypeOfPartsActivity" />
+        <activity android:name="com.elevintech.motorbro.ViewParts.ViewPartsActivity" />
         <activity android:name="com.elevintech.motorbro.AddParts.AddPartsActivity" />
         <activity android:name="com.elevintech.motorbro.BikeRegistration.BikeRegistrationActivity" />
         <activity android:name="com.elevintech.motorbro.Dashboard.DashboardActivity">

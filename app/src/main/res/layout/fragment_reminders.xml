@@ -47,8 +47,7 @@
                     app:layout_constraintTop_toTopOf="@id/linearLayoutTop"
                     app:layout_constraintEnd_toEndOf="@id/linearLayoutTop"
                     app:layout_constraintStart_toStartOf="@id/linearLayoutTop"
-                    android:background="#fff"
-                    android:layout_marginTop="20dp"
+                    android:background="@drawable/shadow_background"
                     >
 
                     <ImageView

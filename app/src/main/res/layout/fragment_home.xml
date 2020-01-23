@@ -63,7 +63,7 @@
             app:layout_constraintStart_toStartOf="@id/linearLayoutTop"
             app:layout_constraintEnd_toEndOf="@id/linearLayoutTop"
 
-            android:background="@drawable/white_rounded_background"
+            android:background="@drawable/shadow_background"
             android:paddingBottom="20dp"
             >
 
@@ -85,28 +85,6 @@
                     android:src="@drawable/motorbrosampleheader"
                     android:scaleType="centerCrop"/>
             </androidx.cardview.widget.CardView>
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                android:layout_marginRight="80dp"-->
-<!--                android:layout_marginTop="30dp"-->
-<!--                app:cardCornerRadius="25dp"-->
-<!--                app:cardPreventCornerOverlap="false"-->
-<!--                >-->
-
-<!--                <ImageView-->
-<!--                    android:layout_width="68dp"-->
-<!--                    android:layout_height="64dp"-->
-<!--                    app:layout_constraintTop_toTopOf="parent"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    android:src="@drawable/motorbrosampleheader"-->
-<!--                    android:scaleType="centerCrop"-->
-<!--                    />-->
-<!--            </androidx.cardview.widget.CardView>-->
-
-
 
             <TextView
                 android:id="@+id/motorName"
@@ -191,12 +169,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/motorcycleLayout"
-            app:layout_constraintStart_toStartOf="@id/motorcycleLayout"
-            app:layout_constraintEnd_toEndOf="@id/motorcycleLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:paddingBottom="30dp"
             android:paddingTop="20dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/white_rounded_background"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/shadow_background"
             >
 
             <TextView
@@ -260,7 +240,7 @@
                 app:layout_constraintStart_toStartOf="@id/clickToEditLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="80dp"
+                android:layout_marginRight="20dp"
 
                 >
 
@@ -268,12 +248,31 @@
                     android:id="@+id/fuelLiterImage"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:src="@drawable/car_circle_icon"
+                    android:scaleType="centerCrop"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/button_rounded_blue"
-                    />
+                    android:layout_marginLeft="10dp"/>
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/fuelLiterImage"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    app:cardCornerRadius="15dp"-->
+<!--                    app:cardPreventCornerOverlap="false"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    >-->
+
+
+<!--                </androidx.cardview.widget.CardView>-->
+
+
+
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -285,7 +284,7 @@
                     android:fontFamily="@font/montserrat"
                     android:text="Fuel Liter"
                     android:textColor="@color/textColorBlack"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     />
 
                 <TextView
@@ -299,7 +298,7 @@
                     android:fontFamily="@font/montserrat_bold"
                     android:text="1.05L"
                     android:textColor="@color/textColorBlack"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:layout_marginRight="5dp"
                     />
 
@@ -314,7 +313,7 @@
                 app:layout_constraintStart_toStartOf="@id/clickToEditLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="80dp"
+                android:layout_marginRight="20dp"
 
                 >
 
@@ -322,12 +321,35 @@
                     android:id="@+id/odometerImage"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:src="@drawable/freight_circle_icon"
+                    android:scaleType="centerCrop"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/button_rounded_blue"
-                    />
+                    android:layout_marginLeft="10dp"/>
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/odometerImage"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    app:cardCornerRadius="15dp"-->
+<!--                    app:cardPreventCornerOverlap="false"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    >-->
+
+<!--                    <ImageView-->
+
+<!--                        android:layout_width="50dp"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:src="@drawable/freight_circle_icon"-->
+<!--                        android:scaleType="centerCrop"/>-->
+<!--                </androidx.cardview.widget.CardView>-->
+
+
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -339,7 +361,7 @@
                     android:fontFamily="@font/montserrat"
                     android:text="Odometer"
                     android:textColor="@color/textColorBlack"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     />
 
                 <TextView
@@ -353,7 +375,7 @@
                     android:fontFamily="@font/montserrat_bold"
                     android:text="20km"
                     android:textColor="@color/textColorBlack"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:layout_marginRight="5dp"
                     />
 
@@ -368,7 +390,7 @@
                 app:layout_constraintStart_toStartOf="@id/clickToEditLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="80dp"
+                android:layout_marginRight="20dp"
 
                 >
 
@@ -376,12 +398,34 @@
                     android:id="@+id/fuelImage"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:src="@drawable/money_circle_icon"
+                    android:scaleType="centerCrop"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/button_rounded_blue"
-                    />
+                    android:layout_marginLeft="10dp"/>
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/fuelImage"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    app:cardCornerRadius="15dp"-->
+<!--                    app:cardPreventCornerOverlap="false"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    >-->
+
+<!--                    <ImageView-->
+
+<!--                        android:layout_width="50dp"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:src="@drawable/money_circle_icon"-->
+<!--                        android:scaleType="centerCrop"/>-->
+<!--                </androidx.cardview.widget.CardView>-->
+
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -391,7 +435,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:fontFamily="@font/montserrat"
-                    android:text="Fuel"
+                    android:text="Income"
                     android:textColor="@color/textColorBlack"
                     android:textSize="18sp"
                     />
@@ -405,9 +449,9 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="20km"
+                    android:text="$20,000"
                     android:textColor="@color/textColorBlack"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:layout_marginRight="5dp"
                     />
 
@@ -422,12 +466,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/generalInformationLayout"
-            app:layout_constraintStart_toStartOf="@id/linearLayoutTop"
-            app:layout_constraintEnd_toEndOf="@id/linearLayoutTop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
 
-            android:background="@drawable/white_rounded_background"
+            android:background="@drawable/shadow_background"
             android:paddingBottom="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             >
 
 
@@ -437,23 +483,25 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/open_sans_bold"
+                android:fontFamily="@font/roboto_bold"
                 android:text="History"
                 android:textColor="@color/textColorBlack"
-                android:textSize="27sp"
+                android:textSize="21sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/historyLastLayout"
                 android:layout_width="0dp"
-                android:layout_height="110dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/historyNameText"
                 app:layout_constraintStart_toStartOf="@id/historyNameText"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="80dp"
+                android:layout_marginRight="10dp"
 
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 >
 
                 <ImageView
@@ -464,7 +512,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginLeft="10dp"
-                    android:background="@drawable/button_rounded_blue"
+                    android:background="@drawable/location_icon"
                     />
 
                 <TextView
@@ -486,7 +534,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:fontFamily="@font/montserrat"
@@ -517,7 +565,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/white_rounded_background"
+                android:background="@drawable/shadow_background"
                 android:layout_weight="2"
 
 
@@ -579,7 +627,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/white_rounded_background"
+                android:background="@drawable/shadow_background"
                 android:layout_weight="2"
 
 
@@ -602,7 +650,7 @@
                     android:layout_height="wrap_content"
                     android:text="Posh Ads"
                     android:fontFamily="@font/montserrat"
-                    android:textColor="#41AEFC"
+                    android:textColor="#0984e3"
                     android:textSize="21sp"
                     app:layout_constraintTop_toBottomOf="@id/motorAds2"
                     app:layout_constraintStart_toStartOf="parent"
@@ -617,7 +665,7 @@
                     android:layout_height="wrap_content"
                     android:text="Buy multiple breaks for a price of $2."
                     android:fontFamily="@font/open_sans"
-                    android:textColor="#858585"
+                    android:textColor="#0984e3"
                     android:textSize="15sp"
                     app:layout_constraintTop_toBottomOf="@id/poshAdsTitle2"
                     app:layout_constraintStart_toStartOf="parent"
@@ -639,9 +687,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/white_rounded_background"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/shadow_background"
             >
 
             <TextView
@@ -652,9 +700,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="Your QR Code"
-                android:fontFamily="@font/open_sans_bold"
-                android:textColor="#858585"
-                android:textSize="27sp"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="#1A1A1A"
+                android:textSize="21sp"
                 android:layout_marginTop="10dp"
                 />
 

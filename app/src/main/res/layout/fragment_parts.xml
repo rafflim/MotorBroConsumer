@@ -14,7 +14,7 @@
         android:paddingBottom="20dp" >
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_parts"
+            android:id="@+id/recycler_view_type_of_parts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
