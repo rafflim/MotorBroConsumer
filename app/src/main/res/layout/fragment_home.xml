@@ -20,11 +20,22 @@
         android:paddingTop="0dp"
         >
 
+        <RelativeLayout
+            android:id="@+id/topNegativeLayout"
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-60dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/topImageLayout"
             android:layout_width="match_parent"
             android:layout_height="230dp"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/topNegativeLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
 
