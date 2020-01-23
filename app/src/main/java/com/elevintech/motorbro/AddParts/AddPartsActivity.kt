@@ -1,11 +1,13 @@
 package com.elevintech.motorbro.AddParts
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.elevintech.motorbro.FirebaseDatabase.FirebaseDatabase
 import com.elevintech.motorbro.Model.BikeParts
 import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
@@ -13,6 +15,7 @@ import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
 import kotlinx.android.synthetic.main.activity_add_parts.*
 import java.text.DecimalFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 class AddPartsActivity : AppCompatActivity() {
@@ -20,6 +23,10 @@ class AddPartsActivity : AppCompatActivity() {
     var birthDayInMilliseconds = 0.toLong()
 
     lateinit var mDateSetListener: DatePickerDialog.OnDateSetListener
+
+    companion object {
+        val SELECT_PART_TYPE = 1
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +38,6 @@ class AddPartsActivity : AppCompatActivity() {
 
         checkMarkButton.setOnClickListener {
             saveBikePartsData()
-            finish()
         }
 
         dateText.setOnClickListener {
@@ -41,7 +47,20 @@ class AddPartsActivity : AppCompatActivity() {
 
         typeOfPartsText.setOnClickListener {
             val intent = Intent(applicationContext, TypeOfPartsActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(intent, SELECT_PART_TYPE)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK){
+            if (data != null){
+                if (requestCode == SELECT_PART_TYPE){
+                    var partType = data!!.getStringExtra("selectedPart").toString()
+                    typeOfPartsText.setText(partType)
+                }
+            }
         }
     }
 
@@ -93,16 +112,48 @@ class AddPartsActivity : AppCompatActivity() {
 
     fun saveBikePartsData() {
 
-        val createdDate = dateText.text.toString().toDouble()
-        val odometer = odometerText.text.toString().toDouble()
-        val typeOfParts = typeOfPartsText.text.toString()
-        val brand = brandText.text.toString()
-        val price = priceText.text.toString().toDouble()
+        if (validateFields()){
 
-        val bikeParts = BikeParts("", createdDate, odometer, typeOfParts, brand, price)
-        val database = FirebaseDatabase()
-        database.saveBikeParts(bikeParts) {
-            print("saved")
+
+            var showDialog = Utils().showDismissableDialog(this, "Saving bike part")
+
+            var bikeParts = BikeParts()
+
+            bikeParts.date = dateText.text.toString()
+            bikeParts.dateLong = Utils().convertDateToTimestamp(dateText.text.toString(), "yyyy-MM-dd")
+            bikeParts.odometer = odometerText.text.toString().toDouble()
+            bikeParts.typeOfParts = typeOfPartsText.text.toString()
+            bikeParts.brand = brandText.text.toString()
+            bikeParts.price = priceText.text.toString().toDouble()
+
+            val database = FirebaseDatabase()
+            database.saveBikeParts(bikeParts) {
+                showDialog.dismiss()
+                Toast.makeText(this, "Successfully saved bike part", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+
+        } else {
+
+            Toast.makeText(this, "Please fill up all the fields", Toast.LENGTH_SHORT).show()
+
         }
+
+
     }
+
+    private fun validateFields(): Boolean {
+
+        return (!(
+                    dateText.text.toString() == "" ||
+                    odometerText.text.toString()== ""||
+                    typeOfPartsText.text.toString() == ""||
+                    brandText.text.toString() == ""||
+                    priceText.text.toString() == ""
+                ))
+
+
+    }
+
+
 }
