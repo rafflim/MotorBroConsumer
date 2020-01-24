@@ -72,7 +72,7 @@
         android:layout_margin="20dp"
         android:src="@drawable/red_floating_button"
         app:backgroundTint="@color/white"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
