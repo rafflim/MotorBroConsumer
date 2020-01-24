@@ -93,12 +93,12 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/motorbrosampleheader"
+                    android:src="@drawable/motorcycle_demo_1"
                     android:scaleType="centerCrop"/>
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/motorName"
+                android:id="@+id/motorNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -114,8 +114,8 @@
                 android:id="@+id/plateNumberLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/motorName"
-                app:layout_constraintStart_toStartOf="@id/motorName"
+                app:layout_constraintTop_toBottomOf="@id/motorNameText"
+                app:layout_constraintStart_toStartOf="@id/motorNameText"
                 android:padding="7dp"
                 android:background="@drawable/plate_number_background"
                 android:layout_marginTop="10dp"
@@ -164,6 +164,7 @@
                 app:layout_constraintTop_toBottomOf="@id/odometerDetailsText" />
 
             <TextView
+                android:id="@+id/bikeNicknameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -504,7 +505,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/historyLastLayout"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="130dp"
                 app:layout_constraintTop_toBottomOf="@id/historyNameText"
                 app:layout_constraintStart_toStartOf="@id/historyNameText"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -599,7 +600,7 @@
                     android:layout_height="wrap_content"
                     android:text="Posh Ads"
                     android:fontFamily="@font/montserrat"
-                    android:textColor="#41AEFC"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="21sp"
                     app:layout_constraintTop_toBottomOf="@id/motorAds1"
                     app:layout_constraintStart_toStartOf="parent"
@@ -614,7 +615,7 @@
                     android:layout_height="wrap_content"
                     android:text="Buy multiple breaks for a price of $2."
                     android:fontFamily="@font/open_sans"
-                    android:textColor="#858585"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="15sp"
                     app:layout_constraintTop_toBottomOf="@id/poshAdsTitle1"
                     app:layout_constraintStart_toStartOf="parent"
@@ -661,7 +662,7 @@
                     android:layout_height="wrap_content"
                     android:text="Posh Ads"
                     android:fontFamily="@font/montserrat"
-                    android:textColor="#0984e3"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="21sp"
                     app:layout_constraintTop_toBottomOf="@id/motorAds2"
                     app:layout_constraintStart_toStartOf="parent"
@@ -676,7 +677,7 @@
                     android:layout_height="wrap_content"
                     android:text="Buy multiple breaks for a price of $2."
                     android:fontFamily="@font/open_sans"
-                    android:textColor="#0984e3"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="15sp"
                     app:layout_constraintTop_toBottomOf="@id/poshAdsTitle2"
                     app:layout_constraintStart_toStartOf="parent"

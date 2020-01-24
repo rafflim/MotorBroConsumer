@@ -82,13 +82,14 @@ android:background="@drawable/shadow_background"
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="130dp"
         android:background="@drawable/shadow_background"
         android:orientation="horizontal"
         android:layout_margin="5dp"
 
         >
         <ImageView
+            android:id="@+id/bikeImageView1"
             android:layout_width="120dp"
             android:layout_height="match_parent"
             android:src="@drawable/motorcycle_demo_1"
@@ -106,9 +107,10 @@ android:background="@drawable/shadow_background"
             >
 
             <TextView
+                android:id="@+id/motorcycleName1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NMAX 2020 Motorcycle"
+                android:text=""
                 android:textColor="@color/textColorBlack"
                 android:textSize="19sp"
                 android:fontFamily="@font/open_sans_bold"
@@ -118,19 +120,20 @@ android:background="@drawable/shadow_background"
                 android:id="@+id/plateNumberLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/motorName"
-                app:layout_constraintStart_toStartOf="@id/motorName"
+                app:layout_constraintTop_toBottomOf="@id/plateNumberText"
+                app:layout_constraintStart_toStartOf="@id/plateNumberText"
                 android:padding="7dp"
                 android:background="@drawable/plate_number_background"
                 android:layout_marginTop="10dp"
+
                 >
 
                 <TextView
-                    android:id="@+id/plateNumberText"
+                    android:id="@+id/plateNumberText1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans_bold"
-                    android:text="Plate# 3204"
+                    android:text=""
                     android:textColor="@color/textColorBlack"
                     android:textSize="12sp"
 
@@ -152,7 +155,7 @@ android:background="@drawable/shadow_background"
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="130dp"
         android:background="@drawable/shadow_background"
         android:orientation="horizontal"
         android:layout_margin="5dp"
@@ -161,7 +164,7 @@ android:background="@drawable/shadow_background"
         <ImageView
             android:layout_width="120dp"
             android:layout_height="match_parent"
-            android:src="@drawable/motorcycle_demo_2"
+            android:src="@drawable/no_data_question_mark"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
             />
@@ -178,7 +181,7 @@ android:background="@drawable/shadow_background"
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NMAX 2020 Motorcycle"
+                android:text="Bike #2 Locked"
                 android:textColor="@color/textColorBlack"
                 android:textSize="19sp"
                 android:fontFamily="@font/open_sans_bold"
@@ -188,11 +191,12 @@ android:background="@drawable/shadow_background"
                 android:id="@+id/plateNumberLayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/motorName"
-                app:layout_constraintStart_toStartOf="@id/motorName"
+                app:layout_constraintTop_toBottomOf="@id/plateNumberText"
+                app:layout_constraintStart_toStartOf="@id/plateNumberText"
                 android:padding="7dp"
                 android:background="@drawable/plate_number_background"
                 android:layout_marginTop="10dp"
+                android:visibility="invisible"
                 >
 
                 <TextView
@@ -221,7 +225,7 @@ android:background="@drawable/shadow_background"
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="130dp"
         android:background="@drawable/shadow_background"
         android:orientation="horizontal"
         android:layout_margin="5dp"
@@ -230,7 +234,7 @@ android:background="@drawable/shadow_background"
         <ImageView
             android:layout_width="120dp"
             android:layout_height="match_parent"
-            android:src="@drawable/motorcycle_demo_3"
+            android:src="@drawable/no_data_question_mark"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
             />
@@ -247,7 +251,7 @@ android:background="@drawable/shadow_background"
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NMAX 2020 Motorcycle"
+                android:text="Bike #3 Locked"
                 android:textColor="@color/textColorBlack"
                 android:textSize="19sp"
                 android:fontFamily="@font/open_sans_bold"
@@ -257,11 +261,12 @@ android:background="@drawable/shadow_background"
                 android:id="@+id/plateNumberLayout3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/motorName"
-                app:layout_constraintStart_toStartOf="@id/motorName"
+                app:layout_constraintTop_toBottomOf="@id/plateNumberText"
+                app:layout_constraintStart_toStartOf="@id/plateNumberText"
                 android:padding="7dp"
                 android:background="@drawable/plate_number_background"
                 android:layout_marginTop="10dp"
+                android:visibility="invisible"
                 >
 
                 <TextView

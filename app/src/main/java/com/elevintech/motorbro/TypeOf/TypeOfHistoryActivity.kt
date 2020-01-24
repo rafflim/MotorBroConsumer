@@ -23,6 +23,10 @@ class TypeOfHistoryActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, AddTypeOfHistory::class.java)
             startActivity(intent)
         }
+
+        backButton.setOnClickListener {
+            finish()
+        }
     }
 
     override fun onResume() {

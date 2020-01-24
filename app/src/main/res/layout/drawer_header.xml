@@ -12,6 +12,7 @@
         />
 
     <TextView
+        android:id="@+id/usersNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sandra Adams"
@@ -23,6 +24,7 @@
         />
 
     <TextView
+        android:id="@+id/userEmailText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="sandra_a88@gmail.com"

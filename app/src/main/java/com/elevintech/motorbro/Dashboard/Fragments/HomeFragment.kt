@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.elevintech.motorbro.Model.BikeInfo
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.MotorcycleEditGeneralInformation.EditGeneralInformationActivity
 import com.elevintech.motorbro.MyAccount.MyAccountActivity
 
@@ -39,6 +41,24 @@ class HomeFragment : Fragment() {
             val intent = Intent(activity, EditGeneralInformationActivity::class.java)
             startActivity(intent)
         }
+
+        val db = MotoroBroDatabase()
+        db.getUserBike {
+            setBikeValues(it)
+        }
+    }
+
+    private fun setBikeValues(bike: BikeInfo) {
+        motorNameText.setText(bike.brand + " " + bike.model)
+        plateNumberText.setText("#" + bike.plateNumber)
+        odometerDetailsText.setText("Odometer: " + bike.odometer)
+        breakDetailsText.setText("Front Break: " + bike.frontBreak + " , Rear Break: " + bike.rearBreak )
+        bikeNicknameText.setText("Nickname: " + bike.nickname)
+
+
+        fuelLiterText.setText(bike.fuelLiter.toString() + "L")
+        odometerText.setText(bike.odometerValue.toString() + "km")
+        fuelText.setText("₱ " + bike.income.toString() )
     }
 
     override fun onAttach(context: Context) {
