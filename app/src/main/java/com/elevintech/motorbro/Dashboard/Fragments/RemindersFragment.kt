@@ -57,7 +57,11 @@ class RemindersFragment : Fragment() {
         val reminderAdapter = GroupAdapter<ViewHolder>()
 
         MotoroBroDatabase().getUserReminders {
-            for (reminder in it){
+
+            val remindersList = it
+            if(remindersList.isNotEmpty()) noDataLayout.visibility = View.GONE
+
+            for (reminder in remindersList){
                 reminderAdapter.add(reminderItem(reminder))
             }
         }

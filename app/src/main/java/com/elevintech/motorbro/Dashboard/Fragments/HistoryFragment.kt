@@ -19,7 +19,6 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_history.*
-import kotlinx.android.synthetic.main.fragment_reminders.*
 import kotlinx.android.synthetic.main.row_history_layout.view.*
 
 
@@ -56,7 +55,10 @@ class HistoryFragment : Fragment() {
 
         MotoroBroDatabase().getUserHistory {
 
-            for (history in it){
+            val historyList = it
+            if(historyList.isNotEmpty()) noDataLayout.visibility = View.GONE
+
+            for (history in historyList){
                 historyAdapter.add(historyItem(history))
             }
 

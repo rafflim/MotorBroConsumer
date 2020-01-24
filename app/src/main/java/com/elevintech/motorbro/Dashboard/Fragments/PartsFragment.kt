@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import com.elevintech.motorbro.AddParts.AddPartsActivity
 import com.elevintech.motorbro.Model.BikeParts
@@ -57,7 +58,10 @@ class PartsFragment : Fragment() {
 
         MotoroBroDatabase().getUserBikeParts {
 
-            for (bikePart in it){
+            val bikePartsList = it
+            if(bikePartsList.isNotEmpty()) noDataLayout.visibility = GONE
+
+            for (bikePart in bikePartsList){
                 partsListAdapter.add(partsItem(bikePart))
             }
 
