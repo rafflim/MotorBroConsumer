@@ -37,6 +37,11 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
         buildNavigationDrawer()
         setUpBottomNav()
+
+        shopImageView.setOnClickListener {
+//            val intent = Intent(activity, EditGeneralInformationActivity::class.java)
+//            startActivity(intent)
+        }
     }
 
     // Navigation Drawer

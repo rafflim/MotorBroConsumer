@@ -41,12 +41,13 @@
 <!--            />-->
 
         <ImageView
-            android:id="@+id/chatImageView"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:id="@+id/shopImageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginRight="15dp"
             android:layout_gravity="right"
-            app:srcCompat="@drawable/chaticon"
+            app:srcCompat="@drawable/carticon"
+            android:visibility="gone"
             />
 
     </androidx.appcompat.widget.Toolbar>
