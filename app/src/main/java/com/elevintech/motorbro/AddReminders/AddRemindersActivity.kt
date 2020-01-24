@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Model.Reminders
 import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
+import com.elevintech.motorbro.TypeOf.TypeOfReminderActivity
 import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
 import kotlinx.android.synthetic.main.activity_add_reminders.*
@@ -24,7 +25,7 @@ class AddRemindersActivity : AppCompatActivity() {
     lateinit var mDateSetListener: DatePickerDialog.OnDateSetListener
 
     companion object {
-        val SELECT_PART_TYPE = 1
+        val SELECT_REMINDER_TYPE = 1
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,8 +51,8 @@ class AddRemindersActivity : AppCompatActivity() {
         }
 
         typeOfHistoryText.setOnClickListener {
-            val intent = Intent(applicationContext, TypeOfPartsActivity::class.java)
-            startActivityForResult(intent, SELECT_PART_TYPE)
+            val intent = Intent(applicationContext, TypeOfReminderActivity::class.java)
+            startActivityForResult(intent, SELECT_REMINDER_TYPE)
         }
     }
 
@@ -60,8 +61,8 @@ class AddRemindersActivity : AppCompatActivity() {
 
         if (resultCode == Activity.RESULT_OK){
             if (data != null){
-                if (requestCode == SELECT_PART_TYPE){
-                    var partType = data!!.getStringExtra("selectedPart").toString()
+                if (requestCode == SELECT_REMINDER_TYPE){
+                    var partType = data!!.getStringExtra("selectedReminder").toString()
                     typeOfHistoryText.setText(partType)
                 }
             }

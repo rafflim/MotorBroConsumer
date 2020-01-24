@@ -129,4 +129,15 @@ class MotoroBroDatabase {
             .addOnSuccessListener { callback() }
             .addOnFailureListener { e -> callback() }
     }
+
+    fun saveCustomReminder(reminder: String, callback: () -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val userBio = db.collection("users").document(uid)
+
+        userBio
+            .update("customReminders", FieldValue.arrayUnion("$reminder"))
+            .addOnSuccessListener { callback() }
+            .addOnFailureListener { e -> callback() }
+    }
 }
