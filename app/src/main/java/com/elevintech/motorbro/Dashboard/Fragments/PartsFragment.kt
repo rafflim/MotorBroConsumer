@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.elevintech.motorbro.AddParts.AddPartsActivity
+import com.elevintech.motorbro.Model.BikeParts
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 
 import com.elevintech.myapplication.R
 import com.xwray.groupie.GroupAdapter
@@ -42,21 +44,29 @@ class PartsFragment : Fragment() {
     }
 
     private fun displayParts() {
-        var partsListAdapter = GroupAdapter<ViewHolder>()
+        recycler_view_type_of_parts.isNestedScrollingEnabled = false
 
-        for (part in listOfParts) {
-            partsListAdapter.add(partsItem(part))
+        val partsListAdapter = GroupAdapter<ViewHolder>()
+
+        MotoroBroDatabase().getUserBikeParts {
+
+            for (bikePart in it){
+                partsListAdapter.add(partsItem(bikePart))
+            }
+
         }
 
         recycler_view_type_of_parts.adapter = partsListAdapter
+
+
     }
 
-    inner class partsItem(val part: String): Item<ViewHolder>() {
+    inner class partsItem(val bikePart: BikeParts): Item<ViewHolder>() {
 
 
         override fun bind(viewHolder: ViewHolder, position: Int) {
 
-            viewHolder.itemView.parts_name.text = part
+            viewHolder.itemView.parts_name.text = bikePart.typeOfParts
         }
 
         override fun getLayout(): Int {

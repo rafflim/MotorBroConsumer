@@ -193,4 +193,23 @@ class MotoroBroDatabase {
             }
 
     }
+
+    fun getUserBikeParts(callback: (MutableList<BikeParts>) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val docRef = db.collection("users").document(uid).collection("bike-parts")
+        val list = mutableListOf<BikeParts>()
+
+        docRef.get()
+            .addOnSuccessListener {
+
+                for (bikePart in it){
+                    val bikePart = bikePart.toObject(BikeParts::class.java)
+                    list.add(bikePart)
+                }
+
+                callback(list)
+
+            }
+    }
 }
