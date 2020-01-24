@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Glovebox.GloveboxActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#3C7BCF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/gloveboxBackImageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/backbutton" />
+
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/lato"
+            android:text="Glovebox"
+            android:textColor="#fff"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+            app:layout_constraintEnd_toEndOf="@+id/toolbar"
+            app:layout_constraintStart_toStartOf="@+id/toolbar" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/shadow_background"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        >
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/glovebox_new_icon"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height= "wrap_content"
+            android:text="Add your motorcycle documents here to get more access to our features"
+            android:textColor="@color/textColorBlack"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/open_sans"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/shadow_background"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+
+        >
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/insurance_icon"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:layout_marginLeft="20dp"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="15dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Insurance"
+                android:textColor="@color/textColorBlack"
+                android:textSize="19sp"
+                android:fontFamily="@font/open_sans_bold"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/plateNumberLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/motorName"
+                app:layout_constraintStart_toStartOf="@id/motorName"
+                android:padding="7dp"
+                android:background="@drawable/glovebox_layout_background"
+                android:layout_marginTop="10dp"
+                >
+
+                <TextView
+                    android:id="@+id/plateNumberText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Not Added"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/shadow_background"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+
+        >
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/car_registration_license_icon"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:layout_marginLeft="20dp"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="15dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Drivers License"
+                android:textColor="@color/textColorBlack"
+                android:textSize="19sp"
+                android:fontFamily="@font/open_sans_bold"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/plateNumberLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/motorName"
+                app:layout_constraintStart_toStartOf="@id/motorName"
+                android:padding="7dp"
+                android:background="@drawable/glovebox_layout_background"
+                android:layout_marginTop="10dp"
+                >
+
+                <TextView
+                    android:id="@+id/plateNumberText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Not Aded"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/shadow_background"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+
+        >
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/car_registration_icon"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:layout_marginLeft="20dp"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="15dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Motorcycle Registration"
+                android:textColor="@color/textColorBlack"
+                android:textSize="19sp"
+                android:fontFamily="@font/open_sans_bold"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/plateNumberLayout3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/motorName"
+                app:layout_constraintStart_toStartOf="@id/motorName"
+                android:padding="7dp"
+                android:background="@drawable/glovebox_layout_background"
+                android:layout_marginTop="10dp"
+                >
+
+                <TextView
+                    android:id="@+id/plateNumberText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Not Added"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

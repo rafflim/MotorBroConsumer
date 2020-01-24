@@ -1,5 +1,6 @@
 package com.elevintech.motorbro.Dashboard
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -8,7 +9,12 @@ import android.view.ViewGroup
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.forEach
 import androidx.fragment.app.FragmentTransaction
+import com.elevintech.motorbro.Achievements.AchievementsActivity
+import com.elevintech.motorbro.BikeRegistration.BikeRegistrationActivity
 import com.elevintech.motorbro.Dashboard.Fragments.*
+import com.elevintech.motorbro.Garage.GarageActivity
+import com.elevintech.motorbro.Glovebox.GloveboxActivity
+import com.elevintech.motorbro.MyAccount.MyAccountActivity
 import com.elevintech.myapplication.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -90,9 +96,31 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         when(item.itemId){
 
 
+            R.id.my_account -> {
+                val intent = Intent(applicationContext, MyAccountActivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.garage -> {
+                val intent = Intent(applicationContext, GarageActivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.glovebox -> {
+                val intent = Intent(applicationContext, GloveboxActivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.achievements -> {
+                val intent = Intent(applicationContext, AchievementsActivity::class.java)
+                startActivity(intent)
+            }
+
             R.id.sign_out -> {
                 println("Logged Out")
             }
+
+
 
         }
 
