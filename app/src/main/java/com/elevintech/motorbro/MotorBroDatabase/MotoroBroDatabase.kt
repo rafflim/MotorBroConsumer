@@ -79,6 +79,20 @@ class MotoroBroDatabase {
 
     }
 
+    fun updateBikeInfo(bikeInfo: BikeInfo, callback: () -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("bikes").document(FirebaseAuth.getInstance().uid!!)
+            .set(bikeInfo)
+            .addOnSuccessListener {
+                callback()
+            }
+            .addOnFailureListener {
+                    e -> println(e)
+                callback()
+            }
+    }
+
     fun saveBikeInfo(bikeInfo: BikeInfo, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
 

@@ -19,6 +19,9 @@ import com.elevintech.motorbro.MainActivity
 import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.Model.User
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
+import com.elevintech.motorbro.TypeOf.TypeOfHistoryActivity
+import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
+import com.elevintech.motorbro.TypeOf.TypeOfReminderActivity
 import com.elevintech.myapplication.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -137,6 +140,24 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
         when(item.itemId){
 
+
+            R.id.parts_menu-> {
+                // TODO: There's a bug here make these unclickable when from here
+                val intent = Intent(applicationContext, TypeOfPartsActivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.schedule_menu-> {
+                // TODO: There's a bug here make these unclickable when from here
+                val intent = Intent(applicationContext, TypeOfHistoryActivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.service_menu-> {
+                // TODO: There's a bug here make these unclickable when from here
+                val intent = Intent(applicationContext, TypeOfReminderActivity::class.java)
+                startActivity(intent)
+            }
 
             R.id.my_account -> {
                 val intent = Intent(applicationContext, MyAccountActivity::class.java)

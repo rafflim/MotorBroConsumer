@@ -23,6 +23,10 @@ class TypeOfReminderActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, AddTypeOfReminders::class.java)
             startActivity(intent)
         }
+
+        backButton.setOnClickListener {
+            finish()
+        }
     }
 
     override fun onResume() {
