@@ -172,4 +172,25 @@ class MotoroBroDatabase {
         }
 
     }
+
+    fun getUserHistory(callback: (MutableList<History>) -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val docRef = db.collection("users").document(uid).collection("history")
+        val list = mutableListOf<History>()
+
+        docRef.get()
+            .addOnSuccessListener {
+
+                for (history in it){
+                    val reminder = history.toObject(History::class.java)
+                    list.add(reminder)
+                }
+
+                callback(list)
+
+            }
+
+    }
 }
