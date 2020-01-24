@@ -5,24 +5,24 @@ import android.os.Bundle
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
-import kotlinx.android.synthetic.main.activity_add_type_of_parts.*
+import kotlinx.android.synthetic.main.activity_add_type_of_reminders.*
 
-class AddTypeOfParts : AppCompatActivity() {
+class AddTypeOfReminders : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_type_of_parts)
+        setContentView(R.layout.activity_add_type_of_reminders)
+
 
         saveButton.setOnClickListener{
 
-            val showProgressDialog = Utils().showProgressDialog(this, "Saving custom part....")
+            val showProgressDialog = Utils().showProgressDialog(this, "Saving custom reminder....")
 
-            MotoroBroDatabase().saveCustomPart(addTypeOfPartsText.text.toString()){
+            MotoroBroDatabase().saveCustomReminder(addTypeOfReminderText.text.toString()){
                 showProgressDialog.dismiss()
                 finish()
             }
         }
 
     }
-
 }

@@ -8,9 +8,10 @@ import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.elevintech.motorbro.FirebaseDatabase.FirebaseDatabase
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Model.Reminders
 import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
+import com.elevintech.motorbro.TypeOf.TypeOfReminderActivity
 import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
 import kotlinx.android.synthetic.main.activity_add_reminders.*
@@ -24,7 +25,7 @@ class AddRemindersActivity : AppCompatActivity() {
     lateinit var mDateSetListener: DatePickerDialog.OnDateSetListener
 
     companion object {
-        val SELECT_PART_TYPE = 1
+        val SELECT_REMINDER_TYPE = 1
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +37,7 @@ class AddRemindersActivity : AppCompatActivity() {
         }
 
         checkMarkButton.setOnClickListener {
-            saveBikePartsData()
+            saveReminderData()
         }
 
         startDateText.setOnClickListener {
@@ -49,9 +50,9 @@ class AddRemindersActivity : AppCompatActivity() {
             openDatePicker()
         }
 
-        typeOfHistoryText.setOnClickListener {
-            val intent = Intent(applicationContext, TypeOfPartsActivity::class.java)
-            startActivityForResult(intent, SELECT_PART_TYPE)
+        typeOfReminderText.setOnClickListener {
+            val intent = Intent(applicationContext, TypeOfReminderActivity::class.java)
+            startActivityForResult(intent, SELECT_REMINDER_TYPE)
         }
     }
 
@@ -60,9 +61,9 @@ class AddRemindersActivity : AppCompatActivity() {
 
         if (resultCode == Activity.RESULT_OK){
             if (data != null){
-                if (requestCode == SELECT_PART_TYPE){
-                    var partType = data!!.getStringExtra("selectedPart").toString()
-                    typeOfHistoryText.setText(partType)
+                if (requestCode == SELECT_REMINDER_TYPE){
+                    var partType = data!!.getStringExtra("selectedReminder").toString()
+                    typeOfReminderText.setText(partType)
                 }
             }
         }
@@ -113,12 +114,12 @@ class AddRemindersActivity : AppCompatActivity() {
 
     }
 
-    fun saveBikePartsData() {
+    fun saveReminderData() {
 
         if (validateFields()){
 
 
-            var showDialog = Utils().showDismissableDialog(this, "Saving reminder")
+            var showDialog = Utils().showProgressDialog(this, "Saving reminder")
 
             var reminder = Reminders()
 
@@ -128,11 +129,11 @@ class AddRemindersActivity : AppCompatActivity() {
             reminder.endDateLong = Utils().convertDateToTimestamp(endDateText.text.toString(), "yyyy-MM-dd")
 
             reminder.kilometers = odometerText.text.toString().toDouble()
-            reminder.typeOfHistory = typeOfHistoryText.text.toString()
+            reminder.typeOfReminder = typeOfReminderText.text.toString()
             reminder.brand = brandText.text.toString()
             reminder.price = priceText.text.toString().toDouble()
 
-            val database = FirebaseDatabase()
+            val database = MotoroBroDatabase()
             database.saveReminder(reminder) {
                 showDialog.dismiss()
                 Toast.makeText(this, "Successfully saved reminder", Toast.LENGTH_SHORT).show()
@@ -154,7 +155,7 @@ class AddRemindersActivity : AppCompatActivity() {
                         startDateText.text.toString() == "" ||
                         endDateText.text.toString() == "" ||
                         odometerText.text.toString()== ""||
-                        typeOfHistoryText.text.toString() == ""||
+                         typeOfReminderText.text.toString() == ""||
                         brandText.text.toString() == ""||
                         priceText.text.toString() == ""
                 ))

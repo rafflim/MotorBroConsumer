@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.elevintech.motorbro.AddReminders.AddRemindersActivity
 import com.elevintech.motorbro.Model.Reminders
 import com.elevintech.motorbro.Model.ShopProduct
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
+import com.elevintech.motorbro.Utils.Utils
 
 import com.elevintech.myapplication.R
 import com.xwray.groupie.GroupAdapter
@@ -20,6 +22,7 @@ import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_reminders.*
 import kotlinx.android.synthetic.main.fragment_shop.*
+import kotlinx.android.synthetic.main.row_reminders_layout.view.*
 import kotlinx.android.synthetic.main.row_shop_item_layout.view.*
 
 class RemindersFragment : Fragment() {
@@ -51,19 +54,15 @@ class RemindersFragment : Fragment() {
     fun setupViews() {
         remindersRecyclerView.isNestedScrollingEnabled = false
 
-        val reminder1 = Reminders()
-        val reminder2 = Reminders()
-        val reminder3 = Reminders()
-        val reminder4 = Reminders()
+        val reminderAdapter = GroupAdapter<ViewHolder>()
 
-        val reminderAdamter = GroupAdapter<ViewHolder>()
+        MotoroBroDatabase().getUserReminders {
+            for (reminder in it){
+                reminderAdapter.add(reminderItem(reminder))
+            }
+        }
 
-        reminderAdamter.add(reminderItem(reminder1))
-        reminderAdamter.add(reminderItem(reminder2))
-        reminderAdamter.add(reminderItem(reminder3))
-        reminderAdamter.add(reminderItem(reminder4))
-
-        remindersRecyclerView.adapter = reminderAdamter
+        remindersRecyclerView.adapter = reminderAdapter
 
     }
 
@@ -72,7 +71,9 @@ class RemindersFragment : Fragment() {
         override fun bind(viewHolder: ViewHolder, position: Int) {
 
             // TODO: Add the items to add here to be dynamic
-
+            viewHolder.itemView.startDateText.text = Utils().convertMillisecondsToDate(reminder.startDateLong, "MMM d, yyyy")
+            viewHolder.itemView.endDateText.text = Utils().convertMillisecondsToDate(reminder.endDateLong, "MMM d, yyyy")
+            viewHolder.itemView.headerText.text = (reminder.typeOfReminder.toLowerCase()).capitalize()
         }
 
         override fun getLayout(): Int {

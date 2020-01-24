@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/lato"
-            android:text="Add Type of Parts"
+            android:text="Add Type of Reminder"
             android:textColor="#fff"
             android:textSize="21sp"
             android:textStyle="bold"
@@ -82,7 +82,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/open_sans"
-                android:text="Add name of part"
+                android:text="Add name of reminder"
                 android:textSize="15sp"
 
                 />
@@ -106,7 +106,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/addTypeOfPartsText"
+                    android:id="@+id/addTypeOfReminderText"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="20dp"

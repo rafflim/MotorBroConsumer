@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.elevintech.motorbro.AddParts.AddPartsActivity
+import com.elevintech.motorbro.Model.BikeParts
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 
 import com.elevintech.myapplication.R
 import com.xwray.groupie.GroupAdapter
@@ -33,7 +35,7 @@ class PartsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        displayParts()
+
 
         add_parts_floating_button.setOnClickListener {
             val intent = Intent(context, AddPartsActivity::class.java)
@@ -41,22 +43,37 @@ class PartsFragment : Fragment() {
         }
     }
 
-    private fun displayParts() {
-        var partsListAdapter = GroupAdapter<ViewHolder>()
+    override fun onResume() {
+        super.onResume()
 
-        for (part in listOfParts) {
-            partsListAdapter.add(partsItem(part))
+        displayParts()
+
+    }
+
+    private fun displayParts() {
+        recycler_view_type_of_parts.isNestedScrollingEnabled = false
+
+        val partsListAdapter = GroupAdapter<ViewHolder>()
+
+        MotoroBroDatabase().getUserBikeParts {
+
+            for (bikePart in it){
+                partsListAdapter.add(partsItem(bikePart))
+            }
+
         }
 
         recycler_view_type_of_parts.adapter = partsListAdapter
+
+
     }
 
-    inner class partsItem(val part: String): Item<ViewHolder>() {
+    inner class partsItem(val bikePart: BikeParts): Item<ViewHolder>() {
 
 
         override fun bind(viewHolder: ViewHolder, position: Int) {
 
-            viewHolder.itemView.parts_name.text = part
+            viewHolder.itemView.parts_name.text = bikePart.typeOfParts
         }
 
         override fun getLayout(): Int {

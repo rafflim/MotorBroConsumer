@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import com.elevintech.motorbro.AddHistory.AddHistoryActivity
 import com.elevintech.motorbro.Model.History
 import com.elevintech.motorbro.Model.Reminders
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
+import com.elevintech.motorbro.Utils.Utils
 
 import com.elevintech.myapplication.R
 import com.xwray.groupie.GroupAdapter
@@ -18,6 +20,7 @@ import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_history.*
 import kotlinx.android.synthetic.main.fragment_reminders.*
+import kotlinx.android.synthetic.main.row_history_layout.view.*
 
 
 class HistoryFragment : Fragment() {
@@ -49,17 +52,15 @@ class HistoryFragment : Fragment() {
     fun setupViews() {
         historyRecyclerView.isNestedScrollingEnabled = false
 
-        val history1 = History()
-        val history2 = History()
-        val history3 = History()
-        val history4 = History()
-
         val historyAdapter = GroupAdapter<ViewHolder>()
 
-        historyAdapter.add(historyItem(history1))
-        historyAdapter.add(historyItem(history2))
-        historyAdapter.add(historyItem(history3))
-        historyAdapter.add(historyItem(history4))
+        MotoroBroDatabase().getUserHistory {
+
+            for (history in it){
+                historyAdapter.add(historyItem(history))
+            }
+
+        }
 
         historyRecyclerView.adapter = historyAdapter
 
@@ -69,8 +70,16 @@ class HistoryFragment : Fragment() {
 
         override fun bind(viewHolder: ViewHolder, position: Int) {
 
-            // TODO: Add the items to add here to be dynamic
+            val title = (history.typeOfHistory.toLowerCase()).capitalize()
+            val distance = history.kilometers.toString() + " Km"
+            val date = Utils().convertMillisecondsToDate(history.dateLong, "MMM d, yyyy")
+            val price = "$" + ("%.2f".format(history.price))
 
+            viewHolder.itemView.historyTitle.text = title
+            viewHolder.itemView.historyKilometers.text = distance
+
+            viewHolder.itemView.historyDate.text = date
+            viewHolder.itemView.historyCash.text = price
         }
 
         override fun getLayout(): Int {

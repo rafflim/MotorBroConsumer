@@ -19,7 +19,7 @@ class Utils {
     fun convertMillisecondsToDate(dateInMilliseconds: Long , datePatternFormat: String) : String{
 
         val sdf = SimpleDateFormat("$datePatternFormat") // sample date format: MM/dd/yyyy hh:mm
-        val netDate = Date(dateInMilliseconds)
+        val netDate = Date(dateInMilliseconds * 1000)
 
         return sdf.format(netDate).toString()
     }
@@ -86,7 +86,7 @@ class Utils {
 
     }
 
-    fun showDismissableDialog(context: Context, message: String): ProgressDialog{
+    fun showProgressDialog(context: Context, message: String): ProgressDialog{
         var progressDialog = ProgressDialog(context)
         progressDialog.setMessage(message)
         progressDialog.setCancelable(false)

@@ -16,19 +16,11 @@ class MainActivity : AppCompatActivity() {
 
     var maleGenderLayoutIsClicked = false
     var femaleGenderLayoutIsClicked = false
-    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Initialize Firebase Auth
-        auth = FirebaseAuth.getInstance()
-
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            goToDashBoardActivity()
-        }
 
         createAccountText.setOnClickListener {
             val intent = Intent(applicationContext, CreateAccountActivity::class.java)

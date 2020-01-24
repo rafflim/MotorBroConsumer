@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/lato"
-            android:text="Type of Parts"
+            android:text="Type of Reminders"
             android:textColor="#fff"
             android:textSize="21sp"
             android:textStyle="bold"
@@ -55,7 +55,7 @@
         android:paddingBottom="20dp" >
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_type_of_parts"
+            android:id="@+id/recycler_view_type_of_reminders"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -64,7 +64,7 @@
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_parts_floating_button"
+        android:id="@+id/add_reminders_floating_button"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_gravity="bottom|end"

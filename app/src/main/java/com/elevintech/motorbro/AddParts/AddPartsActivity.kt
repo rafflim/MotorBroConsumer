@@ -8,14 +8,13 @@ import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.elevintech.motorbro.FirebaseDatabase.FirebaseDatabase
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Model.BikeParts
 import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
 import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
 import kotlinx.android.synthetic.main.activity_add_parts.*
 import java.text.DecimalFormat
-import java.text.SimpleDateFormat
 import java.util.*
 
 class AddPartsActivity : AppCompatActivity() {
@@ -115,7 +114,7 @@ class AddPartsActivity : AppCompatActivity() {
         if (validateFields()){
 
 
-            var showDialog = Utils().showDismissableDialog(this, "Saving bike part")
+            var showDialog = Utils().showProgressDialog(this, "Saving bike part")
 
             var bikeParts = BikeParts()
 
@@ -126,7 +125,7 @@ class AddPartsActivity : AppCompatActivity() {
             bikeParts.brand = brandText.text.toString()
             bikeParts.price = priceText.text.toString().toDouble()
 
-            val database = FirebaseDatabase()
+            val database = MotoroBroDatabase()
             database.saveBikeParts(bikeParts) {
                 showDialog.dismiss()
                 Toast.makeText(this, "Successfully saved bike part", Toast.LENGTH_SHORT).show()

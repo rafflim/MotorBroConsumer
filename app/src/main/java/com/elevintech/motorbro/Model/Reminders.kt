@@ -9,5 +9,5 @@ class Reminders (
     var endDate: String = "",
     var endDateLong: Long = 0.toLong(),
     var price: Double = 0.00,
-    var typeOfHistory: String = "",
+    var typeOfReminder: String = "",
     var brand: String ="")
