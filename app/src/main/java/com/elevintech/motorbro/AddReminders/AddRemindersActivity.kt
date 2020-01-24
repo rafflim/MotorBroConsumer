@@ -37,7 +37,7 @@ class AddRemindersActivity : AppCompatActivity() {
         }
 
         checkMarkButton.setOnClickListener {
-            saveBikePartsData()
+            saveReminderData()
         }
 
         startDateText.setOnClickListener {
@@ -50,7 +50,7 @@ class AddRemindersActivity : AppCompatActivity() {
             openDatePicker()
         }
 
-        typeOfHistoryText.setOnClickListener {
+        typeOfReminderText.setOnClickListener {
             val intent = Intent(applicationContext, TypeOfReminderActivity::class.java)
             startActivityForResult(intent, SELECT_REMINDER_TYPE)
         }
@@ -63,7 +63,7 @@ class AddRemindersActivity : AppCompatActivity() {
             if (data != null){
                 if (requestCode == SELECT_REMINDER_TYPE){
                     var partType = data!!.getStringExtra("selectedReminder").toString()
-                    typeOfHistoryText.setText(partType)
+                    typeOfReminderText.setText(partType)
                 }
             }
         }
@@ -114,7 +114,7 @@ class AddRemindersActivity : AppCompatActivity() {
 
     }
 
-    fun saveBikePartsData() {
+    fun saveReminderData() {
 
         if (validateFields()){
 
@@ -129,7 +129,7 @@ class AddRemindersActivity : AppCompatActivity() {
             reminder.endDateLong = Utils().convertDateToTimestamp(endDateText.text.toString(), "yyyy-MM-dd")
 
             reminder.kilometers = odometerText.text.toString().toDouble()
-            reminder.typeOfHistory = typeOfHistoryText.text.toString()
+            reminder.typeOfReminder = typeOfReminderText.text.toString()
             reminder.brand = brandText.text.toString()
             reminder.price = priceText.text.toString().toDouble()
 
@@ -155,7 +155,7 @@ class AddRemindersActivity : AppCompatActivity() {
                         startDateText.text.toString() == "" ||
                         endDateText.text.toString() == "" ||
                         odometerText.text.toString()== ""||
-                        typeOfHistoryText.text.toString() == ""||
+                         typeOfReminderText.text.toString() == ""||
                         brandText.text.toString() == ""||
                         priceText.text.toString() == ""
                 ))
