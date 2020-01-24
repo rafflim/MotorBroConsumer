@@ -8,8 +8,7 @@ import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.elevintech.motorbro.FirebaseDatabase.FirebaseDatabase
-import com.elevintech.motorbro.Model.BikeParts
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Model.History
 import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
 import com.elevintech.motorbro.Utils.Utils
@@ -115,7 +114,7 @@ class AddHistoryActivity : AppCompatActivity() {
         if (validateFields()){
 
 
-            var showDialog = Utils().showDismissableDialog(this, "Saving history")
+            var showDialog = Utils().showProgressDialog(this, "Saving history")
 
             var history = History()
 
@@ -126,7 +125,7 @@ class AddHistoryActivity : AppCompatActivity() {
             history.brand = brandText.text.toString()
             history.price = priceText.text.toString().toDouble()
 
-            val database = FirebaseDatabase()
+            val database = MotoroBroDatabase()
             database.saveHistory(history) {
                 showDialog.dismiss()
                 Toast.makeText(this, "Successfully saved history", Toast.LENGTH_SHORT).show()

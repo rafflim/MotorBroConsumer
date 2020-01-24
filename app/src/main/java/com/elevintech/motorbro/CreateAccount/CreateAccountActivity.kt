@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.elevintech.motorbro.BikeRegistration.BikeRegistrationActivity
-import com.elevintech.motorbro.FirebaseDatabase.FirebaseDatabase
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Model.User
 import com.elevintech.myapplication.R
 import com.google.firebase.auth.FirebaseAuth
@@ -57,7 +57,7 @@ class CreateAccountActivity : AppCompatActivity() {
 
         val user = User(firstNameEditText.text.toString(), lastNameEditText.text.toString(), gender, emailEditText.text.toString())
 
-        val firebaseDatabase = FirebaseDatabase()
+        val firebaseDatabase = MotoroBroDatabase()
 
         val email = emailEditText.text.toString()
         val password = passwordEditText.text.toString()

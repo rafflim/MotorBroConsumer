@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.fragment_parts.*
 import kotlinx.android.synthetic.main.row_parts.view.*
 import android.app.Activity
 import com.elevintech.motorbro.Constants
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
+import com.google.firebase.database.FirebaseDatabase
 
 
 class TypeOfPartsActivity : AppCompatActivity() {
@@ -21,6 +23,15 @@ class TypeOfPartsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_type_of_parts)
 
+        add_parts_floating_button.setOnClickListener {
+            val intent = Intent(applicationContext, AddTypeOfParts::class.java)
+            startActivity(intent)
+        }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         displayParts()
     }
 
@@ -28,11 +39,27 @@ class TypeOfPartsActivity : AppCompatActivity() {
     private fun displayParts() {
         var partsListAdapter = GroupAdapter<ViewHolder>()
 
-        for (part in Constants.TYPE_OF.parts) {
-            partsListAdapter.add(partsItem(part))
+
+
+        // Parts Created By User
+        MotoroBroDatabase().getUser{
+            // Default Parts
+            // Put this after getting the users custom part, para sabay silang magdisplay sa recyclerview
+            for (part in Constants.TYPE_OF.parts) {
+                partsListAdapter.add(partsItem(part))
+            }
+
+            for (customPart in it.customParts){
+
+                var properlyCapitalized = (customPart.toLowerCase()).capitalize()
+                partsListAdapter.add(partsItem(properlyCapitalized))
+            }
         }
 
         recycler_view_type_of_parts.adapter = partsListAdapter
+
+
+
     }
 
     inner class partsItem(val part: String): Item<ViewHolder>() {

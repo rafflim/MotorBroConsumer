@@ -1,11 +1,32 @@
-package com.elevintech.motorbro.FirebaseDatabase
+package com.elevintech.motorbro.MotorBroDatabase
 
-import android.util.Log
 import com.elevintech.motorbro.Model.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 
-class FirebaseDatabase {
+class MotoroBroDatabase {
+
+    fun getUser(callback: (User) -> Unit){
+
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val docRef = db.collection("users").document(uid)
+
+        docRef.get().addOnSuccessListener { documentSnapshot ->
+
+            var user = User()
+
+            if (documentSnapshot != null && documentSnapshot.exists()) {
+                user = documentSnapshot.toObject(User::class.java)!!
+
+            }
+
+            callback( user )
+
+        }
+    }
+
 
     fun registerUser(user: User, callback: () -> Unit) {
         // Access a Cloud Firestore instance from your Activity
@@ -96,5 +117,16 @@ class FirebaseDatabase {
                     e -> println(e)
                 callback()
             }
+    }
+
+    fun saveCustomPart(part: String, callback: () -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val userBio = db.collection("users").document(uid)
+
+        userBio
+            .update("customParts", FieldValue.arrayUnion("$part"))
+            .addOnSuccessListener { callback() }
+            .addOnFailureListener { e -> callback() }
     }
 }

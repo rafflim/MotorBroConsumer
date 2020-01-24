@@ -86,7 +86,7 @@ class Utils {
 
     }
 
-    fun showDismissableDialog(context: Context, message: String): ProgressDialog{
+    fun showProgressDialog(context: Context, message: String): ProgressDialog{
         var progressDialog = ProgressDialog(context)
         progressDialog.setMessage(message)
         progressDialog.setCancelable(false)

@@ -1,11 +1,10 @@
 package com.elevintech.motorbro.BikeRegistration
 
 import android.app.ProgressDialog
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.elevintech.motorbro.FirebaseDatabase.FirebaseDatabase
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.myapplication.R
 import com.google.firebase.auth.FirebaseAuth
@@ -225,7 +224,7 @@ class BikeRegistrationActivity : AppCompatActivity() {
         bike.nickname = editNicknameText.text.toString()
         bike.userId = uid!!
 
-        val database = FirebaseDatabase()
+        val database = MotoroBroDatabase()
 
         var progressDialog = ProgressDialog(this)
         progressDialog.setMessage("Registering your profile....")

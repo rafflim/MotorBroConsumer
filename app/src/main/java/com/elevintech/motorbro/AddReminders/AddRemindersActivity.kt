@@ -8,7 +8,7 @@ import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.elevintech.motorbro.FirebaseDatabase.FirebaseDatabase
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Model.Reminders
 import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
 import com.elevintech.motorbro.Utils.Utils
@@ -118,7 +118,7 @@ class AddRemindersActivity : AppCompatActivity() {
         if (validateFields()){
 
 
-            var showDialog = Utils().showDismissableDialog(this, "Saving reminder")
+            var showDialog = Utils().showProgressDialog(this, "Saving reminder")
 
             var reminder = Reminders()
 
@@ -132,7 +132,7 @@ class AddRemindersActivity : AppCompatActivity() {
             reminder.brand = brandText.text.toString()
             reminder.price = priceText.text.toString().toDouble()
 
-            val database = FirebaseDatabase()
+            val database = MotoroBroDatabase()
             database.saveReminder(reminder) {
                 showDialog.dismiss()
                 Toast.makeText(this, "Successfully saved reminder", Toast.LENGTH_SHORT).show()
