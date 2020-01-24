@@ -1,9 +1,11 @@
 package com.elevintech.motorbro.BikeRegistration
 
 import android.app.ProgressDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.elevintech.motorbro.Dashboard.DashboardActivity
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.myapplication.R
@@ -235,7 +237,8 @@ class BikeRegistrationActivity : AppCompatActivity() {
             progressDialog.hide()
             Toast.makeText(this, "Bike Registration Successful!", Toast.LENGTH_LONG).show()
 
-            finish()
+            val intent = Intent(applicationContext, DashboardActivity::class.java)
+            startActivity(intent)
         }
     }
 }
