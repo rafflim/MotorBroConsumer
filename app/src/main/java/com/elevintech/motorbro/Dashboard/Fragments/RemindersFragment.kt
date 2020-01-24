@@ -72,6 +72,8 @@ class RemindersFragment : Fragment() {
 
             // TODO: Add the items to add here to be dynamic
             viewHolder.itemView.startDateText.text = Utils().convertMillisecondsToDate(reminder.startDateLong, "MMM d, yyyy")
+            viewHolder.itemView.endDateText.text = Utils().convertMillisecondsToDate(reminder.endDateLong, "MMM d, yyyy")
+            viewHolder.itemView.headerText.text = (reminder.typeOfReminder.toLowerCase()).capitalize()
         }
 
         override fun getLayout(): Int {
