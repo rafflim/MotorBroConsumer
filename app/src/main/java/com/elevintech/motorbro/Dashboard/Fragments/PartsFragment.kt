@@ -35,12 +35,19 @@ class PartsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        displayParts()
+
 
         add_parts_floating_button.setOnClickListener {
             val intent = Intent(context, AddPartsActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        displayParts()
+
     }
 
     private fun displayParts() {
