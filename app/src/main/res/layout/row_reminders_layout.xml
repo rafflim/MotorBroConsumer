@@ -43,16 +43,16 @@
             />
 
         <TextView
-            android:autoSizeTextType="uniform"
+            android:id="@+id/startDateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/clockIcon"
-            app:layout_constraintTop_toTopOf="@id/clockIcon"
-            app:layout_constraintBottom_toBottomOf="@id/clockIcon"
+            android:layout_marginLeft="10dp"
+            android:autoSizeTextType="uniform"
             android:text="January 22, 2020"
             android:textColor="@color/textColorBlack"
-            android:layout_marginLeft="10dp"
-            />
+            app:layout_constraintBottom_toBottomOf="@id/clockIcon"
+            app:layout_constraintStart_toEndOf="@id/clockIcon"
+            app:layout_constraintTop_toTopOf="@id/clockIcon" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -77,15 +77,15 @@
             />
 
         <TextView
+            android:id="@+id/endDateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/shopIcon"
-            app:layout_constraintTop_toTopOf="@id/shopIcon"
-            app:layout_constraintBottom_toBottomOf="@id/shopIcon"
+            android:layout_marginLeft="10dp"
             android:text="January 22, 2020"
             android:textColor="@color/textColorBlack"
-            android:layout_marginLeft="10dp"
-            />
+            app:layout_constraintBottom_toBottomOf="@id/shopIcon"
+            app:layout_constraintStart_toEndOf="@id/shopIcon"
+            app:layout_constraintTop_toTopOf="@id/shopIcon" />
 
         <TextView
             android:layout_width="wrap_content"

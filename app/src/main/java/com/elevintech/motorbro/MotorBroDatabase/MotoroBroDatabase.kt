@@ -151,4 +151,25 @@ class MotoroBroDatabase {
             .addOnSuccessListener { callback() }
             .addOnFailureListener { e -> callback() }
     }
+
+    fun getUserReminders(callback: (MutableList<Reminders>) -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val docRef = db.collection("users").document(uid).collection("reminders")
+        val list = mutableListOf<Reminders>()
+
+        docRef.get()
+            .addOnSuccessListener {
+
+                for (reminder in it){
+                    val reminder = reminder.toObject(Reminders::class.java)
+                    list.add(reminder)
+                }
+
+                callback(list)
+
+        }
+
+    }
 }
