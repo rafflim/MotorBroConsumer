@@ -23,9 +23,28 @@ class MotoroBroDatabase {
             }
 
             callback( user )
-
         }
     }
+
+    fun getUserBike(callback: (BikeInfo) -> Unit){
+
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val docRef = db.collection("bikes").document(uid)
+
+        docRef.get().addOnSuccessListener { documentSnapshot ->
+
+            var bike = BikeInfo()
+
+            if (documentSnapshot != null && documentSnapshot.exists()) {
+                bike = documentSnapshot.toObject(BikeInfo::class.java)!!
+
+            }
+
+            callback( bike )
+        }
+    }
+
 
 
     fun registerUser(user: User, callback: () -> Unit) {

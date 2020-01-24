@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         loginButton.setOnClickListener {
             doLogin()
         }
+
+
     }
 
     fun doLogin(){

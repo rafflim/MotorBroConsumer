@@ -16,12 +16,16 @@ import com.elevintech.motorbro.Garage.GarageActivity
 import com.elevintech.motorbro.Glovebox.GloveboxActivity
 import com.elevintech.motorbro.MyAccount.MyAccountActivity
 import com.elevintech.motorbro.MainActivity
+import com.elevintech.motorbro.Model.BikeInfo
+import com.elevintech.motorbro.Model.User
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.myapplication.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.drawer_dashboard.*
+import kotlinx.android.synthetic.main.drawer_header.view.*
 
 class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -42,6 +46,35 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 //            val intent = Intent(activity, EditGeneralInformationActivity::class.java)
 //            startActivity(intent)
         }
+
+        // TODO: Load the user profile here
+        val db = MotoroBroDatabase()
+
+        db.getUser {
+            println("Got User")
+            println(it.firstName)
+
+            setValuesNavHeader(it)
+        }
+
+
+
+
+    }
+
+    private fun setBikeValues(bike: BikeInfo) {
+
+    }
+
+    private fun setValuesNavHeader(user: User) {
+
+        val navHeader = nav_view.getHeaderView(0)
+
+        val navUserName = navHeader.usersNameText
+        val navUserEmail = navHeader.userEmailText
+
+        navUserName.setText(user.firstName + " " + user.lastName)
+        navUserEmail.setText(user.email)
     }
 
     // Navigation Drawer
@@ -61,6 +94,8 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         var toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
+
+
 
 //        // get menu from navigationView
 //        val nav_menu = nav_view.menu
