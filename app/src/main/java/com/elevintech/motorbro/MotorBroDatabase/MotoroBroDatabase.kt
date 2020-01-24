@@ -140,4 +140,15 @@ class MotoroBroDatabase {
             .addOnSuccessListener { callback() }
             .addOnFailureListener { e -> callback() }
     }
+
+    fun saveCustomHistory(history: String, callback: () -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val userBio = db.collection("users").document(uid)
+
+        userBio
+            .update("customHistory", FieldValue.arrayUnion("$history "))
+            .addOnSuccessListener { callback() }
+            .addOnFailureListener { e -> callback() }
+    }
 }

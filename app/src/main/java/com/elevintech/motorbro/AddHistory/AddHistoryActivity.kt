@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Model.History
+import com.elevintech.motorbro.TypeOf.TypeOfHistoryActivity
 import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
 import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
@@ -45,7 +46,7 @@ class AddHistoryActivity : AppCompatActivity() {
         }
 
         typeOfHistoryText.setOnClickListener {
-            val intent = Intent(applicationContext, TypeOfPartsActivity::class.java)
+            val intent = Intent(applicationContext, TypeOfHistoryActivity::class.java)
             startActivityForResult(intent, SELECT_PART_TYPE)
         }
     }
@@ -56,7 +57,7 @@ class AddHistoryActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK){
             if (data != null){
                 if (requestCode == SELECT_PART_TYPE){
-                    var partType = data!!.getStringExtra("selectedPart").toString()
+                    var partType = data!!.getStringExtra("selectedHistory").toString()
                     typeOfHistoryText.setText(partType)
                 }
             }
