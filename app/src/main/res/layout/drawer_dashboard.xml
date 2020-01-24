@@ -20,7 +20,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:menu="@menu/drawer_main_menu"
-        app:itemIconTint="#BECA0000"
+        app:itemIconTint="@color/colorPrimary"
         app:headerLayout="@layout/drawer_header"/>
 
 

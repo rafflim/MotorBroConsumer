@@ -38,6 +38,9 @@
 
                     android:background="@drawable/shadow_background"
                     android:layout_marginTop="0dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    app:layout_goneMarginTop="5dp"
 
                     >
 
