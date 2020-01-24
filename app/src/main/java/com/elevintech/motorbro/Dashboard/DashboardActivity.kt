@@ -15,9 +15,11 @@ import com.elevintech.motorbro.Dashboard.Fragments.*
 import com.elevintech.motorbro.Garage.GarageActivity
 import com.elevintech.motorbro.Glovebox.GloveboxActivity
 import com.elevintech.motorbro.MyAccount.MyAccountActivity
+import com.elevintech.motorbro.MainActivity
 import com.elevintech.myapplication.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.drawer_dashboard.*
 
@@ -117,14 +119,21 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             }
 
             R.id.sign_out -> {
-                println("Logged Out")
+                logOut()
             }
-
-
 
         }
 
         return true
+    }
+
+    private fun logOut() {
+
+        FirebaseAuth.getInstance().signOut()
+        val intent = Intent(this, MainActivity::class.java)
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+        finish()
     }
 
     private fun setUpBottomNav() {

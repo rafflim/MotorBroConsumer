@@ -1,12 +1,14 @@
 package com.elevintech.motorbro.Dashboard.Fragments
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.elevintech.motorbro.AddHistory.AddHistoryActivity
 import com.elevintech.motorbro.Model.History
 import com.elevintech.motorbro.Model.Reminders
 
@@ -26,6 +28,16 @@ class HistoryFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_history, container, false)
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        add_history_floating_button.setOnClickListener {
+            val intent = Intent(context, AddHistoryActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onResume() {
@@ -37,10 +49,10 @@ class HistoryFragment : Fragment() {
     fun setupViews() {
         historyRecyclerView.isNestedScrollingEnabled = false
 
-        val history1 = History("", "Payment", "5000km", 5000.0, "$5,000.00")
-        val history2 = History("", "Payment", "5000km", 5000.0, "$5,000.00")
-        val history3 = History("", "Payment", "5000km", 5000.0, "$5,000.00")
-        val history4 = History("", "Payment", "5000km", 5000.0, "$5,000.00")
+        val history1 = History()
+        val history2 = History()
+        val history3 = History()
+        val history4 = History()
 
         val historyAdapter = GroupAdapter<ViewHolder>()
 

@@ -1,6 +1,7 @@
 package com.elevintech.motorbro.Dashboard.Fragments
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.elevintech.motorbro.AddReminders.AddRemindersActivity
 import com.elevintech.motorbro.Model.Reminders
 import com.elevintech.motorbro.Model.ShopProduct
 
@@ -28,6 +30,16 @@ class RemindersFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_reminders, container, false)
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        add_reminders_floating_button.setOnClickListener {
+            val intent = Intent(context, AddRemindersActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onResume() {
@@ -39,10 +51,10 @@ class RemindersFragment : Fragment() {
     fun setupViews() {
         remindersRecyclerView.isNestedScrollingEnabled = false
 
-        val reminder1 = Reminders("", "Payment", 0.0, 0.0)
-        val reminder2 = Reminders("", "Payment", 0.0, 0.0)
-        val reminder3 = Reminders("", "Payment", 0.0, 0.0)
-        val reminder4 = Reminders("", "Payment", 0.0, 0.0)
+        val reminder1 = Reminders()
+        val reminder2 = Reminders()
+        val reminder3 = Reminders()
+        val reminder4 = Reminders()
 
         val reminderAdamter = GroupAdapter<ViewHolder>()
 
