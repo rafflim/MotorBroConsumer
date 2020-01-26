@@ -247,11 +247,14 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 }
 
                 R.id.tabhistory -> {
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.frame_layout, historyFragment, "historyFragmentTag")
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
+
+                    floating_button.performClick()
+
+//                    supportFragmentManager
+//                        .beginTransaction()
+//                        .replace(R.id.frame_layout, historyFragment, "historyFragmentTag")
+//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                        .commit()
                 }
 
             }
