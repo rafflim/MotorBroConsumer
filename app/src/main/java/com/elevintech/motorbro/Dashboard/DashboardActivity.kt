@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.forEach
 import androidx.fragment.app.FragmentTransaction
@@ -24,6 +26,7 @@ import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
 import com.elevintech.motorbro.TypeOf.TypeOfReminderActivity
 import com.elevintech.myapplication.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_dashboard.*
@@ -44,6 +47,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
         buildNavigationDrawer()
         setUpBottomNav()
+        setUpFabClick()
 
         shopImageView.setOnClickListener {
 //            val intent = Intent(activity, EditGeneralInformationActivity::class.java)
@@ -64,6 +68,29 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
 
     }
+
+    private fun setUpFabClick() {
+        floating_button.setOnClickListener {
+
+            val view = layoutInflater.inflate(R.layout.bottom_sheet_dialog_dashboard, null)
+            val dialog = BottomSheetDialog(this)
+            dialog.setContentView(view)
+            dialog.show()
+
+            val button_one = dialog.findViewById<Button>(R.id.button1)
+            val button_two = dialog.findViewById<Button>(R.id.button2)
+
+            button_one!!.setOnClickListener {
+                Toast.makeText(this, "button 1 is clicked", Toast.LENGTH_SHORT).show()
+            }
+
+            button_two!!.setOnClickListener {
+                Toast.makeText(this, "button 2 is clicked", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+    }
+
 
     private fun setBikeValues(bike: BikeInfo) {
 
@@ -231,11 +258,14 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 }
 
                 R.id.tabshop -> {
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.frame_layout, shopFragment, "shopFragmentTag")
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
+
+                    floating_button.performClick()
+//
+//                    supportFragmentManager
+//                        .beginTransaction()
+//                        .replace(R.id.frame_layout, shopFragment, "shopFragmentTag")
+//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                        .commit()
                 }
 
                 R.id.tabreminders -> {
@@ -248,13 +278,11 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
                 R.id.tabhistory -> {
 
-                    floating_button.performClick()
-
-//                    supportFragmentManager
-//                        .beginTransaction()
-//                        .replace(R.id.frame_layout, historyFragment, "historyFragmentTag")
-//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//                        .commit()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.frame_layout, historyFragment, "historyFragmentTag")
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit()
                 }
 
             }
