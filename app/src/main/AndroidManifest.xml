@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.elevintech.motorbro.Dashboard.DashboardBottomSheet"></activity>
+        <activity android:name="com.elevintech.motorbro.TypeOf.AddTypeOfFuel"></activity>
+        <activity android:name="com.elevintech.motorbro.TypeOf.TypeOfFuelActivity" />
+        <activity android:name="com.elevintech.motorbro.AddRefueling.AddRefuelingActivity" />
+        <activity android:name="com.elevintech.motorbro.Dashboard.DashboardBottomSheet" />
         <activity android:name="com.elevintech.motorbro.TypeOf.AddTypeOfHistory" />
         <activity android:name="com.elevintech.motorbro.TypeOf.TypeOfHistoryActivity" />
         <activity android:name="com.elevintech.motorbro.TypeOf.AddTypeOfReminders" />

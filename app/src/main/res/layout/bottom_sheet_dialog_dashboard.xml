@@ -1,24 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="30dp">
 
 
-    <Button
-        android:id="@+id/button1"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:orientation="horizontal"
+        android:padding="20dp">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+        <LinearLayout
+            android:id="@+id/layoutParts"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/imageView1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/car_new_registration_icon" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Parts" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutReminders"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/imageView2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/car_new_registration_icon" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Reminders" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutRefueling"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/imageView3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/car_new_registration_icon" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Refueling" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:padding="20dp">-->
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <ImageView-->
+<!--                android:layout_gravity="center"-->
+<!--                android:id="@+id/imageView3"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                app:srcCompat="@drawable/car_new_registration_icon" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center"-->
+<!--                android:text="Sumtext" />-->
+
+<!--        </LinearLayout>-->
+
+<!--&lt;!&ndash;        <FrameLayout&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_weight="1">&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <ImageView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/imageView4"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="50dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="50dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                app:srcCompat="@drawable/car_new_registration_icon" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/imageView5"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="50dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="50dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                app:srcCompat="@drawable/car_new_registration_icon" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;        </FrameLayout>&ndash;&gt;-->
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <ImageView-->
+<!--                android:layout_gravity="center"-->
+<!--                android:id="@+id/imageView4"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                app:srcCompat="@drawable/car_new_registration_icon" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center"-->
+<!--                android:text="Sumtext" />-->
+
+<!--        </LinearLayout>-->
+
+
+
+<!--    </LinearLayout>-->
+
+
 </LinearLayout>
