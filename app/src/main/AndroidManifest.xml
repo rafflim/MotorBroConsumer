@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.elevintech.motorbro.TypeOf.AddTypeOfHistory"></activity>
+        <activity android:name="com.elevintech.motorbro.ViewBike.ViewBikeActivity"></activity>
+        <activity android:name="com.elevintech.motorbro.TypeOf.AddTypeOfHistory" />
         <activity android:name="com.elevintech.motorbro.TypeOf.TypeOfHistoryActivity" />
         <activity android:name="com.elevintech.motorbro.TypeOf.AddTypeOfReminders" />
         <activity android:name="com.elevintech.motorbro.TypeOf.TypeOfReminderActivity" />
@@ -36,7 +37,6 @@
         <activity android:name="com.elevintech.motorbro.Dashboard.DashboardActivity" />
         <activity android:name="com.elevintech.motorbro.CreateAccount.CreateAccountActivity" />
         <activity android:name="com.elevintech.motorbro.MainActivity" />
-
 
         <meta-data
             android:name="preloaded_fonts"
