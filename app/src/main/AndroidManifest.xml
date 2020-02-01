@@ -15,7 +15,6 @@
         <activity android:name="com.elevintech.motorbro.Dashboard.DashboardBottomSheet" />
         <activity android:name="com.elevintech.motorbro.TypeOf.AddTypeOfHistory" />
         <activity android:name="com.elevintech.motorbro.ViewBike.ViewBikeActivity"></activity>
-        <activity android:name="com.elevintech.motorbro.TypeOf.AddTypeOfHistory" />
         <activity android:name="com.elevintech.motorbro.TypeOf.TypeOfHistoryActivity" />
         <activity android:name="com.elevintech.motorbro.TypeOf.AddTypeOfReminders" />
         <activity android:name="com.elevintech.motorbro.TypeOf.TypeOfReminderActivity" />
