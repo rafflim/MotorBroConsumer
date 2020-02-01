@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Dashboard.DashboardActivity">
+    android:layout_height="match_parent">
 
 
 
@@ -57,22 +56,70 @@
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottom_nav"
         android:layout_below="@+id/toolbar"
+        android:layout_marginBottom="60dp"
         android:background="@android:color/white">
 
 
     </FrameLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:id="@+id/bottom_nav"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:theme="@style/BottomNavigationTheme"-->
+<!--        app:labelVisibilityMode="labeled"-->
+<!--        app:menu="@menu/bottom_nav_dashboard"-->
+<!--        android:background="@android:color/white"/>-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_alignParentBottom="true"
-        android:theme="@style/BottomNavigationTheme"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_nav_dashboard"
-        android:background="@android:color/white"/>
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:id="@+id/bottom_nav_layout">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_button"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+
+            android:layout_gravity="end"
+            android:layout_margin="16dp"
+
+
+            app:elevation="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/bottom_nav"
+            app:layout_constraintLeft_toRightOf="@id/bottom_nav"
+            app:layout_constraintRight_toLeftOf="@id/bottom_nav"
+
+
+
+            app:backgroundTint="@color/white"
+
+
+
+            app:fabCustomSize="70dp"
+            app:maxImageSize="70dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/red_floating_button"/>
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            app:labelVisibilityMode="labeled"
+            android:id="@+id/bottom_nav"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:menu="@menu/bottom_nav_dashboard" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </RelativeLayout>

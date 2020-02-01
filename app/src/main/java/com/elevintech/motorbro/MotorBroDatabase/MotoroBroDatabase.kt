@@ -185,6 +185,17 @@ class MotoroBroDatabase {
             .addOnFailureListener { e -> callback() }
     }
 
+    fun saveCustomFuel(fuel: String, callback: () -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val userBio = db.collection("users").document(uid)
+
+        userBio
+            .update("customFuel", FieldValue.arrayUnion("$fuel "))
+            .addOnSuccessListener { callback() }
+            .addOnFailureListener { e -> callback() }
+    }
+
     fun getUserReminders(callback: (MutableList<Reminders>) -> Unit) {
 
         val db = FirebaseFirestore.getInstance()
@@ -243,6 +254,21 @@ class MotoroBroDatabase {
 
                 callback(list)
 
+            }
+    }
+
+    fun saveRefueling(refueling: Refueling, callback: () -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("users").document(FirebaseAuth.getInstance().uid!!).collection("refueling")
+            .document()
+            .set(refueling)
+            .addOnSuccessListener {
+                callback()
+            }
+            .addOnFailureListener {
+                    e -> println(e)
+                callback()
             }
     }
 }

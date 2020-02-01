@@ -6,10 +6,16 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.forEach
 import androidx.fragment.app.FragmentTransaction
 import com.elevintech.motorbro.Achievements.AchievementsActivity
+import com.elevintech.motorbro.AddParts.AddPartsActivity
+import com.elevintech.motorbro.AddRefueling.AddRefuelingActivity
+import com.elevintech.motorbro.AddReminders.AddRemindersActivity
 import com.elevintech.motorbro.BikeRegistration.BikeRegistrationActivity
 import com.elevintech.motorbro.Dashboard.Fragments.*
 import com.elevintech.motorbro.Garage.GarageActivity
@@ -19,11 +25,13 @@ import com.elevintech.motorbro.MainActivity
 import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.Model.User
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
+import com.elevintech.motorbro.TypeOf.AddTypeOfParts
 import com.elevintech.motorbro.TypeOf.TypeOfHistoryActivity
 import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
 import com.elevintech.motorbro.TypeOf.TypeOfReminderActivity
 import com.elevintech.myapplication.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_dashboard.*
@@ -44,6 +52,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
         buildNavigationDrawer()
         setUpBottomNav()
+        setUpFabClick()
 
         shopImageView.setOnClickListener {
 //            val intent = Intent(activity, EditGeneralInformationActivity::class.java)
@@ -64,6 +73,46 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
 
     }
+
+    private fun setUpFabClick() {
+        floating_button.setOnClickListener {
+
+//            val bottomSheet = DashboardBottomSheet()
+//            bottomSheet.show(supportFragmentManager, "")
+
+            val view = layoutInflater.inflate(R.layout.bottom_sheet_dialog_dashboard, null)
+            val dialog = BottomSheetDialog(this)
+            dialog.setContentView(view)
+            dialog.show()
+
+            val parts = dialog.findViewById<LinearLayout>(R.id.layoutParts)
+            val reminders = dialog.findViewById<LinearLayout>(R.id.layoutReminders)
+            val refueling = dialog.findViewById<LinearLayout>(R.id.layoutRefueling)
+
+            parts!!.setOnClickListener {
+
+                val intent = Intent(this, AddPartsActivity::class.java)
+                startActivity(intent)
+
+            }
+
+            reminders!!.setOnClickListener {
+
+                val intent = Intent(this, AddRemindersActivity::class.java)
+                startActivity(intent)
+
+            }
+
+            refueling!!.setOnClickListener {
+
+                val intent = Intent(this, AddRefuelingActivity::class.java)
+                startActivity(intent)
+
+            }
+
+        }
+    }
+
 
     private fun setBikeValues(bike: BikeInfo) {
 
@@ -231,11 +280,14 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 }
 
                 R.id.tabshop -> {
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.frame_layout, shopFragment, "shopFragmentTag")
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
+
+                    floating_button.performClick()
+//
+//                    supportFragmentManager
+//                        .beginTransaction()
+//                        .replace(R.id.frame_layout, shopFragment, "shopFragmentTag")
+//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                        .commit()
                 }
 
                 R.id.tabreminders -> {
@@ -247,6 +299,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 }
 
                 R.id.tabhistory -> {
+
                     supportFragmentManager
                         .beginTransaction()
                         .replace(R.id.frame_layout, historyFragment, "historyFragmentTag")

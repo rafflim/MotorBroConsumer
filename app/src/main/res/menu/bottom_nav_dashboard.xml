@@ -12,6 +12,11 @@
         android:title="Parts" />
 
     <item
+        android:id="@+id/tabshop"
+        android:icon="@drawable/carticon"
+        android:title="" />
+
+    <item
         android:id="@+id/tabreminders"
         android:icon="@drawable/lighticon"
         android:title="Reminders" />
@@ -21,10 +26,7 @@
         android:icon="@drawable/clockicon"
         android:title="History" />
 
-    <item
-        android:id="@+id/tabshop"
-        android:icon="@drawable/carticon"
-        android:title="Shop" />
+
 
 
 </menu>
