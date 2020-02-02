@@ -2,6 +2,10 @@ package com.elevintech.motorbro.Utils
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Color
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.qrcode.QRCodeWriter
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -95,4 +99,19 @@ class Utils {
         return progressDialog
     }
 
+    fun generateQrCodeBitmap(content: String): Bitmap {
+
+        val writer = QRCodeWriter()
+        val bitMatrix = writer.encode(content, BarcodeFormat.QR_CODE, 1000, 1000)
+        val width = bitMatrix.width
+        val height = bitMatrix.height
+        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+        for (x in 0 until width) {
+            for (y in 0 until height) {
+                bitmap.setPixel(x, y, if (bitMatrix.get(x, y)) Color.BLACK else Color.WHITE)
+            }
+        }
+
+        return bitmap
+    }
 }
