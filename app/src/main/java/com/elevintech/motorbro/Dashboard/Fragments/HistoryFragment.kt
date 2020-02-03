@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.elevintech.motorbro.AddHistory.AddHistoryActivity
 import com.elevintech.motorbro.Model.History
+import com.elevintech.motorbro.Model.OdometerUpdate
 import com.elevintech.motorbro.Model.Reminders
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Utils.Utils
@@ -48,6 +49,12 @@ class HistoryFragment : Fragment() {
         setupViews()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        historyAdapter.clear()
+    }
+
     fun setupRecyclerView() {
         historyRecyclerView.isNestedScrollingEnabled = false
         historyRecyclerView.adapter = historyAdapter
@@ -55,35 +62,43 @@ class HistoryFragment : Fragment() {
 
     fun setupViews() {
 
-        MotoroBroDatabase().getUserHistory {
+        val db = MotoroBroDatabase()
+        db.getUserOdometers {
+            // TODO: somehow get the last value only
+            val firstOdo = it.first()
 
-            val historyList = it
-            if(historyList.isNotEmpty()){
-                noDataLayout.visibility = View.GONE
-            } else {
-                noDataLayout.visibility = View.INVISIBLE
-            }
-
-            for (history in historyList){
-                historyAdapter.add(historyItem(history))
+            for (odo in it) {
+                historyAdapter.add(historyItem(odo))
             }
         }
+//        MotoroBroDatabase().getUserHistory {
+//
+//            val historyList = it
+//            if(historyList.isNotEmpty()){
+//                if (noDataLayout != null) {
+//                    noDataLayout.visibility = View.GONE
+//                }
+//            } else {
+//                if (noDataLayout != null) {
+//                    noDataLayout.visibility = View.VISIBLE
+//                }
+//            }
+//
+//            for (history in historyList){
+//                historyAdapter.add(historyItem(history))
+//            }
+//        }
     }
 
-    inner class historyItem(val history: History): Item<ViewHolder>() {
+    inner class historyItem(val odometer: OdometerUpdate): Item<ViewHolder>() {
 
         override fun bind(viewHolder: ViewHolder, position: Int) {
 
-            val title = (history.typeOfHistory.toLowerCase()).capitalize()
-            val distance = history.kilometers.toString() + " Km"
-            val date = Utils().convertMillisecondsToDate(history.dateLong, "MMM d, yyyy")
-            val price = "$" + ("%.2f".format(history.price))
+            val distance = odometer.odometer.toString()
+            val date = odometer.date
 
-            viewHolder.itemView.historyTitle.text = title
-            viewHolder.itemView.historyKilometers.text = distance
-
+            viewHolder.itemView.historyKilometers.text = distance + "km"
             viewHolder.itemView.historyDate.text = date
-            viewHolder.itemView.historyCash.text = price
         }
 
         override fun getLayout(): Int {

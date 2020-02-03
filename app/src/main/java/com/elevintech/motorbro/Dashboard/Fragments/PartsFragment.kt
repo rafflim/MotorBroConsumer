@@ -73,9 +73,14 @@ class PartsFragment : Fragment() {
 
             val bikePartsList = it
             if(bikePartsList.isNotEmpty()) {
-                noDataLayout.visibility = INVISIBLE
+                if (noDataLayout != null) {
+                    noDataLayout.visibility = INVISIBLE
+                }
+
             } else {
-                noDataLayout.visibility = VISIBLE
+                if (noDataLayout != null) {
+                    noDataLayout.visibility = VISIBLE
+                }
             }
 
             for (bikePart in bikePartsList){

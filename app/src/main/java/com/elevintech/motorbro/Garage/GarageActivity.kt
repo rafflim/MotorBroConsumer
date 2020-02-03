@@ -3,6 +3,7 @@ package com.elevintech.motorbro.Garage
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.ViewBike.ViewBikeActivity
@@ -32,10 +33,11 @@ class GarageActivity : AppCompatActivity() {
 
         secondBikeLayout.setOnClickListener {
             // if locked then dont show anything
+            Toast.makeText(this, "This motorcycle is locked", Toast.LENGTH_SHORT).show()
         }
 
         thirdBikeLayout.setOnClickListener {
-
+            Toast.makeText(this, "This motorcycle is locked", Toast.LENGTH_SHORT).show()
         }
     }
 

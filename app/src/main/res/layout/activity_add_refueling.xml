@@ -87,6 +87,7 @@
                 android:fontFamily="@font/open_sans"
                 android:text="Date"
                 android:textSize="15sp"
+                android:textColor="@color/textColorBlack"
 
                 />
 
@@ -130,7 +131,7 @@
                 android:fontFamily="@font/open_sans"
                 android:text="Odometer"
                 android:textSize="15sp"
-
+                android:textColor="@color/textColorBlack"
                 />
 
             <LinearLayout
@@ -172,7 +173,7 @@
                 android:fontFamily="@font/open_sans"
                 android:text="Price"
                 android:textSize="15sp"
-
+                android:textColor="@color/textColorBlack"
                 />
 
             <LinearLayout
@@ -240,7 +241,7 @@
                 android:fontFamily="@font/open_sans"
                 android:text="Location"
                 android:textSize="15sp"
-
+                android:textColor="@color/textColorBlack"
                 />
 
             <LinearLayout
@@ -289,7 +290,7 @@
                 android:fontFamily="@font/open_sans"
                 android:text="Fuel Type"
                 android:textSize="15sp"
-
+                android:textColor="@color/textColorBlack"
                 />
 
             <LinearLayout

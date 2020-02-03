@@ -2,7 +2,9 @@ package com.elevintech.motorbro.MyAccount
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.myapplication.R
+import kotlinx.android.synthetic.main.activity_create_account.*
 import kotlinx.android.synthetic.main.activity_my_account.*
 
 class MyAccountActivity : AppCompatActivity() {
@@ -13,6 +15,13 @@ class MyAccountActivity : AppCompatActivity() {
 
         myAccountBackImageView.setOnClickListener {
             finish()
+        }
+
+        val db = MotoroBroDatabase()
+        db.getUser {
+            firstNameText.setText(it.firstName)
+            lastNameText.setText(it.lastName)
+            emailEditText.setText(it.email)
         }
     }
 }

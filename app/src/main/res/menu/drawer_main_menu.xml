@@ -29,15 +29,15 @@
             android:icon="@drawable/parts_menu_icon"
             android:title="Types of Parts" />
 
-        <item
-            android:id="@+id/schedule_menu"
-            android:icon="@drawable/schedule_menu_icon"
-            android:title="Types of Schedule" />
+<!--        <item-->
+<!--            android:id="@+id/schedule_menu"-->
+<!--            android:icon="@drawable/schedule_menu_icon"-->
+<!--            android:title="Types of Schedule" />-->
 
-        <item
-            android:id="@+id/service_menu"
-            android:icon="@drawable/service_menu_icon"
-            android:title="Types of Service" />
+<!--        <item-->
+<!--            android:id="@+id/service_menu"-->
+<!--            android:icon="@drawable/service_menu_icon"-->
+<!--            android:title="Types of Service" />-->
 
 <!--        <item-->
 <!--            android:id="@+id/qr_code"-->

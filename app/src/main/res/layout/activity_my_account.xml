@@ -24,7 +24,8 @@
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/toolbar"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/backbutton" />
+            app:srcCompat="@drawable/back_icon"
+            android:tint="@color/white" />
 
 
         <TextView
@@ -47,86 +48,156 @@
 
 
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:orientation="horizontal"
-    android:layout_margin="20dp"
-    >
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="vertical"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
 
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="First Name"
-            android:textSize="16sp"
-            android:fontFamily="@font/open_sans"
-            android:textColor="@color/textColorBlack"
-            />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:inputType="text"
-            />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="vertical"
-android:layout_weight="1"
-        >
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Last Name"
-            android:textSize="16sp"
-            android:fontFamily="@font/open_sans"
-            android:textColor="@color/textColorBlack"
-            />
+            android:orientation="vertical"
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:inputType="text"
-            />
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/open_sans"
+                android:text="First Name"
+                android:textSize="15sp"
+                android:textColor="@color/textColorBlack"
+
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/name_colored_icon"
+
+                    />
+
+                <EditText
+                    android:id="@+id/firstNameText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:inputType="datetime"
+                    android:focusable="false"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/open_sans"
+                android:text="Last Name"
+                android:textSize="15sp"
+                android:textColor="@color/textColorBlack"
+
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/name_colored_icon"
+
+                    />
+
+                <EditText
+                    android:id="@+id/lastNameText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:inputType="datetime"
+                    android:focusable="false"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/open_sans"
+                android:text="Email"
+                android:textSize="15sp"
+                android:textColor="@color/textColorBlack"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/email_colored_icon"
+
+                    />
+
+                <EditText
+                    android:id="@+id/odometerText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:inputType="number"
+                    android:enabled="false"
+                    />
+
+            </LinearLayout>
 
 
-    </LinearLayout>
-</LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="vertical"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:textSize="16sp"
-            android:fontFamily="@font/open_sans"
-            android:textColor="@color/textColorBlack"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:inputType="text"
-
-            />
-    </LinearLayout>
-
+        </LinearLayout>
+    </ScrollView>
 
 
     <Button

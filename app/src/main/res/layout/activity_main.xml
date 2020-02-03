@@ -55,91 +55,180 @@
                 />
 
             <ImageView
-                android:layout_width="130dp"
-                android:layout_height="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/motorbroinicon"
                 android:layout_gravity="center"
                 />
 
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Email"-->
+<!--                android:fontFamily="@font/open_sans"-->
+<!--                android:textSize="19sp"-->
+<!--                android:layout_marginLeft="40dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:textColor="#3D3D3D"-->
+<!--                />-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_marginLeft="30dp"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                >-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="25dp"-->
+<!--                    android:layout_height="25dp"-->
+<!--                    android:src="@drawable/email_icon"-->
+<!--                    />-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/userNameEditText"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:text=""-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_marginRight="40dp"-->
+<!--                    android:inputType="textEmailAddress"-->
+
+<!--                    />-->
+<!--            </LinearLayout>-->
+
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email"
-                android:fontFamily="@font/open_sans"
-                android:textSize="19sp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:textColor="#3D3D3D"
-                />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/open_sans"
+            android:text="Email"
+            android:textSize="15sp"
+            android:textColor="@color/textColorBlack"
+
+            />
 
             <LinearLayout
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:orientation="horizontal"
+
                 >
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/email_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/email_colored_icon"
+
                     />
 
                 <EditText
                     android:id="@+id/userNameEditText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
                     android:text=""
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="40dp"
-                    android:inputType="textEmailAddress"
-
+                    android:inputType="datetime"
+                    android:focusable="false"
                     />
+
             </LinearLayout>
-
-
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Password"
-                android:fontFamily="@font/open_sans"
-                android:textSize="19sp"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:textColor="#3D3D3D"
+                android:fontFamily="@font/open_sans"
+                android:text="Password"
+                android:textSize="15sp"
+                android:textColor="@color/textColorBlack"
+
                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="30dp"
                 android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+
                 >
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/password_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/password_colored_icon"
+
                     />
 
                 <EditText
                     android:id="@+id/passwordEditText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
                     android:text=""
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="40dp"
-                    android:inputType="textPassword"
-
+                    android:inputType="datetime"
+                    android:focusable="false"
                     />
+
             </LinearLayout>
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Password"-->
+<!--                android:fontFamily="@font/open_sans"-->
+<!--                android:textSize="19sp"-->
+<!--                android:layout_marginLeft="40dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:textColor="#3D3D3D"-->
+<!--                />-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_marginLeft="30dp"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                >-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="25dp"-->
+<!--                    android:layout_height="25dp"-->
+<!--                    android:src="@drawable/password_icon"-->
+<!--                    />-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/passwordEditText"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:text=""-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_marginRight="40dp"-->
+<!--                    android:inputType="textPassword"-->
+
+<!--                    />-->
+<!--            </LinearLayout>-->
 
             <Button
                 android:id="@+id/loginButton"

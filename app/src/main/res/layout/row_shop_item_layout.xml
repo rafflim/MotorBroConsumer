@@ -17,13 +17,14 @@
         android:background="#F6F5F5"
         app:cardElevation="0dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#F6F5F5">
 
             <ImageView
-                android:id="@+id/userMatchProfileImage"
+                android:id="@+id/shopImageView"
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:scaleType="centerCrop"
@@ -34,46 +35,57 @@
      />
 
             <TextView
-                android:id="@+id/nameAndAge"
+                android:id="@+id/shopName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Posh Motor Brakes"
+                android:text="Posh"
                 android:textColor="@color/textColorBlack"
                 android:fontFamily="@font/open_sans_bold"
-                android:textSize="19sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/userMatchProfileImage"
-                app:layout_constraintBottom_toTopOf="@+id/activeTimeAgo"
+                app:layout_constraintTop_toBottomOf="@id/shopImageView"
                 app:layout_constraintStart_toStartOf="parent" />
-
             <TextView
-                android:id="@+id/activeTimeAgo"
+                android:id="@+id/shopDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginBottom="15dp"
-                android:fontFamily="@font/open_sans_bold"
-                android:text="$15,000"
-                android:textSize="17sp"
-                android:textColor="#545454"
-                app:layout_constraintTop_toBottomOf="@id/nameAndAge"
+                android:text="very cool shop"
+                android:textColor="@color/textColorBlack"
+                android:fontFamily="@font/open_sans"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/shopImageView"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/companyNameText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/open_sans_bold"
-                android:text="Posh"
-                android:textSize="17sp"
-                android:textColor="#2C377F"
-                app:layout_constraintTop_toBottomOf="@id/activeTimeAgo"
-                app:layout_constraintStart_toStartOf="parent" />
+<!--            <TextView-->
+<!--                android:id="@+id/activeTimeAgo"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginBottom="15dp"-->
+<!--                android:fontFamily="@font/open_sans_bold"-->
+<!--                android:text="$15,000"-->
+<!--                android:textSize="17sp"-->
+<!--                android:textColor="#545454"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/nameAndAge"-->
+<!--                app:layout_constraintStart_toStartOf="parent" />-->
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--            <TextView-->
+<!--                android:id="@+id/companyNameText"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:fontFamily="@font/open_sans_bold"-->
+<!--                android:text="Posh"-->
+<!--                android:textSize="17sp"-->
+<!--                android:textColor="#2C377F"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/activeTimeAgo"-->
+<!--                app:layout_constraintStart_toStartOf="parent" />-->
+
+        </LinearLayout>
 
 
 

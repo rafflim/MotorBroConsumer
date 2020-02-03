@@ -84,7 +84,7 @@ class TypeOfPartsActivity : AppCompatActivity() {
 
         override fun getLayout(): Int {
 
-            return R.layout.row_parts
+            return R.layout.row_type_of_parts
         }
     }
 }
