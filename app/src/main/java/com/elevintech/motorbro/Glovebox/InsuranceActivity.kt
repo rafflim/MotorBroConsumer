@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.StrictMode
 import android.provider.MediaStore
+import android.view.View
 import android.view.View.VISIBLE
 import android.widget.Toast
 import com.elevintech.motorbro.Model.Insurance
@@ -21,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_insurance.*
 import java.io.File
 import java.util.*
 import com.github.florent37.runtimepermission.RuntimePermission
+import com.squareup.picasso.Picasso
 import java.text.DecimalFormat
 
 class InsuranceActivity : AppCompatActivity() {
@@ -87,6 +89,29 @@ class InsuranceActivity : AppCompatActivity() {
             setDatePickerAction()
             openDatePicker()
         }
+
+        getInsuranceDocument()
+    }
+
+    private fun getInsuranceDocument() {
+
+        MotoroBroDatabase().getInsuranceDocument{insurance ->
+            if (insurance != null){
+                updateUI(insurance)
+            }
+        }
+
+    }
+
+    private fun updateUI(insurance: Insurance) {
+        insuranceNumberText.setText(insurance.number)
+        insuranceExpirationText.setText(insurance.expiration)
+
+        frontInsuranceImageView.visibility = VISIBLE
+        Picasso.get().load(insurance.frontImageUrl).into(frontInsuranceImageView)
+
+        backInsuranceImageView.visibility = VISIBLE
+        Picasso.get().load(insurance.backImageUrl).into(backInsuranceImageView)
     }
 
     private fun askUploadSource(requestCode: Int){

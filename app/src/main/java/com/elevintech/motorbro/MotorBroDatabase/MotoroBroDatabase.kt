@@ -339,6 +339,8 @@ class MotoroBroDatabase {
             .addOnFailureListener { e -> callback() }
     }
 
+
+
     fun saveFrontInsuranceImageDocument(url: String, callback: () -> Unit){
 
         val db = FirebaseFirestore.getInstance()
@@ -363,5 +365,26 @@ class MotoroBroDatabase {
             .addOnSuccessListener { callback() }
             .addOnFailureListener { e -> callback() }
 
+    }
+
+    fun getInsuranceDocument(callback: (Insurance?) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val insuranceDocument = db.collection("users").document(uid).collection("documents").document("insurance")
+
+        insuranceDocument.get()
+            .addOnSuccessListener {
+
+
+                var insurance: Insurance? = null
+
+                if (it != null && it.exists()) {
+                    insurance = it.toObject(Insurance::class.java)!!
+
+                }
+
+                callback( insurance )
+
+            }
     }
 }
