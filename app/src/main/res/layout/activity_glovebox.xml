@@ -127,6 +127,7 @@
                 android:padding="7dp"
                 android:background="@drawable/glovebox_layout_background"
                 android:layout_marginTop="10dp"
+                android:visibility="gone"
                 >
 
                 <TextView
@@ -240,6 +241,7 @@
                 android:padding="7dp"
                 android:background="@drawable/glovebox_layout_background"
                 android:layout_marginTop="10dp"
+                android:visibility="gone"
                 >
 
                 <TextView
@@ -350,6 +352,7 @@
                 android:padding="7dp"
                 android:background="@drawable/glovebox_layout_background"
                 android:layout_marginTop="10dp"
+                android:visibility="gone"
                 >
 
                 <TextView
