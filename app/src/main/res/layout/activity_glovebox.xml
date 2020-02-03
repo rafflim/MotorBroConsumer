@@ -119,7 +119,7 @@
                 />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/plateNumberLayout"
+                android:id="@+id/insuranceLayoutNotAdded"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/plateNumberText"
@@ -145,6 +145,47 @@
                     android:paddingRight="10dp"
 
                     />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/insuranceLayoutAdded"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/plateNumberText"
+                app:layout_constraintStart_toStartOf="@id/plateNumberText"
+                android:padding="7dp"
+                android:background="@drawable/glovebox_layout_background_added"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                >
+
+                <ImageView
+                    android:id="@+id/checkMarkButton"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="right"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/check_mark_icon" />
+
+                <TextView
+                    android:id="@+id/plateNumberTextAdded"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Added"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/checkMarkButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+
+                    />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -191,7 +232,7 @@
                 />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/plateNumberLayout2"
+                android:id="@+id/driversLicenseLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/plateNumberText"
@@ -219,6 +260,46 @@
                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/driversLicenseLayoutAdded"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/plateNumberText"
+                app:layout_constraintStart_toStartOf="@id/plateNumberText"
+                android:padding="7dp"
+                android:background="@drawable/glovebox_layout_background_added"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                >
+
+                <ImageView
+                    android:id="@+id/checkMarkButton2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="right"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/check_mark_icon" />
+
+                <TextView
+                    android:id="@+id/plateNumberTextAdded2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Added"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/checkMarkButton2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
 
@@ -261,7 +342,7 @@
                 />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/plateNumberLayout3"
+                android:id="@+id/motorRegistrationLicenseLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/plateNumberText"
@@ -287,6 +368,47 @@
                     android:paddingRight="10dp"
 
                     />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/motorRegistrationLicenseLayoutAdded"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/plateNumberText"
+                app:layout_constraintStart_toStartOf="@id/plateNumberText"
+                android:padding="7dp"
+                android:background="@drawable/glovebox_layout_background_added"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                >
+
+                <ImageView
+                    android:id="@+id/checkMarkButton3"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="right"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/check_mark_icon" />
+
+                <TextView
+                    android:id="@+id/plateNumberTextAdded3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Added"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/checkMarkButton3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+
+                    />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

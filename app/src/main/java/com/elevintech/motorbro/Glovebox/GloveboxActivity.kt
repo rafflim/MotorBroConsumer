@@ -3,6 +3,9 @@ package com.elevintech.motorbro.Glovebox
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.myapplication.R
 import kotlinx.android.synthetic.main.activity_glovebox.*
 
@@ -15,6 +18,7 @@ class GloveboxActivity : AppCompatActivity() {
         gloveboxBackImageView.setOnClickListener {
             finish()
         }
+
 
         registrationLayout.setOnClickListener {
             val intent = Intent(this, MotorRegistrationActivity::class.java)
@@ -29,6 +33,35 @@ class GloveboxActivity : AppCompatActivity() {
         insuranceLayout.setOnClickListener {
             val intent = Intent(this, InsuranceActivity::class.java)
             startActivity(intent)
+        }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        MotoroBroDatabase().getInsuranceDocument {
+            if (it != null){
+                insuranceLayoutAdded.visibility = VISIBLE
+            }else{
+                insuranceLayoutNotAdded.visibility = VISIBLE
+            }
+        }
+
+        MotoroBroDatabase().getLicenseDocument {
+            if (it != null){
+                driversLicenseLayoutAdded.visibility = VISIBLE
+            }else {
+                driversLicenseLayout.visibility = VISIBLE
+            }
+        }
+
+        MotoroBroDatabase().getMotorRegistrationDocument {
+            if (it != null){
+                motorRegistrationLicenseLayoutAdded.visibility = VISIBLE
+            }else {
+                motorRegistrationLicenseLayout.visibility = VISIBLE
+            }
         }
     }
 }
