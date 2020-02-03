@@ -16,7 +16,6 @@ import com.elevintech.motorbro.Constants
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_type_of_parts.*
-import kotlinx.android.synthetic.main.fragment_parts.add_parts_floating_button
 import kotlinx.android.synthetic.main.fragment_parts.recycler_view_type_of_parts
 
 

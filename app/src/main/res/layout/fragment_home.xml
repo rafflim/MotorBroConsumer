@@ -177,152 +177,29 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:orientation="vertical"
             android:id="@+id/generalInformationLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/motorcycleLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:paddingBottom="30dp"
-            android:paddingTop="20dp"
+            android:paddingBottom="15dp"
+            android:paddingTop="10dp"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:background="@drawable/shadow_background"
             >
 
-            <TextView
-                android:id="@+id/generalInformationText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="General Information"
-                android:textColor="@color/textColorBlack"
-                android:textSize="21sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/changeMotorcycleText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:fontFamily="@font/montserrat"
-                android:text="Change Motorcycle"
-                android:textColor="@color/textColorBlack"
-                android:textSize="18sp"
-                android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@id/generalInformationText"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clickToEditLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/changeMotorcycleText"
-                app:layout_constraintStart_toStartOf="@id/changeMotorcycleText"
-                android:padding="7dp"
-                android:background="@drawable/button_rounded_blue"
-                android:layout_marginTop="15dp"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="Click to Edit"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-
-                    />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/fuelLiterLayout"
-                android:layout_width="0dp"
-                android:layout_height="70dp"
-                app:layout_constraintTop_toBottomOf="@id/clickToEditLayout"
-                app:layout_constraintStart_toStartOf="@id/clickToEditLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-
-                >
-
-                <ImageView
-                    android:id="@+id/fuelLiterImage"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/car_circle_icon"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginLeft="10dp"/>
-
-<!--                <androidx.cardview.widget.CardView-->
-<!--                    android:id="@+id/fuelLiterImage"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    app:cardCornerRadius="15dp"-->
-<!--                    app:cardPreventCornerOverlap="false"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    android:layout_marginLeft="10dp"-->
-<!--                    >-->
-
-
-<!--                </androidx.cardview.widget.CardView>-->
-
-
-
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    app:layout_constraintStart_toEndOf="@id/fuelLiterImage"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Fuel Liter"
-                    android:textColor="@color/textColorBlack"
-                    android:textSize="16sp"
-                    />
-
-                <TextView
-                    android:id="@+id/fuelLiterText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="1.05L"
-                    android:textColor="@color/textColorBlack"
-                    android:textSize="16sp"
-                    android:layout_marginRight="5dp"
-                    />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/odometerLayout"
                 android:layout_width="0dp"
                 android:layout_height="70dp"
-                app:layout_constraintTop_toBottomOf="@id/fuelLiterLayout"
-                app:layout_constraintStart_toStartOf="@id/clickToEditLayout"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
@@ -371,104 +248,60 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:fontFamily="@font/montserrat"
-                    android:text="Odometer"
+                    android:text="Odometer : 20km updated as of Dec 12, 2020"
                     android:textColor="@color/textColorBlack"
-                    android:textSize="16sp"
+                    android:textSize="13sp"
                     />
 
-                <TextView
-                    android:id="@+id/odometerText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="20km"
-                    android:textColor="@color/textColorBlack"
-                    android:textSize="16sp"
-                    android:layout_marginRight="5dp"
-                    />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/fuelLayout"
-                android:layout_width="0dp"
-                android:layout_height="70dp"
-                app:layout_constraintTop_toBottomOf="@id/odometerLayout"
-                app:layout_constraintStart_toStartOf="@id/clickToEditLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-
-                >
-
-                <ImageView
-                    android:id="@+id/fuelImage"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/money_circle_icon"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginLeft="10dp"/>
-
-<!--                <androidx.cardview.widget.CardView-->
-<!--                    android:id="@+id/fuelImage"-->
+<!--                <TextView-->
+<!--                    android:id="@+id/odometerText"-->
 <!--                    android:layout_width="wrap_content"-->
 <!--                    android:layout_height="wrap_content"-->
-<!--                    app:cardCornerRadius="15dp"-->
-<!--                    app:cardPreventCornerOverlap="false"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
 <!--                    app:layout_constraintTop_toTopOf="parent"-->
 <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    android:layout_marginLeft="10dp"-->
-<!--                    >-->
-
-<!--                    <ImageView-->
-
-<!--                        android:layout_width="50dp"-->
-<!--                        android:layout_height="50dp"-->
-<!--                        android:src="@drawable/money_circle_icon"-->
-<!--                        android:scaleType="centerCrop"/>-->
-<!--                </androidx.cardview.widget.CardView>-->
+<!--                    android:fontFamily="@font/montserrat_bold"-->
+<!--                    android:text="20km"-->
+<!--                    android:textColor="@color/textColorBlack"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:layout_marginRight="5dp"-->
+<!--                    />-->
 
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    app:layout_constraintStart_toEndOf="@id/fuelImage"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Income"
-                    android:textColor="@color/textColorBlack"
-                    android:textSize="18sp"
-                    />
-
-                <TextView
-                    android:id="@+id/fuelText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="$20,000"
-                    android:textColor="@color/textColorBlack"
-                    android:textSize="16sp"
-                    android:layout_marginRight="5dp"
-                    />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/updateOdometerLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/odometerLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@drawable/login_button_background"
+                android:padding="15dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    app:layout_constraintStart_toEndOf="@id/odometerImage"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="Click here to edit"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    />
+
+
+            </LinearLayout>
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Glovebox.InsuranceActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#3C7BCF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/backbutton" />
+
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/lato"
+            android:text="Insurance"
+            android:textColor="#fff"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+            app:layout_constraintEnd_toEndOf="@+id/toolbar"
+            app:layout_constraintStart_toStartOf="@+id/toolbar" />
+
+        <ImageView
+            android:id="@+id/checkMarkButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="right"
+
+            app:srcCompat="@drawable/check_mark_icon" />
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/shadow_background"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        >
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/insurance_icon"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height= "wrap_content"
+            android:text="Update your insurance here"
+            android:textColor="@color/textColorBlack"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/open_sans"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/open_sans"
+        android:text="Insurance Number"
+        android:textSize="15sp"
+        android:textColor="@color/textColorBlack"
+
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+
+        >
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/driver_license_colored_icon"
+
+            />
+
+        <EditText
+            android:id="@+id/insuranceNumberText"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="number"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/open_sans"
+        android:text="Insurance Expiration Date"
+        android:textSize="15sp"
+        android:textColor="@color/textColorBlack"
+
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+
+        >
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/driver_license_colored_icon"
+
+            />
+
+        <EditText
+            android:id="@+id/insuranceExpirationText"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="number"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:id="@+id/frontInsuranceLayout"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/shadow_gray_background"
+            >
+
+            <ImageView
+                android:id="@+id/frontInsuranceImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/plus_sample_float"
+                android:layout_marginTop="20dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Front Insurance Paper"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:layout_margin="10dp"
+                android:textColor="@color/textColorBlack"
+                android:fontFamily="@font/open_sans"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/backInsuranceLayout"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:background="@drawable/shadow_gray_background"
+            android:layout_weight="1"
+            >
+
+            <ImageView
+                android:id="@+id/backInsuranceImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/plus_sample_float"
+                android:layout_marginTop="20dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back Insurance Paper"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:layout_margin="10dp"
+                android:textColor="@color/textColorBlack"
+                android:fontFamily="@font/open_sans"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

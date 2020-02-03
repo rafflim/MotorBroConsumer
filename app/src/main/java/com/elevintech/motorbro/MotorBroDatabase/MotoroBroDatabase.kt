@@ -1,9 +1,12 @@
 package com.elevintech.motorbro.MotorBroDatabase
 
+import android.net.Uri
 import com.elevintech.motorbro.Model.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import java.util.*
 
 class MotoroBroDatabase {
 
@@ -246,10 +249,26 @@ class MotoroBroDatabase {
 
         docRef.get()
             .addOnSuccessListener {
-
                 for (bikePart in it){
                     val bikePart = bikePart.toObject(BikeParts::class.java)
                     list.add(bikePart)
+                }
+
+                callback(list)
+            }
+    }
+
+    fun getUserRefueling(callback: (MutableList<Refueling>) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val docRef = db.collection("users").document(uid).collection("refueling")
+        val list = mutableListOf<Refueling>()
+
+        docRef.get()
+            .addOnSuccessListener {
+                for (refuel in it){
+                    val refuel = refuel.toObject(Refueling::class.java)
+                    list.add(refuel)
                 }
 
                 callback(list)
@@ -270,5 +289,79 @@ class MotoroBroDatabase {
                     e -> println(e)
                 callback()
             }
+    }
+
+    fun saveOdometerUpdate(odometerUpdate: OdometerUpdate, callback: () -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("users").document(FirebaseAuth.getInstance().uid!!).collection("odometerUpdate")
+            .document()
+            .set(odometerUpdate)
+            .addOnSuccessListener {
+                callback()
+            }
+            .addOnFailureListener {
+                    e -> println(e)
+                callback()
+            }
+    }
+
+    fun uploadDocumentsToFirebaseStorage(imageUri: Uri, callback: (url: String) -> Unit) {
+
+        var filename = UUID.randomUUID().toString()
+        var storageRef = FirebaseStorage.getInstance().getReference("/insurance/$filename.jpg")
+
+        // UPLOAD TO FIREBASE
+        storageRef.putFile(imageUri)
+            .addOnSuccessListener {
+
+                storageRef.downloadUrl.addOnSuccessListener {
+                    var url = it.toString()
+
+                    callback(url)
+                }
+
+            }
+            .addOnFailureListener{
+                println( it.toString())
+            }
+    }
+
+    // TODO: Save the insurance model here
+    fun saveInsuranceDocuments(insurance: Insurance, callback: () -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val insuranceDocument = db.collection("users").document(uid).collection("documents").document("insurance")
+
+        insuranceDocument
+            .update("insurance", insurance)
+            .addOnSuccessListener { callback() }
+            .addOnFailureListener { e -> callback() }
+    }
+
+    fun saveFrontInsuranceImageDocument(url: String, callback: () -> Unit){
+
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val insuranceDocument = db.collection("users").document(uid).collection("documents").document("insurance")
+
+        insuranceDocument
+            .update("insuranceFrontImage", FieldValue.arrayUnion("$url"))
+            .addOnSuccessListener { callback() }
+            .addOnFailureListener { e -> callback() }
+
+    }
+
+    fun saveBackInsuranceImageDocument(url: String, callback: () -> Unit){
+
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val insuranceDocument = db.collection("users").document(uid).collection("documents").document("insurance")
+
+        insuranceDocument
+            .update("insuranceBackImage", FieldValue.arrayUnion("$url"))
+            .addOnSuccessListener { callback() }
+            .addOnFailureListener { e -> callback() }
+
     }
 }

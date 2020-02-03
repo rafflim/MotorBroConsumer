@@ -23,7 +23,10 @@ import kotlinx.android.synthetic.main.row_history_layout.view.*
 
 
 class HistoryFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+
+
+    val historyAdapter = GroupAdapter<ViewHolder>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,10 +39,7 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        add_history_floating_button.setOnClickListener {
-            val intent = Intent(context, AddHistoryActivity::class.java)
-            startActivity(intent)
-        }
+        setupRecyclerView()
     }
 
     override fun onResume() {
@@ -48,24 +48,26 @@ class HistoryFragment : Fragment() {
         setupViews()
     }
 
-    fun setupViews() {
+    fun setupRecyclerView() {
         historyRecyclerView.isNestedScrollingEnabled = false
+        historyRecyclerView.adapter = historyAdapter
+    }
 
-        val historyAdapter = GroupAdapter<ViewHolder>()
+    fun setupViews() {
 
         MotoroBroDatabase().getUserHistory {
 
             val historyList = it
-            if(historyList.isNotEmpty()) noDataLayout.visibility = View.GONE
+            if(historyList.isNotEmpty()){
+                noDataLayout.visibility = View.GONE
+            } else {
+                noDataLayout.visibility = View.INVISIBLE
+            }
 
             for (history in historyList){
                 historyAdapter.add(historyItem(history))
             }
-
         }
-
-        historyRecyclerView.adapter = historyAdapter
-
     }
 
     inner class historyItem(val history: History): Item<ViewHolder>() {

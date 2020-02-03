@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.elevintech.motorbro.AddOdometer.AddOdometerActivity
 import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.MotorcycleEditGeneralInformation.EditGeneralInformationActivity
@@ -30,17 +31,22 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        updateOdometerLayout.setOnClickListener {
+            val intent = Intent(context, AddOdometerActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onResume() {
         super.onResume()
 
-        clickToEditLayout.setOnClickListener {
-            val intent = Intent(activity, EditGeneralInformationActivity::class.java)
-            startActivity(intent)
-        }
+//        clickToEditLayout.setOnClickListener {
+//            val intent = Intent(activity, EditGeneralInformationActivity::class.java)
+//            startActivity(intent)
+//        }
 
         val db = MotoroBroDatabase()
         db.getUserBike {
@@ -49,16 +55,16 @@ class HomeFragment : Fragment() {
     }
 
     private fun setBikeValues(bike: BikeInfo) {
-        motorNameText.setText(bike.brand + " " + bike.model)
-        plateNumberText.setText("#" + bike.plateNumber)
-        odometerDetailsText.setText("Odometer: " + bike.odometer)
-        breakDetailsText.setText("Front Break: " + bike.frontBreak + " , Rear Break: " + bike.rearBreak )
-        bikeNicknameText.setText("Nickname: " + bike.nickname)
+//        motorNameText.setText(bike.brand + " " + bike.model)
+//        plateNumberText.setText("#" + bike.plateNumber)
+//        odometerDetailsText.setText("Odometer: " + bike.odometer)
+//        breakDetailsText.setText("Front Break: " + bike.frontBreak + " , Rear Break: " + bike.rearBreak )
+//        bikeNicknameText.setText("Nickname: " + bike.nickname)
 
 
-        fuelLiterText.setText(bike.fuelLiter.toString() + "L")
-        odometerText.setText(bike.odometerValue.toString() + "km")
-        fuelText.setText("₱ " + bike.income.toString() )
+//        fuelLiterText.setText(bike.fuelLiter.toString() + "L")
+//        odometerText.setText(bike.odometerValue.toString() + "km")
+//        fuelText.setText("₱ " + bike.income.toString() )
     }
 
     override fun onAttach(context: Context) {

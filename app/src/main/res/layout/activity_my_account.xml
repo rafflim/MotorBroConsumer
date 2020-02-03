@@ -87,7 +87,7 @@ android:layout_weight="1"
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="First Name"
+            android:text="Last Name"
             android:textSize="16sp"
             android:fontFamily="@font/open_sans"
             android:textColor="@color/textColorBlack"
@@ -127,55 +127,7 @@ android:layout_weight="1"
             />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="vertical"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Drivers License"
-            android:textSize="16sp"
-            android:fontFamily="@font/open_sans"
-            android:textColor="@color/textColorBlack"
-            />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:inputType="text"
-
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="vertical"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Drivers License Expiration"
-            android:textSize="16sp"
-            android:fontFamily="@font/open_sans"
-            android:textColor="@color/textColorBlack"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:inputType="text"
-
-            />
-
-
-    </LinearLayout>
 
     <Button
         android:id="@+id/loginButton"

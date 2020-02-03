@@ -10,8 +10,9 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#3C7BCF"
+        android:layout_height="100dp"
+        android:background="#7936F4"
+        android:paddingTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -84,6 +85,49 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/open_sans"
+                android:text="Date"
+                android:textSize="15sp"
+
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/calendar_small_icon"
+
+                    />
+
+                <EditText
+                    android:id="@+id/dateText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:inputType="datetime"
+                    android:focusable="false"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/open_sans"
                 android:text="Odometer"
                 android:textSize="15sp"
 
@@ -126,7 +170,75 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/open_sans"
-                android:text="Date"
+                android:text="Price"
+                android:textSize="15sp"
+
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/cash_small_icon"
+
+                    />
+
+                <EditText
+                    android:id="@+id/pricePerGallonText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:inputType="numberDecimal"
+                    android:hint="Price / Liter"
+
+                    />
+
+                <EditText
+                    android:id="@+id/totalCostText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:inputType="numberDecimal"
+                    android:hint="Total cost"
+
+                    />
+
+                <EditText
+                    android:id="@+id/gallonsText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:inputType="numberDecimal"
+                    android:hint="Liter"
+
+                    />
+
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/open_sans"
+                android:text="Location"
                 android:textSize="15sp"
 
                 />
@@ -145,23 +257,26 @@
                     android:layout_height="20dp"
 
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/calendar_small_icon"
+                    android:src="@drawable/location_icon"
 
                     />
 
                 <EditText
-                    android:id="@+id/dateText"
+                    android:id="@+id/locationText"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:text=""
-                    android:inputType="datetime"
-                    android:focusable="false"
+                    android:inputType="text"
+                    android:hint="optional"
                     />
 
             </LinearLayout>
+
+
+
 
 
 
@@ -203,76 +318,12 @@
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:focusable="false"
-                    android:text="" />
+                    android:text=""
+                    android:hint="optional"/>
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/open_sans"
-                android:text="Price"
-                android:textSize="15sp"
 
-                />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-
-                >
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:src="@drawable/cash_small_icon"
-
-                    />
-
-                <EditText
-                    android:id="@+id/pricePerGallonText"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:text=""
-                    android:inputType="numberDecimal"
-                    android:hint="Price / Gal"
-
-                    />
-
-                <EditText
-                    android:id="@+id/totalCostText"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:text=""
-                    android:inputType="numberDecimal"
-                    android:hint="Total cost"
-
-                    />
-
-                <EditText
-                    android:id="@+id/gallonsText"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_weight="1"
-                    android:text=""
-                    android:inputType="numberDecimal"
-                    android:hint="Gallons"
-
-                    />
-
-
-
-            </LinearLayout>
 
 
         </LinearLayout>

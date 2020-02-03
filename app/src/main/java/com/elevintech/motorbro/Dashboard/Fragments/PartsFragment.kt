@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
+import android.view.View.*
 import android.view.ViewGroup
 import com.elevintech.motorbro.AddParts.AddPartsActivity
 import com.elevintech.motorbro.Model.BikeParts
@@ -25,6 +25,8 @@ import kotlinx.android.synthetic.main.row_parts.view.*
 class PartsFragment : Fragment() {
 
     var listOfParts = listOf<String>("Headlight", "Tires", "Brakes", "Helmet", "Back Seat", "Front Seat", "Accelerator", "Battery")
+    val partsListAdapter = GroupAdapter<ViewHolder>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,12 +38,12 @@ class PartsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupRecyclerView()
 
-
-        add_parts_floating_button.setOnClickListener {
-            val intent = Intent(context, AddPartsActivity::class.java)
-            startActivity(intent)
-        }
+//        add_parts_floating_button.setOnClickListener {
+//            val intent = Intent(context, AddPartsActivity::class.java)
+//            startActivity(intent)
+//        }
     }
 
     override fun onResume() {
@@ -51,24 +53,40 @@ class PartsFragment : Fragment() {
 
     }
 
-    private fun displayParts() {
-        recycler_view_type_of_parts.isNestedScrollingEnabled = false
+    override fun onDestroy() {
+        super.onDestroy()
 
-        val partsListAdapter = GroupAdapter<ViewHolder>()
+        partsListAdapter.clear()
+
+    }
+
+    private fun setupRecyclerView() {
+        recycler_view_type_of_parts.isNestedScrollingEnabled = false
+        recycler_view_type_of_parts.adapter = partsListAdapter
+    }
+
+    private fun displayParts() {
 
         MotoroBroDatabase().getUserBikeParts {
 
+            println(it)
+
             val bikePartsList = it
-            if(bikePartsList.isNotEmpty()) noDataLayout.visibility = GONE
+            if(bikePartsList.isNotEmpty()) {
+                noDataLayout.visibility = INVISIBLE
+            } else {
+                noDataLayout.visibility = VISIBLE
+            }
 
             for (bikePart in bikePartsList){
+
+                println("bike23 " + bikePart)
                 partsListAdapter.add(partsItem(bikePart))
             }
 
+
+
         }
-
-        recycler_view_type_of_parts.adapter = partsListAdapter
-
 
     }
 
@@ -76,8 +94,12 @@ class PartsFragment : Fragment() {
 
 
         override fun bind(viewHolder: ViewHolder, position: Int) {
+            viewHolder.itemView.parts_name.text = bikePart.typeOfParts + " - " + bikePart.brand
+            viewHolder.itemView.odometerText.text = bikePart.odometer.toString() + "km"
+            viewHolder.itemView.cashText.text = " ₱" + bikePart.price.toString()
 
-            viewHolder.itemView.parts_name.text = bikePart.typeOfParts
+
+            // Get date bought
         }
 
         override fun getLayout(): Int {

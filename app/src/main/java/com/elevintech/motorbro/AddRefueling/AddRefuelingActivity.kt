@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Toast
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Model.History
@@ -33,6 +34,13 @@ class AddRefuelingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_refueling)
+
+
+        getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        );
+
 
         backButton.setOnClickListener {
             finish()
@@ -70,7 +78,7 @@ class AddRefuelingActivity : AppCompatActivity() {
 
         // INSTANTIATE CALENDAR
         var cal = Calendar.getInstance()
-        cal.add(Calendar.YEAR, -21)
+        cal.add(Calendar.YEAR, 0)
 
         var year = cal.get(Calendar.YEAR)
         var month = cal.get(Calendar.MONTH)
@@ -128,6 +136,7 @@ class AddRefuelingActivity : AppCompatActivity() {
             refueling.pricePerGallon = pricePerGallonText.text.toString().toDouble()
             refueling.totalCost = totalCostText.text.toString().toDouble()
             refueling.priceGallons = gallonsText.text.toString().toDouble()
+            refueling.location = locationText.text.toString()
 
             val database = MotoroBroDatabase()
             database.saveRefueling(refueling) {

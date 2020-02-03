@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.elevintech.motorbro.AddReminders.AddRemindersActivity
+import com.elevintech.motorbro.Model.Refueling
 import com.elevintech.motorbro.Model.Reminders
 import com.elevintech.motorbro.Model.ShopProduct
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
@@ -27,6 +28,9 @@ import kotlinx.android.synthetic.main.row_shop_item_layout.view.*
 
 class RemindersFragment : Fragment() {
     // TODO: Rename and change types of parameters
+
+    val reminderAdapter = GroupAdapter<ViewHolder>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,10 +43,7 @@ class RemindersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        add_reminders_floating_button.setOnClickListener {
-            val intent = Intent(context, AddRemindersActivity::class.java)
-            startActivity(intent)
-        }
+        setupRecyclerView()
     }
 
     override fun onResume() {
@@ -51,33 +52,51 @@ class RemindersFragment : Fragment() {
         setupViews()
     }
 
-    fun setupViews() {
-        remindersRecyclerView.isNestedScrollingEnabled = false
+    override fun onDestroy() {
+        super.onDestroy()
 
-        val reminderAdapter = GroupAdapter<ViewHolder>()
-
-        MotoroBroDatabase().getUserReminders {
-
-            val remindersList = it
-            if(remindersList.isNotEmpty()) noDataLayout.visibility = View.GONE
-
-            for (reminder in remindersList){
-                reminderAdapter.add(reminderItem(reminder))
-            }
-        }
-
-        remindersRecyclerView.adapter = reminderAdapter
+        reminderAdapter.clear()
 
     }
 
-    inner class reminderItem(val reminder: Reminders): Item<ViewHolder>() {
+    fun setupRecyclerView() {
+        refuelRecyclerView.isNestedScrollingEnabled = false
+        refuelRecyclerView.adapter = reminderAdapter
+    }
+
+    fun setupViews() {
+
+        MotoroBroDatabase().getUserRefueling {
+
+            val refuelList = it
+            if(refuelList.isNotEmpty()){
+                noDataLayout.visibility = View.INVISIBLE
+            } else {
+                noDataLayout.visibility = View.VISIBLE
+            }
+
+            for (refuel in refuelList){
+                reminderAdapter.add(reminderItem(refuel))
+            }
+        }
+
+    }
+
+    inner class reminderItem(val refuel: Refueling): Item<ViewHolder>() {
 
         override fun bind(viewHolder: ViewHolder, position: Int) {
 
             // TODO: Add the items to add here to be dynamic
-            viewHolder.itemView.startDateText.text = Utils().convertMillisecondsToDate(reminder.startDateLong, "MMM d, yyyy")
-            viewHolder.itemView.endDateText.text = Utils().convertMillisecondsToDate(reminder.endDateLong, "MMM d, yyyy")
-            viewHolder.itemView.headerText.text = (reminder.typeOfReminder.toLowerCase()).capitalize()
+//            viewHolder.itemView.startDateText.text = Utils().convertMillisecondsToDate(reminder.startDateLong, "MMM d, yyyy")
+//            viewHolder.itemView.endDateText.text = Utils().convertMillisecondsToDate(reminder.endDateLong, "MMM d, yyyy")
+//            viewHolder.itemView.headerText.text = (reminder.typeOfReminder.toLowerCase()).capitalize()
+
+            viewHolder.itemView.dateText.text = Utils().convertMillisecondsToDate(refuel.dateLong, "MMM d, yyyy")
+            viewHolder.itemView.headerText.text = "Refuel " + refuel.location
+            viewHolder.itemView.odometerText.text = refuel.kilometers.toString()
+
+            viewHolder.itemView.pricePerGallonText.text = "Price per Gallon: " + refuel.pricePerGallon.toString()
+            viewHolder.itemView.fuelTypeText.text = "Fuel type: " + refuel.typeOfFuel
         }
 
         override fun getLayout(): Int {

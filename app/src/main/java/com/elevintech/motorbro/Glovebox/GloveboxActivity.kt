@@ -1,5 +1,6 @@
 package com.elevintech.motorbro.Glovebox
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.elevintech.myapplication.R
@@ -13,6 +14,21 @@ class GloveboxActivity : AppCompatActivity() {
 
         gloveboxBackImageView.setOnClickListener {
             finish()
+        }
+
+        registrationLayout.setOnClickListener {
+            val intent = Intent(this, MotorRegistrationActivity::class.java)
+            startActivity(intent)
+        }
+
+        licenseLayout.setOnClickListener {
+            val intent = Intent(this, DriversLicenseActivity::class.java)
+            startActivity(intent)
+        }
+
+        insuranceLayout.setOnClickListener {
+            val intent = Intent(this, InsuranceActivity::class.java)
+            startActivity(intent)
         }
     }
 }

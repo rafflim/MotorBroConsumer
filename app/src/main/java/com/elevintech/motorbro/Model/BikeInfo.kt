@@ -17,4 +17,5 @@ class BikeInfo() {
     var fuelLiter: Double = 0.0
     var odometerValue: Double = 0.0
     var income: Double = 0.0
+    var yearBought: String = ""
 }

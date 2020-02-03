@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Toast
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Model.BikeParts
@@ -31,6 +32,11 @@ class AddPartsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_parts)
 
+        getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        );
+
         backButton.setOnClickListener {
             finish()
         }
@@ -50,6 +56,8 @@ class AddPartsActivity : AppCompatActivity() {
         }
     }
 
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -67,7 +75,7 @@ class AddPartsActivity : AppCompatActivity() {
 
         // INSTANTIATE CALENDAR
         var cal = Calendar.getInstance()
-        cal.add(Calendar.YEAR, -21)
+        cal.add(Calendar.YEAR, 0)
 
         var year = cal.get(Calendar.YEAR)
         var month = cal.get(Calendar.MONTH)

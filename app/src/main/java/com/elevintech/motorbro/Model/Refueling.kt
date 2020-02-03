@@ -10,5 +10,7 @@ class Refueling (
 
     var  pricePerGallon: Double = 0.00,
     var  totalCost: Double = 0.00,
-    var  priceGallons: Double = 0.00
+    var  priceGallons: Double = 0.00,
+
+    var location: String = ""
 )

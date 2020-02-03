@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30dp">
+    android:padding="10dp">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:orientation="horizontal"
-        android:padding="20dp">
+        android:padding="10dp">
 
 
         <LinearLayout
@@ -20,23 +20,27 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
+
             <ImageView
                 android:layout_gravity="center"
                 android:id="@+id/imageView1"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                app:srcCompat="@drawable/car_new_registration_icon" />
+                app:srcCompat="@drawable/bottom_parts_new_icon" />
 
             <TextView
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:fontFamily="@font/open_sans"
+                android:textColor="@color/textColorBlack"
                 android:text="Parts" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layoutReminders"
+            android:id="@+id/layoutOdometer"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -47,13 +51,17 @@
                 android:id="@+id/imageView2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                app:srcCompat="@drawable/car_new_registration_icon" />
+                app:srcCompat="@drawable/bottom_reminder_new_icon" />
 
             <TextView
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Reminders" />
+                android:text="Odometer"
+                android:fontFamily="@font/open_sans"
+                android:textColor="@color/textColorBlack"
+                />
 
         </LinearLayout>
 
@@ -69,13 +77,17 @@
                 android:id="@+id/imageView3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                app:srcCompat="@drawable/car_new_registration_icon" />
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/bottom_refuel_new_icon" />
 
             <TextView
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Refueling" />
+                android:text="Refueling"
+                android:fontFamily="@font/open_sans"
+                android:textColor="@color/textColorBlack"/>
 
         </LinearLayout>
 

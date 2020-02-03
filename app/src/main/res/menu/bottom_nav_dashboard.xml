@@ -18,8 +18,8 @@
 
     <item
         android:id="@+id/tabreminders"
-        android:icon="@drawable/lighticon"
-        android:title="Reminders" />
+        android:icon="@drawable/tab_refuel_icon"
+        android:title="Refuel" />
 
     <item
         android:id="@+id/tabhistory"

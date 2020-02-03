@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:background="@drawable/background_white_bottom_shadow_only"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/motorBroMainImage"
-            android:layout_width="70dp"
-            android:layout_height="80dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             app:srcCompat="@drawable/motorbroinicon" />
 
@@ -97,12 +97,11 @@
             app:backgroundTint="@color/white"
 
 
-
-            app:fabCustomSize="70dp"
-            app:maxImageSize="70dp"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/red_floating_button"/>
+            app:fabCustomSize="60dp"
+            app:maxImageSize="60dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/plus_sample_float"/>
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

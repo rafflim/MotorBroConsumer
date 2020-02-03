@@ -7,82 +7,94 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#F6F5F5"
-            android:paddingBottom="20dp">
+            android:layout_height="match_parent"
+
+            android:paddingBottom="20dp"
+            >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/topImageLayout"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="#F6F5F5"
-                android:paddingBottom="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="150dp"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+
+                >
+
+                <RelativeLayout
+                    android:id="@+id/linearLayoutTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+
+                    android:layout_marginTop="2dp"
+                    />
+
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_margin="10dp"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginRight="5dp"
-
-                    android:background="@drawable/shadow_background"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_goneMarginTop="5dp"
-
+                    android:layout_height="120dp"
+                    app:layout_constraintTop_toTopOf="@id/linearLayoutTop"
+                    app:layout_constraintEnd_toEndOf="@id/linearLayoutTop"
+                    app:layout_constraintStart_toStartOf="@id/linearLayoutTop"
+                    android:background="@drawable/shadow_gray_background"
                     >
 
                     <ImageView
                         android:id="@+id/shopHeaderIcon"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_marginLeft="20dp"
-                        android:src="@drawable/motorbikehelmeticon"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginLeft="20dp"
+                        android:src="@drawable/history_header_new_icon"
+                        />
 
                     <TextView
                         android:id="@+id/shopHeaderText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:text="Mitsubishi Mia 2020"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/open_sans_bold"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/shopHeaderIcon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="60dp"
-                        android:fontFamily="@font/open_sans_bold"
-                        android:text="Mia Mitsubishi 2019"
                         android:textColor="#4484AA"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/shopHeaderIcon"
-                        app:layout_constraintTop_toTopOf="parent"
 
                         />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/historyRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#F6F5F5"
                 android:paddingTop="0dp"
                 android:paddingBottom="100dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/topImageLayout"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/topImageLayout" />
+                app:layout_constraintEnd_toEndOf="parent"
+
+                />
 
             <LinearLayout
                 android:id="@+id/noDataLayout"
@@ -90,37 +102,31 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/topImageLayout">
 
                 <ImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/no_data" />
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    app:srcCompat="@drawable/no_data_new_icon" />
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No History" />
+                    android:textColor="@color/textColorBlack"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:layout_marginTop="10dp"
+                    android:textSize="19sp"
+                    android:text="No Data Found" />
 
 
             </LinearLayout>
 
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_history_floating_button"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_gravity="bottom|end"
-        app:maxImageSize="56dp"
-        android:layout_margin="20dp"
-        android:src="@drawable/red_floating_button"
-        app:backgroundTint="@color/white"
-        android:visibility="visible"
-        />
 
 </FrameLayout>

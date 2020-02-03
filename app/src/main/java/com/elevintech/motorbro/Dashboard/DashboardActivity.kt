@@ -13,6 +13,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.forEach
 import androidx.fragment.app.FragmentTransaction
 import com.elevintech.motorbro.Achievements.AchievementsActivity
+import com.elevintech.motorbro.AddOdometer.AddOdometerActivity
 import com.elevintech.motorbro.AddParts.AddPartsActivity
 import com.elevintech.motorbro.AddRefueling.AddRefuelingActivity
 import com.elevintech.motorbro.AddReminders.AddRemindersActivity
@@ -86,7 +87,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             dialog.show()
 
             val parts = dialog.findViewById<LinearLayout>(R.id.layoutParts)
-            val reminders = dialog.findViewById<LinearLayout>(R.id.layoutReminders)
+            val odometer = dialog.findViewById<LinearLayout>(R.id.layoutOdometer)
             val refueling = dialog.findViewById<LinearLayout>(R.id.layoutRefueling)
 
             parts!!.setOnClickListener {
@@ -96,9 +97,9 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
             }
 
-            reminders!!.setOnClickListener {
+            odometer!!.setOnClickListener {
 
-                val intent = Intent(this, AddRemindersActivity::class.java)
+                val intent = Intent(this, AddOdometerActivity::class.java)
                 startActivity(intent)
 
             }
@@ -267,7 +268,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                     supportFragmentManager
                         .beginTransaction()
                         .replace(R.id.frame_layout, homeFragment, "homeFragmentTag")
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
                 }
 
@@ -275,7 +276,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                     supportFragmentManager
                         .beginTransaction()
                         .replace(R.id.frame_layout, partsFragment, "partsFragmentTag")
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
                 }
 
@@ -294,7 +295,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                     supportFragmentManager
                         .beginTransaction()
                         .replace(R.id.frame_layout, remindersFragment, "remindersFragmentTag")
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
                 }
 
@@ -303,7 +304,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                     supportFragmentManager
                         .beginTransaction()
                         .replace(R.id.frame_layout, historyFragment, "historyFragmentTag")
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
                 }
 

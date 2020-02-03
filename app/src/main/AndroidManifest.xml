@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.elevintech.myapplication">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,12 +14,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.elevintech.motorbro.TypeOf.AddTypeOfFuel"></activity>
+        <activity android:name="com.elevintech.motorbro.Glovebox.MotorRegistrationActivity"></activity>
+        <activity android:name="com.elevintech.motorbro.Glovebox.DriversLicenseActivity" />
+        <activity android:name="com.elevintech.motorbro.Glovebox.InsuranceActivity" />
+        <activity android:name="com.elevintech.motorbro.AddOdometer.AddOdometerActivity" />
+        <activity android:name="com.elevintech.motorbro.TypeOf.AddTypeOfFuel" />
         <activity android:name="com.elevintech.motorbro.TypeOf.TypeOfFuelActivity" />
         <activity android:name="com.elevintech.motorbro.AddRefueling.AddRefuelingActivity" />
         <activity android:name="com.elevintech.motorbro.Dashboard.DashboardBottomSheet" />
         <activity android:name="com.elevintech.motorbro.TypeOf.AddTypeOfHistory" />
-        <activity android:name="com.elevintech.motorbro.ViewBike.ViewBikeActivity"></activity>
+        <activity android:name="com.elevintech.motorbro.ViewBike.ViewBikeActivity" />
         <activity android:name="com.elevintech.motorbro.TypeOf.TypeOfHistoryActivity" />
         <activity android:name="com.elevintech.motorbro.TypeOf.AddTypeOfReminders" />
         <activity android:name="com.elevintech.motorbro.TypeOf.TypeOfReminderActivity" />
@@ -41,7 +50,6 @@
         <activity android:name="com.elevintech.motorbro.Dashboard.DashboardActivity" />
         <activity android:name="com.elevintech.motorbro.CreateAccount.CreateAccountActivity" />
         <activity android:name="com.elevintech.motorbro.MainActivity" />
-
 
         <meta-data
             android:name="preloaded_fonts"
