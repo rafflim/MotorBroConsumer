@@ -229,10 +229,10 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 startActivity(intent)
             }
 
-            R.id.qr_code -> {
-                val intent = Intent(applicationContext, QrCodeActivity::class.java)
-                startActivity(intent)
-            }
+//            R.id.qr_code -> {
+//                val intent = Intent(applicationContext, QrCodeActivity::class.java)
+//                startActivity(intent)
+//            }
 
             R.id.sign_out -> {
                 logOut()

@@ -12,8 +12,10 @@ import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.MotorcycleEditGeneralInformation.EditGeneralInformationActivity
 import com.elevintech.motorbro.MyAccount.MyAccountActivity
+import com.elevintech.motorbro.Utils.Utils
 
 import com.elevintech.myapplication.R
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -46,6 +48,20 @@ class HomeFragment : Fragment() {
         db.getUserBike {
             setBikeValues(it)
         }
+
+        displayQrCode()
+
+
+    }
+
+    private fun displayQrCode() {
+
+        val uid = FirebaseAuth.getInstance().uid!!
+
+        val qrCodeBitmap = Utils().generateQrCodeBitmap(uid)
+
+        qrCodeImage.setImageBitmap(qrCodeBitmap)
+
     }
 
     private fun setBikeValues(bike: BikeInfo) {

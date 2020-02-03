@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Dashboard.Fragments.HomeFragment">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -722,7 +721,6 @@
                 android:id="@+id/qrCodeImage"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/qr_code_sample"
                 android:scaleType="centerCrop"
                 app:layout_constraintTop_toBottomOf="@id/qrCodeSampleHeader"
                 app:layout_constraintStart_toStartOf="parent"
@@ -731,7 +729,7 @@
                 />
 
             <TextView
-                android:id="@+id/qrCodeSampleText"
+                android:id="@+id/qrCodeSample"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/qrCodeImage"
