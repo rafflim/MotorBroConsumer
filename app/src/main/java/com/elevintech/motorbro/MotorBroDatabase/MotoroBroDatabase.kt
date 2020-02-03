@@ -29,6 +29,9 @@ class MotoroBroDatabase {
         }
     }
 
+
+
+
     fun getUserBike(callback: (BikeInfo) -> Unit){
 
         val db = FirebaseFirestore.getInstance()
@@ -220,6 +223,26 @@ class MotoroBroDatabase {
 
     }
 
+    fun getShops(callback: (MutableList<Shop>) -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val docRef = db.collection("shops")
+        val list = mutableListOf<Shop>()
+
+        docRef.get()
+            .addOnSuccessListener {
+
+                for (minShop in it){
+                    val shop = minShop.toObject(Shop::class.java)
+                    list.add(shop)
+                }
+
+                callback(list)
+
+            }
+
+    }
+
     fun getUserHistory(callback: (MutableList<History>) -> Unit) {
 
         val db = FirebaseFirestore.getInstance()
@@ -275,6 +298,28 @@ class MotoroBroDatabase {
 
             }
     }
+
+    fun getUserOdometers(callback: (MutableList<OdometerUpdate>) -> Unit){
+
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val docRef = db.collection("users").document(uid).collection("odometerUpdate")
+
+        val list = mutableListOf<OdometerUpdate>()
+
+        docRef.get()
+            .addOnSuccessListener {
+
+                for (odo in it){
+                    val odometer = odo.toObject(OdometerUpdate::class.java)
+                    list.add(odometer)
+                }
+
+                callback(list)
+
+            }
+    }
+
 
     fun saveRefueling(refueling: Refueling, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()

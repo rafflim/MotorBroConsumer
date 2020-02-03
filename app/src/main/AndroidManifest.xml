@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.elevintech.motorbro.Glovebox.MotorRegistrationActivity"></activity>
+        <activity android:name="com.elevintech.motorbro.Shop.ShopActivity"></activity>
+        <activity android:name="com.elevintech.motorbro.Glovebox.MotorRegistrationActivity" />
         <activity android:name="com.elevintech.motorbro.Glovebox.DriversLicenseActivity" />
         <activity android:name="com.elevintech.motorbro.Glovebox.InsuranceActivity" />
         <activity android:name="com.elevintech.motorbro.AddOdometer.AddOdometerActivity" />
@@ -50,7 +51,6 @@
         <activity android:name="com.elevintech.motorbro.Dashboard.DashboardActivity" />
         <activity android:name="com.elevintech.motorbro.CreateAccount.CreateAccountActivity" />
         <activity android:name="com.elevintech.motorbro.MainActivity" />
-
 
         <meta-data
             android:name="preloaded_fonts"

@@ -70,9 +70,13 @@ class RemindersFragment : Fragment() {
 
             val refuelList = it
             if(refuelList.isNotEmpty()){
-                noDataLayout.visibility = View.INVISIBLE
+                if (noDataLayout != null) {
+                    noDataLayout.visibility = View.INVISIBLE
+                }
             } else {
-                noDataLayout.visibility = View.VISIBLE
+                if (noDataLayout != null) {
+                    noDataLayout.visibility = View.VISIBLE
+                }
             }
 
             for (refuel in refuelList){

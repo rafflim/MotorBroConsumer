@@ -240,6 +240,7 @@
 
 
                 <TextView
+                    android:id="@+id/odometerStatementText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -249,7 +250,7 @@
                     android:fontFamily="@font/montserrat"
                     android:text="Odometer : 20km updated as of Dec 12, 2020"
                     android:textColor="@color/textColorBlack"
-                    android:textSize="13sp"
+                    android:textSize="12sp"
                     />
 
 <!--                <TextView-->
@@ -313,6 +314,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
 
+            android:visibility="gone"
             android:background="@drawable/shadow_background"
             android:paddingBottom="20dp"
             android:layout_marginTop="20dp"

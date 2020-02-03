@@ -55,6 +55,15 @@ class HomeFragment : Fragment() {
             setBikeValues(it)
         }
 
+        db.getUserOdometers {
+            // TODO: somehow get the last value only
+            val firstOdo = it.first()
+
+            odometerStatementText.text = "Odometer : ${firstOdo.odometer}km updated as of ${firstOdo.date}"
+        }
+
+        // get users odometer value
+
         displayQrCode()
 
 

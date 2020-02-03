@@ -27,6 +27,7 @@ import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.Model.User
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.QrCode.QrCodeActivity
+import com.elevintech.motorbro.Shop.ShopActivity
 import com.elevintech.motorbro.TypeOf.AddTypeOfParts
 import com.elevintech.motorbro.TypeOf.TypeOfHistoryActivity
 import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
@@ -57,8 +58,8 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         setUpFabClick()
 
         shopImageView.setOnClickListener {
-//            val intent = Intent(activity, EditGeneralInformationActivity::class.java)
-//            startActivity(intent)
+            val intent = Intent(this, ShopActivity::class.java)
+            startActivity(intent)
         }
 
         // TODO: Load the user profile here
@@ -198,17 +199,17 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 startActivity(intent)
             }
 
-            R.id.schedule_menu-> {
-                // TODO: There's a bug here make these unclickable when from here
-                val intent = Intent(applicationContext, TypeOfHistoryActivity::class.java)
-                startActivity(intent)
-            }
-
-            R.id.service_menu-> {
-                // TODO: There's a bug here make these unclickable when from here
-                val intent = Intent(applicationContext, TypeOfReminderActivity::class.java)
-                startActivity(intent)
-            }
+//            R.id.schedule_menu-> {
+//                // TODO: There's a bug here make these unclickable when from here
+//                val intent = Intent(applicationContext, TypeOfHistoryActivity::class.java)
+//                startActivity(intent)
+//            }
+//
+//            R.id.service_menu-> {
+//                // TODO: There's a bug here make these unclickable when from here
+//                val intent = Intent(applicationContext, TypeOfReminderActivity::class.java)
+//                startActivity(intent)
+//            }
 
             R.id.my_account -> {
                 val intent = Intent(applicationContext, MyAccountActivity::class.java)
