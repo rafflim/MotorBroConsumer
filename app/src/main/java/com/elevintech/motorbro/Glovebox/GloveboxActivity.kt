@@ -42,25 +42,31 @@ class GloveboxActivity : AppCompatActivity() {
 
         MotoroBroDatabase().getInsuranceDocument {
             if (it != null){
+                insuranceLayoutNotAdded.visibility = GONE
                 insuranceLayoutAdded.visibility = VISIBLE
             }else{
                 insuranceLayoutNotAdded.visibility = VISIBLE
+                insuranceLayoutAdded.visibility = GONE
             }
         }
 
         MotoroBroDatabase().getLicenseDocument {
             if (it != null){
+                driversLicenseLayout.visibility = GONE
                 driversLicenseLayoutAdded.visibility = VISIBLE
             }else {
                 driversLicenseLayout.visibility = VISIBLE
+                driversLicenseLayoutAdded.visibility = GONE
             }
         }
 
         MotoroBroDatabase().getMotorRegistrationDocument {
             if (it != null){
+                motorRegistrationLicenseLayout.visibility = GONE
                 motorRegistrationLicenseLayoutAdded.visibility = VISIBLE
             }else {
                 motorRegistrationLicenseLayout.visibility = VISIBLE
+                motorRegistrationLicenseLayoutAdded.visibility = GONE
             }
         }
     }
