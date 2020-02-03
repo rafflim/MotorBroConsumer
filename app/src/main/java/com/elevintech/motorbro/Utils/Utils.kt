@@ -114,4 +114,12 @@ class Utils {
 
         return bitmap
     }
+
+    fun easyProgressDialog(context: Context, text: String): ProgressDialog{
+        var progressDialog = ProgressDialog(context)
+        progressDialog.setMessage(text)
+        progressDialog.setCancelable(false)
+
+        return progressDialog
+    }
 }

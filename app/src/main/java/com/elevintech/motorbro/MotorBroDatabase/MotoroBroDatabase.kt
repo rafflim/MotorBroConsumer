@@ -334,7 +334,7 @@ class MotoroBroDatabase {
         val insuranceDocument = db.collection("users").document(uid).collection("documents").document("insurance")
 
         insuranceDocument
-            .update("insurance", insurance)
+            .set(insurance)
             .addOnSuccessListener { callback() }
             .addOnFailureListener { e -> callback() }
     }
