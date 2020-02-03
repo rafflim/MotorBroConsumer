@@ -395,34 +395,17 @@ class MotoroBroDatabase {
             .addOnFailureListener { e -> callback() }
     }
 
-
-
-
-    fun saveFrontInsuranceImageDocument(url: String, callback: () -> Unit){
-
+    fun saveMotorRegistrationDocument(motorRegistration: MotorRegistration, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val insuranceDocument = db.collection("users").document(uid).collection("documents").document("insurance")
+        val document = db.collection("users").document(uid).collection("documents").document("motor-registration")
 
-        insuranceDocument
-            .update("insuranceFrontImage", FieldValue.arrayUnion("$url"))
+        document
+            .set(motorRegistration)
             .addOnSuccessListener { callback() }
             .addOnFailureListener { e -> callback() }
-
     }
 
-    fun saveBackInsuranceImageDocument(url: String, callback: () -> Unit){
-
-        val db = FirebaseFirestore.getInstance()
-        val uid = FirebaseAuth.getInstance().uid!!
-        val insuranceDocument = db.collection("users").document(uid).collection("documents").document("insurance")
-
-        insuranceDocument
-            .update("insuranceBackImage", FieldValue.arrayUnion("$url"))
-            .addOnSuccessListener { callback() }
-            .addOnFailureListener { e -> callback() }
-
-    }
 
     fun getInsuranceDocument(callback: (Insurance?) -> Unit) {
         val db = FirebaseFirestore.getInstance()
@@ -462,6 +445,27 @@ class MotoroBroDatabase {
                 }
 
                 callback( license )
+
+            }
+    }
+
+    fun getMotorRegistrationDocument(callback: (MotorRegistration?) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val document = db.collection("users").document(uid).collection("documents").document("motor-registration")
+
+        document.get()
+            .addOnSuccessListener {
+
+
+                var motorRegistration: MotorRegistration? = null
+
+                if (it != null && it.exists()) {
+                    motorRegistration = it.toObject(MotorRegistration::class.java)!!
+
+                }
+
+                callback( motorRegistration )
 
             }
     }
