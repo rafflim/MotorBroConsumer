@@ -354,7 +354,7 @@ class MotoroBroDatabase {
     fun uploadDocumentsToFirebaseStorage(imageUri: Uri, callback: (url: String) -> Unit) {
 
         var filename = UUID.randomUUID().toString()
-        var storageRef = FirebaseStorage.getInstance().getReference("/insurance/$filename.jpg")
+        var storageRef = FirebaseStorage.getInstance().getReference("/documents/$filename.jpg")
 
         // UPLOAD TO FIREBASE
         storageRef.putFile(imageUri)
@@ -383,6 +383,18 @@ class MotoroBroDatabase {
             .addOnSuccessListener { callback() }
             .addOnFailureListener { e -> callback() }
     }
+
+    fun saveDriversLicenseDocument(license: DriversLicense, callback: () -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val licenseDocument = db.collection("users").document(uid).collection("documents").document("drivers-license")
+
+        licenseDocument
+            .set(license)
+            .addOnSuccessListener { callback() }
+            .addOnFailureListener { e -> callback() }
+    }
+
 
 
 
@@ -429,6 +441,27 @@ class MotoroBroDatabase {
                 }
 
                 callback( insurance )
+
+            }
+    }
+
+    fun getLicenseDocument(callback: (DriversLicense?) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val document = db.collection("users").document(uid).collection("documents").document("drivers-license")
+
+        document.get()
+            .addOnSuccessListener {
+
+
+                var license: DriversLicense? = null
+
+                if (it != null && it.exists()) {
+                    license = it.toObject(DriversLicense::class.java)!!
+
+                }
+
+                callback( license )
 
             }
     }
