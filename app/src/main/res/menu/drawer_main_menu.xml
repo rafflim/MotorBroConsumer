@@ -39,7 +39,10 @@
             android:icon="@drawable/service_menu_icon"
             android:title="Types of Service" />
 
-
+<!--        <item-->
+<!--            android:id="@+id/qr_code"-->
+<!--            android:icon="@drawable/ic_launcher_background"-->
+<!--            android:title="QR code" />-->
 
 <!--        <item-->
 <!--            android:id="@+id/language"-->

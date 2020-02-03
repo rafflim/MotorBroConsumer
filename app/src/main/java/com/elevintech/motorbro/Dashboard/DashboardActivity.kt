@@ -26,6 +26,7 @@ import com.elevintech.motorbro.MainActivity
 import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.Model.User
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
+import com.elevintech.motorbro.QrCode.QrCodeActivity
 import com.elevintech.motorbro.TypeOf.AddTypeOfParts
 import com.elevintech.motorbro.TypeOf.TypeOfHistoryActivity
 import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
@@ -228,6 +229,11 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 val intent = Intent(applicationContext, AchievementsActivity::class.java)
                 startActivity(intent)
             }
+
+//            R.id.qr_code -> {
+//                val intent = Intent(applicationContext, QrCodeActivity::class.java)
+//                startActivity(intent)
+//            }
 
             R.id.sign_out -> {
                 logOut()
