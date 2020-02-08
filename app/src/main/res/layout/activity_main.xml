@@ -140,8 +140,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:text=""
-                    android:inputType="datetime"
-                    android:focusable="false"
+                    android:inputType="text"
                     />
 
             </LinearLayout>
@@ -185,8 +184,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:text=""
-                    android:inputType="datetime"
-                    android:focusable="false"
+                    android:inputType="textPassword"
                     />
 
             </LinearLayout>
