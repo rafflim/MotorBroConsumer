@@ -354,7 +354,7 @@ class MotoroBroDatabase {
     fun uploadDocumentsToFirebaseStorage(imageUri: Uri, callback: (url: String) -> Unit) {
 
         var filename = UUID.randomUUID().toString()
-        var storageRef = FirebaseStorage.getInstance().getReference("/insurance/$filename.jpg")
+        var storageRef = FirebaseStorage.getInstance().getReference("/documents/$filename.jpg")
 
         // UPLOAD TO FIREBASE
         storageRef.putFile(imageUri)
@@ -384,33 +384,28 @@ class MotoroBroDatabase {
             .addOnFailureListener { e -> callback() }
     }
 
-
-
-    fun saveFrontInsuranceImageDocument(url: String, callback: () -> Unit){
-
+    fun saveDriversLicenseDocument(license: DriversLicense, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val insuranceDocument = db.collection("users").document(uid).collection("documents").document("insurance")
+        val licenseDocument = db.collection("users").document(uid).collection("documents").document("drivers-license")
 
-        insuranceDocument
-            .update("insuranceFrontImage", FieldValue.arrayUnion("$url"))
+        licenseDocument
+            .set(license)
             .addOnSuccessListener { callback() }
             .addOnFailureListener { e -> callback() }
-
     }
 
-    fun saveBackInsuranceImageDocument(url: String, callback: () -> Unit){
-
+    fun saveMotorRegistrationDocument(motorRegistration: MotorRegistration, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val insuranceDocument = db.collection("users").document(uid).collection("documents").document("insurance")
+        val document = db.collection("users").document(uid).collection("documents").document("motor-registration")
 
-        insuranceDocument
-            .update("insuranceBackImage", FieldValue.arrayUnion("$url"))
+        document
+            .set(motorRegistration)
             .addOnSuccessListener { callback() }
             .addOnFailureListener { e -> callback() }
-
     }
+
 
     fun getInsuranceDocument(callback: (Insurance?) -> Unit) {
         val db = FirebaseFirestore.getInstance()
@@ -429,6 +424,48 @@ class MotoroBroDatabase {
                 }
 
                 callback( insurance )
+
+            }
+    }
+
+    fun getLicenseDocument(callback: (DriversLicense?) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val document = db.collection("users").document(uid).collection("documents").document("drivers-license")
+
+        document.get()
+            .addOnSuccessListener {
+
+
+                var license: DriversLicense? = null
+
+                if (it != null && it.exists()) {
+                    license = it.toObject(DriversLicense::class.java)!!
+
+                }
+
+                callback( license )
+
+            }
+    }
+
+    fun getMotorRegistrationDocument(callback: (MotorRegistration?) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val document = db.collection("users").document(uid).collection("documents").document("motor-registration")
+
+        document.get()
+            .addOnSuccessListener {
+
+
+                var motorRegistration: MotorRegistration? = null
+
+                if (it != null && it.exists()) {
+                    motorRegistration = it.toObject(MotorRegistration::class.java)!!
+
+                }
+
+                callback( motorRegistration )
 
             }
     }
