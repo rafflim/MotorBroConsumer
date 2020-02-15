@@ -239,6 +239,8 @@ class BikeRegistrationActivity : AppCompatActivity() {
 
             val intent = Intent(applicationContext, DashboardActivity::class.java)
             startActivity(intent)
+
+            finish()
         }
     }
 }
