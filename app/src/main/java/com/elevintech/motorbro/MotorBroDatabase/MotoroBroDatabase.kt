@@ -14,7 +14,7 @@ class MotoroBroDatabase {
 
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val docRef = db.collection("users").document(uid)
+        val docRef = db.collection("customers").document(uid)
 
         docRef.get().addOnSuccessListener { documentSnapshot ->
 
@@ -53,36 +53,40 @@ class MotoroBroDatabase {
 
 
 
-    fun registerUser(user: User, callback: () -> Unit) {
+    fun createUserType(callback: () -> Unit) {
         // Access a Cloud Firestore instance from your Activity
         val db = FirebaseFirestore.getInstance()
-    // Create a new user with a first and last name
-//        val user = hashMapOf(
-//            "first" to "Ada",
-//            "last" to "Lovelace",
-//            "born" to 1815
-//        )
+        val uid = FirebaseAuth.getInstance().uid!!
+        val userType = UserType( uid )
 
         // Add a new document with a generated ID
-        db.collection("users").document(FirebaseAuth.getInstance().uid!!)
-            .set(user)
+        db.collection("users").document(uid)
+            .set(userType)
+            .addOnSuccessListener {
+
+                callback()
+
+            }
+            .addOnFailureListener {
+                e -> println(e)
+                callback()
+            }
+    }
+
+    fun createUser(customer: User, callback: () -> Unit){
+        // Access a Cloud Firestore instance from your Activity
+        val db = FirebaseFirestore.getInstance()
+
+        // Add a new document with a generated ID
+        db.collection("customers").document(customer.uid)
+            .set(customer)
             .addOnSuccessListener {
                 callback()
             }
             .addOnFailureListener {
-                    e -> println(e)
+                e -> println(e)
                 callback()
             }
-//            .add(user)
-//            .addOnSuccessListener { documentReference ->
-//                println("Success")
-//                callback()
-//            }
-//            .addOnFailureListener { e ->
-//                println("Failure")
-//                callback()
-//            }
-
     }
 
     fun updateBikeInfo(bikeInfo: BikeInfo, callback: () -> Unit) {
@@ -116,7 +120,7 @@ class MotoroBroDatabase {
     fun saveBikeParts(bikeParts: BikeParts, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
 
-        db.collection("users").document(FirebaseAuth.getInstance().uid!!).collection("bike-parts")
+        db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("bike-parts")
             .document()
             .set(bikeParts)
             .addOnSuccessListener {
@@ -131,7 +135,7 @@ class MotoroBroDatabase {
     fun saveHistory(history: History, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
 
-        db.collection("users").document(FirebaseAuth.getInstance().uid!!).collection("history")
+        db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("history")
             .document()
             .set(history)
             .addOnSuccessListener {
@@ -146,7 +150,7 @@ class MotoroBroDatabase {
     fun saveReminder(reminder: Reminders, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
 
-        db.collection("users").document(FirebaseAuth.getInstance().uid!!).collection("reminders")
+        db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("reminders")
             .document()
             .set(reminder)
             .addOnSuccessListener {
@@ -161,7 +165,7 @@ class MotoroBroDatabase {
     fun saveCustomPart(part: String, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val userBio = db.collection("users").document(uid)
+        val userBio = db.collection("customers").document(uid)
 
         userBio
             .update("customParts", FieldValue.arrayUnion("$part"))
@@ -172,7 +176,7 @@ class MotoroBroDatabase {
     fun saveCustomReminder(reminder: String, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val userBio = db.collection("users").document(uid)
+        val userBio = db.collection("customers").document(uid)
 
         userBio
             .update("customReminders", FieldValue.arrayUnion("$reminder"))
@@ -183,7 +187,7 @@ class MotoroBroDatabase {
     fun saveCustomHistory(history: String, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val userBio = db.collection("users").document(uid)
+        val userBio = db.collection("customers").document(uid)
 
         userBio
             .update("customHistory", FieldValue.arrayUnion("$history "))
@@ -194,7 +198,7 @@ class MotoroBroDatabase {
     fun saveCustomFuel(fuel: String, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val userBio = db.collection("users").document(uid)
+        val userBio = db.collection("customers").document(uid)
 
         userBio
             .update("customFuel", FieldValue.arrayUnion("$fuel "))
@@ -206,7 +210,7 @@ class MotoroBroDatabase {
 
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val docRef = db.collection("users").document(uid).collection("reminders")
+        val docRef = db.collection("customers").document(uid).collection("reminders")
         val list = mutableListOf<Reminders>()
 
         docRef.get()
@@ -247,7 +251,7 @@ class MotoroBroDatabase {
 
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val docRef = db.collection("users").document(uid).collection("history")
+        val docRef = db.collection("customers").document(uid).collection("history")
         val list = mutableListOf<History>()
 
         docRef.get()
@@ -267,7 +271,7 @@ class MotoroBroDatabase {
     fun getUserBikeParts(callback: (MutableList<BikeParts>) -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val docRef = db.collection("users").document(uid).collection("bike-parts")
+        val docRef = db.collection("customers").document(uid).collection("bike-parts")
         val list = mutableListOf<BikeParts>()
 
         docRef.get()
@@ -284,7 +288,7 @@ class MotoroBroDatabase {
     fun getUserRefueling(callback: (MutableList<Refueling>) -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val docRef = db.collection("users").document(uid).collection("refueling")
+        val docRef = db.collection("customers").document(uid).collection("refueling")
         val list = mutableListOf<Refueling>()
 
         docRef.get()
@@ -303,7 +307,7 @@ class MotoroBroDatabase {
 
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val docRef = db.collection("users").document(uid).collection("odometerUpdate")
+        val docRef = db.collection("customers").document(uid).collection("odometerUpdate")
 
         val list = mutableListOf<OdometerUpdate>()
 
@@ -324,7 +328,7 @@ class MotoroBroDatabase {
     fun saveRefueling(refueling: Refueling, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
 
-        db.collection("users").document(FirebaseAuth.getInstance().uid!!).collection("refueling")
+        db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("refueling")
             .document()
             .set(refueling)
             .addOnSuccessListener {
@@ -339,7 +343,7 @@ class MotoroBroDatabase {
     fun saveOdometerUpdate(odometerUpdate: OdometerUpdate, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
 
-        db.collection("users").document(FirebaseAuth.getInstance().uid!!).collection("odometerUpdate")
+        db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("odometerUpdate")
             .document()
             .set(odometerUpdate)
             .addOnSuccessListener {
@@ -376,7 +380,7 @@ class MotoroBroDatabase {
     fun saveInsuranceDocuments(insurance: Insurance, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val insuranceDocument = db.collection("users").document(uid).collection("documents").document("insurance")
+        val insuranceDocument = db.collection("customers").document(uid).collection("documents").document("insurance")
 
         insuranceDocument
             .set(insurance)
@@ -387,7 +391,7 @@ class MotoroBroDatabase {
     fun saveDriversLicenseDocument(license: DriversLicense, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val licenseDocument = db.collection("users").document(uid).collection("documents").document("drivers-license")
+        val licenseDocument = db.collection("customers").document(uid).collection("documents").document("drivers-license")
 
         licenseDocument
             .set(license)
@@ -398,7 +402,7 @@ class MotoroBroDatabase {
     fun saveMotorRegistrationDocument(motorRegistration: MotorRegistration, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val document = db.collection("users").document(uid).collection("documents").document("motor-registration")
+        val document = db.collection("customers").document(uid).collection("documents").document("motor-registration")
 
         document
             .set(motorRegistration)
@@ -410,7 +414,7 @@ class MotoroBroDatabase {
     fun getInsuranceDocument(callback: (Insurance?) -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val insuranceDocument = db.collection("users").document(uid).collection("documents").document("insurance")
+        val insuranceDocument = db.collection("customers").document(uid).collection("documents").document("insurance")
 
         insuranceDocument.get()
             .addOnSuccessListener {
@@ -431,7 +435,7 @@ class MotoroBroDatabase {
     fun getLicenseDocument(callback: (DriversLicense?) -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val document = db.collection("users").document(uid).collection("documents").document("drivers-license")
+        val document = db.collection("customers").document(uid).collection("documents").document("drivers-license")
 
         document.get()
             .addOnSuccessListener {
@@ -452,7 +456,7 @@ class MotoroBroDatabase {
     fun getMotorRegistrationDocument(callback: (MotorRegistration?) -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val document = db.collection("users").document(uid).collection("documents").document("motor-registration")
+        val document = db.collection("customers").document(uid).collection("documents").document("motor-registration")
 
         document.get()
             .addOnSuccessListener {

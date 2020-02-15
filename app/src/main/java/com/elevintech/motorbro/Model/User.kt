@@ -1,6 +1,8 @@
 package com.elevintech.motorbro.Model
 
-class User(var firstName: String = "",
+class User(
+            var uid: String = "",
+            var firstName: String = "",
            var lastName: String = "",
            var gender: String = "",
            var email: String = "",

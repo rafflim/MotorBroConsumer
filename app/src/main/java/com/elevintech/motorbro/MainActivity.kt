@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.elevintech.motorbro.CreateAccount.CreateAccountActivity
 import com.elevintech.motorbro.Dashboard.DashboardActivity
+import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
 import com.google.firebase.auth.FirebaseAuth
 
@@ -40,18 +41,16 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(baseContext, "Please Fill up the username and password field", Toast.LENGTH_SHORT).show()
         } else {
 
-            var progressDialog = ProgressDialog(this)
-            progressDialog.setMessage("Logging in....")
-            progressDialog.setCancelable(false)
+            var progressDialog = Utils().easyProgressDialog(this, "Logging in....")
             progressDialog.show()
 
             FirebaseAuth.getInstance().signInWithEmailAndPassword("${userNameEditText.text}", "${passwordEditText.text}")
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        progressDialog.hide()
+                        progressDialog.dismiss()
                         goToDashBoardActivity()
                     } else {
-                        progressDialog.hide()
+                        progressDialog.dismiss()
                         Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
                     }
                 }

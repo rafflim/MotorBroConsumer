@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.elevintech.motorbro.BikeRegistration.BikeRegistrationActivity
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Model.User
+import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_create_account.*
@@ -48,40 +49,43 @@ class CreateAccountActivity : AppCompatActivity() {
 
     fun registerUser() {
 
-        var gender = ""
+        var gender: String
         if (maleGenderLayoutIsClicked) {
             gender = "male"
         } else {
             gender = "female"
         }
 
-        val user = User(firstNameEditText.text.toString(), lastNameEditText.text.toString(), gender, emailEditText.text.toString())
-
         val firebaseDatabase = MotoroBroDatabase()
 
         val email = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
 
-        var progressDialog = ProgressDialog(this)
-        progressDialog.setMessage("Registering your profile....")
-        progressDialog.setCancelable(false)
+        val progressDialog = Utils().easyProgressDialog(this, "Registering your profile....")
         progressDialog.show()
 
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("Samp", "createUserWithEmail:success")
+
+                    val uid = task.result!!.user!!.uid
+                    val user = User(uid, firstNameEditText.text.toString(), lastNameEditText.text.toString(), gender, email)
 
 
-                    firebaseDatabase.registerUser(user) {
-                        println("New Success")
-                        progressDialog.hide()
-                        val intent = Intent(applicationContext, BikeRegistrationActivity::class.java)
-                        startActivity(intent)
+                    firebaseDatabase.createUserType {
 
-                        finish()
+                        firebaseDatabase.createUser(user){
+
+                            progressDialog.dismiss()
+                            val intent = Intent(applicationContext, BikeRegistrationActivity::class.java)
+                            startActivity(intent)
+
+                            finish()
+
+                        }
+
                     }
+
 
                 } else {
                     Toast.makeText(baseContext, "${task.exception?.localizedMessage}", Toast.LENGTH_SHORT).show()

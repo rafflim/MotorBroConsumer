@@ -234,7 +234,7 @@ class BikeRegistrationActivity : AppCompatActivity() {
         progressDialog.show()
 
         database.saveBikeInfo(bike) {
-            progressDialog.hide()
+            progressDialog.dismiss()
             Toast.makeText(this, "Bike Registration Successful!", Toast.LENGTH_LONG).show()
 
             val intent = Intent(applicationContext, DashboardActivity::class.java)

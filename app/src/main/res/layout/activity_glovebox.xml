@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Glovebox.GloveboxActivity">
+    android:layout_height="match_parent">
 
 
     <androidx.appcompat.widget.Toolbar
@@ -157,7 +156,6 @@
                 android:padding="7dp"
                 android:background="@drawable/glovebox_layout_background_added"
                 android:layout_marginTop="10dp"
-                android:visibility="gone"
                 >
 
                 <ImageView
@@ -241,7 +239,6 @@
                 android:padding="7dp"
                 android:background="@drawable/glovebox_layout_background"
                 android:layout_marginTop="10dp"
-                android:visibility="gone"
                 >
 
                 <TextView
