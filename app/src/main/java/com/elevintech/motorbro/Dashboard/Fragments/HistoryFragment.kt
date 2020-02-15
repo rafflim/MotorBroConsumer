@@ -65,7 +65,6 @@ class HistoryFragment : Fragment() {
         val db = MotoroBroDatabase()
         db.getUserOdometers {
             // TODO: somehow get the last value only
-            val firstOdo = it.first()
 
             for (odo in it) {
                 historyAdapter.add(historyItem(odo))
