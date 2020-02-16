@@ -45,14 +45,13 @@ class MainActivity : AppCompatActivity() {
             progressDialog.show()
 
             FirebaseAuth.getInstance().signInWithEmailAndPassword("${userNameEditText.text}", "${passwordEditText.text}")
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        progressDialog.dismiss()
-                        goToDashBoardActivity()
-                    } else {
-                        progressDialog.dismiss()
-                        Toast.makeText(baseContext, "Authentication failed: ${task.exception?.localizedMessage}", Toast.LENGTH_SHORT).show()
-                    }
+                .addOnSuccessListener {
+                    progressDialog.dismiss()
+                    goToDashBoardActivity()
+                }
+                .addOnFailureListener { e ->
+                    progressDialog.dismiss()
+                    Toast.makeText(baseContext, "Authentication failed: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
                 }
 
         }
