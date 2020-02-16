@@ -127,9 +127,9 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
 
-                    android:layout_marginLeft="20dp"
-                    android:src="@drawable/email_colored_icon"
-
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/email_new_icon"
+                    android:tint="@color/colorPrimaryDark"
                     />
 
                 <EditText
@@ -171,9 +171,9 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-
-                    android:layout_marginLeft="20dp"
-                    android:src="@drawable/password_colored_icon"
+                    android:tint="@color/colorPrimaryDark"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/password_new_icon"
 
                     />
 
@@ -251,7 +251,7 @@
                 android:text="Don't have an Account? Register Here"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:textColor="#0A7C65"
+                android:textColor="#280A7C"
                 />
 
 

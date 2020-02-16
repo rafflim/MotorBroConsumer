@@ -4,8 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.elevintech.motorbro.BikeRegistration.BikeRegistrationActivity
 import com.elevintech.motorbro.Dashboard.DashboardActivity
 import com.elevintech.motorbro.MainActivity
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.myapplication.R
 import com.google.firebase.auth.FirebaseAuth
 
@@ -44,9 +46,21 @@ class SplashPageActivity : AppCompatActivity() {
 
             val currentUser = auth.currentUser
             if (currentUser != null) {
-                val intent = Intent(applicationContext, DashboardActivity::class.java)
-                startActivity(intent)
-                finish()
+
+                val firebaseDb = MotoroBroDatabase()
+                firebaseDb.getUser {
+
+                    if (it.usersRegistrationProgress == 1) {
+                        val intent = Intent(applicationContext, BikeRegistrationActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        val intent = Intent(applicationContext, DashboardActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+
             } else {
                 val intent = Intent(applicationContext, MainActivity::class.java)
                 startActivity(intent)

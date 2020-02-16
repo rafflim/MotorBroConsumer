@@ -57,6 +57,7 @@ class CreateAccountActivity : AppCompatActivity() {
 
         val user = User(firstNameEditText.text.toString(), lastNameEditText.text.toString(), gender, emailEditText.text.toString())
 
+        user.usersRegistrationProgress = 1
         val firebaseDatabase = MotoroBroDatabase()
 
         val email = emailEditText.text.toString()
