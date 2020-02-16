@@ -1,301 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Garage.GarageActivity">
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#3C7BCF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/garageBackImageView"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/back_icon"
-            android:tint="@color/white" />
-
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/lato"
-            android:text="Garage"
-            android:textColor="#fff"
-            android:textSize="21sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-            app:layout_constraintEnd_toEndOf="@+id/toolbar"
-            app:layout_constraintStart_toStartOf="@+id/toolbar" />
-
-    </androidx.appcompat.widget.Toolbar>
-
-
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_button"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        app:elevation="10dp"
+        app:backgroundTint="@color/white"
+        app:fabCustomSize="60dp"
+        app:maxImageSize="60dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/blue_plus_icon"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-android:background="@drawable/shadow_background"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        >
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/garage_icon"
-            android:layout_gravity="center"
-            />
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height= "wrap_content"
-            android:text="This is the garage, you can add vehicle and manage them here."
-            android:textColor="@color/textColorBlack"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:textSize="16sp"
-            android:fontFamily="@font/open_sans"
-            android:layout_marginTop="10dp"
-            />
-    </LinearLayout>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="#3C7BCF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
-        android:id="@+id/firstBikeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:background="@drawable/shadow_background"
-        android:orientation="horizontal"
-        android:layout_margin="5dp"
+            <ImageView
+                android:id="@+id/garageBackImageView"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="16dp"
+                android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/back_icon" />
 
-        >
-        <ImageView
-            android:id="@+id/bikeImageView1"
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/motorcycle_demo_1"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
-            android:layout_marginLeft="15dp"
-            >
 
             <TextView
-                android:id="@+id/motorcycleName1"
+                android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/textColorBlack"
-                android:textSize="19sp"
-                android:fontFamily="@font/open_sans_bold"
-                />
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/lato"
+                android:text="Garage"
+                android:textColor="#fff"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+                app:layout_constraintEnd_toEndOf="@+id/toolbar"
+                app:layout_constraintStart_toStartOf="@+id/toolbar" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/plateNumberLayout"
-                android:layout_width="wrap_content"
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/plateNumberText"
-                app:layout_constraintStart_toStartOf="@id/plateNumberText"
-                android:padding="7dp"
-                android:background="@drawable/plate_number_background"
-                android:layout_marginTop="10dp"
+                android:orientation="vertical">
 
-                >
-
-                <TextView
-                    android:id="@+id/plateNumberText1"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:text=""
-                    android:textColor="@color/textColorBlack"
-                    android:textSize="12sp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/shadow_background"
+                    android:orientation="vertical"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
 
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/garage_icon" />
 
-                    />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:fontFamily="@font/open_sans"
+                        android:gravity="center"
+                        android:text="This is the garage, you can add vehicle and manage them here."
+                        android:textColor="@color/textColorBlack"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/reycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fadeScrollbars="false"
+                    android:orientation="vertical" />
+
+                <LinearLayout
+                    android:id="@+id/secondBikeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/shadow_background"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/no_data_question_mark" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:text="Bike #2 Locked"
+                            android:textColor="@color/textColorBlack"
+                            android:textSize="19sp" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/plateNumberLayout2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/plate_number_background"
+                            android:padding="7dp"
+                            android:visibility="invisible"
+                            app:layout_constraintStart_toStartOf="@id/plateNumberText"
+                            app:layout_constraintTop_toBottomOf="@id/plateNumberText">
+
+                            <TextView
+                                android:id="@+id/plateNumberText2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/open_sans_bold"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text="Plate# 3204"
+
+                                android:textColor="@color/textColorBlack"
+                                android:textSize="12sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+
+                                />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/thirdBikeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/shadow_background"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/no_data_question_mark" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:text="Bike #3 Locked"
+                            android:textColor="@color/textColorBlack"
+                            android:textSize="19sp" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/plateNumberLayout3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/plate_number_background"
+                            android:padding="7dp"
+                            android:visibility="invisible"
+                            app:layout_constraintStart_toStartOf="@id/plateNumberText"
+                            app:layout_constraintTop_toBottomOf="@id/plateNumberText">
+
+                            <TextView
+                                android:id="@+id/plateNumberText3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/open_sans_bold"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text="Plate# 3204"
+                                android:textColor="@color/textColorBlack"
+                                android:textSize="12sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+
+                                />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
 
 
-    <LinearLayout
-        android:id="@+id/secondBikeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:background="@drawable/shadow_background"
-        android:orientation="horizontal"
-        android:layout_margin="5dp"
-
-        >
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/no_data_question_mark"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
-            android:layout_marginLeft="15dp"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bike #2 Locked"
-                android:textColor="@color/textColorBlack"
-                android:textSize="19sp"
-                android:fontFamily="@font/open_sans_bold"
-                />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/plateNumberLayout2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/plateNumberText"
-                app:layout_constraintStart_toStartOf="@id/plateNumberText"
-                android:padding="7dp"
-                android:background="@drawable/plate_number_background"
-                android:layout_marginTop="10dp"
-                android:visibility="invisible"
-                >
-
-                <TextView
-                    android:id="@+id/plateNumberText2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:text="Plate# 3204"
-                    android:textColor="@color/textColorBlack"
-                    android:textSize="12sp"
-
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-
-                    />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/thirdBikeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:background="@drawable/shadow_background"
-        android:orientation="horizontal"
-        android:layout_margin="5dp"
-
-        >
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/no_data_question_mark"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
-            android:layout_marginLeft="15dp"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bike #3 Locked"
-                android:textColor="@color/textColorBlack"
-                android:textSize="19sp"
-                android:fontFamily="@font/open_sans_bold"
-                />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/plateNumberLayout3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/plateNumberText"
-                app:layout_constraintStart_toStartOf="@id/plateNumberText"
-                android:padding="7dp"
-                android:background="@drawable/plate_number_background"
-                android:layout_marginTop="10dp"
-                android:visibility="invisible"
-                >
-
-                <TextView
-                    android:id="@+id/plateNumberText3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:text="Plate# 3204"
-                    android:textColor="@color/textColorBlack"
-                    android:textSize="12sp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-
-                    />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-
-
-</LinearLayout>
+</FrameLayout>

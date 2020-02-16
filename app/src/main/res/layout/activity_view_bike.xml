@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ViewBike.ViewBikeActivity">
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -46,6 +45,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <ImageView
+        android:id="@+id/bikeImageView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:src="@drawable/motorcycle_demo_1"
@@ -53,6 +53,7 @@
         />
 
     <TextView
+        android:id="@+id/brandAndModelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Motor NMAX 2020"
@@ -64,6 +65,7 @@
         />
 
     <TextView
+        android:id="@+id/plateNumberText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Plate # 20232"
@@ -74,6 +76,7 @@
         />
 
     <TextView
+        android:id="@+id/nicknameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nickname: NiMax"
@@ -179,6 +182,7 @@
 
 <!--    </LinearLayout>-->
 
+    <!-- TODO : add to BikeInfo model -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -189,6 +193,7 @@
         android:fontFamily="@font/open_sans"
         />
 
+    <!-- TODO : add to BikeInfo model -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -199,6 +204,7 @@
         android:fontFamily="@font/open_sans"
         />
 
+    <!-- TODO : add to BikeInfo model -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -209,7 +215,9 @@
         android:fontFamily="@font/open_sans"
         />
 
+
     <TextView
+        android:id="@+id/yearBoughtText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Year Bought: 2009"

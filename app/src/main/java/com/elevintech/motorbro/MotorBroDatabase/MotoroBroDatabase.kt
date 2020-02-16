@@ -106,7 +106,7 @@ class MotoroBroDatabase {
     fun saveBikeInfo(bikeInfo: BikeInfo, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
 
-        db.collection("bikes").document(FirebaseAuth.getInstance().uid!!)
+        db.collection("bikes").document(bikeInfo.bikeId)
             .set(bikeInfo)
             .addOnSuccessListener {
                 callback()
@@ -507,5 +507,27 @@ class MotoroBroDatabase {
             .addOnFailureListener{
                 println( it.toString())
             }
+    }
+
+    fun getUserBikes(callback: (MutableList<BikeInfo>) -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val docRef = db.collection("bikes").whereEqualTo("userId", uid)
+
+        val list = mutableListOf<BikeInfo>()
+
+        docRef.get()
+            .addOnSuccessListener {
+
+                for (bikeDocument in it){
+                    val bike = bikeDocument.toObject(BikeInfo::class.java)
+                    list.add(bike)
+                }
+
+                callback(list)
+
+            }
+
     }
 }

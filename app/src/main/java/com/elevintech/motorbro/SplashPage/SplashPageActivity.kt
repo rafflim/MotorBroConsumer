@@ -52,6 +52,7 @@ class SplashPageActivity : AppCompatActivity() {
 
                     if (it.usersRegistrationProgress == 1) {
                         val intent = Intent(applicationContext, BikeRegistrationActivity::class.java)
+                        intent.putExtra("previousActivity", "splashPage")
                         startActivity(intent)
                         finish()
                     } else {

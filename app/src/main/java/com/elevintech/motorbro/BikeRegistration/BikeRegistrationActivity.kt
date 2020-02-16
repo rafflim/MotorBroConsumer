@@ -16,6 +16,7 @@ import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
 import com.github.florent37.runtimepermission.RuntimePermission
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_bike_registration.*
 import java.io.File
 import java.util.*
@@ -26,9 +27,13 @@ class BikeRegistrationActivity : AppCompatActivity() {
     var OPEN_CAMERA = 10
     var OPEN_GALLERY = 11
 
+    var openedFromWhatActivity = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bike_registration)
+
+        openedFromWhatActivity = intent.getStringExtra("previousActivity")!!
 
         imgBikeProfile.setOnClickListener {
             askUploadSource()
@@ -164,6 +169,7 @@ class BikeRegistrationActivity : AppCompatActivity() {
         bike.nickname = editNicknameText.text.toString()
         bike.yearBought = yearBoughtEditText.text.toString() // TODO: Fix year bought to year selector
         bike.userId = FirebaseAuth.getInstance().uid!!
+        bike.bikeId = FirebaseFirestore.getInstance().collection("bikes").document().id
 
         val database = MotoroBroDatabase()
 
@@ -176,13 +182,22 @@ class BikeRegistrationActivity : AppCompatActivity() {
 
             database.saveBikeInfo(bike) {
 
-                database.updateUserRegistrationProgress(2) {
+                if (openedFromWhatActivity == "splashPage" || openedFromWhatActivity == "createAccount"){
+
+                    database.updateUserRegistrationProgress(2) {
+
+                            progressDialog.dismiss()
+                            Toast.makeText(this, "Bike Registration Successful!", Toast.LENGTH_LONG).show()
+
+                            val intent = Intent(applicationContext, DashboardActivity::class.java)
+                            startActivity(intent)
+
+                    }
+
+                } else if (openedFromWhatActivity == "garage"){
 
                     progressDialog.dismiss()
-                    Toast.makeText(this, "Bike Registration Successful!", Toast.LENGTH_LONG).show()
-
-                    val intent = Intent(applicationContext, DashboardActivity::class.java)
-                    startActivity(intent)
+                    finish()
 
                 }
 

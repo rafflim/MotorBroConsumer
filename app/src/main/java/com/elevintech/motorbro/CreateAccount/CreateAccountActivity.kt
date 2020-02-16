@@ -170,6 +170,7 @@ class CreateAccountActivity : AppCompatActivity() {
 
                                     progressDialog.dismiss()
                                     val intent = Intent(applicationContext, BikeRegistrationActivity::class.java)
+                                    intent.putExtra("previousActivity", "createAccount")
                                     startActivity(intent)
 
                                     finish()

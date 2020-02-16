@@ -14,4 +14,5 @@ class BikeInfo():Serializable {
     var income: Double = 0.0
     var yearBought: String = ""
     var imageUrl: String = ""
+    var bikeId: String = ""
 }
