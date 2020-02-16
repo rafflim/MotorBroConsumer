@@ -530,4 +530,17 @@ class MotoroBroDatabase {
             }
 
     }
+
+    fun udpateUserFields(userFields: MutableMap<String, Any>, callback: () -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val ref = db.collection("customers").document(uid)
+
+        ref
+            .update(userFields)
+            .addOnSuccessListener { callback() }
+            .addOnFailureListener { e -> callback() }
+
+    }
 }
