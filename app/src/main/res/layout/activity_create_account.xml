@@ -315,6 +315,7 @@
                     android:layout_height="wrap_content"
                     android:text="Male"
                     android:paddingRight="10dp"
+                    android:background="@drawable/genderbuttonbackground"
                     />
                 <RadioButton
                     android:id="@+id/femaleGenderLayout"
@@ -323,6 +324,7 @@
                     android:text="Female"
                     android:layout_marginLeft="20dp"
                     android:paddingRight="10dp"
+                    android:background="@drawable/genderbuttonbackground"
                     />
 
             </RadioGroup>

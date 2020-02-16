@@ -487,4 +487,25 @@ class MotoroBroDatabase {
             }
 
     }
+
+    fun uploadImageToFirebaseStorage(imageUri: Uri, callback: (url: String) -> Unit) {
+
+        var filename = UUID.randomUUID().toString()
+        var storageRef = FirebaseStorage.getInstance().getReference("/user_uploads/$filename.jpg")
+
+        // UPLOAD TO FIREBASE
+        storageRef.putFile(imageUri)
+            .addOnSuccessListener {
+
+                storageRef.downloadUrl.addOnSuccessListener {
+                    var url = it.toString()
+
+                    callback(url)
+                }
+
+            }
+            .addOnFailureListener{
+                println( it.toString())
+            }
+    }
 }

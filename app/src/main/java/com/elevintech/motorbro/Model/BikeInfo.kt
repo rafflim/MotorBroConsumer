@@ -1,6 +1,8 @@
 package com.elevintech.motorbro.Model
 
-class BikeInfo() {
+import java.io.Serializable
+
+class BikeInfo():Serializable {
     var userId: String = ""
     var brand: String = ""
     var model: String = ""
@@ -11,4 +13,5 @@ class BikeInfo() {
     var odometerValue: Double = 0.0
     var income: Double = 0.0
     var yearBought: String = ""
+    var imageUrl: String = ""
 }
