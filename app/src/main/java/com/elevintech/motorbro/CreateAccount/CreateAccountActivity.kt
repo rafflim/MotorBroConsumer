@@ -56,6 +56,8 @@ class CreateAccountActivity : AppCompatActivity() {
             gender = "female"
         }
 
+
+
         val firebaseDatabase = MotoroBroDatabase()
 
         val email = emailEditText.text.toString()
@@ -69,8 +71,8 @@ class CreateAccountActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
 
                     val uid = task.result!!.user!!.uid
-                    val user = User(uid, firstNameEditText.text.toString(), lastNameEditText.text.toString(), gender, email)
-
+                    var user = User(uid, firstNameEditText.text.toString(), lastNameEditText.text.toString(), gender, email)
+                    user.usersRegistrationProgress = 1
 
                     firebaseDatabase.createUserType {
 

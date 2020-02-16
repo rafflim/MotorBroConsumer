@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.elevintech.motorbro.Shop.ShopActivity"></activity>
+        <activity android:name="com.elevintech.motorbro.Chat.ChatListActivity"></activity>
+        <activity android:name="com.elevintech.motorbro.ShopView.ShopViewActivity" />
+        <activity android:name="com.elevintech.motorbro.Shop.ShopActivity" />
         <activity android:name="com.elevintech.motorbro.Glovebox.MotorRegistrationActivity" />
         <activity android:name="com.elevintech.motorbro.Glovebox.DriversLicenseActivity" />
         <activity android:name="com.elevintech.motorbro.Glovebox.InsuranceActivity" />

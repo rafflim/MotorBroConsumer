@@ -17,12 +17,15 @@
         />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="130dp"
         android:orientation="horizontal"
         android:padding="10dp">
 
 
         <LinearLayout
+            android:paddingTop="10dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/shadow_gray_background"
             android:id="@+id/layoutParts"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -35,7 +38,7 @@
                 android:id="@+id/imageView1"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                app:srcCompat="@drawable/bottom_parts_new_icon" />
+                app:srcCompat="@drawable/parts_newer_icon" />
 
             <TextView
                 android:layout_marginTop="5dp"
@@ -49,6 +52,9 @@
         </LinearLayout>
 
         <LinearLayout
+            android:paddingTop="10dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/shadow_gray_background"
             android:id="@+id/layoutOdometer"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -60,7 +66,7 @@
                 android:id="@+id/imageView2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                app:srcCompat="@drawable/bottom_reminder_new_icon" />
+                app:srcCompat="@drawable/odometer_new_icon" />
 
             <TextView
                 android:layout_marginTop="5dp"
@@ -75,6 +81,9 @@
         </LinearLayout>
 
         <LinearLayout
+            android:paddingTop="10dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/shadow_gray_background"
             android:id="@+id/layoutRefueling"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -87,7 +96,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/bottom_refuel_new_icon" />
+                app:srcCompat="@drawable/gas_newer_icon" />
 
             <TextView
                 android:layout_marginTop="5dp"

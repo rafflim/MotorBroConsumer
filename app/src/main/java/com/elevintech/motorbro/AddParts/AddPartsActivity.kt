@@ -128,7 +128,7 @@ class AddPartsActivity : AppCompatActivity() {
 
             bikeParts.date = dateText.text.toString()
             bikeParts.dateLong = Utils().convertDateToTimestamp(dateText.text.toString(), "yyyy-MM-dd")
-            bikeParts.odometer = odometerText.text.toString().toDouble()
+//            bikeParts.odometer = odometerText.text.toString().toDouble()
             bikeParts.typeOfParts = typeOfPartsText.text.toString()
             bikeParts.brand = brandText.text.toString()
             bikeParts.price = priceText.text.toString().toDouble()
@@ -153,7 +153,7 @@ class AddPartsActivity : AppCompatActivity() {
 
         return (!(
                     dateText.text.toString() == "" ||
-                    odometerText.text.toString()== ""||
+//                    odometerText.text.toString()== ""||
                     typeOfPartsText.text.toString() == ""||
                     brandText.text.toString() == ""||
                     priceText.text.toString() == ""

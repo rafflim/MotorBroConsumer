@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                         goToDashBoardActivity()
                     } else {
                         progressDialog.dismiss()
-                        Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(baseContext, "Authentication failed: ${task.exception?.localizedMessage}", Toast.LENGTH_SHORT).show()
                     }
                 }
 

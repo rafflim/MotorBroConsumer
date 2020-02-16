@@ -45,7 +45,18 @@
             android:layout_height="25dp"
             android:layout_marginRight="15dp"
             android:layout_gravity="right"
-            app:srcCompat="@drawable/carticon"
+            app:srcCompat="@drawable/shop_new_icon"
+            android:tint="#4D4D4D"
+            android:visibility="visible"
+            />
+        <ImageView
+            android:id="@+id/chatImageView"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="15dp"
+            android:layout_gravity="right"
+            app:srcCompat="@drawable/chat_icon"
+            android:tint="#4D4D4D"
             android:visibility="visible"
             />
 
@@ -101,7 +112,7 @@
             app:maxImageSize="60dp"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/plus_sample_float"/>
+            android:src="@drawable/blue_plus_icon"/>
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
