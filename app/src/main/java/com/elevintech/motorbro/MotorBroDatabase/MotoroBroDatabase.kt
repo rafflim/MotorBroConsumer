@@ -473,4 +473,18 @@ class MotoroBroDatabase {
 
             }
     }
+
+    fun updateUserRegistrationProgress(registrationProgress: Int, callback: () -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val document = db.collection("customers").document(uid)
+
+        document
+            .update(mapOf("usersRegistrationProgress" to registrationProgress))
+            .addOnSuccessListener {
+                callback()
+            }
+
+    }
 }

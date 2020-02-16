@@ -93,13 +93,11 @@ class BikeRegistrationActivity : AppCompatActivity() {
             Toast.makeText(this, "Bike Registration Successful!", Toast.LENGTH_LONG).show()
 
             val db = MotoroBroDatabase()
-            db.getUser {
-                it.usersRegistrationProgress = 2
-                db.registerUser(it) {
-                    val intent = Intent(applicationContext, DashboardActivity::class.java)
-                    startActivity(intent)
-                }
+            db.updateUserRegistrationProgress(2) {
+                val intent = Intent(applicationContext, DashboardActivity::class.java)
+                startActivity(intent)
             }
+
 
         }
     }
