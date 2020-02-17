@@ -543,4 +543,18 @@ class MotoroBroDatabase {
             .addOnFailureListener { e -> callback() }
 
     }
+
+    fun getUserType(callback: (String) -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val docRef = db.collection("users").document(uid)
+
+        docRef.get().addOnSuccessListener { documentSnapshot ->
+
+            var user = documentSnapshot.toObject(User::class.java)!!
+            callback( user.userType )
+        }
+
+    }
 }

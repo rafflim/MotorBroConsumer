@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.widget.Toast
 import com.elevintech.motorbro.CreateAccount.CreateAccountActivity
 import com.elevintech.motorbro.Dashboard.DashboardActivity
+import com.elevintech.motorbro.Model.UserType
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
 import com.google.firebase.auth.FirebaseAuth
@@ -46,13 +48,30 @@ class MainActivity : AppCompatActivity() {
 
             FirebaseAuth.getInstance().signInWithEmailAndPassword("${userNameEditText.text}", "${passwordEditText.text}")
                 .addOnSuccessListener {
-                    progressDialog.dismiss()
-                    goToDashBoardActivity()
+                    checkUserType(progressDialog)
+
                 }
                 .addOnFailureListener { e ->
                     progressDialog.dismiss()
                     Toast.makeText(baseContext, "Authentication failed: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
                 }
+
+        }
+    }
+
+    private fun checkUserType(progressDialog: ProgressDialog) {
+        var db = MotoroBroDatabase()
+        db.getUserType{ userType ->
+
+            if (userType == UserType.Type.CUSTOMER){
+                progressDialog.dismiss()
+
+                Toast.makeText(baseContext, "Please use the MotorBroShop app", Toast.LENGTH_SHORT).show()
+                FirebaseAuth.getInstance().signOut()
+            } else {
+                progressDialog.dismiss()
+                goToDashBoardActivity()
+            }
 
         }
     }

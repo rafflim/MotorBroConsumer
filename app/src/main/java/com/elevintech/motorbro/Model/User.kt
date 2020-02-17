@@ -10,4 +10,6 @@ class User(var uid: String = "",
            var customParts: List<String> = listOf(),
            var customReminders: List<String> = listOf(),
            var customHistory: List<String> = listOf(),
-           var customFuel: List<String> = listOf())
+           var customFuel: List<String> = listOf(),
+           var userType: String = ""
+)
