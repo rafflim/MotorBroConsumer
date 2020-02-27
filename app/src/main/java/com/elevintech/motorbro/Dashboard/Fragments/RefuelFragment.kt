@@ -26,7 +26,7 @@ import kotlinx.android.synthetic.main.fragment_shop.*
 import kotlinx.android.synthetic.main.row_reminders_layout.view.*
 import kotlinx.android.synthetic.main.row_shop_item_layout.view.*
 
-class RemindersFragment : Fragment() {
+class RefuelFragment : Fragment() {
     // TODO: Rename and change types of parameters
 
     val reminderAdapter = GroupAdapter<ViewHolder>()
@@ -97,10 +97,10 @@ class RemindersFragment : Fragment() {
 
             viewHolder.itemView.dateText.text = Utils().convertMillisecondsToDate(refuel.dateLong, "MMM d, yyyy")
             viewHolder.itemView.headerText.text = "Refuel " + refuel.location
-            viewHolder.itemView.odometerText.text = refuel.kilometers.toString()
+//            viewHolder.itemView.odometerText.text = refuel.kilometers.toString()
 
             viewHolder.itemView.pricePerGallonText.text = "Price per Gallon: " + refuel.pricePerGallon.toString()
-            viewHolder.itemView.fuelTypeText.text = "Fuel type: " + refuel.typeOfFuel
+//            viewHolder.itemView.fuelTypeText.text = "Fuel type: " + refuel.typeOfFuel
         }
 
         override fun getLayout(): Int {

@@ -71,7 +71,7 @@ class ShopActivity : AppCompatActivity() {
 
             //Glide.with(activity!!).load(user.userProfileMainImageUrl).into(viewHolder.itemView.shopImageView)
             viewHolder.itemView.shopName.text = shop.name
-            viewHolder.itemView.shopDescription.text = shop.description
+//            viewHolder.itemView.shopDescription.text = shop.description
 
         }
 

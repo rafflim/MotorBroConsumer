@@ -62,7 +62,7 @@
 
             android:layout_marginTop="-40dp"
             android:layout_marginRight="-60dp"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="20dp"
             />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -102,10 +102,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/roboto_bold"
+                android:fontFamily="@font/open_sans_semibold"
                 android:text="Mia Mitsubishi 2013"
                 android:textColor="@color/textColorBlack"
-                android:textSize="21sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -127,7 +127,7 @@
                     android:fontFamily="@font/open_sans"
                     android:text="Plate# 3204"
                     android:textColor="@color/textColorBlack"
-                    android:textSize="15sp"
+                    android:textSize="13sp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -143,10 +143,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/open_sans"
                 android:text="Odometer Details"
                 android:textColor="@color/textColorBlack"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@id/plateNumberLayout"
                 app:layout_constraintTop_toBottomOf="@id/plateNumberLayout" />
 
@@ -154,11 +154,11 @@
                 android:id="@+id/breakDetailsText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/montserrat"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/open_sans"
                 android:text="Front Break: Drum, Rear Break: Disk"
                 android:textColor="@color/textColorBlack"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@id/odometerDetailsText"
                 app:layout_constraintTop_toBottomOf="@id/odometerDetailsText" />
 
@@ -166,11 +166,11 @@
                 android:id="@+id/bikeNicknameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/montserrat"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/open_sans"
                 android:text="Car Nickname"
                 android:textColor="@color/textColorBlack"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@id/breakDetailsText"
                 app:layout_constraintTop_toBottomOf="@id/breakDetailsText" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -185,7 +185,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:paddingBottom="15dp"
             android:paddingTop="10dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:background="@drawable/shadow_background"
@@ -200,7 +200,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
 
                 >
@@ -241,16 +241,18 @@
 
                 <TextView
                     android:id="@+id/odometerStatementText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     app:layout_constraintStart_toEndOf="@id/odometerImage"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:fontFamily="@font/montserrat"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textAlignment="viewStart"
+                    android:fontFamily="@font/open_sans"
                     android:text="Odometer : 20km updated as of Dec 12, 2020"
                     android:textColor="@color/textColorBlack"
-                    android:textSize="12sp"
+                    android:textSize="10sp"
                     />
 
 <!--                <TextView-->
@@ -288,14 +290,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="5dp"
                     app:layout_constraintStart_toEndOf="@id/odometerImage"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:fontFamily="@font/open_sans_bold"
                     android:text="Click here to edit"
                     android:textColor="@color/white"
-                    android:textSize="13sp"
+                    android:textSize="11sp"
                     />
 
 

@@ -36,12 +36,6 @@ class AddRefuelingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_refueling)
 
 
-        getWindow().setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-        );
-
-
         backButton.setOnClickListener {
             finish()
         }
@@ -58,6 +52,10 @@ class AddRefuelingActivity : AppCompatActivity() {
         typeOfFuelText.setOnClickListener {
             val intent = Intent(applicationContext, TypeOfFuelActivity::class.java)
             startActivityForResult(intent, SELECT_PART_TYPE)
+        }
+
+        pricePerGallonText.setOnFocusChangeListener { v, hasFocus ->
+            println("yess i'm getting it")
         }
     }
 
@@ -135,7 +133,7 @@ class AddRefuelingActivity : AppCompatActivity() {
             refueling.typeOfFuel = typeOfFuelText.text.toString()
             refueling.pricePerGallon = pricePerGallonText.text.toString().toDouble()
             refueling.totalCost = totalCostText.text.toString().toDouble()
-            refueling.priceGallons = gallonsText.text.toString().toDouble()
+            refueling.priceGallons = litersText.text.toString().toDouble()
             refueling.location = locationText.text.toString()
 
             val database = MotoroBroDatabase()
@@ -162,7 +160,7 @@ class AddRefuelingActivity : AppCompatActivity() {
                     typeOfFuelText.text.toString()== "" ||
                     pricePerGallonText.text.toString()== "" ||
                     totalCostText.text.toString()== "" ||
-                    gallonsText.text.toString()== ""
+                    litersText.text.toString()== ""
                 ))
 
 

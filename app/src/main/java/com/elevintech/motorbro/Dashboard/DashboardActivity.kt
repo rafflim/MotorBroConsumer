@@ -6,18 +6,13 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.forEach
-import androidx.fragment.app.FragmentTransaction
 import com.elevintech.motorbro.Achievements.AchievementsActivity
 import com.elevintech.motorbro.AddOdometer.AddOdometerActivity
 import com.elevintech.motorbro.AddParts.AddPartsActivity
 import com.elevintech.motorbro.AddRefueling.AddRefuelingActivity
-import com.elevintech.motorbro.AddReminders.AddRemindersActivity
-import com.elevintech.motorbro.BikeRegistration.BikeRegistrationActivity
 import com.elevintech.motorbro.Dashboard.Fragments.*
 import com.elevintech.motorbro.Garage.GarageActivity
 import com.elevintech.motorbro.Glovebox.GloveboxActivity
@@ -26,12 +21,8 @@ import com.elevintech.motorbro.MainActivity
 import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.Model.User
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
-import com.elevintech.motorbro.QrCode.QrCodeActivity
 import com.elevintech.motorbro.Shop.ShopActivity
-import com.elevintech.motorbro.TypeOf.AddTypeOfParts
-import com.elevintech.motorbro.TypeOf.TypeOfHistoryActivity
 import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
-import com.elevintech.motorbro.TypeOf.TypeOfReminderActivity
 import com.elevintech.myapplication.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -46,7 +37,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     lateinit var homeFragment: HomeFragment
     lateinit var partsFragment: PartsFragment
     lateinit var shopFragment: ShopFragment
-    lateinit var remindersFragment: RemindersFragment
+    lateinit var refuelFragment: RefuelFragment
     lateinit var historyFragment: HistoryFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -259,7 +250,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         homeFragment = HomeFragment()
         partsFragment = PartsFragment()
         shopFragment = ShopFragment()
-        remindersFragment = RemindersFragment()
+        refuelFragment = RefuelFragment()
         historyFragment = HistoryFragment()
 
         val menuView = bottom_nav.getChildAt(0) as? ViewGroup ?: return
@@ -301,7 +292,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 R.id.tabreminders -> {
                     supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.frame_layout, remindersFragment, "remindersFragmentTag")
+                        .replace(R.id.frame_layout, refuelFragment, "remindersFragmentTag")
                         //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
                 }

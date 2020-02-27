@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.elevintech.motorbro.AddParts.AddPartsActivity
 import com.elevintech.motorbro.Model.BikeParts
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
+import com.elevintech.motorbro.Utils.Utils
 
 import com.elevintech.myapplication.R
 import com.xwray.groupie.GroupAdapter
@@ -99,11 +100,11 @@ class PartsFragment : Fragment() {
 
 
         override fun bind(viewHolder: ViewHolder, position: Int) {
-            viewHolder.itemView.parts_name.text = bikePart.typeOfParts + " - " + bikePart.brand
+            viewHolder.itemView.partsName.text = bikePart.brand + " " + bikePart.typeOfParts
             viewHolder.itemView.odometerText.text = bikePart.odometer.toString() + "km"
             viewHolder.itemView.cashText.text = " ₱" + bikePart.price.toString()
-
-
+            viewHolder.itemView.noteText.text = bikePart.note
+            viewHolder.itemView.dateText.text = Utils().convertMillisecondsToDate(bikePart.dateLong, "MMM d, yyyy")
             // Get date bought
         }
 

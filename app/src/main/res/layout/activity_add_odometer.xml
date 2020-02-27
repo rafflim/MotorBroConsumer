@@ -76,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="20dp"
+            android:layout_margin="10dp"
 
             >
 
@@ -87,8 +87,8 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/open_sans"
                 android:text="Odometer"
-                android:textSize="15sp"
-
+                android:textSize="13sp"
+                android:textColor="#C97F37"
                 />
 
             <LinearLayout
@@ -101,23 +101,25 @@
                 >
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
 
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/odometer_icon"
+                    android:tint="#C97F37"
 
                     />
 
                 <EditText
                     android:id="@+id/odometerText"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="35dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:text=""
                     android:inputType="number"
+                    android:textSize="13sp"
                     />
 
             </LinearLayout>
@@ -125,12 +127,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:fontFamily="@font/open_sans"
+
+                android:text="by km"
+                android:textSize="9sp"
+                android:textColor="#743903"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/open_sans"
                 android:text="Date"
-                android:textSize="15sp"
-
+                android:textSize="13sp"
+                android:textColor="#C97F37"
                 />
 
             <LinearLayout
@@ -143,22 +157,23 @@
                 >
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
 
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/calendar_small_icon"
-
+                    android:tint="#C97F37"
                     />
 
                 <EditText
                     android:id="@+id/dateText"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="35dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:text=""
+                    android:textSize="13sp"
                     android:inputType="datetime"
                     android:focusable="false"
                     />

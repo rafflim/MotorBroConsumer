@@ -1,119 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
  >
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-    android:paddingBottom="20dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_goneMarginRight="5dp"
+        android:background="@drawable/shadow_gray_background"
+        android:orientation="vertical"
+        android:paddingBottom="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-
-        >
-
-        <TextView
-            android:id="@+id/headerText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Refuel - Quezon City Sheel"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:textSize="18sp"
-            android:textColor="#141414"
-            android:fontFamily="@font/open_sans_bold"
-            />
-
-        <ImageView
-            android:id="@+id/clockIcon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/headerText"
-            android:src="@drawable/odometer_colored_icon"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-
-            />
-
-        <TextView
-            android:id="@+id/odometerText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:autoSizeTextType="uniform"
-            android:text="20 Liters of Gas"
-            android:textColor="@color/textColorBlack"
-            app:layout_constraintBottom_toBottomOf="@id/clockIcon"
-            app:layout_constraintStart_toEndOf="@id/clockIcon"
-            app:layout_constraintTop_toTopOf="@id/clockIcon" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/dateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/clockIcon"
-            app:layout_constraintBottom_toBottomOf="@id/clockIcon"
-            android:text="January 20, 2020"
-            android:textColor="#2C2C2C"
-            android:layout_marginRight="20dp"
-            android:textSize="11sp"
-            />
-
-        <ImageView
-            android:id="@+id/shopIcon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/clockIcon"
-            android:src="@drawable/cash_colored_icon"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            />
-
-        <TextView
-            android:id="@+id/pricePerGallonText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="$20,000 "
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/open_sans"
+            android:text="Wed, Feb 19, 2020"
             android:textColor="@color/textColorBlack"
-            app:layout_constraintBottom_toBottomOf="@id/shopIcon"
-            app:layout_constraintStart_toEndOf="@id/shopIcon"
-            app:layout_constraintTop_toTopOf="@id/shopIcon" />
+            android:textSize="17sp" />
 
-        <ImageView
-            android:id="@+id/fuelTypeIcon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/shopIcon"
-            android:src="@drawable/refuel_colored_icon"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            />
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/fuelTypeText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="Gas"
-            android:textColor="@color/textColorBlack"
-            app:layout_constraintBottom_toBottomOf="@id/fuelTypeIcon"
-            app:layout_constraintStart_toEndOf="@id/fuelTypeIcon"
-            app:layout_constraintTop_toTopOf="@id/fuelTypeIcon" />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/gas_station_circle_icon" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:text="Mitsubishi Mia 2019"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="15sp"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/tab_refuel_icon" />
+
+                    <TextView
+                        android:id="@+id/headerText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:text="Diesel - Quezon City Shell"
+                        android:textColor="@color/textColorBlack"
+
+                        android:textSize="11sp"
+
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/cash_new_small_icon"
+                        android:tint="#1B1B1B" />
+
+                    <TextView
+                        android:id="@+id/pricePerGallonText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/open_sans"
+                        android:text="24 Gallon Per Liter/ 50 Pesos per liter"
+                        android:textColor="@color/textColorBlack"
+
+                        android:textSize="11sp"
+
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/pencil_new_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/open_sans"
+                        android:text="Fueling is really exciting today for this day dadadadadadadadad dadad dadada"
+                        android:textColor="@color/textColorBlack"
+
+                        android:textSize="11sp"
+
+                        />
+
+                </LinearLayout>
 
 
+            </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

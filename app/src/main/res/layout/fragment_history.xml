@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#F2F2F2"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -21,7 +22,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/topImageLayout"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="90dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +44,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_margin="10dp"
                     android:layout_width="0dp"
-                    android:layout_height="120dp"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
                     app:layout_constraintTop_toTopOf="@id/linearLayoutTop"
                     app:layout_constraintEnd_toEndOf="@id/linearLayoutTop"
                     app:layout_constraintStart_toStartOf="@id/linearLayoutTop"
@@ -52,22 +54,22 @@
 
                     <ImageView
                         android:id="@+id/shopHeaderIcon"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:layout_marginLeft="20dp"
-                        android:src="@drawable/history_header_new_icon"
+                        android:src="@drawable/new_history_header_icon"
                         />
 
                     <TextView
                         android:id="@+id/shopHeaderText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Mitsubishi Mia 2020"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/open_sans_bold"
+                        android:text="Your MotorBro History"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/open_sans"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toEndOf="@id/shopHeaderIcon"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -102,15 +104,15 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/topImageLayout">
 
                 <ImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    app:srcCompat="@drawable/no_data_new_icon" />
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:srcCompat="@drawable/new_empty_data_icon" />
 
                 <TextView
                     android:id="@+id/textView2"

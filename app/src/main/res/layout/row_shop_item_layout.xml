@@ -6,27 +6,22 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
-    android:background="#F6F5F5"
+    android:background="#F2F2F2"
     android:padding="5dp">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp"
-        android:layout_gravity="center"
-        android:background="#F6F5F5"
-        app:cardElevation="0dp">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#F6F5F5">
+            android:background="#F2F2F2"
+            >
 
             <ImageView
                 android:id="@+id/shopImageView"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
+                android:layout_margin="10dp"
+                android:layout_width="157dp"
+                android:layout_height="105dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/blackmotorads1"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -34,30 +29,71 @@
                 app:layout_constraintTop_toTopOf="parent"
      />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/location_small_icon"
+                    android:layout_marginStart="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/mainLocationText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Quezon City"
+                    android:textColor="#394887"
+                    android:fontFamily="@font/open_sans"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/shopImageView"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </LinearLayout>
+
+
+
+
             <TextView
                 android:id="@+id/shopName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Posh"
-                android:textColor="@color/textColorBlack"
-                android:fontFamily="@font/open_sans_bold"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/shopImageView"
-                app:layout_constraintStart_toStartOf="parent" />
-            <TextView
-                android:id="@+id/shopDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="very cool shop"
+                android:text="Bike and Coffee"
                 android:textColor="@color/textColorBlack"
                 android:fontFamily="@font/open_sans"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@id/shopImageView"
                 app:layout_constraintStart_toStartOf="parent" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/verified_icon"
+                    android:layout_marginStart="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/verifiedText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Verified"
+                    android:textColor="@color/textColorBlack"
+                    android:fontFamily="@font/open_sans"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
 <!--            <TextView-->
 <!--                android:id="@+id/activeTimeAgo"-->
@@ -86,10 +122,6 @@
 <!--                app:layout_constraintStart_toStartOf="parent" />-->
 
         </LinearLayout>
-
-
-
-    </androidx.cardview.widget.CardView>
 
 
 

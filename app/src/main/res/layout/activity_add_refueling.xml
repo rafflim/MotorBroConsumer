@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="#7936F4"
+        android:background="#3d5af1"
         android:paddingTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,8 +86,8 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/open_sans"
                 android:text="Date"
-                android:textSize="15sp"
-                android:textColor="@color/textColorBlack"
+                android:textSize="13sp"
+                android:textColor="#182463"
 
                 />
 
@@ -95,15 +95,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal"
 
                 >
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:tint="#3d5af1"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/calendar_small_icon"
 
@@ -112,13 +112,13 @@
                 <EditText
                     android:id="@+id/dateText"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="35dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
-                    android:text=""
                     android:inputType="datetime"
                     android:focusable="false"
+                    android:textSize="13sp"
                     />
 
             </LinearLayout>
@@ -127,11 +127,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/open_sans"
                 android:text="Odometer"
-                android:textSize="15sp"
-                android:textColor="@color/textColorBlack"
+                android:textSize="13sp"
+                android:textColor="#182463"
                 />
 
             <LinearLayout
@@ -144,9 +144,9 @@
                 >
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:tint="#3d5af1"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/odometer_icon"
 
@@ -155,12 +155,13 @@
                 <EditText
                     android:id="@+id/odometerText"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="35dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:text=""
                     android:inputType="number"
+                    android:textSize="13sp"
                     />
 
             </LinearLayout>
@@ -169,11 +170,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/open_sans"
                 android:text="Price"
-                android:textSize="15sp"
-                android:textColor="@color/textColorBlack"
+                android:textSize="13sp"
+                android:textColor="#182463"
                 />
 
             <LinearLayout
@@ -186,46 +187,48 @@
                 >
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:tint="#3d5af1"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/cash_small_icon"
+                    android:src="@drawable/cash_new_small_icon"
 
                     />
 
                 <EditText
                     android:id="@+id/pricePerGallonText"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="35dp"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text=""
                     android:inputType="numberDecimal"
-                    android:hint="Price / Liter"
+                    android:hint="Price per liter"
+                    android:textSize="13sp"
+                    />
 
+                <EditText
+                    android:id="@+id/litersText"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:inputType="numberDecimal"
+                    android:hint="Liter"
+                    android:textSize="13sp"
                     />
 
                 <EditText
                     android:id="@+id/totalCostText"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:text=""
-                    android:inputType="numberDecimal"
-                    android:hint="Total cost"
-
-                    />
-
-                <EditText
-                    android:id="@+id/gallonsText"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="35dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:text=""
                     android:inputType="numberDecimal"
-                    android:hint="Liter"
 
+                    android:hint="Total cost"
+                    android:textSize="13sp"
                     />
 
 
@@ -237,11 +240,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/open_sans"
                 android:text="Location"
-                android:textSize="15sp"
-                android:textColor="@color/textColorBlack"
+                android:textSize="13sp"
+                android:textColor="#182463"
                 />
 
             <LinearLayout
@@ -254,24 +257,26 @@
                 >
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:tint="#3d5af1"
 
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/location_icon"
+                    android:src="@drawable/lcoation_colored_icon"
 
                     />
 
                 <EditText
                     android:id="@+id/locationText"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="35dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:text=""
                     android:inputType="text"
                     android:hint="optional"
+                    android:textSize="13sp"
                     />
 
             </LinearLayout>
@@ -286,11 +291,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/open_sans"
                 android:text="Fuel Type"
-                android:textSize="15sp"
-                android:textColor="@color/textColorBlack"
+                android:textSize="13sp"
+                android:textColor="#182463"
                 />
 
             <LinearLayout
@@ -303,8 +308,9 @@
                 >
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:tint="#3d5af1"
 
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/wrenchicon"
@@ -314,12 +320,13 @@
                 <EditText
                     android:id="@+id/typeOfFuelText"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="35dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:focusable="false"
                     android:text=""
+                    android:textSize="13sp"
                     android:hint="optional"/>
 
             </LinearLayout>

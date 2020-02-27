@@ -17,6 +17,7 @@ import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_type_of_parts.*
 import kotlinx.android.synthetic.main.fragment_parts.recycler_view_type_of_parts
+import kotlinx.android.synthetic.main.row_type_of_parts.view.*
 
 
 class TypeOfPartsActivity : AppCompatActivity() {
@@ -72,6 +73,7 @@ class TypeOfPartsActivity : AppCompatActivity() {
 
 
         override fun bind(viewHolder: ViewHolder, position: Int) {
+
 
             viewHolder.itemView.parts_name.text = part
             viewHolder.itemView.setOnClickListener {

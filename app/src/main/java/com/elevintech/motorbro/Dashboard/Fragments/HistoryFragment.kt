@@ -96,8 +96,8 @@ class HistoryFragment : Fragment() {
             val distance = odometer.odometer.toString()
             val date = odometer.date
 
-            viewHolder.itemView.historyKilometers.text = distance + "km"
-            viewHolder.itemView.historyDate.text = date
+//            viewHolder.itemView.historyKilometers.text = distance + "km"
+//            viewHolder.itemView.historyDate.text = date
         }
 
         override fun getLayout(): Int {

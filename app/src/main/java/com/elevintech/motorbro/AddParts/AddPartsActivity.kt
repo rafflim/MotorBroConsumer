@@ -13,10 +13,14 @@ import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Model.BikeParts
 import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
 import com.elevintech.motorbro.Utils.Utils
-import com.elevintech.myapplication.R
 import kotlinx.android.synthetic.main.activity_add_parts.*
 import java.text.DecimalFormat
 import java.util.*
+import android.view.MotionEvent
+import android.view.View
+
+
+
 
 class AddPartsActivity : AppCompatActivity() {
 
@@ -30,12 +34,12 @@ class AddPartsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_parts)
+        setContentView(com.elevintech.myapplication.R.layout.activity_add_parts)
 
-        getWindow().setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-        );
+//        getWindow().setFlags(
+//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+//        );
 
         backButton.setOnClickListener {
             finish()
@@ -54,10 +58,25 @@ class AddPartsActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, TypeOfPartsActivity::class.java)
             startActivityForResult(intent, SELECT_PART_TYPE)
         }
+
+        noteText.setOnClickListener {
+            noteText.getParent().requestDisallowInterceptTouchEvent(true);
+
+
+        }
+
     }
 
+    fun onTouch(view: View, event: MotionEvent): Boolean {
 
 
+            view.parent.requestDisallowInterceptTouchEvent(true)
+            when (event.action and MotionEvent.ACTION_MASK) {
+                MotionEvent.ACTION_UP -> view.parent.requestDisallowInterceptTouchEvent(false)
+            }
+
+        return false
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
