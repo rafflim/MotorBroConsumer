@@ -18,8 +18,8 @@ import java.text.DecimalFormat
 import java.util.*
 import android.view.MotionEvent
 import android.view.View
-
-
+import com.elevintech.motorbro.Model.History
+import com.google.firebase.auth.FirebaseAuth
 
 
 class AddPartsActivity : AppCompatActivity() {
@@ -141,22 +141,26 @@ class AddPartsActivity : AppCompatActivity() {
         if (validateFields()){
 
 
-            var showDialog = Utils().showProgressDialog(this, "Saving bike part")
+            val showDialog = Utils().showProgressDialog(this, "Saving bike part")
 
-            var bikeParts = BikeParts()
-
+            val bikeParts = BikeParts()
             bikeParts.date = dateText.text.toString()
             bikeParts.dateLong = Utils().convertDateToTimestamp(dateText.text.toString(), "yyyy-MM-dd")
-//            bikeParts.odometer = odometerText.text.toString().toDouble()
+            bikeParts.odometer = odometerText.text.toString().toDouble()
             bikeParts.typeOfParts = typeOfPartsText.text.toString()
             bikeParts.brand = brandText.text.toString()
             bikeParts.price = priceText.text.toString().toDouble()
+            bikeParts.note = noteText.text.toString()
+            bikeParts.userId = FirebaseAuth.getInstance().uid!!
 
             val database = MotoroBroDatabase()
             database.saveBikeParts(bikeParts) {
-                showDialog.dismiss()
-                Toast.makeText(this, "Successfully saved bike part", Toast.LENGTH_SHORT).show()
-                finish()
+                database.saveHistory("bike-parts", it!!){
+                    showDialog.dismiss()
+                    Toast.makeText(this, "Successfully saved bike part", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+
             }
 
         } else {

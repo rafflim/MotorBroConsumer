@@ -11,6 +11,7 @@ import com.elevintech.motorbro.Model.OdometerUpdate
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_add_odometer.*
 import kotlinx.android.synthetic.main.activity_add_odometer.backButton
 import kotlinx.android.synthetic.main.activity_add_odometer.checkMarkButton
@@ -94,22 +95,21 @@ class AddOdometerActivity : AppCompatActivity() {
     private fun saveOdometerDetails(){
 
         if (validateFields()){
-            val odometer = odometerText.toString()
+            val showDialog = Utils().showProgressDialog(this, "Updating Odometer")
 
-            var showDialog = Utils().showProgressDialog(this, "Updating Odometer")
-
-            var odometerDetails = OdometerUpdate()
-
+            val odometerDetails = OdometerUpdate()
             odometerDetails.odometer = odometerText.text.toString().toDouble()
             odometerDetails.date = dateText.text.toString()
             odometerDetails.dateLong = Utils().convertDateToTimestamp(dateText.text.toString(), "yyyy-MM-dd")
+            odometerDetails.userId =  FirebaseAuth.getInstance().uid!!
 
             val database = MotoroBroDatabase()
-
             database.saveOdometerUpdate(odometerDetails) {
-                showDialog.dismiss()
-                Toast.makeText(this, "Successfully updated Odometer", Toast.LENGTH_SHORT).show()
-                finish()
+                database.saveHistory("odometer", it!!){
+                    showDialog.dismiss()
+                    Toast.makeText(this, "Successfully updated Odometer", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
             }
         } else {
             Toast.makeText(this, "Please fill up all the fields", Toast.LENGTH_SHORT).show()

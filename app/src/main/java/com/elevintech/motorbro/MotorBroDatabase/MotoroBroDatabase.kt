@@ -2,6 +2,7 @@ package com.elevintech.motorbro.MotorBroDatabase
 
 import android.net.Uri
 import com.elevintech.motorbro.Model.*
+import com.elevintech.motorbro.Utils.Utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -117,23 +118,28 @@ class MotoroBroDatabase {
             }
     }
 
-    fun saveBikeParts(bikeParts: BikeParts, callback: () -> Unit) {
+    fun saveBikeParts(bikeParts: BikeParts, callback: (String?) -> Unit) {
         val db = FirebaseFirestore.getInstance()
 
         db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("bike-parts")
-            .document()
-            .set(bikeParts)
+            .add(bikeParts)
             .addOnSuccessListener {
-                callback()
+                callback(it.id)
             }
             .addOnFailureListener {
                     e -> println(e)
-                callback()
+                callback(null)
             }
     }
 
-    fun saveHistory(history: History, callback: () -> Unit) {
+    fun saveHistory(historyType: String, historyItemId: String, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
+
+        val history = History()
+        history.userId = FirebaseAuth.getInstance().uid!!
+        history.dateLong = Utils().getCurrentTimestamp()
+        history.typeOfHistory = historyType
+        history.itemId = historyItemId
 
         db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("history")
             .document()
@@ -325,33 +331,31 @@ class MotoroBroDatabase {
     }
 
 
-    fun saveRefueling(refueling: Refueling, callback: () -> Unit) {
+    fun saveRefueling(refueling: Refueling, callback: (String?) -> Unit) {
         val db = FirebaseFirestore.getInstance()
 
         db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("refueling")
-            .document()
-            .set(refueling)
+            .add(refueling)
             .addOnSuccessListener {
-                callback()
+                callback(it.id)
             }
             .addOnFailureListener {
                     e -> println(e)
-                callback()
+                callback(null)
             }
     }
 
-    fun saveOdometerUpdate(odometerUpdate: OdometerUpdate, callback: () -> Unit) {
+    fun saveOdometerUpdate(odometerUpdate: OdometerUpdate, callback: (String?) -> Unit) {
         val db = FirebaseFirestore.getInstance()
 
         db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("odometerUpdate")
-            .document()
-            .set(odometerUpdate)
+            .add(odometerUpdate)
             .addOnSuccessListener {
-                callback()
+                callback(it.id)
             }
             .addOnFailureListener {
                     e -> println(e)
-                callback()
+                callback(null)
             }
     }
 
