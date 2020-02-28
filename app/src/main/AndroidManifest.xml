@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.elevintech.motorbro.Chat.ChatListActivity"></activity>
+        <activity android:name="com.elevintech.motorbro.Chat.ChatLogActivity"></activity>
+        <activity android:name="com.elevintech.motorbro.Chat.ChatListActivity" />
         <activity android:name="com.elevintech.motorbro.ShopView.ShopViewActivity">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
