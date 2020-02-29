@@ -6,6 +6,7 @@ import com.elevintech.motorbro.Utils.Utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 
@@ -132,7 +133,7 @@ class MotoroBroDatabase {
             }
     }
 
-    fun saveHistory(historyType: String, historyItemId: String, callback: () -> Unit) {
+    fun saveHistory(historyType: String, historyItemId: String, historyItemValue: Any, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
 
         val history = History()
@@ -140,6 +141,7 @@ class MotoroBroDatabase {
         history.dateLong = Utils().getCurrentTimestamp()
         history.typeOfHistory = historyType
         history.itemId = historyItemId
+        history.value = historyItemValue.toString()
 
         db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("history")
             .document()
@@ -257,13 +259,14 @@ class MotoroBroDatabase {
 
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val docRef = db.collection("customers").document(uid).collection("history")
+        val docRef = db.collection("customers").document(uid).collection("history").orderBy("dateLong", Query.Direction.DESCENDING)
         val list = mutableListOf<History>()
 
         docRef.get()
             .addOnSuccessListener {
 
                 for (history in it){
+                    println("perLine: " + history)
                     val reminder = history.toObject(History::class.java)
                     list.add(reminder)
                 }

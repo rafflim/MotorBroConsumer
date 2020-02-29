@@ -105,7 +105,7 @@ class AddOdometerActivity : AppCompatActivity() {
 
             val database = MotoroBroDatabase()
             database.saveOdometerUpdate(odometerDetails) {
-                database.saveHistory("odometer", it!!){
+                database.saveHistory("odometer", it!!, odometerText.text.toString().toDouble()){
                     showDialog.dismiss()
                     Toast.makeText(this, "Successfully updated Odometer", Toast.LENGTH_SHORT).show()
                     finish()

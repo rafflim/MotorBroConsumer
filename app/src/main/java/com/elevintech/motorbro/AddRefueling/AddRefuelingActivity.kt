@@ -140,7 +140,7 @@ class AddRefuelingActivity : AppCompatActivity() {
 
             val database = MotoroBroDatabase()
             database.saveRefueling(refueling) {
-                database.saveHistory("refueling", it!!) {
+                database.saveHistory("refueling", it!!, refueling.typeOfFuel) {
                     showDialog.dismiss()
                     Toast.makeText(this, "Successfully saved refuel data", Toast.LENGTH_SHORT)
                         .show()

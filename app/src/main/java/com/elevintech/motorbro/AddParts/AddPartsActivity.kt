@@ -155,7 +155,7 @@ class AddPartsActivity : AppCompatActivity() {
 
             val database = MotoroBroDatabase()
             database.saveBikeParts(bikeParts) {
-                database.saveHistory("bike-parts", it!!){
+                database.saveHistory("bike-parts", it!!, bikeParts.typeOfParts){
                     showDialog.dismiss()
                     Toast.makeText(this, "Successfully saved bike part", Toast.LENGTH_SHORT).show()
                     finish()
