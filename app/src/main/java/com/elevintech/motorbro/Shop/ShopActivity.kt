@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.row_shop_item_layout.view.*
 
 class ShopActivity : AppCompatActivity() {
 
+
     val shopAdapter = GroupAdapter<ViewHolder>()
 
     override fun onCreate(savedInstanceState: Bundle?) {

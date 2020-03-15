@@ -3,52 +3,30 @@ package com.elevintech.motorbro.TypeOf
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import com.elevintech.motorbro.AddParts.AddPartsActivity
-import com.elevintech.myapplication.R
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Item
-import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.fragment_parts.*
-import kotlinx.android.synthetic.main.row_parts.view.*
-import android.app.Activity
-import android.content.SharedPreferences
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.elevintech.motorbro.Constants
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
+import com.elevintech.myapplication.R
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_type_of_parts.*
-import kotlinx.android.synthetic.main.fragment_parts.recycler_view_type_of_parts
-import kotlinx.android.synthetic.main.row_type_of_parts.*
-import kotlinx.android.synthetic.main.row_type_of_parts.view.*
+import kotlinx.android.synthetic.main.activity_type_of_brand.*
+import kotlinx.android.synthetic.main.row_type_of_brand.view.*
 
 
-class TypeOfPartsActivity : AppCompatActivity() {
+class TypeOfBrandActivity : AppCompatActivity() {
 
     private lateinit var viewAdapter : RecyclerView.Adapter<*>
     val totalList = ArrayList<String>()
-    //private val partsListAdapter = MyAdapter<MyAdapter.MyViewHolder>()
 
-    private var PRIVATE_MODE = 0
-    private val PREF_NAME = "mindorks-welcome"
-    val sharedPref: SharedPreferences = getSharedPreferences(PREF_NAME, PRIVATE_MODE)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_type_of_parts)
+        setContentView(R.layout.activity_type_of_brand)
 
-        totalList.add("sdada")
-        totalList.add("sdada")
-        totalList.add("sdada")
-        totalList.add("sdada")
-        totalList.add("sdada")
-
-        viewAdapter = MyAdapter(totalList)
-        recycler_view_type_of_parts.apply {
+        viewAdapter = BrandAdapter(totalList)
+        recycler_view_type_of_brands.apply {
             //this.adapter = partsListAdapter
             this.adapter = viewAdapter
             setHasFixedSize(true)
@@ -62,14 +40,12 @@ class TypeOfPartsActivity : AppCompatActivity() {
         backButton.setOnClickListener {
             finish()
         }
-
     }
 
     override fun onResume() {
         super.onResume()
         displayParts()
     }
-
 
     private fun displayParts() {
         // Parts Created By User
@@ -98,34 +74,8 @@ class TypeOfPartsActivity : AppCompatActivity() {
         }
     }
 
-
-
-//    inner class PartsItem(val part: String): Item<ViewHolder>() {
-//
-//
-//        override fun bind(viewHolder: ViewHolder, position: Int) {
-//
-//            viewHolder.itemView.parts_name.text = part
-//            viewHolder.itemView.setOnClickListener {
-//                val returnIntent = Intent()
-//                returnIntent.putExtra("selectedPart", part)
-//                setResult(Activity.RESULT_OK, returnIntent)
-//                finish()
-//            }
-//
-//            viewHolder.itemView.removeItem.setOnClickListener {
-//
-//            }
-//        }
-//
-//        override fun getLayout(): Int {
-//
-//            return com.elevintech.myapplication.R.layout.row_type_of_parts
-//        }
-
-
-    inner class MyAdapter(private val myDataset: ArrayList<String>) :
-        RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+    inner class BrandAdapter(private val myDataset: ArrayList<String>) :
+        RecyclerView.Adapter<BrandAdapter.MyViewHolder>() {
 
         private var removedPosition: Int = 0
         private var removedItem: String = ""
@@ -140,10 +90,10 @@ class TypeOfPartsActivity : AppCompatActivity() {
         override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int
-        ): MyAdapter.MyViewHolder {
+        ): BrandAdapter.MyViewHolder {
             // create a new view
             val v = LayoutInflater.from(parent.context)
-                .inflate(R.layout.row_type_of_parts, parent, false)
+                .inflate(R.layout.row_type_of_brand, parent, false)
             // set the view's size, margins, paddings and layout parameters
 
             return MyViewHolder(v)
@@ -156,12 +106,12 @@ class TypeOfPartsActivity : AppCompatActivity() {
             val part = myDataset[position]
             viewHolder.itemView.parts_name.text = part
 
-            viewHolder.itemView.setOnClickListener {
-                val returnIntent = Intent()
-                returnIntent.putExtra("selectedPart", part)
-                setResult(Activity.RESULT_OK, returnIntent)
-                finish()
-            }
+//            viewHolder.itemView.setOnClickListener {
+//                                val returnIntent = Intent()
+//                returnIntent.putExtra("selectedPart", part)
+//                setResult(Activity.RESULT_OK, returnIntent)
+//                finish()
+//            }
 
             viewHolder.itemView.removeItem.setOnClickListener {
                 removeItem(viewHolder.adapterPosition, viewHolder)
@@ -181,11 +131,10 @@ class TypeOfPartsActivity : AppCompatActivity() {
             notifyItemRemoved(position)
 
             Snackbar.make(viewHolder.itemView, "$removedItem removed", Snackbar.LENGTH_LONG).setAction("UNDO") {
-               // myDataset.add(removedPosition, removedItem)
-                //notifyItemInserted(removedPosition)
+                 myDataset.add(removedPosition, removedItem)
+                notifyItemInserted(removedPosition)
                 //notifyItemRemoved(removedPosition)
             }.show()
         }
     }
-
 }

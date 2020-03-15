@@ -60,8 +60,8 @@
         android:paddingBottom="15dp"
         >
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:src="@drawable/glovebox_new_icon"
             android:layout_gravity="center"
             />
@@ -75,7 +75,7 @@
             android:gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:textSize="16sp"
+            android:textSize="13sp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/open_sans"
             />
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:text="Insurance"
                 android:textColor="@color/textColorBlack"
-                android:textSize="19sp"
+                android:textSize="16sp"
                 android:fontFamily="@font/open_sans_bold"
                 />
 
@@ -226,7 +226,7 @@
                 android:layout_height="wrap_content"
                 android:text="Drivers License"
                 android:textColor="@color/textColorBlack"
-                android:textSize="19sp"
+                android:textSize="16sp"
                 android:fontFamily="@font/open_sans_bold"
                 />
 
@@ -336,7 +336,7 @@
                 android:layout_height="wrap_content"
                 android:text="Motorcycle Registration"
                 android:textColor="@color/textColorBlack"
-                android:textSize="19sp"
+                android:textSize="16sp"
                 android:fontFamily="@font/open_sans_bold"
                 />
 

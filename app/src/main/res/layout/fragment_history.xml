@@ -12,10 +12,10 @@
 
         >
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
+            android:orientation="vertical"
             android:paddingBottom="20dp"
             >
 
@@ -85,18 +85,6 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/historyRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="0dp"
-                android:paddingBottom="100dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@id/topImageLayout"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-
-                />
 
             <LinearLayout
                 android:id="@+id/noDataLayout"
@@ -110,8 +98,8 @@
 
                 <ImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     app:srcCompat="@drawable/new_empty_data_icon" />
 
                 <TextView
@@ -127,8 +115,22 @@
 
             </LinearLayout>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/historyRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="0dp"
+                android:paddingBottom="100dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/topImageLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                />
+
+
+
+        </LinearLayout>
     </ScrollView>
 
 </FrameLayout>

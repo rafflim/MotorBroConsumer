@@ -43,5 +43,9 @@ class ShopViewActivity : AppCompatActivity() {
             intent.putExtra("shop", shop)
             startActivity(intent)
         }
+
+        backButton.setOnClickListener {
+            finish()
+        }
     }
 }

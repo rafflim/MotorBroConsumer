@@ -48,6 +48,10 @@ class BikeRegistrationActivity : AppCompatActivity() {
             registerBike()
         }
 
+        createAccountBackImageView.setOnClickListener {
+            finish()
+        }
+
     }
 
     private fun askUploadSource(){

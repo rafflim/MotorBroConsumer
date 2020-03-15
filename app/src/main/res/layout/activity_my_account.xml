@@ -115,7 +115,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/open_sans"
                 android:text="First Name"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textColor="@color/textColorBlack"
 
                 />
@@ -145,6 +145,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
+                    android:textSize="14sp"
                     android:text=""
                     android:inputType="text"
                     />
@@ -158,7 +159,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/open_sans"
                 android:text="Last Name"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textColor="@color/textColorBlack"
 
                 />
@@ -186,6 +187,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
+                    android:textSize="14sp"
                     android:text=""
                     android:inputType="text"
                     />
@@ -199,7 +201,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/open_sans"
                 android:text="Email"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textColor="@color/textColorBlack"
                 />
 
@@ -209,16 +211,13 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
-
                 >
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/email_colored_icon"
-
                     />
 
                 <EditText
@@ -229,12 +228,64 @@
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:text=""
+                    android:textSize="14sp"
+                    android:inputType="text"
+                    android:enabled="false"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/open_sans"
+                android:text="Phone Number"
+                android:textSize="14sp"
+                android:textColor="@color/textColorBlack"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/phone_colored_icon"
+                    />
+
+                <EditText
+                    android:id="@+id/phoneText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textSize="14sp"
                     android:inputType="number"
                     android:enabled="false"
                     />
 
             </LinearLayout>
 
+            <Button
+                android:id="@+id/changePasswordButton"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="25dp"
+                android:text="Change Password"
+                android:textAllCaps="false"
+                android:background="@drawable/change_password_background"
+                android:textColor="@color/white"
+                />
 
         </LinearLayout>
     </ScrollView>

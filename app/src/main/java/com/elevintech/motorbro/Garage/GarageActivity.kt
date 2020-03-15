@@ -23,7 +23,7 @@ class GarageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_garage)
 
-        garageBackImageView.setOnClickListener {
+        backView.setOnClickListener {
             finish()
         }
 
@@ -75,8 +75,8 @@ class GarageActivity : AppCompatActivity() {
         override fun bind(viewHolder: ViewHolder, position: Int) {
 
             Glide.with(this@GarageActivity).load(bike.imageUrl).into(viewHolder.itemView.bikeImageView)
-            viewHolder.itemView.bikeName.text = bike.nickname
-            viewHolder.itemView.plateNumberText.text = bike.plateNumber
+            viewHolder.itemView.bikeName.text = bike.brand.capitalize() + " " +  bike.model.capitalize()
+            viewHolder.itemView.plateNumberText.text = "Plate #" + bike.plateNumber
 
             viewHolder.itemView.setOnClickListener {
 

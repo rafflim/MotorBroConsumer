@@ -18,19 +18,20 @@ import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    val db = MotoroBroDatabase()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        setupViews(view)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,45 +43,25 @@ class HomeFragment : Fragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-
-//        clickToEditLayout.setOnClickListener {
-//            val intent = Intent(activity, EditGeneralInformationActivity::class.java)
-//            startActivity(intent)
-//        }
-
-        val db = MotoroBroDatabase()
-        db.getUserBike {
-            setBikeValues(it)
-        }
-
+    private fun setupViews(view: View){
         db.getUserOdometers {
             // TODO: somehow get the last value only
 
             if (it.isNotEmpty()){
                 val firstOdo = it.first()
-
-                odometerStatementText.text = "Odometer : ${firstOdo.odometer}km updated as of ${firstOdo.date}"
+                view.odometerStatementText.text = "Odometer : ${firstOdo.odometer}km updated as of ${firstOdo.date}"
             }
 
+            db.getUserBike { setBikeValues(it) }
+
+            displayQrCode(view)
         }
-
-        // get users odometer value
-
-        displayQrCode()
-
-
     }
 
-    private fun displayQrCode() {
-
+    private fun displayQrCode(view: View) {
         val uid = FirebaseAuth.getInstance().uid!!
-
         val qrCodeBitmap = Utils().generateQrCodeBitmap(uid)
-
-        qrCodeImage.setImageBitmap(qrCodeBitmap)
-
+        view.qrCodeImage.setImageBitmap(qrCodeBitmap)
     }
 
     private fun setBikeValues(bike: BikeInfo) {
@@ -94,16 +75,6 @@ class HomeFragment : Fragment() {
 //        fuelLiterText.setText(bike.fuelLiter.toString() + "L")
 //        odometerText.setText(bike.odometerValue.toString() + "km")
 //        fuelText.setText("₱ " + bike.income.toString() )
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-
-    }
-
-    override fun onDetach() {
-        super.onDetach()
     }
 
 

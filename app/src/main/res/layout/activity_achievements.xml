@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".Achievements.AchievementsActivity">
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -16,15 +17,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/achievementsBackImageView"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/backbutton" />
+        <LinearLayout
+            android:id="@+id/backView"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+
+                android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/back_icon" />
+
+        </LinearLayout>
 
 
         <TextView
@@ -44,9 +55,6 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,8 +67,8 @@
         android:paddingBottom="15dp"
         >
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:src="@drawable/achievements_icon"
             android:layout_gravity="center"
             />
@@ -74,7 +82,7 @@
             android:gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:textSize="16sp"
+            android:textSize="13sp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/open_sans"
 

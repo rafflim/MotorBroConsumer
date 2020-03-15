@@ -32,16 +32,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/garageBackImageView"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginBottom="16dp"
-                android:tint="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-                app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/back_icon" />
+            <LinearLayout
+                android:id="@+id/backView"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+                <ImageView
+
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="25dp"
+
+                    app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/back_icon"
+                    android:tint="@color/white"/>
+
+            </LinearLayout>
 
 
             <TextView
@@ -85,8 +94,8 @@
                     android:paddingBottom="15dp">
 
                     <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:layout_gravity="center"
                         android:src="@drawable/garage_icon" />
 
@@ -101,7 +110,7 @@
                         android:gravity="center"
                         android:text="This is the garage, you can add vehicle and manage them here."
                         android:textColor="@color/textColorBlack"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView

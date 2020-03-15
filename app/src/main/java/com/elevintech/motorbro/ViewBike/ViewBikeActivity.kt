@@ -15,16 +15,21 @@ class ViewBikeActivity : AppCompatActivity() {
 
         var bike = intent.getSerializableExtra("bike") as BikeInfo
 
-        Glide.with(this).load(bike.imageUrl).into(bikeImageView)
+        if (bike.imageUrl != "") {
+            Glide.with(this).load(bike.imageUrl).into(bikeImageView)
+        } else {
+            // Put an empty image here
+        }
+
         brandAndModelText.text = bike.brand.capitalize() + " " + bike.model.capitalize()
         plateNumberText.text = "Plate # " + bike.plateNumber.capitalize()
         nicknameText.text = "Nickname: " + bike.nickname
         yearBoughtText.text = "Year Bought: " + bike.yearBought
+        brandText.text = bike.brand.capitalize()
+        modelText.text = bike.model.capitalize()
 
-        garageBackImageView.setOnClickListener {
-
+        backView.setOnClickListener {
             finish()
-
         }
 
     }
