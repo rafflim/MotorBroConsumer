@@ -2,6 +2,7 @@ package com.elevintech.motorbro.Chat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.elevintech.motorbro.Model.Shop
 import com.elevintech.myapplication.R
@@ -20,7 +21,7 @@ class ChatLogActivity : AppCompatActivity() {
         profileName.text = shop.name.capitalize()
 
         if (shop.imageUrl != ""){
-            Glide.with(this).load(shop.imageUrl).into(imgMainProfile)
+            Glide.with(this).load(shop.imageUrl).into(imgMainProfile as ImageView)
         }
 
         btnSendChat.setOnClickListener {

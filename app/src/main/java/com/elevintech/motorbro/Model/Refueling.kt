@@ -8,9 +8,9 @@ class Refueling (
     var dateLong: Long = 0.toLong(),
     var typeOfFuel: String = "",
 
-    var  pricePerGallon: Double = 0.00,
-    var  totalCost: Double = 0.00,
-    var  priceGallons: Double = 0.00,
+    var pricePerGallon: Double = 0.00,
+    var totalCost: Double = 0.00,
+    var priceGallons: Double = 0.00,
 
     var location: String = ""
 )

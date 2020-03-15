@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.elevintech.motorbro.AddHistory.AddHistoryActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.elevintech.motorbro.Model.History
 import com.elevintech.motorbro.Model.OdometerUpdate
 import com.elevintech.motorbro.Model.Reminders
@@ -56,18 +56,19 @@ class HistoryFragment : Fragment() {
     }
 
     fun setupRecyclerView() {
-        historyRecyclerView.isNestedScrollingEnabled = false
+        historyRecyclerView.layoutManager = LinearLayoutManager(activity)
+        historyRecyclerView.isNestedScrollingEnabled = true
         historyRecyclerView.adapter = historyAdapter
     }
 
     fun setupViews() {
 
         val db = MotoroBroDatabase()
-        db.getUserOdometers {
+        db.getUserHistory {
             // TODO: somehow get the last value only
 
-            for (odo in it) {
-                historyAdapter.add(historyItem(odo))
+            for (history in it) {
+                historyAdapter.add(historyItem(history))
             }
         }
 //        MotoroBroDatabase().getUserHistory {
@@ -89,15 +90,22 @@ class HistoryFragment : Fragment() {
 //        }
     }
 
-    inner class historyItem(val odometer: OdometerUpdate): Item<ViewHolder>() {
+    inner class historyItem(val history: History): Item<ViewHolder>() {
 
         override fun bind(viewHolder: ViewHolder, position: Int) {
 
-            val distance = odometer.odometer.toString()
-            val date = odometer.date
+            var historyTitle = ""
 
-//            viewHolder.itemView.historyKilometers.text = distance + "km"
-//            viewHolder.itemView.historyDate.text = date
+            when(history.typeOfHistory){
+                "bike-parts" -> { historyTitle = "Added ${history.value}"}
+                "odometer" -> { historyTitle = "Updated odometer to ${history.value} km " }
+                "refueling" -> { historyTitle = "Refueled ${history.value}"}
+            }
+
+            viewHolder.itemView.historyDate.text = Utils().convertMillisecondsToDate(history.dateLong, "MMM d, yyyy")
+            viewHolder.itemView.historyTitle.text = historyTitle
+
+
         }
 
         override fun getLayout(): Int {
