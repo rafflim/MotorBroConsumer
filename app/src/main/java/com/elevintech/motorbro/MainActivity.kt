@@ -79,5 +79,6 @@ class MainActivity : AppCompatActivity() {
     fun goToDashBoardActivity(){
         val intent = Intent(applicationContext, DashboardActivity::class.java)
         startActivity(intent)
+        finish()
     }
 }
