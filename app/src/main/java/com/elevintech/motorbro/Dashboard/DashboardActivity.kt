@@ -43,12 +43,15 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     private lateinit var refuelFragment: RefuelFragment
     private lateinit var historyFragment: HistoryFragment
 
+    lateinit var bottomSheetDialog: BottomSheetDialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.drawer_dashboard)
 
         buildNavigationDrawer()
         setUpBottomNav()
+        buildBottomSheetDialog()
         setUpFabClick()
 
         shopImageView.setOnClickListener {
@@ -72,20 +75,27 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         }
     }
 
+    private fun buildBottomSheetDialog() {
+        bottomSheetDialog = BottomSheetDialog(this)
+        val view = layoutInflater.inflate(R.layout.bottom_sheet_dialog_dashboard, null)
+        bottomSheetDialog.setContentView(view)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        if (bottomSheetDialog.isShowing)
+            bottomSheetDialog.dismiss()
+    }
+
     private fun setUpFabClick() {
         floating_button.setOnClickListener {
 
-//            val bottomSheet = DashboardBottomSheet()
-//            bottomSheet.show(supportFragmentManager, "")
+            bottomSheetDialog.show()
 
-            val view = layoutInflater.inflate(R.layout.bottom_sheet_dialog_dashboard, null)
-            val dialog = BottomSheetDialog(this)
-            dialog.setContentView(view)
-            dialog.show()
-
-            val parts = dialog.findViewById<LinearLayout>(R.id.layoutParts)
-            val odometer = dialog.findViewById<LinearLayout>(R.id.layoutOdometer)
-            val refueling = dialog.findViewById<LinearLayout>(R.id.layoutRefueling)
+            val parts = bottomSheetDialog.findViewById<LinearLayout>(R.id.layoutParts)
+            val odometer = bottomSheetDialog.findViewById<LinearLayout>(R.id.layoutOdometer)
+            val refueling = bottomSheetDialog.findViewById<LinearLayout>(R.id.layoutRefueling)
 
             parts!!.setOnClickListener {
 

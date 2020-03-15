@@ -18,13 +18,11 @@
         <activity android:name="com.elevintech.motorbro.Chat.ChatLogActivity" />
         <activity android:name="com.elevintech.motorbro.Chat.ChatListActivity" />
         <activity android:name="com.elevintech.motorbro.ShopView.ShopViewActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name="com.elevintech.motorbro.Shop.ShopActivity" />
         <activity android:name="com.elevintech.motorbro.Glovebox.MotorRegistrationActivity" />
@@ -40,7 +38,6 @@
         <activity android:name="com.elevintech.motorbro.TypeOf.TypeOfHistoryActivity" />
         <activity android:name="com.elevintech.motorbro.TypeOf.AddTypeOfReminders" />
         <activity android:name="com.elevintech.motorbro.TypeOf.TypeOfReminderActivity" />
-        <activity android:name="com.elevintech.motorbro.AddHistory.AddHistoryActivity" />
         <activity android:name="com.elevintech.motorbro.AddReminders.AddRemindersActivity" />
         <activity android:name="com.elevintech.motorbro.SplashPage.SplashPageActivity">
             <intent-filter>

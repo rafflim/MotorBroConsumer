@@ -17,6 +17,7 @@ import com.elevintech.motorbro.TypeOf.TypeOfHistoryActivity
 import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
 import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_add_refueling.*
 import java.text.DecimalFormat
 import java.util.*
@@ -135,12 +136,16 @@ class AddRefuelingActivity : AppCompatActivity() {
             refueling.totalCost = totalCostText.text.toString().toDouble()
             refueling.priceGallons = litersText.text.toString().toDouble()
             refueling.location = locationText.text.toString()
+            refueling.userId =  FirebaseAuth.getInstance().uid!!
 
             val database = MotoroBroDatabase()
             database.saveRefueling(refueling) {
-                showDialog.dismiss()
-                Toast.makeText(this, "Successfully saved refuel data", Toast.LENGTH_SHORT).show()
-                finish()
+                database.saveHistory("refueling", it!!, refueling.typeOfFuel) {
+                    showDialog.dismiss()
+                    Toast.makeText(this, "Successfully saved refuel data", Toast.LENGTH_SHORT)
+                        .show()
+                    finish()
+                }
             }
 
         } else {

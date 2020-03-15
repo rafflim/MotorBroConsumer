@@ -1,12 +1,11 @@
 package com.elevintech.motorbro.Model
 
+import java.io.Serializable
+
 
 class History (
     var userId: String = "",
-    var title: String = "",
-    var kilometers: Double = 0.00,
-    var date: String = "",
     var dateLong: Long = 0.toLong(),
-    var price: Double = 0.00,
     var typeOfHistory: String = "",
-    var brand: String ="")
+    var itemId:String  = "",
+    var value:String  = "" /* displays the bike part name, refueling type or odometer distance*/): Serializable
