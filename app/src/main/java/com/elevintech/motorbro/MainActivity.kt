@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         var db = MotoroBroDatabase()
         db.getUserType{ userType ->
 
-            if (userType == UserType.Type.CUSTOMER){
+            if (userType == UserType.Type.EMPLOYEE || userType == UserType.Type.OWNER){
                 progressDialog.dismiss()
 
                 Toast.makeText(baseContext, "Please use the MotorBroShop app", Toast.LENGTH_SHORT).show()
