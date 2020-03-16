@@ -46,6 +46,10 @@ class ShopViewActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        backButton.setOnClickListener {
+            finish()
+        }
+
 
 
         MotoroBroDatabase().checkIfFavoriteOrNot(shop.shopId){ isFavorite ->

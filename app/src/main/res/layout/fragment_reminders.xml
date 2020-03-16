@@ -12,10 +12,10 @@
 
         >
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
+            android:orientation="vertical"
             android:paddingBottom="20dp"
             >
 
@@ -205,6 +205,33 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/noDataLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_marginTop="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/topImageLayout">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    app:srcCompat="@drawable/new_empty_data_icon" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorBlack"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:layout_marginTop="10dp"
+                    android:textSize="19sp"
+                    android:text="No Data Found" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/refuelRecyclerView"
                 android:layout_width="match_parent"
@@ -218,37 +245,13 @@
                 android:background="#F6F5F5"
                 />
 
-            <LinearLayout
-                android:id="@+id/noDataLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/topImageLayout">
 
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    app:srcCompat="@drawable/no_data_new_icon" />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/textColorBlack"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:layout_marginTop="10dp"
-                    android:textSize="19sp"
-                    android:text="No Data Found" />
 
 
             </LinearLayout>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </ScrollView>
 
 <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->

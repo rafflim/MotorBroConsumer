@@ -11,7 +11,7 @@ class AchievementsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_achievements)
 
-        achievementsBackImageView.setOnClickListener {
+        backView.setOnClickListener {
             finish()
         }
     }

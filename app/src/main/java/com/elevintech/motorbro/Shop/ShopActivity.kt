@@ -21,6 +21,7 @@ import com.elevintech.motorbro.Favorites.FavoritesActivity
 
 class ShopActivity : AppCompatActivity() {
 
+
     val shopAdapter = GroupAdapter<ViewHolder>()
 
     override fun onCreate(savedInstanceState: Bundle?) {

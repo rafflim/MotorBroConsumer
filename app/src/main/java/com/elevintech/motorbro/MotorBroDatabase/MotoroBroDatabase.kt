@@ -244,15 +244,35 @@ class MotoroBroDatabase {
         docRef.get()
             .addOnSuccessListener {
 
+
                 for (minShop in it){
+
                     val shop = minShop.toObject(Shop::class.java)
+                    shop.shopId = minShop.id
                     list.add(shop)
                 }
 
                 callback(list)
 
             }
+    }
 
+    fun getShop(shopId: String, callback: (shop: Shop) -> Unit){
+
+        val db = FirebaseFirestore.getInstance()
+        db.collection("shops").document(shopId)
+            .get()
+            .addOnSuccessListener {
+
+                var shop = Shop()
+
+                if (it != null && it.exists()) {
+                    shop = it.toObject(Shop::class.java)!!
+
+                }
+
+                callback(shop)
+            }
     }
 
     fun getUserHistory(callback: (MutableList<History>) -> Unit) {
@@ -274,7 +294,6 @@ class MotoroBroDatabase {
                 callback(list)
 
             }
-
     }
 
     fun getUserBikeParts(callback: (MutableList<BikeParts>) -> Unit) {

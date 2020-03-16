@@ -9,10 +9,12 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.forEach
+import com.bumptech.glide.Glide
 import com.elevintech.motorbro.Achievements.AchievementsActivity
 import com.elevintech.motorbro.AddOdometer.AddOdometerActivity
 import com.elevintech.motorbro.AddParts.AddPartsActivity
 import com.elevintech.motorbro.AddRefueling.AddRefuelingActivity
+import com.elevintech.motorbro.Chat.ChatListActivity
 import com.elevintech.motorbro.Dashboard.Fragments.*
 import com.elevintech.motorbro.Garage.GarageActivity
 import com.elevintech.motorbro.Glovebox.GloveboxActivity
@@ -22,6 +24,7 @@ import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.Model.User
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Shop.ShopActivity
+import com.elevintech.motorbro.TypeOf.TypeOfBrandActivity
 import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
 import com.elevintech.myapplication.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -34,11 +37,11 @@ import kotlinx.android.synthetic.main.drawer_header.view.*
 
 class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    lateinit var homeFragment: HomeFragment
-    lateinit var partsFragment: PartsFragment
-    lateinit var shopFragment: ShopFragment
-    lateinit var refuelFragment: RefuelFragment
-    lateinit var historyFragment: HistoryFragment
+    private lateinit var homeFragment: HomeFragment
+    private lateinit var partsFragment: PartsFragment
+    private lateinit var shopFragment: ShopFragment
+    private lateinit var refuelFragment: RefuelFragment
+    private lateinit var historyFragment: HistoryFragment
 
     lateinit var bottomSheetDialog: BottomSheetDialog
 
@@ -56,19 +59,20 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             startActivity(intent)
         }
 
+        chatImageView.setOnClickListener {
+            val intent = Intent(this, ChatListActivity::class.java)
+            startActivity(intent)
+        }
+
         // TODO: Load the user profile here
         val db = MotoroBroDatabase()
 
         db.getUser {
+            println("firebase id is " + FirebaseAuth.getInstance().currentUser?.uid)
             println("Got User")
             println(it.firstName)
-
             setValuesNavHeader(it)
         }
-
-
-
-
     }
 
     private fun buildBottomSheetDialog() {
@@ -125,12 +129,17 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     private fun setValuesNavHeader(user: User) {
 
         val navHeader = nav_view.getHeaderView(0)
-
         val navUserName = navHeader.usersNameText
         val navUserEmail = navHeader.userEmailText
+        val imageView = navHeader.usersHeaderImage
 
-        navUserName.setText(user.firstName + " " + user.lastName)
-        navUserEmail.setText(user.email)
+        if (user.profileImage != "") {
+            Glide.with(this).load(user.profileImage).into(imageView)
+        } else {
+            // Put an empty image here
+        }
+        navUserName.text = "${user.firstName} ${user.lastName}"
+        navUserEmail.text = user.email
     }
 
     // Navigation Drawer
@@ -150,8 +159,6 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         var toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-
-
 
 //        // get menu from navigationView
 //        val nav_menu = nav_view.menu
@@ -197,6 +204,11 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             R.id.parts_menu-> {
                 // TODO: There's a bug here make these unclickable when from here
                 val intent = Intent(applicationContext, TypeOfPartsActivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.brands -> {
+                val intent = Intent(applicationContext, TypeOfBrandActivity::class.java)
                 startActivity(intent)
             }
 

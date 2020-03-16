@@ -23,6 +23,10 @@ class AddTypeOfParts : AppCompatActivity() {
             }
         }
 
+        backView.setOnClickListener {
+            finish()
+        }
+
     }
 
 }
