@@ -35,13 +35,21 @@ class ShopActivity : AppCompatActivity() {
         searchButton.setOnClickListener {
             shopAdapter.clear()
 
-            val searchTagsArray = stringToWords( searchCriteria.text.toString() )
-            val db = MotoroBroDatabase()
-            db.searchShop(searchTagsArray){
-                for (shop in it) {
-                    shopAdapter.add(shopItem(shop))
+            if ( searchCriteria.text.toString() == "" ){
+                getShops()
+
+            } else {
+                val searchTagsArray = stringToWords( searchCriteria.text.toString() )
+                val db = MotoroBroDatabase()
+                db.searchShop(searchTagsArray){
+                    for (shop in it) {
+                        shopAdapter.add(shopItem(shop))
+                    }
                 }
+
             }
+
+
         }
 
         setupActionBar()
