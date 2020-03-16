@@ -590,4 +590,29 @@ class MotoroBroDatabase {
 
 
     }
+
+    fun getFavoriteShops(callback: (MutableList<Shop>) -> Unit) {
+
+        getUser {
+
+            val userShopIds = it.favoriteShops
+
+            val db = FirebaseFirestore.getInstance()
+            val document = db.collection("shops").whereIn("shopId", userShopIds)
+            val list = mutableListOf<Shop>()
+
+            document.get()
+                .addOnSuccessListener {
+
+                    for (doc in it){
+                        val shop = doc.toObject(Shop::class.java)
+                        list.add(shop)
+                    }
+
+                    callback(list)
+
+                }
+
+        }
+    }
 }
