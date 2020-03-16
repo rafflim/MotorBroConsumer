@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.elevintech.motorbro.TypeOf.TypeOfBrandActivity"></activity>
-        <activity android:name="com.elevintech.motorbro.Chat.ChatLogActivity" />
+        <activity android:name="com.elevintech.motorbro.Chat.ChatLogActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
         <activity android:name="com.elevintech.motorbro.Favorites.FavoritesActivity"></activity>
         <activity android:name="com.elevintech.motorbro.Chat.ChatListActivity" />
         <activity android:name="com.elevintech.motorbro.ShopView.ShopViewActivity">
