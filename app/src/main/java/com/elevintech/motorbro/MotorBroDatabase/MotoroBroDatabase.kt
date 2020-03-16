@@ -615,4 +615,24 @@ class MotoroBroDatabase {
 
         }
     }
+
+    fun searchShop(searchTag: List<String>, callback: (MutableList<Shop>) -> Unit){
+
+        val db = FirebaseFirestore.getInstance()
+        val document = db.collection("shops").whereArrayContainsAny("searchTags", searchTag)
+        val list = mutableListOf<Shop>()
+
+        document.get()
+            .addOnSuccessListener {
+
+                for (doc in it){
+                    val shop = doc.toObject(Shop::class.java)
+                    list.add(shop)
+                }
+
+                callback(list)
+
+            }
+
+    }
 }

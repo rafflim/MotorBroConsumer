@@ -27,11 +27,38 @@ class ShopActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop)
 
-
         backButton.setOnClickListener {
             finish()
         }
 
+        searchButton.setOnClickListener {
+            shopAdapter.clear()
+
+            val searchTagsArray = stringToWords( searchCriteria.text.toString() )
+            val db = MotoroBroDatabase()
+            db.searchShop(searchTagsArray){
+                for (shop in it) {
+                    shopAdapter.add(shopItem(shop))
+                }
+            }
+        }
+
+        setupActionBar()
+        setupViews()
+        getShops()
+    }
+
+    private fun stringToWords(mnemonic: String): List<String> {
+        val words = ArrayList<String>()
+        for (w in mnemonic.trim(' ').split(" ")) {
+            if (w.isNotEmpty()) {
+                words.add(w)
+            }
+        }
+        return words
+    }
+
+    private fun setupActionBar() {
         // Set the toolbar as support action bar
         setSupportActionBar(toolbar)
 
@@ -39,9 +66,6 @@ class ShopActivity : AppCompatActivity() {
         val actionBar = supportActionBar
 
         actionBar!!.setDisplayShowTitleEnabled(false)
-
-        setupViews()
-        getShops()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
