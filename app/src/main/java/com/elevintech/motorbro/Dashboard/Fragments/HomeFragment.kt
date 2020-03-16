@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.elevintech.motorbro.AddOdometer.AddOdometerActivity
 import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
@@ -52,7 +53,11 @@ class HomeFragment : Fragment() {
                 view.odometerStatementText.text = "Odometer : ${firstOdo.odometer}km updated as of ${firstOdo.date}"
             }
 
-            db.getUserBike { setBikeValues(it) }
+            //db.getUserBike { setBikeValues(it) }
+            db.getUserBikes {
+                val firstBike = it[0]
+                setBikeValues(firstBike)
+            }
 
             displayQrCode(view)
         }
@@ -65,13 +70,20 @@ class HomeFragment : Fragment() {
     }
 
     private fun setBikeValues(bike: BikeInfo) {
-//        motorNameText.setText(bike.brand + " " + bike.model)
-//        plateNumberText.setText("#" + bike.plateNumber)
-//        odometerDetailsText.setText("Odometer: " + bike.odometer)
+        motorNameText.setText(bike.yearBought + " " + bike.brand.capitalize() + " " + bike.model.capitalize())
+        plateNumberText.setText("#" + bike.plateNumber.toUpperCase())
+        odometerDetailsText.setText("Odometer: " + bike.odometer + ".00 km")
 //        breakDetailsText.setText("Front Break: " + bike.frontBreak + " , Rear Break: " + bike.rearBreak )
-//        bikeNicknameText.setText("Nickname: " + bike.nickname)
+        bikeNicknameText.setText("Nickname: " + bike.nickname.capitalize())
 
+        motorcycleImage
 
+        if (bike.imageUrl != "") {
+            Glide.with(this).load(bike.imageUrl).into(motorcycleImage)
+        } else {
+            // Put an empty image here
+            Glide.with(this).load(R.drawable.new_empty_data_icon).into(motorcycleImage)
+        }
 //        fuelLiterText.setText(bike.fuelLiter.toString() + "L")
 //        odometerText.setText(bike.odometerValue.toString() + "km")
 //        fuelText.setText("₱ " + bike.income.toString() )

@@ -4,16 +4,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="10dp">
+    android:paddingBottom="5dp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:paddingBottom="20dp"
+        android:paddingBottom="12dp"
         android:background="@drawable/shadow_background">
 
         <ImageView

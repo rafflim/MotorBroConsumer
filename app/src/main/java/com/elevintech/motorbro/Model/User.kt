@@ -13,5 +13,9 @@ class User(var uid: String = "",
            var customHistory: List<String> = listOf(),
            var customFuel: List<String> = listOf(),
            var userType: String = "",
-           var favoriteShops: List<String> = listOf()
+           var favoriteShops: List<String> = listOf(),
+           var customBrands: List<String> = listOf(),
+           var deletedParts: List<String> = listOf(),
+           var deletedBrands: List<String> = listOf(),
+           var deletedFuels: List<String> = listOf()
 )

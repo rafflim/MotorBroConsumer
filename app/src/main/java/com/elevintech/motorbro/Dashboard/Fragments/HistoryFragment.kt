@@ -45,7 +45,7 @@ class HistoryFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
+        historyAdapter.clear()
         setupViews()
     }
 
@@ -66,6 +66,16 @@ class HistoryFragment : Fragment() {
         val db = MotoroBroDatabase()
         db.getUserHistory {
             // TODO: somehow get the last value only
+            val historyList = it
+            if(historyList.isNotEmpty()){
+                if (noDataLayout != null) {
+                    noDataLayout.visibility = View.GONE
+                }
+            } else {
+                if (noDataLayout != null) {
+                    noDataLayout.visibility = View.VISIBLE
+                }
+            }
 
             for (history in it) {
                 historyAdapter.add(historyItem(history))

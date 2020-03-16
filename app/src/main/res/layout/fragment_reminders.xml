@@ -232,11 +232,14 @@
                     android:layout_marginTop="10dp"
                     android:textSize="19sp"
                     android:text="No Data Found" />
+
+            </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/refuelRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="0dp"
+                android:paddingTop="20dp"
                 android:paddingBottom="100dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@id/topImageLayout"
@@ -249,9 +252,6 @@
 
 
             </LinearLayout>
-
-
-        </LinearLayout>
     </ScrollView>
 
 <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->

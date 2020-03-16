@@ -49,7 +49,7 @@ class PartsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
+        partsListAdapter.clear()
         displayParts()
 
     }
@@ -89,15 +89,10 @@ class PartsFragment : Fragment() {
             }
 
             for (bikePart in bikePartsList){
-
                 println("bike23 " + bikePart)
                 partsListAdapter.add(partsItem(bikePart))
             }
-
-
-
         }
-
     }
 
     inner class partsItem(val bikePart: BikeParts): Item<ViewHolder>() {

@@ -181,6 +181,17 @@ class MotoroBroDatabase {
             .addOnFailureListener { e -> callback() }
     }
 
+    fun saveCustomBrand(part: String, callback: () -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val userBio = db.collection("customers").document(uid)
+
+        userBio
+            .update("customBrands", FieldValue.arrayUnion("$part"))
+            .addOnSuccessListener { callback() }
+            .addOnFailureListener { e -> callback() }
+    }
+
     fun saveCustomReminder(reminder: String, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
@@ -653,5 +664,38 @@ class MotoroBroDatabase {
 
             }
 
+    }
+
+    fun saveDeletedParts(parts: String, callback: () -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val userBio = db.collection("customers").document(uid)
+
+        userBio
+            .update("deletedParts", FieldValue.arrayUnion("$parts "))
+            .addOnSuccessListener { callback() }
+            .addOnFailureListener { e -> callback() }
+    }
+
+    fun saveDeletedBrands(parts: String, callback: () -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val userBio = db.collection("customers").document(uid)
+
+        userBio
+            .update("deletedBrands", FieldValue.arrayUnion("$parts "))
+            .addOnSuccessListener { callback() }
+            .addOnFailureListener { e -> callback() }
+    }
+
+    fun saveDeletedFuels(parts: String, callback: () -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val userBio = db.collection("customers").document(uid)
+
+        userBio
+            .update("deletedFuels", FieldValue.arrayUnion("$parts "))
+            .addOnSuccessListener { callback() }
+            .addOnFailureListener { e -> callback() }
     }
 }

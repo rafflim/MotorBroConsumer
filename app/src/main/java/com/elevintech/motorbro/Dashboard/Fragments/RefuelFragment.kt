@@ -48,7 +48,7 @@ class RefuelFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
+        reminderAdapter.clear()
         setupViews()
     }
 
@@ -71,7 +71,7 @@ class RefuelFragment : Fragment() {
             val refuelList = it
             if(refuelList.isNotEmpty()){
                 if (noDataLayout != null) {
-                    noDataLayout.visibility = View.INVISIBLE
+                    noDataLayout.visibility = View.GONE
                 }
             } else {
                 if (noDataLayout != null) {

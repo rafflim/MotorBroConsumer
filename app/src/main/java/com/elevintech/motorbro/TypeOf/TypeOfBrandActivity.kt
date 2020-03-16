@@ -1,5 +1,6 @@
 package com.elevintech.motorbro.TypeOf
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.elevintech.motorbro.AddBrand.AddBrandActivity
 import com.elevintech.motorbro.Constants
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.myapplication.R
@@ -33,7 +35,7 @@ class TypeOfBrandActivity : AppCompatActivity() {
         }
         // If from nav bar then set click will be different
         add_parts_floating_button.setOnClickListener {
-            val intent = Intent(applicationContext, AddTypeOfParts::class.java)
+            val intent = Intent(applicationContext, AddBrandActivity::class.java)
             startActivity(intent)
         }
 
@@ -50,18 +52,41 @@ class TypeOfBrandActivity : AppCompatActivity() {
     private fun displayParts() {
         // Parts Created By User
 
-
+        totalList.clear()
+        viewAdapter.notifyDataSetChanged()
         MotoroBroDatabase().getUser{
             // Default Parts
             // Put this after getting the users custom part, para sabay silang magdisplay sa recyclerview
+            val deletedParts = it.deletedBrands
 
-            for (part in Constants.TYPE_OF.parts) {
-                totalList.add(part)
+            for (part in Constants.TYPE_OF.brands) {
+                var isIncluded = false
+                for (deletedPart in deletedParts) {
+                    if (part == deletedPart.trim()) {
+                        println("HI THER")
+                        println("$deletedPart and $part")
+                        isIncluded = true
+                        break
+                    }
+                }
+                if (!isIncluded) { totalList.add(part) }
             }
 
-            for (customPart in it.customParts){
-                var properlyCapitalized = (customPart.toLowerCase()).capitalize()
-                totalList.add(properlyCapitalized)
+            for (customPart in it.customBrands) {
+                val properlyCapitalized = (customPart.toLowerCase()).capitalize()
+                //totalList.add(properlyCapitalized)
+                var isIncluded = false
+                for (deletedPart in deletedParts) {
+
+                    if (properlyCapitalized == deletedPart.trim()) {
+                        println("HI THER")
+                        println("$deletedPart and $properlyCapitalized")
+                        isIncluded = true
+                        break
+                    }
+                }
+
+                if (!isIncluded) { totalList.add(properlyCapitalized) }
             }
 
             viewAdapter.notifyDataSetChanged()
@@ -106,12 +131,12 @@ class TypeOfBrandActivity : AppCompatActivity() {
             val part = myDataset[position]
             viewHolder.itemView.parts_name.text = part
 
-//            viewHolder.itemView.setOnClickListener {
-//                                val returnIntent = Intent()
-//                returnIntent.putExtra("selectedPart", part)
-//                setResult(Activity.RESULT_OK, returnIntent)
-//                finish()
-//            }
+            viewHolder.itemView.setOnClickListener {
+                val returnIntent = Intent()
+                returnIntent.putExtra("selectedBrand", part)
+                setResult(Activity.RESULT_OK, returnIntent)
+                finish()
+            }
 
             viewHolder.itemView.removeItem.setOnClickListener {
                 removeItem(viewHolder.adapterPosition, viewHolder)
@@ -123,18 +148,19 @@ class TypeOfBrandActivity : AppCompatActivity() {
         // Return the size of your dataset (invoked by the layout manager)
         override fun getItemCount() = myDataset.size
 
-        fun removeItem(position: Int, viewHolder: RecyclerView.ViewHolder) {
+        private fun removeItem(position: Int, viewHolder: RecyclerView.ViewHolder) {
             removedItem = myDataset[position]
             removedPosition = position
 
             myDataset.removeAt(position)
             notifyItemRemoved(position)
 
-            Snackbar.make(viewHolder.itemView, "$removedItem removed", Snackbar.LENGTH_LONG).setAction("UNDO") {
-                 myDataset.add(removedPosition, removedItem)
-                notifyItemInserted(removedPosition)
-                //notifyItemRemoved(removedPosition)
-            }.show()
+            val db = MotoroBroDatabase()
+            db.saveDeletedBrands(removedItem) {
+                println("deleted $removedItem")
+            }
+
+            Snackbar.make(viewHolder.itemView, "$removedItem removed", Snackbar.LENGTH_LONG).show()
         }
     }
 }

@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
@@ -57,6 +58,64 @@ class AddRefuelingActivity : AppCompatActivity() {
 
         pricePerGallonText.setOnFocusChangeListener { v, hasFocus ->
             println("yess i'm getting it")
+
+            calculateText(v)
+        }
+
+        litersText.setOnFocusChangeListener { v, hasFocus ->
+            calculateText(v)
+        }
+
+        totalCostText.setOnFocusChangeListener { v, hasFocus ->
+            calculateText(v)
+        }
+
+
+    }
+
+    fun calculateText(v: View) {
+        val pricePerLiter = pricePerGallonText.text.toString()
+        val liter = litersText.text.toString()
+        val totalCost = totalCostText.text.toString()
+
+
+        // TODO: if 2 of these have empty string then return
+        if (pricePerLiter.isEmpty() && liter.isEmpty() || liter.isEmpty() && totalCost.isEmpty() || pricePerLiter.isEmpty() && totalCost.isEmpty()) { return }
+
+        if (pricePerLiter.isEmpty()) {
+            val totalCost = totalCost.toFloat()
+            val liter = liter.toFloat()
+
+            val result = totalCost / liter
+            pricePerGallonText.setText(result.toString())
+        }
+
+        if (liter.isEmpty()) {
+            val totalCost = totalCost.toFloat()
+            val pricePerLiter = pricePerLiter.toFloat()
+
+            val result = totalCost / pricePerLiter
+            pricePerGallonText.setText(result.toString())
+        }
+
+        if (totalCost.isEmpty()) {
+            val liter = liter.toFloat()
+            val pricePerGallon = pricePerLiter.toFloat()
+
+            val result = liter * pricePerGallon
+            totalCostText.setText(result.toString())
+        }
+
+        // TODO: What if everything has a value??
+        // Get the last text view change
+        // Base it on that
+        if (v == pricePerGallonText || v == litersText) {
+            val liter = liter.toFloat()
+            val pricePerGallon = pricePerLiter.toFloat()
+
+            val result = liter * pricePerGallon
+            totalCostText.setText(result.toString())
+            // This means the price per gallon text is changed
         }
     }
 
