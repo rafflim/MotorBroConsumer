@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Shop.ShopActivity"
-    android:background="#F2F2F2">
+    android:background="#F2F2F2"
+    android:focusableInTouchMode="true"
+    android:focusable="true">
 
 
     <androidx.appcompat.widget.Toolbar
@@ -44,6 +44,7 @@
             app:layout_constraintBottom_toTopOf="@+id/scrollView2"
             app:layout_constraintEnd_toEndOf="@+id/toolbar"
             app:layout_constraintStart_toStartOf="@+id/toolbar" />
+
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -100,6 +101,34 @@ Go ahead start a conversation!"
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_margin="5dp"
+            android:layout_weight="5"
+            android:background="@drawable/bordered_edit_text"
+            android:id="@+id/searchCriteria"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:hint="Search by store name or area"/>
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/searchButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="GO" />
+
+    </LinearLayout>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/shopRecyclerView"
         android:layout_width="match_parent"
@@ -110,4 +139,8 @@ Go ahead start a conversation!"
         app:layout_constraintEnd_toEndOf="parent"
         android:background="#F2F2F2"
         />
+
+
+
+
 </LinearLayout>

@@ -8,5 +8,6 @@ class Shop (
     var imageUrl: String = "",
     var dateEstablished: String = "",
     var address: String = "",
-    var shopId: String = ""
+    var shopId: String = "",
+    var searchTags: List<String> = listOf()
 ) : Serializable

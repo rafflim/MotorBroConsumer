@@ -29,6 +29,8 @@ class DriversLicenseActivity : AppCompatActivity() {
     var imageUri: Uri? = null
     var dateInMilliseconds = 0.toLong()
     var uploadSource = ""
+    var isEditing = false
+    var license: DriversLicense? = null
 
     lateinit var mDateSetListener: DatePickerDialog.OnDateSetListener
 
@@ -48,7 +50,14 @@ class DriversLicenseActivity : AppCompatActivity() {
 
             if (hasCompletedValues()){
 
-                saveLicense()
+                // check if we are editing and if there are any values changed at all
+                if (hasChanges()){
+                    saveLicense()
+
+                } else {
+
+                    finish()
+                }
 
             }
 
@@ -67,22 +76,39 @@ class DriversLicenseActivity : AppCompatActivity() {
 
     }
 
+    private fun hasChanges(): Boolean {
+        if (isEditing){
+
+            return ( license!!.number !=  licenceNumberText.text.toString() ||
+                        license!!.expiration !=  licenseExpirationText.text.toString() ||
+                        imageUri != null)
+
+        } else {
+
+            // return true if not editing, it means user is creating a new document
+            return true
+        }
+    }
+
     private fun getLicenseDocument() {
 
-        MotoroBroDatabase().getLicenseDocument{license ->
-            if (license != null){
-                updateUI(license)
+        MotoroBroDatabase().getLicenseDocument{licenseDoc ->
+            if (licenseDoc != null){
+                license = licenseDoc
+                isEditing = true
+
+                updateUI()
             }
         }
 
     }
 
-    private fun updateUI(license: DriversLicense) {
-        licenceNumberText.setText(license.number)
-        licenseExpirationText.setText(license.expiration)
+    private fun updateUI() {
+        licenceNumberText.setText(license!!.number)
+        licenseExpirationText.setText(license!!.expiration)
 
         driversLicenseImageView.visibility = VISIBLE
-        Picasso.get().load(license.imageUrl).into(driversLicenseImageView)
+        Picasso.get().load(license!!.imageUrl).into(driversLicenseImageView)
 
     }
 
@@ -186,24 +212,41 @@ class DriversLicenseActivity : AppCompatActivity() {
         val progressDialog = Utils().easyProgressDialog(this, "Saving Driver's License")
         progressDialog.show()
 
-        MotoroBroDatabase().uploadDocumentsToFirebaseStorage(imageUri!!) {imageUrl ->
+        if (isEditing && imageUri == null){
 
-            val license = DriversLicense()
-            license.number = licenceNumberText.text.toString()
-            license.expiration = licenseExpirationText.text.toString()
-            license.expirationDate = dateInMilliseconds
-            license.imageUrl = imageUrl
+            val newlicense = DriversLicense()
+            newlicense.number = licenceNumberText.text.toString()
+            newlicense.expiration = licenseExpirationText.text.toString()
+            newlicense.expirationDate = dateInMilliseconds
+            newlicense.imageUrl = license!!.imageUrl
 
 
-            MotoroBroDatabase().saveDriversLicenseDocument(license){
+            MotoroBroDatabase().saveDriversLicenseDocument(newlicense){
                 progressDialog.dismiss()
 
                 finish( )
             }
 
+        } else {
+
+            MotoroBroDatabase().uploadDocumentsToFirebaseStorage(imageUri!!) {imageUrl ->
+
+                val license = DriversLicense()
+                license.number = licenceNumberText.text.toString()
+                license.expiration = licenseExpirationText.text.toString()
+                license.expirationDate = dateInMilliseconds
+                license.imageUrl = imageUrl
+
+
+                MotoroBroDatabase().saveDriversLicenseDocument(license){
+                    progressDialog.dismiss()
+
+                    finish( )
+                }
+
+            }
+
         }
-
-
 
     }
 
@@ -237,7 +280,7 @@ class DriversLicenseActivity : AppCompatActivity() {
             return false
         }
 
-        if (imageUri == null) {
+        if (imageUri == null && license == null) {
             Toast.makeText(this, "Please upload a license image", Toast.LENGTH_LONG).show()
             return false
         }

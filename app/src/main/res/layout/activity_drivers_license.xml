@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Glovebox.DriversLicenseActivity">
+    android:orientation="vertical">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -44,8 +43,11 @@
 
         <ImageView
             android:id="@+id/checkMarkButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="20dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginRight="24dp"
             android:layout_marginBottom="16dp"
             android:layout_marginTop="15dp"

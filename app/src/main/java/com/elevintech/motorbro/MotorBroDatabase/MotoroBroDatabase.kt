@@ -595,6 +595,77 @@ class MotoroBroDatabase {
 
     }
 
+    fun addShopToFavorites(shopId: String, callback: () -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val docRef = db.collection("customers").document(uid)
+
+        docRef.update("favoriteShops", FieldValue.arrayUnion(shopId)).addOnSuccessListener {
+            callback()
+        }
+    }
+
+    fun checkIfFavoriteOrNot(shopId: String, callback: (Boolean) -> Unit) {
+
+        getUser {
+
+            if (it.favoriteShops.contains(shopId)){
+                callback(true)
+            } else {
+                callback(false)
+            }
+
+        }
+
+
+
+    }
+
+    fun getFavoriteShops(callback: (MutableList<Shop>) -> Unit) {
+
+        getUser {
+
+            val userShopIds = it.favoriteShops
+
+            val db = FirebaseFirestore.getInstance()
+            val document = db.collection("shops").whereIn("shopId", userShopIds)
+            val list = mutableListOf<Shop>()
+
+            document.get()
+                .addOnSuccessListener {
+
+                    for (doc in it){
+                        val shop = doc.toObject(Shop::class.java)
+                        list.add(shop)
+                    }
+
+                    callback(list)
+
+                }
+
+        }
+    }
+
+    fun searchShop(searchTag: List<String>, callback: (MutableList<Shop>) -> Unit){
+
+        val db = FirebaseFirestore.getInstance()
+        val document = db.collection("shops").whereArrayContainsAny("searchTags", searchTag)
+        val list = mutableListOf<Shop>()
+
+        document.get()
+            .addOnSuccessListener {
+
+                for (doc in it){
+                    val shop = doc.toObject(Shop::class.java)
+                    list.add(shop)
+                }
+
+                callback(list)
+
+            }
+
+    }
+
     fun saveDeletedParts(parts: String, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
