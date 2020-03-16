@@ -35,17 +35,10 @@ class TypeOfPartsActivity : AppCompatActivity() {
 
     private var PRIVATE_MODE = 0
     private val PREF_NAME = "mindorks-welcome"
-    val sharedPref: SharedPreferences = getSharedPreferences(PREF_NAME, PRIVATE_MODE)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_type_of_parts)
-
-        totalList.add("sdada")
-        totalList.add("sdada")
-        totalList.add("sdada")
-        totalList.add("sdada")
-        totalList.add("sdada")
 
         viewAdapter = MyAdapter(totalList)
         recycler_view_type_of_parts.apply {
@@ -74,18 +67,43 @@ class TypeOfPartsActivity : AppCompatActivity() {
     private fun displayParts() {
         // Parts Created By User
 
+        totalList.clear()
+        viewAdapter.notifyDataSetChanged()
 
         MotoroBroDatabase().getUser{
             // Default Parts
             // Put this after getting the users custom part, para sabay silang magdisplay sa recyclerview
 
+            val deletedParts = it.deletedParts
+
             for (part in Constants.TYPE_OF.parts) {
-                totalList.add(part)
+                var isIncluded = false
+                for (deletedPart in deletedParts) {
+                    if (part == deletedPart.trim()) {
+                        println("HI THER")
+                        println("$deletedPart and $part")
+                        isIncluded = true
+                        break
+                    }
+                }
+                if (!isIncluded) { totalList.add(part) }
             }
 
-            for (customPart in it.customParts){
-                var properlyCapitalized = (customPart.toLowerCase()).capitalize()
-                totalList.add(properlyCapitalized)
+            for (customPart in it.customParts) {
+                val properlyCapitalized = (customPart.toLowerCase()).capitalize()
+                //totalList.add(properlyCapitalized)
+                var isIncluded = false
+                for (deletedPart in deletedParts) {
+
+                    if (properlyCapitalized == deletedPart.trim()) {
+                        println("HI THER")
+                        println("$deletedPart and $properlyCapitalized")
+                        isIncluded = true
+                        break
+                    }
+                }
+
+                if (!isIncluded) { totalList.add(properlyCapitalized) }
             }
 
             viewAdapter.notifyDataSetChanged()
@@ -180,11 +198,15 @@ class TypeOfPartsActivity : AppCompatActivity() {
             myDataset.removeAt(position)
             notifyItemRemoved(position)
 
-            Snackbar.make(viewHolder.itemView, "$removedItem removed", Snackbar.LENGTH_LONG).setAction("UNDO") {
-               // myDataset.add(removedPosition, removedItem)
-                //notifyItemInserted(removedPosition)
-                //notifyItemRemoved(removedPosition)
-            }.show()
+            val db = MotoroBroDatabase()
+            db.saveDeletedParts(removedItem) {
+                println("deleted $removedItem")
+            }
+
+            Snackbar.make(viewHolder.itemView, "$removedItem removed", Snackbar.LENGTH_LONG).show()
+            // Add the delete to the users deleted parts
+
+
         }
     }
 

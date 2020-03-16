@@ -90,6 +90,7 @@
             >
 
                 <ImageView
+                    android:id="@+id/motorcycleImage"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/motorcycle_demo_1"
@@ -103,7 +104,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/open_sans_semibold"
-                android:text="Mia Mitsubishi 2013"
+                android:text=""
                 android:textColor="@color/textColorBlack"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -125,7 +126,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans"
-                    android:text="Plate# 3204"
+                    android:text=""
                     android:textColor="@color/textColorBlack"
                     android:textSize="13sp"
                     app:layout_constraintTop_toTopOf="parent"
@@ -144,7 +145,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/open_sans"
-                android:text="Odometer Details"
+                android:text=""
                 android:textColor="@color/textColorBlack"
                 android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@id/plateNumberLayout"
@@ -159,6 +160,7 @@
                 android:text="Front Break: Drum, Rear Break: Disk"
                 android:textColor="@color/textColorBlack"
                 android:textSize="13sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@id/odometerDetailsText"
                 app:layout_constraintTop_toBottomOf="@id/odometerDetailsText" />
 
@@ -168,9 +170,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:fontFamily="@font/open_sans"
-                android:text="Car Nickname"
+                android:text=""
                 android:textColor="@color/textColorBlack"
                 android:textSize="13sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@id/breakDetailsText"
                 app:layout_constraintTop_toBottomOf="@id/breakDetailsText" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -196,7 +199,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/odometerLayout"
                 android:layout_width="0dp"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -250,9 +253,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:textAlignment="viewStart"
                     android:fontFamily="@font/open_sans"
-                    android:text="Odometer : 20km updated as of Dec 12, 2020"
+                    android:text="Odometer has not been updated yet."
                     android:textColor="@color/textColorBlack"
-                    android:textSize="10sp"
+                    android:textSize="15sp"
                     />
 
 <!--                <TextView-->
@@ -556,8 +559,8 @@
 
             <ImageView
                 android:id="@+id/qrCodeImage"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintTop_toBottomOf="@id/qrCodeSampleHeader"
                 app:layout_constraintStart_toStartOf="parent"

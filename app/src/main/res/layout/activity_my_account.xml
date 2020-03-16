@@ -271,7 +271,6 @@
                     android:text=""
                     android:textSize="14sp"
                     android:inputType="number"
-                    android:enabled="false"
                     />
 
             </LinearLayout>

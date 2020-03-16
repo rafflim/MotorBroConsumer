@@ -45,7 +45,7 @@ class HistoryFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
+        historyAdapter.clear()
         setupViews()
     }
 

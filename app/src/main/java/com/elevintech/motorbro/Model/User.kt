@@ -12,5 +12,9 @@ class User(var uid: String = "",
            var customReminders: List<String> = listOf(),
            var customHistory: List<String> = listOf(),
            var customFuel: List<String> = listOf(),
-           var userType: String = ""
+           var customBrands: List<String> = listOf(),
+           var userType: String = "",
+           var deletedParts: List<String> = listOf(),
+           var deletedBrands: List<String> = listOf(),
+           var deletedFuels: List<String> = listOf()
 )

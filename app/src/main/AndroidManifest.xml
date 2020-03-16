@@ -14,15 +14,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.elevintech.motorbro.TypeOf.TypeOfBrandActivity"></activity>
+        <activity android:name="com.elevintech.motorbro.AddBrand.AddBrandActivity"></activity>
+        <activity android:name="com.elevintech.motorbro.TypeOf.TypeOfBrandActivity" />
         <activity android:name="com.elevintech.motorbro.Chat.ChatLogActivity" />
         <activity android:name="com.elevintech.motorbro.Chat.ChatListActivity" />
         <activity android:name="com.elevintech.motorbro.ShopView.ShopViewActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name="com.elevintech.motorbro.Shop.ShopActivity" />
         <activity android:name="com.elevintech.motorbro.Glovebox.MotorRegistrationActivity" />

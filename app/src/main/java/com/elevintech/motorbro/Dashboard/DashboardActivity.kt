@@ -25,6 +25,7 @@ import com.elevintech.motorbro.Model.User
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Shop.ShopActivity
 import com.elevintech.motorbro.TypeOf.TypeOfBrandActivity
+import com.elevintech.motorbro.TypeOf.TypeOfFuelActivity
 import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
 import com.elevintech.myapplication.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -64,16 +65,10 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             startActivity(intent)
         }
 
-        // TODO: Load the user profile here
-        val db = MotoroBroDatabase()
 
-        db.getUser {
-            println("firebase id is " + FirebaseAuth.getInstance().currentUser?.uid)
-            println("Got User")
-            println(it.firstName)
-            setValuesNavHeader(it)
-        }
     }
+
+
 
     private fun buildBottomSheetDialog() {
         bottomSheetDialog = BottomSheetDialog(this)
@@ -86,6 +81,13 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
         if (bottomSheetDialog.isShowing)
             bottomSheetDialog.dismiss()
+
+        // TODO: Load the user profile here
+        val db = MotoroBroDatabase()
+
+        db.getUser {
+            setValuesNavHeader(it)
+        }
     }
 
     private fun setUpFabClick() {
@@ -137,6 +139,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             Glide.with(this).load(user.profileImage).into(imageView)
         } else {
             // Put an empty image here
+            Glide.with(this).load(R.drawable.car_circle_icon).into(imageView)
         }
         navUserName.text = "${user.firstName} ${user.lastName}"
         navUserEmail.text = user.email
@@ -209,6 +212,11 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
             R.id.brands -> {
                 val intent = Intent(applicationContext, TypeOfBrandActivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.fuels -> {
+                val intent = Intent(applicationContext, TypeOfFuelActivity::class.java)
                 startActivity(intent)
             }
 

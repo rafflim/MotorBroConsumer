@@ -78,6 +78,45 @@
             android:orientation="vertical"
 
             >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:src="@drawable/motoradssample"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MotorBro Ads"
+                    android:textColor="@color/textColorBlack"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:textSize="13sp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ride with the new cruiser 2020 "
+                    android:textColor="@color/textColorBlack"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/open_sans"
+                    android:textSize="11sp"
+                    />
+
+
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -165,6 +204,17 @@
                     />
 
             </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:fontFamily="@font/open_sans"
+
+                android:text="by km"
+                android:textSize="9sp"
+                android:textColor="#293C52"
+
+                />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -327,7 +377,7 @@
                     android:focusable="false"
                     android:text=""
                     android:textSize="13sp"
-                    android:hint="optional"/>
+                    android:hint=""/>
 
             </LinearLayout>
 

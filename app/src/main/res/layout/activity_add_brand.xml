@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/lato"
-            android:text="Add Type of Parts"
+            android:text="Add Type of Brands"
             android:textColor="#fff"
             android:textSize="21sp"
             android:textStyle="bold"
@@ -91,7 +91,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/open_sans"
-                android:text="Add name of part"
+                android:text="Add name of brand"
                 android:textSize="15sp"
 
                 />

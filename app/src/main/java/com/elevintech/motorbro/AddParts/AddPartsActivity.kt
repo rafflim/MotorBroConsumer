@@ -19,6 +19,7 @@ import java.util.*
 import android.view.MotionEvent
 import android.view.View
 import com.elevintech.motorbro.Model.History
+import com.elevintech.motorbro.TypeOf.TypeOfBrandActivity
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -30,6 +31,7 @@ class AddPartsActivity : AppCompatActivity() {
 
     companion object {
         val SELECT_PART_TYPE = 1
+        val SELECT_PART_BRAND = 2
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,10 +61,13 @@ class AddPartsActivity : AppCompatActivity() {
             startActivityForResult(intent, SELECT_PART_TYPE)
         }
 
+        brandText.setOnClickListener {
+            val intent = Intent(applicationContext, TypeOfBrandActivity::class.java)
+            startActivityForResult(intent, SELECT_PART_BRAND)
+        }
+
         noteText.setOnClickListener {
             noteText.getParent().requestDisallowInterceptTouchEvent(true);
-
-
         }
 
     }
@@ -85,6 +90,11 @@ class AddPartsActivity : AppCompatActivity() {
                 if (requestCode == SELECT_PART_TYPE){
                     var partType = data!!.getStringExtra("selectedPart").toString()
                     typeOfPartsText.setText(partType)
+                }
+
+                if (requestCode == SELECT_PART_BRAND){
+                    var brandType = data!!.getStringExtra("selectedBrand").toString()
+                    brandText.setText(brandType)
                 }
             }
         }
@@ -160,13 +170,9 @@ class AddPartsActivity : AppCompatActivity() {
                     Toast.makeText(this, "Successfully saved bike part", Toast.LENGTH_SHORT).show()
                     finish()
                 }
-
             }
-
         } else {
-
             Toast.makeText(this, "Please fill up all the fields", Toast.LENGTH_SHORT).show()
-
         }
 
 

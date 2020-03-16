@@ -33,6 +33,11 @@
             android:icon="@drawable/parts_menu_icon"
             android:title="Types of Brands" />
 
+        <item
+            android:id="@+id/fuels"
+            android:icon="@drawable/parts_menu_icon"
+            android:title="Types of Fuels" />
+
 <!--        <item-->
 <!--            android:id="@+id/schedule_menu"-->
 <!--            android:icon="@drawable/schedule_menu_icon"-->
