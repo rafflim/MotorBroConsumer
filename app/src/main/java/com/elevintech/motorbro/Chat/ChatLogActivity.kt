@@ -78,8 +78,7 @@ class ChatLogActivity : AppCompatActivity() {
         val chatDatabase = ChatDatabase()
         chatDatabase.getChatLog(fromId, toId){
 
-            print("chat count is")
-            print(it.count())
+//            print("chat count is: " + it.count())
             val chatList = it
             displayChats(chatList)
 
@@ -103,7 +102,7 @@ class ChatLogActivity : AppCompatActivity() {
 
             }
 
-            chatSwipeRefreshLayout.isRefreshing = false
+//            chatSwipeRefreshLayout.isRefreshing = false
 
         }
 
@@ -132,7 +131,6 @@ class ChatLogActivity : AppCompatActivity() {
     }
 
     fun displayChats(chatLogList : MutableList<ChatMessage>){
-
         recycler_view_chat_logs.adapter = adapter
         val uid = FirebaseAuth.getInstance().uid
 
@@ -146,8 +144,10 @@ class ChatLogActivity : AppCompatActivity() {
 
             if (chatMessage.fromId == uid){
                 adapter.add(ChatToItem(chatMessage, previousChat))
+                adapter.notifyItemInserted(index)
             } else {
                 adapter.add(ChatFromItem(chatMessage, previousChat))
+                adapter.notifyItemInserted(index)
             }
 
         }
@@ -197,6 +197,19 @@ class ChatLogActivity : AppCompatActivity() {
             println(
                 "THIS CHAT: " + chat.createdDate + " || PREVIOUS CHAT: " + previous.createdDate + " || MESSAGE: " + chat.message
             )
+        }
+
+    }
+
+    inner class TestItem: Item<ViewHolder>(){
+        override fun getLayout(): Int {
+            return R.layout.row_chat_to
+        }
+
+        override fun bind(viewHolder: ViewHolder, position: Int) {
+            viewHolder.itemView.textViewToRow.text = "message"
+            viewHolder.itemView.timeTo.text = "time"
+
         }
 
     }
