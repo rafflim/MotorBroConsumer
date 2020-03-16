@@ -74,8 +74,12 @@ class PartsFragment : Fragment() {
 
             val bikePartsList = it
             if(bikePartsList.isNotEmpty()) {
+
+                userPartsCount.text = bikePartsList.filter { bike -> !bike.createdByShop }.count().toString()
+                shopPartsCount.text = bikePartsList.filter { bike -> bike.createdByShop }.count().toString()
+
                 if (noDataLayout != null) {
-                    noDataLayout.visibility = INVISIBLE
+                    noDataLayout.visibility = GONE
                 }
 
             } else {
