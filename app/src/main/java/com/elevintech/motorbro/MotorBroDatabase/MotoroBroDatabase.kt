@@ -564,4 +564,30 @@ class MotoroBroDatabase {
         }
 
     }
+
+    fun addShopToFavorites(shopId: String, callback: () -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val docRef = db.collection("customers").document(uid)
+
+        docRef.update("favoriteShops", FieldValue.arrayUnion(shopId)).addOnSuccessListener {
+            callback()
+        }
+    }
+
+    fun checkIfFavoriteOrNot(shopId: String, callback: (Boolean) -> Unit) {
+
+        getUser {
+
+            if (it.favoriteShops.contains(shopId)){
+                callback(true)
+            } else {
+                callback(false)
+            }
+
+        }
+
+
+
+    }
 }

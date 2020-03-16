@@ -7,5 +7,6 @@ class Shop (
     var description: String = "",
     var imageUrl: String = "",
     var dateEstablished: String = "",
-    var address: String = ""
+    var address: String = "",
+    var shopId: String = ""
 ) : Serializable

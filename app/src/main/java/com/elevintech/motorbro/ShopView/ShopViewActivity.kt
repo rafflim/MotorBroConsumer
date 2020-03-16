@@ -3,9 +3,11 @@ package com.elevintech.motorbro.ShopView
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.bumptech.glide.Glide
 import com.elevintech.motorbro.Chat.ChatLogActivity
 import com.elevintech.motorbro.Model.Shop
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
 import kotlinx.android.synthetic.main.activity_shop_view.*
@@ -42,6 +44,23 @@ class ShopViewActivity : AppCompatActivity() {
             val intent = Intent(this, ChatLogActivity::class.java)
             intent.putExtra("shop", shop)
             startActivity(intent)
+        }
+
+
+
+        MotoroBroDatabase().checkIfFavoriteOrNot(shop.shopId){ isFavorite ->
+            if (isFavorite){
+                favoriteYesIcon.visibility = View.VISIBLE
+            } else {
+                favoriteNoIcon.visibility = View.VISIBLE
+            }
+        }
+
+        favoriteNoIcon.setOnClickListener {
+            MotoroBroDatabase().addShopToFavorites(shop.shopId){
+                favoriteNoIcon.visibility = View.GONE
+                favoriteYesIcon.visibility = View.VISIBLE
+            }
         }
     }
 }
