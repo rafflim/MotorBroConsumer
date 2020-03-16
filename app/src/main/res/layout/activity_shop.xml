@@ -117,6 +117,8 @@ Go ahead start a conversation!"
             android:ems="10"
             android:inputType="textPersonName"
             android:padding="10dp"
+            android:textSize="14sp"
+            android:fontFamily="@font/open_sans"
             android:hint="Search by store name or area"/>
 
         <Button
@@ -124,6 +126,7 @@ Go ahead start a conversation!"
             android:id="@+id/searchButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:background="#FFFFFF"
             android:text="GO" />
 
     </LinearLayout>

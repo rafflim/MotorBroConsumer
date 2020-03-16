@@ -171,7 +171,7 @@ class ChatLogActivity : AppCompatActivity() {
 
             // display date separator
             if (chat.getDate() != previousChat.getDate()){
-                viewHolder.itemView.txtDateFrom.visibility = View.VISIBLE
+                viewHolder.itemView.txtDateFrom.visibility = View.GONE
                 viewHolder.itemView.txtDateFrom.text = chat.getDate()
             }
 
@@ -190,7 +190,7 @@ class ChatLogActivity : AppCompatActivity() {
 
             // display date separator
             if (chat.getDate() != previous.getDate()){
-                viewHolder.itemView.txtDateTo.visibility = View.VISIBLE
+                viewHolder.itemView.txtDateTo.visibility = View.GONE
                 viewHolder.itemView.txtDateTo.text = chat.getDate()
             }
 

@@ -38,11 +38,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="5dp"
             android:fontFamily="@font/open_sans"
             android:text="Kate"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
 
 <!--        <ImageView-->
@@ -86,7 +86,8 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="#F1F1F1"
-                android:paddingBottom="10dp"
+                android:paddingBottom="20dp"
+                android:layout_marginBottom="5dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toTopOf="@+id/txtChatMessage"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -132,6 +133,7 @@
                 android:maxLines="4"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+
                 android:text=""
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
