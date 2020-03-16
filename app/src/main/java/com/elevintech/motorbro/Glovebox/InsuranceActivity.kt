@@ -45,6 +45,9 @@ class InsuranceActivity : AppCompatActivity() {
 
     lateinit var progressDialog: ProgressDialog
 
+    var isEditing = false
+    var insurance: Insurance? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_insurance)
@@ -62,17 +65,19 @@ class InsuranceActivity : AppCompatActivity() {
         checkMarkButton.setOnClickListener {
 
             if (hasCompletedValues()){
-                progressDialog.show()
 
-                MotoroBroDatabase().uploadDocumentsToFirebaseStorage(frontInsurancePaperUri!!){ frontInsurancePaper ->
-                    frontInsurancePaperUrl = frontInsurancePaper
+                // check if we are editing and if there are any values changed at all
+                if (hasChanges()){
+                    progressDialog.show()
+                    saveInsuranceData()
 
-                    MotoroBroDatabase().uploadDocumentsToFirebaseStorage(backInsurancePaperUri!!){ backInsurancePaper->
-                        backInsurancePaperUrl = backInsurancePaper
+                } else {
 
-                        saveInsuranceData()
-                    }
+                    finish()
+
                 }
+
+
             }
 
         }
@@ -93,25 +98,43 @@ class InsuranceActivity : AppCompatActivity() {
         getInsuranceDocument()
     }
 
+    private fun hasChanges(): Boolean {
+        if (isEditing){
+
+            return (insurance!!.number != insuranceNumberText.text.toString() ||
+                    insurance!!.expiration != insuranceExpirationText.text.toString() ||
+                    frontInsurancePaperUri != null ||
+                    backInsurancePaperUri != null)
+
+        } else {
+
+            // return true if not editing, it means user is creating a new document
+            return true
+        }
+    }
+
     private fun getInsuranceDocument() {
 
-        MotoroBroDatabase().getInsuranceDocument{insurance ->
-            if (insurance != null){
-                updateUI(insurance)
+        MotoroBroDatabase().getInsuranceDocument{insuranceDoc ->
+            if (insuranceDoc != null){
+                insurance = insuranceDoc
+                isEditing = true
+
+                updateUI()
             }
         }
 
     }
 
-    private fun updateUI(insurance: Insurance) {
-        insuranceNumberText.setText(insurance.number)
-        insuranceExpirationText.setText(insurance.expiration)
+    private fun updateUI() {
+        insuranceNumberText.setText(insurance!!.number)
+        insuranceExpirationText.setText(insurance!!.expiration)
 
         frontInsuranceImageView.visibility = VISIBLE
-        Picasso.get().load(insurance.frontImageUrl).into(frontInsuranceImageView)
+        Picasso.get().load(insurance!!.frontImageUrl).into(frontInsuranceImageView)
 
         backInsuranceImageView.visibility = VISIBLE
-        Picasso.get().load(insurance.backImageUrl).into(backInsuranceImageView)
+        Picasso.get().load(insurance!!.backImageUrl).into(backInsuranceImageView)
     }
 
     private fun askUploadSource(requestCode: Int){
@@ -174,18 +197,86 @@ class InsuranceActivity : AppCompatActivity() {
 
     private fun saveInsuranceData() {
 
-        val insurance = Insurance()
-        insurance.number = insuranceNumberText.text.toString()
-        insurance.expiration = insuranceExpirationText.text.toString()
-        insurance.expirationDate = dateInMilliseconds
-        insurance.frontImageUrl = frontInsurancePaperUrl
-        insurance.backImageUrl = backInsurancePaperUrl
+        if (frontInsurancePaperUri != null && backInsurancePaperUri != null){
 
-        MotoroBroDatabase().saveInsuranceDocuments(insurance){
-            progressDialog.dismiss()
+            MotoroBroDatabase().uploadDocumentsToFirebaseStorage(frontInsurancePaperUri!!){ frontInsurancePaper ->
+                frontInsurancePaperUrl = frontInsurancePaper
 
-            finish( )
+                MotoroBroDatabase().uploadDocumentsToFirebaseStorage(backInsurancePaperUri!!){ backInsurancePaper->
+                    backInsurancePaperUrl = backInsurancePaper
+
+                    val newInsurance = Insurance()
+                    newInsurance.number = insuranceNumberText.text.toString()
+                    newInsurance.expiration = insuranceExpirationText.text.toString()
+                    newInsurance.expirationDate = dateInMilliseconds
+                    newInsurance.frontImageUrl = frontInsurancePaperUrl
+                    newInsurance.backImageUrl = backInsurancePaperUrl
+
+                    MotoroBroDatabase().saveInsuranceDocuments(newInsurance){
+                        progressDialog.dismiss()
+
+                        finish( )
+                    }
+                }
+            }
         }
+        else if ( frontInsurancePaperUri != null &&  backInsurancePaperUri == null){
+
+            MotoroBroDatabase().uploadDocumentsToFirebaseStorage(frontInsurancePaperUri!!) { frontInsurancePaper ->
+                frontInsurancePaperUrl = frontInsurancePaper
+
+
+                val newInsurance = Insurance()
+                newInsurance.number = insuranceNumberText.text.toString()
+                newInsurance.expiration = insuranceExpirationText.text.toString()
+                newInsurance.expirationDate = dateInMilliseconds
+                newInsurance.frontImageUrl = frontInsurancePaperUrl
+                newInsurance.backImageUrl = insurance!!.backImageUrl
+
+                MotoroBroDatabase().saveInsuranceDocuments(newInsurance) {
+                    progressDialog.dismiss()
+
+                    finish()
+                }
+            }
+
+        } else if ( frontInsurancePaperUri == null &&  backInsurancePaperUri != null ) {
+
+            MotoroBroDatabase().uploadDocumentsToFirebaseStorage(backInsurancePaperUri!!) { backInsurancePaper->
+                backInsurancePaperUrl = backInsurancePaper
+
+
+                val newInsurance = Insurance()
+                newInsurance.number = insuranceNumberText.text.toString()
+                newInsurance.expiration = insuranceExpirationText.text.toString()
+                newInsurance.expirationDate = dateInMilliseconds
+                newInsurance.frontImageUrl = insurance!!.frontImageUrl
+                newInsurance.backImageUrl = backInsurancePaperUrl
+
+                MotoroBroDatabase().saveInsuranceDocuments(newInsurance) {
+                    progressDialog.dismiss()
+
+                    finish()
+                }
+
+            }
+        } else if ( frontInsurancePaperUri == null &&  backInsurancePaperUri == null ) {
+
+            val newInsurance = Insurance()
+            newInsurance.number = insuranceNumberText.text.toString()
+            newInsurance.expiration = insuranceExpirationText.text.toString()
+            newInsurance.expirationDate = dateInMilliseconds
+            newInsurance.frontImageUrl = insurance!!.frontImageUrl
+            newInsurance.backImageUrl = insurance!!.backImageUrl
+
+            MotoroBroDatabase().saveInsuranceDocuments(newInsurance) {
+                progressDialog.dismiss()
+
+                finish()
+            }
+
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -266,12 +357,12 @@ class InsuranceActivity : AppCompatActivity() {
             return false
         }
 
-        if (frontInsurancePaperUri == null) {
+        if (frontInsurancePaperUri == null && insurance == null) {
             Toast.makeText(this, "Please upload a front insurance paper image", Toast.LENGTH_LONG).show()
             return false
         }
 
-        if (backInsurancePaperUri == null) {
+        if (backInsurancePaperUri == null && insurance == null) {
             Toast.makeText(this, "Please upload a back insurance paper image", Toast.LENGTH_LONG).show()
             return false
         }

@@ -29,6 +29,8 @@ class MotorRegistrationActivity : AppCompatActivity() {
     var imageUri: Uri? = null
     var dateInMilliseconds = 0.toLong()
     var uploadSource = ""
+    var isEditing = false
+    var motorRegistration: MotorRegistration? = null
 
     lateinit var mDateSetListener: DatePickerDialog.OnDateSetListener
 
@@ -52,7 +54,16 @@ class MotorRegistrationActivity : AppCompatActivity() {
 
             if (hasCompletedValues()){
 
-                saveMotorRegistraion()
+                // check if we are editing and if there are any values changed at all
+                if (hasChanges()){
+                    saveMotorRegistraion()
+
+                } else {
+
+                    finish()
+                }
+
+
 
             }
 
@@ -72,22 +83,37 @@ class MotorRegistrationActivity : AppCompatActivity() {
 
     }
 
+    private fun hasChanges(): Boolean {
+        if (isEditing){
+
+            return ( motorRegistration!!.expiration !=  registrationExpirationText.text.toString() ||
+                    imageUri != null)
+
+        } else {
+
+            // return true if not editing, it means user is creating a new document
+            return true
+        }
+    }
 
     private fun getMotorRegistrationDocument() {
 
-        MotoroBroDatabase().getMotorRegistrationDocument { motorRegistration ->
-            if (motorRegistration != null){
-                updateUI(motorRegistration)
+        MotoroBroDatabase().getMotorRegistrationDocument { motorRegistrationDoc ->
+            if (motorRegistrationDoc != null){
+                motorRegistration = motorRegistrationDoc
+                isEditing = true
+
+                updateUI()
             }
         }
 
     }
 
-    private fun updateUI(motorRegistration: MotorRegistration) {
-        registrationExpirationText.setText(motorRegistration.expiration)
+    private fun updateUI() {
+        registrationExpirationText.setText(motorRegistration!!.expiration)
 
         motorRegistrationImageView.visibility = View.VISIBLE
-        Picasso.get().load(motorRegistration.imageUrl).into(motorRegistrationImageView)
+        Picasso.get().load(motorRegistration!!.imageUrl).into(motorRegistrationImageView)
 
     }
 
@@ -190,21 +216,40 @@ class MotorRegistrationActivity : AppCompatActivity() {
         val progressDialog = Utils().easyProgressDialog(this, "Saving Motorcycle Registration")
         progressDialog.show()
 
-        MotoroBroDatabase().uploadDocumentsToFirebaseStorage(imageUri!!) { imageUrl ->
+        if (isEditing && imageUri == null){
 
-            val motorRegistration = MotorRegistration()
-            motorRegistration.expiration = registrationExpirationText.text.toString()
-            motorRegistration.expirationDate = dateInMilliseconds
-            motorRegistration.imageUrl = imageUrl
+            val newMotorRegistration = MotorRegistration()
+            newMotorRegistration.expiration = registrationExpirationText.text.toString()
+            newMotorRegistration.expirationDate = dateInMilliseconds
+            newMotorRegistration.imageUrl = motorRegistration!!.imageUrl
 
 
-            MotoroBroDatabase().saveMotorRegistrationDocument(motorRegistration){
+            MotoroBroDatabase().saveMotorRegistrationDocument(newMotorRegistration){
                 progressDialog.dismiss()
 
                 finish()
             }
 
+        } else {
+            MotoroBroDatabase().uploadDocumentsToFirebaseStorage(imageUri!!) { imageUrl ->
+
+                val newMotorRegistration = MotorRegistration()
+                newMotorRegistration.expiration = registrationExpirationText.text.toString()
+                newMotorRegistration.expirationDate = dateInMilliseconds
+                newMotorRegistration.imageUrl = imageUrl
+
+
+                MotoroBroDatabase().saveMotorRegistrationDocument(newMotorRegistration){
+                    progressDialog.dismiss()
+
+                    finish()
+                }
+
+            }
         }
+
+
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -232,7 +277,7 @@ class MotorRegistrationActivity : AppCompatActivity() {
             return false
         }
 
-        if (imageUri == null) {
+        if (imageUri == null && motorRegistration == null) {
             Toast.makeText(this, "Please upload an image", Toast.LENGTH_LONG).show()
             return false
         }
