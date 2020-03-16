@@ -61,7 +61,7 @@ class ShopActivity : AppCompatActivity() {
         val words = ArrayList<String>()
         for (w in mnemonic.trim(' ').split(" ")) {
             if (w.isNotEmpty()) {
-                words.add(w)
+                words.add(w.toLowerCase())
             }
         }
         return words
