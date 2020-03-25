@@ -23,6 +23,10 @@ class FavoritesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
 
+        backView.setOnClickListener {
+            finish()
+        }
+
         setupViews()
         getFavoriteShops()
 

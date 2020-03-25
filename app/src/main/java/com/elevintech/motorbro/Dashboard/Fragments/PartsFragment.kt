@@ -75,8 +75,23 @@ class PartsFragment : Fragment() {
             val bikePartsList = it
             if(bikePartsList.isNotEmpty()) {
 
-                userPartsCount.text = bikePartsList.filter { bike -> !bike.createdByShop }.count().toString()
-                shopPartsCount.text = bikePartsList.filter { bike -> bike.createdByShop }.count().toString()
+
+
+
+                val userPartsCountString = bikePartsList.filter { bike -> !bike.createdByShop }.count().toString()
+                var shopPartsCountString = bikePartsList.filter { bike -> bike.createdByShop }.count().toString()
+
+                if (userPartsCountString == "") {
+                    userPartsCount.setText("0")
+                } else {
+                    userPartsCount.setText(userPartsCountString)
+                }
+
+                if (shopPartsCountString == "") {
+                    shopPartsCount.setText("0")
+                } else {
+                    shopPartsCount.setText(shopPartsCountString)
+                }
 
                 if (noDataLayout != null) {
                     noDataLayout.visibility = GONE
