@@ -1,5 +1,6 @@
 package com.elevintech.motorbro.Dashboard
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,6 +24,7 @@ import com.elevintech.motorbro.MainActivity
 import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.Model.User
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
+import com.elevintech.motorbro.ScheduledNotification.ScheduledNotification
 import com.elevintech.motorbro.Shop.ShopActivity
 import com.elevintech.motorbro.TypeOf.TypeOfBrandActivity
 import com.elevintech.motorbro.TypeOf.TypeOfFuelActivity
@@ -65,6 +67,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             startActivity(intent)
         }
 
+        ScheduledNotification().startAlarm(this)
 
     }
 
