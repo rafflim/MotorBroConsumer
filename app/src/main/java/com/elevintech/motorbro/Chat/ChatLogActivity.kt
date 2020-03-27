@@ -33,7 +33,6 @@ class ChatLogActivity : AppCompatActivity() {
 
         shop = intent.getSerializableExtra("shop") as Shop
         chatRoomId = intent.getStringExtra("chatRoomId")!!
-        println("ChatLogActivity - chatRoomId is: " + chatRoomId)
 
         profileName.text = shop.name.capitalize()
 
@@ -42,7 +41,9 @@ class ChatLogActivity : AppCompatActivity() {
         }
 
         btnSendChat.setOnClickListener {
-            sendChat()
+            val message = txtChatMessage.text.toString()
+            if ( message != "" )
+                sendChat()
         }
 
         if (chatRoomId != ""){
