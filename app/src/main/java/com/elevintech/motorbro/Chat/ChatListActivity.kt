@@ -7,6 +7,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.elevintech.motorbro.Model.ChatLastMessage
 import com.elevintech.motorbro.Model.ChatMessage
+import com.elevintech.motorbro.Model.ChatRoom
 import com.elevintech.motorbro.Model.Shop
 import com.elevintech.motorbro.MotorBroDatabase.ChatDatabase
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
@@ -24,35 +25,39 @@ class ChatListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_list)
 
-        getListOfLastMessages()
+        // get all chat rooms where user is a participant of
+        getUserChatRooms()
 
         backButton.setOnClickListener {
             finish()
         }
     }
 
-    private fun getListOfLastMessages(){
+    private fun getUserChatRooms(){
 
         val chatDatabase = ChatDatabase()
-        chatDatabase.getLastMessages {
+        chatDatabase.getChatRoomOfUser {
 
-            print("printing count of last messages")
-            print(it.count())
-            displayListOfLastMessages(it)
+            if (it.count() > 0){
+                displayListOfLastMessages(it)
+            }
+
         }
     }
 
-    private fun displayListOfLastMessages(listOfLasMessages: MutableList<ChatLastMessage>){
+    private fun displayListOfLastMessages(chatRoomList: MutableList<ChatRoom>){
 
         chatListRecyclerView.isNestedScrollingEnabled = true
-        var chatListAdapter = GroupAdapter<ViewHolder>()
+        val chatListAdapter = GroupAdapter<ViewHolder>()
 
-        for (lastChatMessage in listOfLasMessages){
+        for (chatRoom in chatRoomList){
 
             val db = MotoroBroDatabase()
-            db.getShop(lastChatMessage.partnerId) {
+            val shopId = chatRoom.participants["shop"]!!
+
+            db.getShop(shopId) {
                 val shop = it
-                chatListAdapter.add(chatItem(lastChatMessage, shop))
+                chatListAdapter.add( ChatItem(chatRoom, shop) )
             }
 
         }
@@ -61,16 +66,18 @@ class ChatListActivity : AppCompatActivity() {
 
     }
 
-    inner class chatItem(val chat: ChatLastMessage, val shop: Shop): Item<ViewHolder>() {
+    inner class ChatItem(val chatRoom: ChatRoom, val shop: Shop): Item<ViewHolder>() {
         override fun bind(viewHolder: ViewHolder, position: Int) {
 
-            viewHolder.itemView.userName.text = shop.name.capitalize()
-            viewHolder.itemView.chatPreview.text = chat.lastMessage
-            viewHolder.itemView.chatPreviewUnread.text = chat.lastMessage
+//            viewHolder.itemView.userName.text = shop.name.capitalize()
+            viewHolder.itemView.chatPreview.text = chatRoom.lastMessage.message
+            viewHolder.itemView.chatPreviewUnread.text = chatRoom.lastMessage.message
+            viewHolder.itemView.shopName.text = shop.name
 
             viewHolder.itemView.setOnClickListener {
                 val intent = Intent(this@ChatListActivity, ChatLogActivity::class.java)
                 intent.putExtra("shop", shop)
+                intent.putExtra("chatRoomId", chatRoom.lastMessage.chatRoomId)
                 startActivity(intent)
             }
 

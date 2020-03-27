@@ -1,13 +1,13 @@
 package com.elevintech.motorbro.Chat
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.elevintech.motorbro.Model.ChatLastMessage
 import com.elevintech.motorbro.Model.ChatMessage
 import com.elevintech.motorbro.Model.Shop
 import com.elevintech.motorbro.MotorBroDatabase.ChatDatabase
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.myapplication.R
 import com.google.firebase.auth.FirebaseAuth
 import com.xwray.groupie.GroupAdapter
@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_chat_log.*
 import kotlinx.android.synthetic.main.row_chat_from.view.*
 import kotlinx.android.synthetic.main.row_chat_to.view.*
 
+
 class ChatLogActivity : AppCompatActivity() {
 
     // MARK: Disable pagination for now
@@ -24,12 +25,16 @@ class ChatLogActivity : AppCompatActivity() {
     var paginationStartAt = 0 // https://www.youtube.com/watch?v=poqTHxtDXwU&t=316s
     val adapter = GroupAdapter<ViewHolder>()
     lateinit var shop: Shop
+    lateinit var chatRoomId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log)
 
         shop = intent.getSerializableExtra("shop") as Shop
+        chatRoomId = intent.getStringExtra("chatRoomId")!!
+        println("ChatLogActivity - chatRoomId is: " + chatRoomId)
+
         profileName.text = shop.name.capitalize()
 
         if (shop.imageUrl != ""){
@@ -40,7 +45,10 @@ class ChatLogActivity : AppCompatActivity() {
             sendChat()
         }
 
-        getChats()
+        if (chatRoomId != ""){
+            getChats()
+        }
+
 
         btnBack.setOnClickListener {
             finish()
@@ -51,34 +59,55 @@ class ChatLogActivity : AppCompatActivity() {
 
         val createdDate = System.currentTimeMillis() / 1000
         val message = txtChatMessage.text.toString()
-        val fromId = FirebaseAuth.getInstance().currentUser?.uid!!
-        val toId = shop.shopId
-
-        val chatMessage = ChatMessage(createdDate, fromId, toId, message, false)
-        val chatMessageRead = ChatMessage(createdDate, fromId, toId, message, true)
-
-        val lastSenderMessage = ChatLastMessage(shop.shopId, message, createdDate)
-        val lastReceiverMessage = ChatLastMessage(fromId, message, createdDate)
-
-        val chatDatabase = ChatDatabase()
-        chatDatabase.saveChatToSender(chatMessageRead){}
-        chatDatabase.saveChatToReceiver(chatMessage){}
-        chatDatabase.saveLastMessageToSender(chatMessageRead, lastSenderMessage){}
-        chatDatabase.saveLastMessageToReceiver(chatMessage, lastReceiverMessage){}
-//        chatDatabase.incrementChatBadgeCountOfUser(chatMessage.toId){}
+        val senderId = FirebaseAuth.getInstance().currentUser?.uid!!
+        val receiverId = shop.shopId
+        val db = MotoroBroDatabase()
 
         txtChatMessage.setText("")
+
+        if (chatRoomId == ""){
+
+            // create new chat room
+            val participants = mapOf("user" to senderId, "shop" to receiverId)
+            db.createNewChatRoom ( participants ){ chatRoomId ->
+
+                // save message in chat room
+                val chatMessage = ChatMessage(createdDate, senderId, receiverId, message, false, chatRoomId)
+                db.saveMessageInChatRoom(chatMessage){
+
+                    // save message in last messages
+                    db.updateChatRoomLastMessage(chatRoomId, chatMessage){
+                        this.chatRoomId = chatRoomId
+
+                        getChats()
+                    }
+
+                }
+
+            }
+
+        } else {
+
+            val chatMessage = ChatMessage(createdDate, senderId, receiverId, message, false, chatRoomId!!)
+
+            // save message in chat room
+            db.saveMessageInChatRoom(chatMessage){
+
+                // save message in last messages
+                db.updateChatRoomLastMessage(chatRoomId, chatMessage){
+
+                }
+
+            }
+        }
 
     }
 
     fun getChats(){
-        val fromId = FirebaseAuth.getInstance().uid!!
-        val toId = shop.shopId
 
         val chatDatabase = ChatDatabase()
-        chatDatabase.getChatLog(fromId, toId){
+        chatDatabase.getChatRoomMessages(chatRoomId){
 
-//            print("chat count is: " + it.count())
             val chatList = it
             displayChats(chatList)
 

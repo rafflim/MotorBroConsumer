@@ -10,6 +10,7 @@ import com.elevintech.motorbro.Model.Shop
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_shop_view.*
 
 class ShopViewActivity : AppCompatActivity() {
@@ -41,9 +42,19 @@ class ShopViewActivity : AppCompatActivity() {
         branchesLocationText.text = ""
 
         chatButton.setOnClickListener {
-            val intent = Intent(this, ChatLogActivity::class.java)
-            intent.putExtra("shop", shop)
-            startActivity(intent)
+
+            val user =  FirebaseAuth.getInstance().uid!!
+            MotoroBroDatabase().getChatRoomByParticipants( user, shop.shopId ){ chatRoomId ->
+
+                println("ShopViewActivity - chatRoomId is: " )
+
+                val intent = Intent(this, ChatLogActivity::class.java)
+                intent.putExtra("shop", shop)
+                intent.putExtra("chatRoomId", chatRoomId)
+                startActivity(intent)
+
+            }
+
         }
 
         backButton.setOnClickListener {

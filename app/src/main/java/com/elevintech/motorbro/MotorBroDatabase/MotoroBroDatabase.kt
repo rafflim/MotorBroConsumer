@@ -698,4 +698,102 @@ class MotoroBroDatabase {
             .addOnSuccessListener { callback() }
             .addOnFailureListener { e -> callback() }
     }
+
+    fun createNewChatRoom(participants: Map<String, String>, callback: (String) -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val chatRoomRef = db.collection("chat-rooms")
+
+        chatRoomRef
+            .add( mapOf("participants" to participants) )
+            .addOnSuccessListener {
+                println("chat room created!: " + it.id)
+                callback( it.id )
+            }
+            .addOnFailureListener { e ->
+                println(e)
+                callback( "" )
+            }
+    }
+
+    fun saveMessageInChatRoom(chatMessage: ChatMessage, callback: () -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val chatRoomRef = db.collection("chat-rooms").document(chatMessage.chatRoomId).collection("chat-messages")
+
+        chatRoomRef
+            .add( chatMessage )
+            .addOnSuccessListener {
+                callback()
+            }
+            .addOnFailureListener { e ->
+                println(e)
+                callback()
+            }
+
+    }
+
+    fun updateChatRoomLastMessage(chatRoomId: String, latestMessage: ChatMessage, callback:() -> Unit){
+
+        val db = FirebaseFirestore.getInstance()
+        val chatRoomRef = db.collection("chat-rooms").document(chatRoomId)
+
+        chatRoomRef
+            .update( mapOf("lastMessage" to latestMessage) )
+            .addOnSuccessListener {
+                callback()
+            }
+            .addOnFailureListener { e ->
+                println(e)
+                callback()
+            }
+
+    }
+
+
+    fun saveLastMessage(chatMessage: ChatMessage, callback: () -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val lastMessageRef = db.collection("chat-last-messages")
+
+        lastMessageRef
+            .add( chatMessage )
+            .addOnSuccessListener {
+                callback()
+            }
+            .addOnFailureListener { e ->
+                println(e)
+                callback()
+            }
+
+    }
+
+    fun getChatRoomByParticipants(user: String, shop: String, callback: (String) -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val chatRoomRef = db.collection("chat-rooms")
+            .whereEqualTo("participants.user", user )
+            .whereEqualTo("participants.shop", shop )
+
+        chatRoomRef.get().addOnSuccessListener {
+
+            if (it.count() != 0){
+                println("count of chatroom is exist")
+                for (chatRoom in it){
+                    callback(chatRoom.id)
+                }
+
+            } else {
+                println("no chat room found")
+                callback("")
+
+            }
+
+
+        }
+
+
+
+
+    }
 }
