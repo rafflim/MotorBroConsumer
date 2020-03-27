@@ -88,7 +88,10 @@ class ChatDatabase {
     fun getChatRoomMessages(chatRoomId: String, callback: (MutableList<ChatMessage>) -> Unit){
 
         val db = FirebaseFirestore.getInstance()
-        val ref = db.collection("chat-rooms").document(chatRoomId).collection("chat-messages")
+        val ref = db.collection("chat-rooms")
+            .document(chatRoomId)
+            .collection("chat-messages")
+            .orderBy("createdDate", Query.Direction.DESCENDING)
 
         ref
             .addSnapshotListener { querysnapshot, e ->
