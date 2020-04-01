@@ -11,7 +11,9 @@ import com.elevintech.motorbro.Model.UserType
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.iid.FirebaseInstanceId
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -48,6 +50,8 @@ class MainActivity : AppCompatActivity() {
 
             FirebaseAuth.getInstance().signInWithEmailAndPassword("${userNameEditText.text}", "${passwordEditText.text}")
                 .addOnSuccessListener {
+
+                    verifyDeviceToken()
                     checkUserType(progressDialog)
 
                 }
@@ -74,6 +78,26 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    private fun verifyDeviceToken() {
+        FirebaseInstanceId.getInstance().instanceId
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // Get new Instance ID token
+                    val token = task.result?.token!!
+
+                    // Log and toast
+                    MotoroBroDatabase().getUserToken{ tokenInDatabase ->
+                        if (tokenInDatabase != token){
+                            MotoroBroDatabase().updateFcmToken(token)
+                        }
+                    }
+                } else {
+                    println("getInstanceId failed" + task.exception)
+                }
+
+            })
     }
 
     fun goToDashBoardActivity(){

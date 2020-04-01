@@ -25,7 +25,7 @@ class ScheduledNotification : AppCompatActivity() {
     val notificationText = "Any odometer updates this day?"
 
     fun startAlarm(context: Context){
-        println("Alarm Started")
+//        println("Alarm Started")
 
         createNotificationChannel()
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -43,8 +43,8 @@ class ScheduledNotification : AppCompatActivity() {
             set(Calendar.MILLISECOND, 0)
         }
 
-        println("Date Now: " + System.currentTimeMillis())
-        println("Alarm Date: " + calendar.timeInMillis)
+//        println("Date Now: " + System.currentTimeMillis())
+//        println("Alarm Date: " + calendar.timeInMillis)
 
         // Make alarm repeat everyday
         alarmManager.setInexactRepeating(

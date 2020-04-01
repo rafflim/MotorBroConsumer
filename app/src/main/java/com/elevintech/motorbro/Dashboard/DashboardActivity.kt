@@ -16,6 +16,7 @@ import com.elevintech.motorbro.AddOdometer.AddOdometerActivity
 import com.elevintech.motorbro.AddParts.AddPartsActivity
 import com.elevintech.motorbro.AddRefueling.AddRefuelingActivity
 import com.elevintech.motorbro.Chat.ChatListActivity
+import com.elevintech.motorbro.CloudFunctions.CloudFunctions
 import com.elevintech.motorbro.Dashboard.Fragments.*
 import com.elevintech.motorbro.Garage.GarageActivity
 import com.elevintech.motorbro.Glovebox.GloveboxActivity
@@ -30,10 +31,12 @@ import com.elevintech.motorbro.TypeOf.TypeOfBrandActivity
 import com.elevintech.motorbro.TypeOf.TypeOfFuelActivity
 import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
 import com.elevintech.myapplication.R
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.drawer_dashboard.*
 import kotlinx.android.synthetic.main.drawer_header.view.*
@@ -68,10 +71,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         }
 
         ScheduledNotification().startAlarm(this)
-
     }
-
-
 
     private fun buildBottomSheetDialog() {
         bottomSheetDialog = BottomSheetDialog(this)
@@ -158,8 +158,6 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
 
         val drawerLayout = drawer_layout
-        println("is layout nil")
-        println(drawerLayout)
 
         // create navigation drawer
         var toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer)

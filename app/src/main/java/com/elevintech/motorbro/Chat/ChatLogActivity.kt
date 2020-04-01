@@ -62,6 +62,7 @@ class ChatLogActivity : AppCompatActivity() {
         val message = txtChatMessage.text.toString()
         val senderId = FirebaseAuth.getInstance().currentUser?.uid!!
         val receiverId = shop.shopId
+        val fcmToken = shop.fcmToken
         val db = MotoroBroDatabase()
 
         txtChatMessage.setText("")
@@ -73,7 +74,7 @@ class ChatLogActivity : AppCompatActivity() {
             db.createNewChatRoom ( participants ){ chatRoomId ->
 
                 // save message in chat room
-                val chatMessage = ChatMessage(createdDate, senderId, receiverId, message, false, chatRoomId)
+                val chatMessage = ChatMessage(createdDate, senderId, receiverId, message, false, chatRoomId, fcmToken)
                 db.saveMessageInChatRoom(chatMessage){
 
                     // save message in last messages
@@ -89,7 +90,7 @@ class ChatLogActivity : AppCompatActivity() {
 
         } else {
 
-            val chatMessage = ChatMessage(createdDate, senderId, receiverId, message, false, chatRoomId!!)
+            val chatMessage = ChatMessage(createdDate, senderId, receiverId, message, false, chatRoomId!!, fcmToken)
 
             // save message in chat room
             db.saveMessageInChatRoom(chatMessage){

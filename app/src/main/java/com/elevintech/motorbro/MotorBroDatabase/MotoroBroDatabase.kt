@@ -12,6 +12,24 @@ import java.util.*
 
 class MotoroBroDatabase {
 
+    fun getUserToken(callback: (String) -> Unit){
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val docRef = db.collection("users").document(uid)
+
+        docRef.get().addOnSuccessListener { documentSnapshot ->
+
+            var user = UserType()
+
+            if (documentSnapshot != null && documentSnapshot.exists()) {
+                user = documentSnapshot.toObject(UserType::class.java)!!
+
+            }
+
+            callback( user.token )
+        }
+    }
+
     fun getUser(callback: (User) -> Unit){
 
         val db = FirebaseFirestore.getInstance()
@@ -795,5 +813,16 @@ class MotoroBroDatabase {
 
 
 
+    }
+
+    fun updateFcmToken(token: String) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val userBio = db.collection("users").document(uid)
+
+        userBio
+            .update("token", token)
+            .addOnSuccessListener {}
+            .addOnFailureListener { e -> println("error update user's fcm token: $e") }
     }
 }
