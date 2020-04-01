@@ -825,4 +825,17 @@ class MotoroBroDatabase {
             .addOnSuccessListener {}
             .addOnFailureListener { e -> println("error update user's fcm token: $e") }
     }
+
+    // on user log-out
+    fun deleteUserToken(){
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val userBio = db.collection("users").document(uid)
+
+        userBio
+            .update("token", "")
+            .addOnSuccessListener { println("success deleting token")}
+            .addOnFailureListener { e -> println("error update user's fcm token: $e") }
+
+    }
 }

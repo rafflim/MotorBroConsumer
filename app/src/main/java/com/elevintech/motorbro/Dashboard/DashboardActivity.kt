@@ -259,6 +259,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 //            }
 
             R.id.sign_out -> {
+                MotoroBroDatabase().deleteUserToken()
                 logOut()
             }
 
