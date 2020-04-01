@@ -43,7 +43,11 @@ class ChatLogActivity : AppCompatActivity() {
         btnSendChat.setOnClickListener {
             val message = txtChatMessage.text.toString()
             if ( message != "" )
-                sendChat()
+                MotoroBroDatabase().getShop(shop.shopId){
+                    shop = it
+                    sendChat()
+                }
+
         }
 
         if (chatRoomId != ""){
@@ -62,7 +66,8 @@ class ChatLogActivity : AppCompatActivity() {
         val message = txtChatMessage.text.toString()
         val senderId = FirebaseAuth.getInstance().currentUser?.uid!!
         val receiverId = shop.shopId
-        val fcmToken = shop.fcmToken
+        val fcmTokenList = ArrayList(shop.deviceTokens.values)  // list of the device tokens of users who work for the shop (e.g. the shop owner and employees)
+
         val db = MotoroBroDatabase()
 
         txtChatMessage.setText("")
@@ -74,7 +79,7 @@ class ChatLogActivity : AppCompatActivity() {
             db.createNewChatRoom ( participants ){ chatRoomId ->
 
                 // save message in chat room
-                val chatMessage = ChatMessage(createdDate, senderId, receiverId, message, false, chatRoomId, fcmToken)
+                val chatMessage = ChatMessage(createdDate, senderId, receiverId, message, false, chatRoomId, fcmTokenList)
                 db.saveMessageInChatRoom(chatMessage){
 
                     // save message in last messages
@@ -90,7 +95,7 @@ class ChatLogActivity : AppCompatActivity() {
 
         } else {
 
-            val chatMessage = ChatMessage(createdDate, senderId, receiverId, message, false, chatRoomId!!, fcmToken)
+            val chatMessage = ChatMessage(createdDate, senderId, receiverId, message, false, chatRoomId!!, fcmTokenList)
 
             // save message in chat room
             db.saveMessageInChatRoom(chatMessage){
