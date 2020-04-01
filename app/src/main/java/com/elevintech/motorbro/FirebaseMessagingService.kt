@@ -50,7 +50,7 @@ class FirebaseMessagingService : FirebaseMessagingService(){
         createNotificationChannel()
 
         val builder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.drawable.motorbroicon)
+            .setSmallIcon(R.drawable.motorbike_circular_icon)
             .setContentTitle( notificationData["title"] )
             .setContentText( notificationData["body"] )
             .setDefaults(Notification.DEFAULT_VIBRATE) //Important for heads-up notification

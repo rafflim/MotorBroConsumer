@@ -66,7 +66,7 @@ class ChatLogActivity : AppCompatActivity() {
         val message = txtChatMessage.text.toString()
         val senderId = FirebaseAuth.getInstance().currentUser?.uid!!
         val receiverId = shop.shopId
-        val fcmTokenList = ArrayList(shop.deviceTokens.values)  // list of the device tokens of users who work for the shop (e.g. the shop owner and employees)
+        val fcmTokenList = ArrayList(shop.deviceTokens.values)  // list of the device tokens of users who will receive the chat message (e.g. the shop owner and employees)
 
         val db = MotoroBroDatabase()
 
