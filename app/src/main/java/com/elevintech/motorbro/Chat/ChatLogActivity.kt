@@ -24,41 +24,49 @@ class ChatLogActivity : AppCompatActivity() {
 
     var paginationStartAt = 0 // https://www.youtube.com/watch?v=poqTHxtDXwU&t=316s
     val adapter = GroupAdapter<ViewHolder>()
+    var recipientTokenArray: List<String> = listOf()
     lateinit var shop: Shop
     lateinit var chatRoomId: String
+    lateinit var shopId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log)
 
-        shop = intent.getSerializableExtra("shop") as Shop
+        shopId = intent.getStringExtra("shopId")
         chatRoomId = intent.getStringExtra("chatRoomId")!!
 
-        profileName.text = shop.name.capitalize()
-
-        if (shop.imageUrl != ""){
-            Glide.with(this).load(shop.imageUrl).into(imgMainProfile)
-        }
+        getShop()
+        getChats()
 
         btnSendChat.setOnClickListener {
             val message = txtChatMessage.text.toString()
-            if ( message != "" )
-                MotoroBroDatabase().getShop(shop.shopId){
-                    shop = it
-                    sendChat()
-                }
-
+            if ( message != "" && recipientTokenArray.isNotEmpty() )
+                sendChat()
         }
-
-        if (chatRoomId != ""){
-            getChats()
-        }
-
 
         btnBack.setOnClickListener {
             finish()
         }
     }
+
+    private fun getShop() {
+        MotoroBroDatabase().getShop(shopId){
+            shop = it
+            recipientTokenArray = ArrayList(shop.deviceTokens.values)
+
+            updateUi()
+
+        }
+    }
+
+    private fun updateUi() {
+        profileName.text = shop.name.capitalize()
+        if (shop.imageUrl != ""){
+            Glide.with(this).load(shop.imageUrl).into(imgMainProfile)
+        }
+    }
+
 
     private fun sendChat(){
 
@@ -112,13 +120,16 @@ class ChatLogActivity : AppCompatActivity() {
 
     fun getChats(){
 
-        val chatDatabase = ChatDatabase()
-        chatDatabase.getChatRoomMessages(chatRoomId){
+        if(chatRoomId != ""){
+            val chatDatabase = ChatDatabase()
+            chatDatabase.getChatRoomMessages(chatRoomId){
 
-            val chatList = it
-            displayChats(chatList)
+                val chatList = it
+                displayChats(chatList)
 
+            }
         }
+
     }
 
     fun getPreviousChats(){

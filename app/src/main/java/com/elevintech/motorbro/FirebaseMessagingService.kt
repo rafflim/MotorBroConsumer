@@ -34,7 +34,11 @@ class FirebaseMessagingService : FirebaseMessagingService(){
                 val notificationData = remoteMessage.data
 
                 if (notificationData["notificationType"] == "chat"){
-                    val intent = Intent(this, ChatListActivity::class.java)
+
+                    val intent = Intent(this, ChatLogActivity::class.java)
+                    intent.putExtra("chatRoomId", notificationData["chatRoom"])
+                    intent.putExtra("shopId", notificationData["shop"])
+                    intent.putExtra("userId", notificationData["user"])
                     val pendingIntent = PendingIntent.getActivity(this,0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
                     buildNotification( notificationData, pendingIntent )

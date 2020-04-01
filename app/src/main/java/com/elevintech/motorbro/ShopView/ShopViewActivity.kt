@@ -49,7 +49,7 @@ class ShopViewActivity : AppCompatActivity() {
                 println("ShopViewActivity - chatRoomId is: " )
 
                 val intent = Intent(this, ChatLogActivity::class.java)
-                intent.putExtra("shop", shop)
+                intent.putExtra("shopId", shop.shopId)
                 intent.putExtra("chatRoomId", chatRoomId)
                 startActivity(intent)
 

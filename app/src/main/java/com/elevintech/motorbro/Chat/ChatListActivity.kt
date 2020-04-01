@@ -76,7 +76,7 @@ class ChatListActivity : AppCompatActivity() {
 
             viewHolder.itemView.setOnClickListener {
                 val intent = Intent(this@ChatListActivity, ChatLogActivity::class.java)
-                intent.putExtra("shop", shop)
+                intent.putExtra("shopId", shop.shopId)
                 intent.putExtra("chatRoomId", chatRoom.lastMessage.chatRoomId)
                 startActivity(intent)
             }
