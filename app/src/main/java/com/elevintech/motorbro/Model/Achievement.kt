@@ -18,7 +18,7 @@ class Achievement (
 
         val DISTANCE_TRAVELED = "distanceTraveled"
         val REFUEL_TIMES = "refuelTimes"
-        val ADD_PART_SERVICE = "addPartService"
+        val CREATED_PART_SERVICE = "addPartService"
         val USER_DURATION = "userDuration"
     }
 }

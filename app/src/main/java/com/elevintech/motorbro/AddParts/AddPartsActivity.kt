@@ -7,7 +7,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.WindowManager
 import android.widget.Toast
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Model.BikeParts
@@ -20,7 +19,6 @@ import android.view.MotionEvent
 import android.view.View
 import com.elevintech.motorbro.Achievements.AchievementManager
 import com.elevintech.motorbro.Model.Achievement
-import com.elevintech.motorbro.Model.History
 import com.elevintech.motorbro.TypeOf.TypeOfBrandActivity
 import com.google.firebase.auth.FirebaseAuth
 
@@ -172,7 +170,7 @@ class AddPartsActivity : AppCompatActivity() {
             database.saveBikeParts(bikeParts) {
                 database.saveHistory("bike-parts", it!!, bikeParts.typeOfParts){
                     AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_PART_SERVICE )
-                    AchievementManager().incrementAchievementProgress( Achievement.Names.ADD_PART_SERVICE, 1)
+                    AchievementManager().incrementAchievementProgress( Achievement.Names.CREATED_PART_SERVICE, 1)
                     showDialog.dismiss()
                     Toast.makeText(this, "Successfully saved bike part", Toast.LENGTH_SHORT).show()
                     finish()

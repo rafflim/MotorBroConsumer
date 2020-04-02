@@ -22,6 +22,11 @@ class AchievementsActivity : AppCompatActivity() {
             val firstPartService = achievements[Achievement.Names.FIRST_PART_SERVICE]
             val firstFuel = achievements[Achievement.Names.FIRST_FUEL]
 
+            val distanceTraveled = achievements[Achievement.Names.DISTANCE_TRAVELED]
+            val refuelTimes = achievements[Achievement.Names.REFUEL_TIMES]
+            val createdPartService = achievements[Achievement.Names.CREATED_PART_SERVICE]
+
+
             if (newStart != null && newStart.isAchieved){
 
                 new_start_progress_bar.max = 1
@@ -50,6 +55,26 @@ class AchievementsActivity : AppCompatActivity() {
 
             }
 
+            if (distanceTraveled != null){
+
+                traveler_progress_bar.max = 20000
+                traveler_progress_bar.progress = distanceTraveled.progress
+
+            }
+
+            if (refuelTimes != null){
+
+                refuel_master_progress_bar.max = 500
+                refuel_master_progress_bar.progress = refuelTimes.progress
+
+            }
+
+            if (createdPartService != null){
+
+                service_master_progress_bar.max = 100
+                service_master_progress_bar.progress = createdPartService.progress
+
+            }
 
 
 
