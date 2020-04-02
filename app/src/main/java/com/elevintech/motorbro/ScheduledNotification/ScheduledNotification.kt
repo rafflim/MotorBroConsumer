@@ -12,7 +12,7 @@ import com.elevintech.myapplication.R
 import java.util.*
 
 
-class ScheduledNotification : AppCompatActivity() {
+class ScheduledNotification {
 
     var channelId = "com.elevintech.motorbro"
 
@@ -27,7 +27,6 @@ class ScheduledNotification : AppCompatActivity() {
     fun startAlarm(context: Context){
 //        println("Alarm Started")
 
-        createNotificationChannel()
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
 //        val alarmManager = getSystemService(AlarmManager) as AlarmManager
@@ -56,26 +55,7 @@ class ScheduledNotification : AppCompatActivity() {
 
     }
 
-    // Create the NotificationChannel
-    // because phones with API 26 and above requires it to show notifications
-    private fun createNotificationChannel() {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val importance = NotificationManager.IMPORTANCE_HIGH
-            val channel = NotificationChannel(channelId, notificationName, importance).apply {
-                description = notificationDescription
-            }
-
-            channel.description = notificationDescription
-            channel.setShowBadge(true)
-            channel.lockscreenVisibility = Notification.VISIBILITY_PUBLIC
-
-            // Register the channel with the system
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
-    }
 
 
 }
