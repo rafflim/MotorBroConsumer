@@ -17,15 +17,20 @@ import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_type_of_fuel.*
 import kotlinx.android.synthetic.main.row_fuel.view.*
+import kotlinx.android.synthetic.main.row_fuel.view.checkbox
+import kotlinx.android.synthetic.main.row_type_of_brand.view.*
 
 class TypeOfFuelActivity : AppCompatActivity() {
 
     private lateinit var viewAdapter : RecyclerView.Adapter<*>
-    val totalList = ArrayList<String>()
+    val totalList = ArrayList<checkboxObj>()
+    private var isFromAddRefuel = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_type_of_fuel)
+
+        isFromAddRefuel = intent.getBooleanExtra("fromAddExtra", false)
 
         viewAdapter = FuelAdapter(totalList)
 
@@ -42,6 +47,28 @@ class TypeOfFuelActivity : AppCompatActivity() {
 
         backButton.setOnClickListener {
             finish()
+        }
+
+        deleteItemsButton.setOnClickListener {
+            val listToDelete = totalList.filter { it.isChecked }
+            var filteredList = totalList.filter { !it.isChecked }
+
+            if (listToDelete.isEmpty()) {
+                Snackbar.make(addItemsButton, "Please at least one parts / services", Snackbar.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            val totalArrayList = ArrayList<checkboxObj>(filteredList)
+            totalList.clear()
+            totalList.addAll(totalArrayList)
+            viewAdapter.notifyDataSetChanged()
+
+            for (part in listToDelete) {
+                val db = MotoroBroDatabase()
+                db.saveDeletedFuels(part.name) {
+                    println("deleted ${part.name}")
+                }
+            }
         }
     }
 
@@ -79,7 +106,11 @@ class TypeOfFuelActivity : AppCompatActivity() {
                         break
                     }
                 }
-                if (!isIncluded) { totalList.add(part) }
+                if (!isIncluded) {
+                    val part = checkboxObj(part, false)
+                    totalList.add(part)
+                    //totalList.add(part)
+                }
             }
 
             for (customPart in it.customFuel) {
@@ -96,7 +127,13 @@ class TypeOfFuelActivity : AppCompatActivity() {
                     }
                 }
 
-                if (!isIncluded) { totalList.add(properlyCapitalized) }
+                if (!isIncluded) {
+                    val part = checkboxObj(properlyCapitalized, false)
+                    totalList.add(part)
+                }
+
+                    //totalList.add(properlyCapitalized)
+
             }
             viewAdapter.notifyDataSetChanged()
         }
@@ -124,7 +161,7 @@ class TypeOfFuelActivity : AppCompatActivity() {
 //    }
 
 
-    inner class FuelAdapter(private val myDataset: ArrayList<String>) :
+    inner class FuelAdapter(private val myDataset: ArrayList<checkboxObj>) :
         RecyclerView.Adapter<FuelAdapter.MyViewHolder>() {
 
         private var removedPosition: Int = 0
@@ -154,17 +191,30 @@ class TypeOfFuelActivity : AppCompatActivity() {
             // - get element from your dataset at this position
             // - replace the contents of the view with that element
             val fuel = myDataset[position]
-            viewHolder.itemView.fuel_name.text = fuel
+            viewHolder.itemView.fuel_name.text = fuel.name
             viewHolder.itemView.setOnClickListener {
                 val returnIntent = Intent()
-                returnIntent.putExtra("selectedFuel", fuel)
+                returnIntent.putExtra("selectedFuel", fuel.name)
                 setResult(Activity.RESULT_OK, returnIntent)
                 finish()
             }
 
-            viewHolder.itemView.removeItem.setOnClickListener {
-                removeItem(viewHolder.adapterPosition, viewHolder)
+            if (fuel.isChecked) {
+                viewHolder.itemView.checkbox.isChecked = true
+            } else {
+                viewHolder.itemView.checkbox.isChecked = false
             }
+
+
+            viewHolder.itemView.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    fuel.isChecked = true
+                }
+            }
+
+//            viewHolder.itemView.removeItem.setOnClickListener {
+//                removeItem(viewHolder.adapterPosition, viewHolder)
+//            }
 
 
         }
@@ -172,20 +222,20 @@ class TypeOfFuelActivity : AppCompatActivity() {
         // Return the size of your dataset (invoked by the layout manager)
         override fun getItemCount() = myDataset.size
 
-        private fun removeItem(position: Int, viewHolder: RecyclerView.ViewHolder) {
-            removedItem = myDataset[position]
-            removedPosition = position
-
-            myDataset.removeAt(position)
-            notifyItemRemoved(position)
-
-            val db = MotoroBroDatabase()
-            db.saveDeletedFuels(removedItem) {
-                println("deleted $removedItem")
-            }
-
-            Snackbar.make(viewHolder.itemView, "$removedItem removed", Snackbar.LENGTH_LONG).show()
-        }
+//        private fun removeItem(position: Int, viewHolder: RecyclerView.ViewHolder) {
+//            removedItem = myDataset[position]
+//            removedPosition = position
+//
+//            myDataset.removeAt(position)
+//            notifyItemRemoved(position)
+//
+//            val db = MotoroBroDatabase()
+//            db.saveDeletedFuels(removedItem) {
+//                println("deleted $removedItem")
+//            }
+//
+//            Snackbar.make(viewHolder.itemView, "$removedItem removed", Snackbar.LENGTH_LONG).show()
+//        }
     }
 
 

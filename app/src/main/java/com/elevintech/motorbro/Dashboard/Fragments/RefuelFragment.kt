@@ -22,6 +22,7 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_reminders.*
+import kotlinx.android.synthetic.main.fragment_reminders.view.*
 import kotlinx.android.synthetic.main.fragment_shop.*
 import kotlinx.android.synthetic.main.row_reminders_layout.view.*
 import kotlinx.android.synthetic.main.row_shop_item_layout.view.*
@@ -36,8 +37,30 @@ class RefuelFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reminders, container, false)
+        val v = inflater.inflate(R.layout.fragment_reminders, container, false)
+        getTimesRefueled(v)
+        return v
 
+    }
+
+    private fun getTimesRefueled(v: View) {
+        MotoroBroDatabase().getUserRefueling {
+
+            val refuelList = it
+            if(refuelList.isNotEmpty()){
+                if (noDataLayout != null) {
+                    //noDataLayout.visibility = View.GONE
+                    v.monthCount.text = "${refuelList.size}"
+                    v.totalCount.text = "${refuelList.size}"
+                }
+            } else {
+                if (noDataLayout != null) {
+                    //noDataLayout.visibility = View.VISIBLE
+
+                    //refuelList.size
+                }
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

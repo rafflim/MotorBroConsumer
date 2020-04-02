@@ -17,16 +17,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <LinearLayout
+            android:layout_marginLeft="0dp"
             android:id="@+id/backButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="left"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="start"
+            >
 
-            app:srcCompat="@drawable/white_back_icon" />
+            <ImageView
+                android:layout_marginTop="15dp"
+
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/white_back_icon"
+                android:tint="#FFFFFF" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/dashboardLabel"

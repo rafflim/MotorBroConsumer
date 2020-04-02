@@ -40,6 +40,8 @@
 
             >
 
+
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -50,6 +52,19 @@
                 android:src="@drawable/main_background_motor"
                 android:scaleType="centerCrop"
                 />
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Welcome to MotorBro"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:layout_marginTop="70dp"-->
+<!--                android:fontFamily="@font/open_sans_bold"-->
+<!--                android:textSize="21sp"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"/>-->
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <RelativeLayout

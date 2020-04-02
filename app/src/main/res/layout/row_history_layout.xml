@@ -29,11 +29,13 @@
 
         <TextView
             android:id="@+id/historyTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Added Posh Break"
             app:layout_constraintStart_toEndOf="@id/icon_main"
             app:layout_constraintTop_toTopOf="@id/icon_main"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:textSize="14sp"
