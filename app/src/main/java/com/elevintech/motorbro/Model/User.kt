@@ -17,5 +17,6 @@ class User(var uid: String = "",
            var customBrands: List<String> = listOf(),
            var deletedParts: List<String> = listOf(),
            var deletedBrands: List<String> = listOf(),
-           var deletedFuels: List<String> = listOf()
+           var deletedFuels: List<String> = listOf(),
+           var achievements: HashMap<String, Achievement> = hashMapOf()
 )

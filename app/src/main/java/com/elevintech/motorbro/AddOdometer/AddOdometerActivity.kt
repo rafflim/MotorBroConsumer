@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Toast
+import com.elevintech.motorbro.Achievements.AchievementManager
+import com.elevintech.motorbro.Model.Achievement
 import com.elevintech.motorbro.Model.OdometerUpdate
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Utils.Utils
@@ -106,6 +108,7 @@ class AddOdometerActivity : AppCompatActivity() {
             val database = MotoroBroDatabase()
             database.saveOdometerUpdate(odometerDetails) {
                 database.saveHistory("odometer", it!!, odometerText.text.toString().toDouble()){
+                    AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_ODOMETER )
                     showDialog.dismiss()
                     Toast.makeText(this, "Successfully updated Odometer", Toast.LENGTH_SHORT).show()
                     finish()

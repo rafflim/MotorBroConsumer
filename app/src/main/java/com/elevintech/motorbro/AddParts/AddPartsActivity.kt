@@ -18,6 +18,8 @@ import java.text.DecimalFormat
 import java.util.*
 import android.view.MotionEvent
 import android.view.View
+import com.elevintech.motorbro.Achievements.AchievementManager
+import com.elevintech.motorbro.Model.Achievement
 import com.elevintech.motorbro.Model.History
 import com.elevintech.motorbro.TypeOf.TypeOfBrandActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -168,6 +170,7 @@ class AddPartsActivity : AppCompatActivity() {
             val database = MotoroBroDatabase()
             database.saveBikeParts(bikeParts) {
                 database.saveHistory("bike-parts", it!!, bikeParts.typeOfParts){
+                    AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_PART_SERVICE )
                     showDialog.dismiss()
                     Toast.makeText(this, "Successfully saved bike part", Toast.LENGTH_SHORT).show()
                     finish()

@@ -10,6 +10,8 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
+import com.elevintech.motorbro.Achievements.AchievementManager
+import com.elevintech.motorbro.Model.Achievement
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Model.History
 import com.elevintech.motorbro.Model.Refueling
@@ -204,6 +206,7 @@ class AddRefuelingActivity : AppCompatActivity() {
             val database = MotoroBroDatabase()
             database.saveRefueling(refueling) {
                 database.saveHistory("refueling", it!!, refueling.typeOfFuel) {
+                    AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_FUEL )
                     showDialog.dismiss()
                     Toast.makeText(this, "Successfully saved refuel data", Toast.LENGTH_SHORT)
                         .show()

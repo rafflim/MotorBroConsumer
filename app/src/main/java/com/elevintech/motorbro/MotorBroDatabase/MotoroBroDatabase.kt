@@ -9,6 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
+import kotlin.collections.HashMap
 
 class MotoroBroDatabase {
 
@@ -838,4 +839,21 @@ class MotoroBroDatabase {
             .addOnFailureListener { e -> println("error update user's fcm token: $e") }
 
     }
+
+    fun setAchievementAsAchieved(achievementName: String) {
+
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val userBio = db.collection("customers").document(uid)
+
+        val achievement = Achievement(achievementName, true)
+
+        userBio
+            .update("achievements.$achievementName", achievement)
+            .addOnSuccessListener {}
+            .addOnFailureListener { e -> println("error update user's fcm token: $e") }
+
+    }
+
+
 }

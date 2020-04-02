@@ -15,6 +15,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.forEach
 import com.bumptech.glide.Glide
+import com.elevintech.motorbro.Achievements.AchievementManager
 import com.elevintech.motorbro.Achievements.AchievementsActivity
 import com.elevintech.motorbro.AddOdometer.AddOdometerActivity
 import com.elevintech.motorbro.AddParts.AddPartsActivity
@@ -26,6 +27,7 @@ import com.elevintech.motorbro.Garage.GarageActivity
 import com.elevintech.motorbro.Glovebox.GloveboxActivity
 import com.elevintech.motorbro.MyAccount.MyAccountActivity
 import com.elevintech.motorbro.MainActivity
+import com.elevintech.motorbro.Model.Achievement
 import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.Model.User
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
@@ -74,6 +76,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             startActivity(intent)
         }
 
+        AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_MONITOR )
         ScheduledNotification().startAlarm(this)
         createNotificationChannel()
     }
