@@ -30,8 +30,9 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="10dp"/>
 
-        <ImageView
-            android:id="@+id/removeItem"
+
+        <CheckBox
+            android:id="@+id/checkbox"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginRight="20dp"
@@ -40,10 +41,23 @@
             android:layout_marginTop="10dp"
             android:layout_gravity="end"
             android:gravity="end"
-            android:src="@drawable/trash_icon"
-            android:tint="#AA0E0E"
             android:visibility="visible"
             />
+
+<!--        <ImageView-->
+<!--            android:id="@+id/removeItem"-->
+<!--            android:layout_width="25dp"-->
+<!--            android:layout_height="25dp"-->
+<!--            android:layout_marginRight="20dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_gravity="end"-->
+<!--            android:gravity="end"-->
+<!--            android:src="@drawable/trash_icon"-->
+<!--            android:tint="#AA0E0E"-->
+<!--            android:visibility="visible"-->
+<!--            />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

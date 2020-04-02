@@ -15,12 +15,15 @@ import com.elevintech.myapplication.R
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_type_of_brand.*
 import kotlinx.android.synthetic.main.row_type_of_brand.view.*
+import kotlinx.android.synthetic.main.row_type_of_brand.view.checkbox
+import kotlinx.android.synthetic.main.row_type_of_brand.view.parts_name
+import kotlinx.android.synthetic.main.row_type_of_parts.view.*
 
 
 class TypeOfBrandActivity : AppCompatActivity() {
 
     private lateinit var viewAdapter : RecyclerView.Adapter<*>
-    val totalList = ArrayList<String>()
+    val totalList = ArrayList<checkboxObj>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +44,29 @@ class TypeOfBrandActivity : AppCompatActivity() {
 
         backButton.setOnClickListener {
             finish()
+        }
+
+        deleteItemsButton.setOnClickListener {
+
+            val listToDelete = totalList.filter { it.isChecked }
+            var filteredList = totalList.filter { !it.isChecked }
+
+            if (listToDelete.isEmpty()) {
+                Snackbar.make(addItemsButton, "Please at least one parts / services", Snackbar.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            val totalArrayList = ArrayList<checkboxObj>(filteredList)
+            totalList.clear()
+            totalList.addAll(totalArrayList)
+            viewAdapter.notifyDataSetChanged()
+
+            for (part in listToDelete) {
+                val db = MotoroBroDatabase()
+                db.saveDeletedBrands(part.name) {
+                    println("deleted ${part.name}")
+                }
+            }
         }
     }
 
@@ -69,7 +95,12 @@ class TypeOfBrandActivity : AppCompatActivity() {
                         break
                     }
                 }
-                if (!isIncluded) { totalList.add(part) }
+                if (!isIncluded) {
+                    val part = checkboxObj(part, false)
+                    totalList.add(part)
+
+                    //totalList.add(part)
+                }
             }
 
             for (customPart in it.customBrands) {
@@ -86,7 +117,10 @@ class TypeOfBrandActivity : AppCompatActivity() {
                     }
                 }
 
-                if (!isIncluded) { totalList.add(properlyCapitalized) }
+                if (!isIncluded) {
+                    //totalList.add(properlyCapitalized)
+                    val part = checkboxObj(properlyCapitalized, false)
+                    totalList.add(part)}
             }
 
             viewAdapter.notifyDataSetChanged()
@@ -99,7 +133,7 @@ class TypeOfBrandActivity : AppCompatActivity() {
         }
     }
 
-    inner class BrandAdapter(private val myDataset: ArrayList<String>) :
+    inner class BrandAdapter(private val myDataset: ArrayList<checkboxObj>) :
         RecyclerView.Adapter<BrandAdapter.MyViewHolder>() {
 
         private var removedPosition: Int = 0
@@ -129,38 +163,50 @@ class TypeOfBrandActivity : AppCompatActivity() {
             // - get element from your dataset at this position
             // - replace the contents of the view with that element
             val part = myDataset[position]
-            viewHolder.itemView.parts_name.text = part
+            viewHolder.itemView.parts_name.text = part.name
 
             viewHolder.itemView.setOnClickListener {
                 val returnIntent = Intent()
-                returnIntent.putExtra("selectedBrand", part)
+                returnIntent.putExtra("selectedBrand", part.name)
                 setResult(Activity.RESULT_OK, returnIntent)
                 finish()
             }
 
-            viewHolder.itemView.removeItem.setOnClickListener {
-                removeItem(viewHolder.adapterPosition, viewHolder)
+            if (part.isChecked) {
+                viewHolder.itemView.checkbox.isChecked = true
+            } else {
+                viewHolder.itemView.checkbox.isChecked = false
             }
 
 
+            viewHolder.itemView.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    part.isChecked = true
+                }
+            }
+
+
+//            viewHolder.itemView.removeItem.setOnClickListener {
+//                removeItem(viewHolder.adapterPosition, viewHolder)
+//            }
         }
 
         // Return the size of your dataset (invoked by the layout manager)
         override fun getItemCount() = myDataset.size
 
-        private fun removeItem(position: Int, viewHolder: RecyclerView.ViewHolder) {
-            removedItem = myDataset[position]
-            removedPosition = position
-
-            myDataset.removeAt(position)
-            notifyItemRemoved(position)
-
-            val db = MotoroBroDatabase()
-            db.saveDeletedBrands(removedItem) {
-                println("deleted $removedItem")
-            }
-
-            Snackbar.make(viewHolder.itemView, "$removedItem removed", Snackbar.LENGTH_LONG).show()
-        }
+//        private fun removeItem(position: Int, viewHolder: RecyclerView.ViewHolder) {
+//            removedItem = myDataset[position]
+//            removedPosition = position
+//
+//            myDataset.removeAt(position)
+//            notifyItemRemoved(position)
+//
+//            val db = MotoroBroDatabase()
+//            db.saveDeletedBrands(removedItem) {
+//                println("deleted $removedItem")
+//            }
+//
+//            Snackbar.make(viewHolder.itemView, "$removedItem removed", Snackbar.LENGTH_LONG).show()
+//        }
     }
 }
