@@ -64,6 +64,7 @@ class AddPartsActivity : AppCompatActivity() {
 
         brandText.setOnClickListener {
             val intent = Intent(applicationContext, TypeOfBrandActivity::class.java)
+            intent.putExtra("fromAddExtra", true)
             startActivityForResult(intent, SELECT_PART_BRAND)
         }
 

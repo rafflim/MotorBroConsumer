@@ -114,13 +114,10 @@ class HistoryFragment : Fragment() {
 
             viewHolder.itemView.historyDate.text = Utils().convertMillisecondsToDate(history.dateLong, "MMM d, yyyy")
             viewHolder.itemView.historyTitle.text = historyTitle
-
-
         }
 
         override fun getLayout(): Int {
             return R.layout.row_history_layout
-
         }
     }
 }

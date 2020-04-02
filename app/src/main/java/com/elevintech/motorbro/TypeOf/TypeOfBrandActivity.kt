@@ -23,19 +23,21 @@ import kotlinx.android.synthetic.main.row_type_of_parts.view.*
 class TypeOfBrandActivity : AppCompatActivity() {
 
     private lateinit var viewAdapter : RecyclerView.Adapter<*>
-    val totalList = ArrayList<checkboxObj>()
-
+    private val totalList = ArrayList<checkboxObj>()
+    private var isFromAddParts = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_type_of_brand)
 
+        isFromAddParts = intent.getBooleanExtra("fromAddExtra", false)
         viewAdapter = BrandAdapter(totalList)
         recycler_view_type_of_brands.apply {
             //this.adapter = partsListAdapter
             this.adapter = viewAdapter
             setHasFixedSize(true)
         }
+
         // If from nav bar then set click will be different
         add_parts_floating_button.setOnClickListener {
             val intent = Intent(applicationContext, AddBrandActivity::class.java)
@@ -165,12 +167,18 @@ class TypeOfBrandActivity : AppCompatActivity() {
             val part = myDataset[position]
             viewHolder.itemView.parts_name.text = part.name
 
-            viewHolder.itemView.setOnClickListener {
-                val returnIntent = Intent()
-                returnIntent.putExtra("selectedBrand", part.name)
-                setResult(Activity.RESULT_OK, returnIntent)
-                finish()
-            }
+
+                viewHolder.itemView.setOnClickListener {
+                    if (isFromAddParts) {
+                        val returnIntent = Intent()
+                        returnIntent.putExtra("selectedBrand", part.name)
+                        setResult(Activity.RESULT_OK, returnIntent)
+                        finish()
+                    }
+
+                }
+
+
 
             if (part.isChecked) {
                 viewHolder.itemView.checkbox.isChecked = true

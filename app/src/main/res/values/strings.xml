@@ -6,4 +6,9 @@
 
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
+
+    <string name="facebook_app_id">238165707334677</string>
+    <string name="fb_login_protocol_scheme">fb238165707334677</string>
+
+
 </resources>

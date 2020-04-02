@@ -53,6 +53,7 @@ class AddRefuelingActivity : AppCompatActivity() {
 
         typeOfFuelText.setOnClickListener {
             val intent = Intent(applicationContext, TypeOfFuelActivity::class.java)
+            intent.putExtra("fromAddExtra", true)
             startActivityForResult(intent, SELECT_PART_TYPE)
         }
 
