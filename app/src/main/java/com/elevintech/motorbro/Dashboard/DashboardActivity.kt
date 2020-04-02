@@ -1,7 +1,11 @@
 package com.elevintech.motorbro.Dashboard
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -71,6 +75,36 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         }
 
         ScheduledNotification().startAlarm(this)
+    }
+
+    var channelId = "com.elevintech.motorbro"
+
+    // Values displayed on phone's system settings
+    val notificationName = "Motor Bro"
+    val notificationDescription = "Odometer Update"
+
+    // Values displayed by the notification when it pops up on the phone's notification tray
+    val notificationTitle = "Odometer Change"
+    val notificationText = "Any odometer updates this day?"
+    // Create the NotificationChannel
+    // because phones with API 26 and above requires it to show notifications
+    private fun createNotificationChannel() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val channel = NotificationChannel(channelId, notificationName, importance).apply {
+                description = notificationDescription
+            }
+
+            channel.description = notificationDescription
+            channel.setShowBadge(true)
+            channel.lockscreenVisibility = Notification.VISIBILITY_PUBLIC
+
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 
     private fun buildBottomSheetDialog() {
