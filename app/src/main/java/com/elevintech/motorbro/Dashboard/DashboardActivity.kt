@@ -75,6 +75,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         }
 
         ScheduledNotification().startAlarm(this)
+        createNotificationChannel()
     }
 
     var channelId = "com.elevintech.motorbro"
