@@ -208,6 +208,7 @@ class AddRefuelingActivity : AppCompatActivity() {
             database.saveRefueling(refueling) {
                 database.saveHistory("refueling", it!!, refueling.typeOfFuel) {
                     AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_FUEL )
+                    AchievementManager().incrementAchievementProgress( Achievement.Names.REFUEL_TIMES, 1)
                     showDialog.dismiss()
                     Toast.makeText(this, "Successfully saved refuel data", Toast.LENGTH_SHORT)
                         .show()

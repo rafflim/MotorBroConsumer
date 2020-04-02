@@ -840,18 +840,76 @@ class MotoroBroDatabase {
 
     }
 
-    fun setAchievementAsAchieved(achievementName: String) {
+    private fun checkIfAchievementExist(achievementName: String, callback: (Achievement?) -> Unit){
+
+        MotoroBroDatabase().getUser{
+
+            val achievements = it.achievements
+
+            if( achievements.containsKey(achievementName) ){
+                callback(achievements[achievementName])
+            }
+
+            else {
+                callback(null)
+            }
+
+        }
+
+    }
+
+    fun createAchievement(achievementName: String, callback: (Achievement) -> Unit){
+
+        MotoroBroDatabase().getUser{
+
+            val db = FirebaseFirestore.getInstance()
+            val uid = FirebaseAuth.getInstance().uid!!
+            val userBio = db.collection("customers").document(uid)
+            val newAchievement = Achievement(achievementName)
+
+            userBio
+                .update("achievements.$achievementName", newAchievement)
+                .addOnSuccessListener { callback( newAchievement ) }
+                .addOnFailureListener { e -> println("error creating achievement: $e") }
+
+
+        }
+
+    }
+
+    fun updateAchievement(achievement: Achievement) {
 
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
         val userBio = db.collection("customers").document(uid)
 
-        val achievement = Achievement(achievementName, true)
-
         userBio
-            .update("achievements.$achievementName", achievement)
+            .update("achievements.${achievement.name}", achievement)
             .addOnSuccessListener {}
-            .addOnFailureListener { e -> println("error update user's fcm token: $e") }
+            .addOnFailureListener { e -> println("error updating achievement: $e") }
+
+    }
+
+    fun getAchievement(achievementName: String, callback: (Achievement) -> Unit) {
+
+        checkIfAchievementExist(achievementName){ achievement ->
+
+            if (achievement != null){
+
+                callback(achievement)
+
+            } else {
+
+                createAchievement(achievementName){
+
+                    callback(it)
+
+                }
+
+            }
+
+        }
+
 
     }
 

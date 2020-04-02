@@ -50,6 +50,9 @@ class AchievementsActivity : AppCompatActivity() {
 
             }
 
+
+
+
         }
 
         backView.setOnClickListener {

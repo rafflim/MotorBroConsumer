@@ -172,6 +172,7 @@ class AddPartsActivity : AppCompatActivity() {
             database.saveBikeParts(bikeParts) {
                 database.saveHistory("bike-parts", it!!, bikeParts.typeOfParts){
                     AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_PART_SERVICE )
+                    AchievementManager().incrementAchievementProgress( Achievement.Names.ADD_PART_SERVICE, 1)
                     showDialog.dismiss()
                     Toast.makeText(this, "Successfully saved bike part", Toast.LENGTH_SHORT).show()
                     finish()

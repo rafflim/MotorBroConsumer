@@ -98,17 +98,20 @@ class AddOdometerActivity : AppCompatActivity() {
 
         if (validateFields()){
             val showDialog = Utils().showProgressDialog(this, "Updating Odometer")
+            val odometerValue = odometerText.text.toString().toDouble()
 
             val odometerDetails = OdometerUpdate()
-            odometerDetails.odometer = odometerText.text.toString().toDouble()
+            odometerDetails.odometer = odometerValue
             odometerDetails.date = dateText.text.toString()
             odometerDetails.dateLong = Utils().convertDateToTimestamp(dateText.text.toString(), "yyyy-MM-dd")
             odometerDetails.userId =  FirebaseAuth.getInstance().uid!!
 
             val database = MotoroBroDatabase()
             database.saveOdometerUpdate(odometerDetails) {
-                database.saveHistory("odometer", it!!, odometerText.text.toString().toDouble()){
+                database.saveHistory("odometer", it!!, odometerValue){
                     AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_ODOMETER )
+                    AchievementManager().incrementAchievementProgress( Achievement.Names.DISTANCE_TRAVELED, odometerValue.toInt())
+
                     showDialog.dismiss()
                     Toast.makeText(this, "Successfully updated Odometer", Toast.LENGTH_SHORT).show()
                     finish()
