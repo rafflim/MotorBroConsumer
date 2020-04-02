@@ -40,7 +40,6 @@
             android:layout_gravity="start"
             android:layout_marginLeft="5dp"
             android:fontFamily="@font/open_sans"
-            android:text="Kate"
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 
@@ -96,16 +95,38 @@
 
 <!--            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/btnSendChat"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginEnd="16dp"
+
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:paddingTop="7dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="7dp"
+                android:scaleType="centerCrop"
+                android:background="#00000000"
                 android:src="@drawable/send_chat_icon"
-                app:layout_constraintTop_toBottomOf="@id/recycler_view_chat_logs"
+
+
+                android:layout_marginBottom="5dp"
+
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:layout_constraintTop_toBottomOf="@id/recycler_view_chat_logs" />
+<!--            <ImageView-->
+<!--                android:id="@+id/btnSendChat"-->
+
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:paddingEnd="10dp"-->
+<!--                android:paddingTop="7dp"-->
+<!--                android:paddingBottom="7dp"-->
+<!--                android:src="@drawable/send_chat_icon"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/recycler_view_chat_logs"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                />-->
 <!--            <com.skydoves.elasticviews.ElasticImageView-->
 <!--                android:id="@+id/btnSendChat"-->
 <!--                android:layout_width="30dp"-->
@@ -124,7 +145,7 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/round_edit_text"
                 android:ems="10"
@@ -139,7 +160,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btnSendChat"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/btnSendChat" />
+                app:layout_constraintTop_toBottomOf="@id/recycler_view_chat_logs" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

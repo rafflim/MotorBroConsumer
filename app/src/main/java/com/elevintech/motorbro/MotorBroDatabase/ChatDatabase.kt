@@ -2,6 +2,7 @@ package com.elevintech.motorbro.MotorBroDatabase
 
 import com.elevintech.motorbro.Model.ChatLastMessage
 import com.elevintech.motorbro.Model.ChatMessage
+import com.elevintech.motorbro.Model.ChatRoom
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
@@ -84,6 +85,30 @@ class ChatDatabase {
 
     }
 
+    fun getChatRoomMessages(chatRoomId: String, callback: (MutableList<ChatMessage>) -> Unit){
+
+        val db = FirebaseFirestore.getInstance()
+        val ref = db.collection("chat-rooms")
+            .document(chatRoomId)
+            .collection("chat-messages")
+            .orderBy("createdDate", Query.Direction.DESCENDING)
+
+        ref
+            .addSnapshotListener { querysnapshot, e ->
+                val chatLogList = arrayListOf<ChatMessage>()
+
+                for (snapshot in querysnapshot!!.documentChanges.reversed()){
+                    if (snapshot.type == DocumentChange.Type.ADDED){
+                        val message = snapshot.document.toObject(ChatMessage::class.java)!!
+                        chatLogList.add(message)
+                    }
+                }
+
+                callback(chatLogList)
+
+            }
+    }
+
     fun getChatLog(fromId: String, toId: String, callback: (chat : MutableList<ChatMessage>) -> Unit){
 
         val db = FirebaseFirestore.getInstance()
@@ -109,6 +134,31 @@ class ChatDatabase {
 
             }
 
+    }
+
+    fun getChatRoomOfUser(callback: (MutableList<ChatRoom>)-> Unit){
+
+        val uid = FirebaseAuth.getInstance().uid!!
+        val db = FirebaseFirestore.getInstance()
+        val ref = db.collection("chat-rooms")
+                    .whereEqualTo("participants.user", uid)
+                    .orderBy("lastMessage.createdDate", Query.Direction.DESCENDING)
+
+        ref
+            .addSnapshotListener { querysnapshot, e ->
+
+                val chatRoomList = arrayListOf<ChatRoom>()
+
+                for ( snapshot in querysnapshot!!.documentChanges){
+                    if ( snapshot.type == DocumentChange.Type.ADDED || snapshot.type == DocumentChange.Type.MODIFIED ){
+                        val chatRoom = snapshot.document.toObject(ChatRoom::class.java)!!
+                        chatRoomList.add(chatRoom)
+                    }
+                }
+
+                callback(chatRoomList)
+
+            }
     }
 
     fun getLastMessages(callback: (chat : MutableList<ChatLastMessage>)-> Unit){

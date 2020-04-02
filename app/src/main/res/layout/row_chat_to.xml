@@ -73,11 +73,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:text="12:00 pm"
-                android:fontFamily="@font/open_sans_bold"
-                android:textColor="@android:color/black"
                 android:layout_marginTop="6dp"
-                android:textSize="11sp" />
+                android:text="12:00 pm"
+                android:textSize="9sp" />
 
         </LinearLayout>
 
