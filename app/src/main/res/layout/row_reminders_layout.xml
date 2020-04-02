@@ -128,12 +128,13 @@
                         android:src="@drawable/pencil_new_icon" />
 
                     <TextView
+                        android:id="@+id/noteText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/open_sans"
-                        android:text="Fueling is really exciting today for this day dadadadadadadadad dadad dadada"
+                        android:text=""
                         android:textColor="@color/textColorBlack"
 
                         android:textSize="11sp"

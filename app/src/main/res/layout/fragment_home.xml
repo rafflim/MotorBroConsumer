@@ -138,44 +138,6 @@
 
                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <TextView
-                android:id="@+id/odometerDetailsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/open_sans"
-                android:text=""
-                android:textColor="@color/textColorBlack"
-                android:textSize="13sp"
-                app:layout_constraintStart_toStartOf="@id/plateNumberLayout"
-                app:layout_constraintTop_toBottomOf="@id/plateNumberLayout" />
-
-            <TextView
-                android:id="@+id/breakDetailsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:fontFamily="@font/open_sans"
-                android:text="Front Break: Drum, Rear Break: Disk"
-                android:textColor="@color/textColorBlack"
-                android:textSize="13sp"
-                android:visibility="gone"
-                app:layout_constraintStart_toStartOf="@id/odometerDetailsText"
-                app:layout_constraintTop_toBottomOf="@id/odometerDetailsText" />
-
-            <TextView
-                android:id="@+id/bikeNicknameText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:fontFamily="@font/open_sans"
-                android:text=""
-                android:textColor="@color/textColorBlack"
-                android:textSize="13sp"
-                android:visibility="gone"
-                app:layout_constraintStart_toStartOf="@id/breakDetailsText"
-                app:layout_constraintTop_toBottomOf="@id/breakDetailsText" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -293,15 +255,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    app:layout_constraintStart_toEndOf="@id/odometerImage"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginLeft="0dp"
                     android:fontFamily="@font/open_sans_bold"
-                    android:text="Click here to edit"
+                    android:text="Update"
+                    android:textAllCaps="true"
                     android:textColor="@color/white"
-                    android:textSize="11sp"
-                    />
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/odometerImage"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
             </LinearLayout>

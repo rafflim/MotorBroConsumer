@@ -18,6 +18,7 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_parts.*
+import kotlinx.android.synthetic.main.fragment_parts.view.*
 import kotlinx.android.synthetic.main.row_parts.view.*
 
 /**
@@ -33,7 +34,9 @@ class PartsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_parts, container, false)
+        val v = inflater.inflate(R.layout.fragment_parts, container, false)
+        displayBikeCount(v)
+        return v
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,6 +69,26 @@ class PartsFragment : Fragment() {
         recycler_view_type_of_parts.adapter = partsListAdapter
     }
 
+    private fun displayBikeCount(v: View) {
+        MotoroBroDatabase().getUserBikeParts {
+            val bikePartsList = it
+            val userPartsCountString = bikePartsList.filter { bike -> !bike.createdByShop }.count().toString()
+            var shopPartsCountString = bikePartsList.filter { bike -> bike.createdByShop }.count().toString()
+
+            if (userPartsCountString == "") {
+                v.userPartsCount.setText("0")
+            } else {
+                v.userPartsCount.setText(userPartsCountString)
+            }
+
+            if (shopPartsCountString == "") {
+                v.shopPartsCount.setText("0")
+            } else {
+                v.shopPartsCount.setText(shopPartsCountString)
+            }
+        }
+    }
+
     private fun displayParts() {
 
         MotoroBroDatabase().getUserBikeParts {
@@ -76,22 +99,6 @@ class PartsFragment : Fragment() {
             if(bikePartsList.isNotEmpty()) {
 
 
-
-
-                val userPartsCountString = bikePartsList.filter { bike -> !bike.createdByShop }.count().toString()
-                var shopPartsCountString = bikePartsList.filter { bike -> bike.createdByShop }.count().toString()
-
-                if (userPartsCountString == "") {
-                    userPartsCount.setText("0")
-                } else {
-                    userPartsCount.setText(userPartsCountString)
-                }
-
-                if (shopPartsCountString == "") {
-                    shopPartsCount.setText("0")
-                } else {
-                    shopPartsCount.setText(shopPartsCountString)
-                }
 
                 if (noDataLayout != null) {
                     noDataLayout.visibility = GONE

@@ -100,6 +100,7 @@ class RefuelFragment : Fragment() {
 //            viewHolder.itemView.odometerText.text = refuel.kilometers.toString()
 
             viewHolder.itemView.pricePerGallonText.text = "Price per Gallon: " + refuel.pricePerGallon.toString()
+            viewHolder.itemView.noteText.text = refuel.note
 //            viewHolder.itemView.fuelTypeText.text = "Fuel type: " + refuel.typeOfFuel
         }
 

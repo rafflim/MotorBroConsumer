@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="#3C7BCF"
+        android:background="#27589A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,8 +19,8 @@
             android:id="@+id/backButton"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
+
             <ImageView
 
                 android:layout_width="30dp"
@@ -27,43 +28,137 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="25dp"
 
+                android:tint="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/toolbar"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/back_icon"
-                android:tint="@color/white"/>
+                app:srcCompat="@drawable/back_icon" />
 
         </LinearLayout>
+
         <TextView
             android:id="@+id/dashboardLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="30dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/lato"
             android:text="Type of Parts"
             android:textColor="#fff"
             android:textSize="21sp"
-            android:textStyle="bold"
-            android:layout_gravity="left"
-            android:layout_marginLeft="30dp"
-            />
+            android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/add_parts_floating_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/plus_small_icon"
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical"
             android:layout_gravity="right"
-            android:layout_marginRight="20dp"
-            android:tint="#FFFFFF"
-            />
+            >
+
+            <ImageView
+                android:layout_marginTop="15dp"
+                        android:id="@+id/add_parts_floating_button"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/plus_small_icon"
+                        android:tint="#FFFFFF" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add new parts"
+                android:layout_gravity="center"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                />
+
+        </LinearLayout>
+
+<!--        <ImageView-->
+<!--            android:id="@+id/add_parts_floating_button"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_gravity="right"-->
+<!--            android:layout_marginRight="20dp"-->
+<!--            android:src="@drawable/plus_small_icon"-->
+<!--            android:tint="#FFFFFF" />-->
 
 
     </androidx.appcompat.widget.Toolbar>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/deleteItemsButton"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/type_parts_delete_bg"
+            >
+
+            <ImageView
+                android:tint="#A52222"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/delete_parts_icon"
+                />
+
+            <TextView
+                android:textColor="#A52222"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Delete"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:paddingRight="6dp"
+                android:fontFamily="@font/open_sans"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/addItemsButton"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/type_parts_add_bg"
+            android:layout_marginLeft="10dp"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:tint="@color/white"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/add_parts_icon"
+                />
+
+            <TextView
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add"
+                android:fontFamily="@font/open_sans"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:paddingRight="10dp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:background="#F7F7F7"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
@@ -96,4 +191,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

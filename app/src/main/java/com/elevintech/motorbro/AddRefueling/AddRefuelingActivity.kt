@@ -88,6 +88,7 @@ class AddRefuelingActivity : AppCompatActivity() {
 
             val result = totalCost / liter
             pricePerGallonText.setText(result.toString())
+            return
         }
 
         if (liter.isEmpty()) {
@@ -95,7 +96,8 @@ class AddRefuelingActivity : AppCompatActivity() {
             val pricePerLiter = pricePerLiter.toFloat()
 
             val result = totalCost / pricePerLiter
-            pricePerGallonText.setText(result.toString())
+            litersText.setText(result.toString())
+            return
         }
 
         if (totalCost.isEmpty()) {
@@ -104,6 +106,7 @@ class AddRefuelingActivity : AppCompatActivity() {
 
             val result = liter * pricePerGallon
             totalCostText.setText(result.toString())
+            return
         }
 
         // TODO: What if everything has a value??
@@ -196,6 +199,7 @@ class AddRefuelingActivity : AppCompatActivity() {
             refueling.priceGallons = litersText.text.toString().toDouble()
             refueling.location = locationText.text.toString()
             refueling.userId =  FirebaseAuth.getInstance().uid!!
+            refueling.note = noteText.text.toString()
 
             val database = MotoroBroDatabase()
             database.saveRefueling(refueling) {

@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
             //db.getUserBike { setBikeValues(it) }
             db.getUserBikes {
                 val firstBike = it[0]
-                setBikeValues(firstBike)
+                setBikeValues(view, firstBike)
             }
 
             displayQrCode(view)
@@ -69,20 +69,18 @@ class HomeFragment : Fragment() {
         view.qrCodeImage.setImageBitmap(qrCodeBitmap)
     }
 
-    private fun setBikeValues(bike: BikeInfo) {
-        motorNameText.setText(bike.yearBought + " " + bike.brand.capitalize() + " " + bike.model.capitalize())
-        plateNumberText.setText("#" + bike.plateNumber.toUpperCase())
-        odometerDetailsText.setText("Odometer: " + bike.odometer + ".00 km")
+    private fun setBikeValues(v: View, bike: BikeInfo) {
+        v.motorNameText.setText(bike.yearBought + " " + bike.brand.capitalize() + " " + bike.model.capitalize())
+        v.plateNumberText.setText("#" + bike.plateNumber.toUpperCase())
+        //v.odometerDetailsText.setText("Odometer: " + bike.odometer + ".00 km")
 //        breakDetailsText.setText("Front Break: " + bike.frontBreak + " , Rear Break: " + bike.rearBreak )
-        bikeNicknameText.setText("Nickname: " + bike.nickname.capitalize())
-
-        motorcycleImage
+        //v.bikeNicknameText.setText("Nickname: " + bike.nickname.capitalize())
 
         if (bike.imageUrl != "") {
-            Glide.with(this).load(bike.imageUrl).into(motorcycleImage)
+            Glide.with(this).load(bike.imageUrl).into(v.motorcycleImage)
         } else {
             // Put an empty image here
-            Glide.with(this).load(R.drawable.new_empty_data_icon).into(motorcycleImage)
+            Glide.with(this).load(R.drawable.new_empty_data_icon).into(v.motorcycleImage)
         }
 //        fuelLiterText.setText(bike.fuelLiter.toString() + "L")
 //        odometerText.setText(bike.odometerValue.toString() + "km")

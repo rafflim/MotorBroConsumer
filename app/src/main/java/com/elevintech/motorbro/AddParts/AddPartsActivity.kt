@@ -58,6 +58,7 @@ class AddPartsActivity : AppCompatActivity() {
 
         typeOfPartsText.setOnClickListener {
             val intent = Intent(applicationContext, TypeOfPartsActivity::class.java)
+            intent.putExtra("fromAddExtra", true)
             startActivityForResult(intent, SELECT_PART_TYPE)
         }
 
@@ -74,7 +75,6 @@ class AddPartsActivity : AppCompatActivity() {
 
     fun onTouch(view: View, event: MotionEvent): Boolean {
 
-
             view.parent.requestDisallowInterceptTouchEvent(true)
             when (event.action and MotionEvent.ACTION_MASK) {
                 MotionEvent.ACTION_UP -> view.parent.requestDisallowInterceptTouchEvent(false)
@@ -82,6 +82,7 @@ class AddPartsActivity : AppCompatActivity() {
 
         return false
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -99,6 +100,7 @@ class AddPartsActivity : AppCompatActivity() {
             }
         }
     }
+
 
     private fun openDatePicker() {
 

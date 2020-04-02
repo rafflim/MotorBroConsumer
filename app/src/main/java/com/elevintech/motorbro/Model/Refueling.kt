@@ -7,6 +7,7 @@ class Refueling (
     var date: String = "",
     var dateLong: Long = 0.toLong(),
     var typeOfFuel: String = "",
+    var note: String = "",
 
     var pricePerGallon: Double = 0.00,
     var totalCost: Double = 0.00,

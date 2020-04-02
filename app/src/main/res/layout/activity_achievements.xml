@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
+
+    android:background="#325B91"
     android:orientation="vertical">
 
 
@@ -11,7 +14,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="#3C7BCF"
+        android:background="#073B81"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -54,37 +57,808 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="@drawable/shadow_background"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
+        android:paddingBottom="0dp"
         >
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/achievements_icon"
-            android:layout_gravity="center"
-            />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height= "wrap_content"
-            android:text="Achievements will be fulfilled throughout your time here in MotorBro!"
-            android:textColor="@color/textColorBlack"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:textSize="13sp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/open_sans"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            >
 
-            />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+
+                android:background="@drawable/achievements_bg"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                >
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/achievements_icon"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    />
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="Achievements will be fulfilled throughout your time here in MotorBro!"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/open_sans"
+                    android:textAlignment="textStart"
+
+                    />
+            </LinearLayout>
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height= "wrap_content"
+                android:text="Your Achievements"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textSize="17sp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/open_sans_bold"
+                android:layout_marginBottom="10dp"
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/achievements_bg"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:layout_marginBottom="20dp"
+                >
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/achievements_icon"
+                    android:layout_gravity="center"
+                    android:tint="@color/loginBorderBackground"
+                    />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="New Start"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="15sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:layout_marginBottom="20dp"
+                    />
+
+                <ProgressBar
+                    android:id="@+id/new_start_progress_bar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="Started Monitoring with MotorBro"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/achievements_bg"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                >
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/achievements_icon"
+                    android:layout_gravity="center"
+                    android:tint="@color/loginBorderBackground"
+                    />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="Odometer Reader"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="15sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:layout_marginBottom="20dp"
+
+                    />
+
+                <ProgressBar
+                    android:id="@+id/odometer_reader_progress_bar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="Entered Initial Odo Reading"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/achievements_bg"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                >
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/achievements_icon"
+                    android:layout_gravity="center"
+                    android:tint="@color/loginBorderBackground"
+                    />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="Entry Level Mechanic"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="15sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:layout_marginBottom="20dp"
+
+                    />
+
+                <ProgressBar
+                    android:id="@+id/entry_mechanic_progress_bar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="First Service / Parts Entry"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/achievements_bg"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                >
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/achievements_icon"
+                    android:layout_gravity="center"
+                    android:tint="@color/loginBorderBackground"
+                    />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="First Fuel"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="15sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:layout_marginBottom="20dp"
+
+                    />
+
+                <ProgressBar
+                    android:id="@+id/first_fuel_progress_bar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="First Refuel"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/achievements_bg"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                >
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/achievements_icon"
+                    android:layout_gravity="center"
+                    android:tint="@color/loginBorderBackground"
+                    />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="Traveler"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="15sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:layout_marginBottom="20dp"
+
+                    />
+
+                <ProgressBar
+                    android:id="@+id/traveler_progress_bar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="Traveled Kilometers"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="1,000 KM"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="5,000 KM"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="10,000 KM"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="20,000 KM"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/achievements_bg"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                >
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/achievements_icon"
+                    android:layout_gravity="center"
+                    android:tint="@color/loginBorderBackground"
+                    />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="Refuel Master"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="15sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:layout_marginBottom="20dp"
+
+                    />
+
+                <ProgressBar
+                    android:id="@+id/refuel_master_progress_bar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="Refuel your bike."
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="50 times"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="75 times"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="100 times"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="250 times"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="500 times"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/achievements_bg"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                >
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/achievements_icon"
+                    android:layout_gravity="center"
+                    android:tint="@color/loginBorderBackground"
+                    />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="Service Master"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="15sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:layout_marginBottom="20dp"
+
+                    />
+
+                <ProgressBar
+                    android:id="@+id/service_master_progress_bar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="Add Service / Parts"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="10 times"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="25 times"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="50 times"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="100 times"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/achievements_bg"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:layout_marginBottom="20dp"
+
+                >
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/achievements_icon"
+                    android:layout_gravity="center"
+                    android:tint="@color/loginBorderBackground"
+                    />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="Loyal Motor Bro"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="15sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:layout_marginBottom="20dp"
+
+                    />
+
+                <ProgressBar
+                    android:id="@+id/loyal_motorbro_progress_bar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="Be a MotorBro user!"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="For 1 month"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="For 6 months"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="For 1 year"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height= "wrap_content"
+                    android:text="For 2 years"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
 </LinearLayout>

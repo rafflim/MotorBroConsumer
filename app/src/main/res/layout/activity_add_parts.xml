@@ -253,7 +253,8 @@
                 <EditText
                     android:id="@+id/typeOfPartsText"
                     android:layout_width="0dp"
-                    android:layout_height="35dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="35dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"

@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="#3C7BCF"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -154,7 +154,7 @@
                 app:layout_constraintTop_toBottomOf="@id/plateNumberText"
                 app:layout_constraintStart_toStartOf="@id/plateNumberText"
                 android:padding="7dp"
-                android:background="@drawable/glovebox_layout_background_added"
+                android:background="@drawable/glovebox_layout_background"
                 android:layout_marginTop="10dp"
                 >
 
@@ -163,7 +163,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="right"
-
+                    android:tint="@color/textColorBlack"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/check_mark_icon" />
@@ -174,7 +174,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans"
                     android:text="Added"
-                    android:textColor="@color/white"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="12sp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
