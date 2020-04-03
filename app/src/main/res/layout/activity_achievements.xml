@@ -166,12 +166,14 @@
                     android:id="@+id/new_start_progress_bar"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
-                    android:background="@color/white"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content" />
+                    android:background="@color/white"
+                    android:progressTint="@android:color/holo_green_light" />
 
                 <TextView
+                    android:id="@+id/new_start_text"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="Started Monitoring with MotorBro"
@@ -230,9 +232,11 @@
                     android:background="@color/white"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:progressTint="@android:color/holo_green_light" />
 
                 <TextView
+                    android:id="@+id/odometer_reader_text"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="Entered Initial Odo Reading"
@@ -291,9 +295,11 @@
                     android:background="@color/white"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:progressTint="@android:color/holo_green_light" />
 
                 <TextView
+                    android:id="@+id/entry_mechanic_text"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="First Service / Parts Entry"
@@ -332,7 +338,7 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
-                    android:text="First Fuel"
+                    android:text="Refuel Novice"
                     android:textColor="@color/white"
                     android:layout_gravity="center"
                     android:gravity="center"
@@ -352,9 +358,11 @@
                     android:background="@color/white"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:progressTint="@android:color/holo_green_light" />
 
                 <TextView
+                    android:id="@+id/first_fuel_text"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="First Refuel"
@@ -413,7 +421,8 @@
                     android:background="@color/white"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:progressTint="@android:color/holo_green_light" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -430,6 +439,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/traveler_progress_1"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="1,000 KM"
@@ -444,6 +454,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/traveler_progress_2"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="5,000 KM"
@@ -458,6 +469,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/traveler_progress_3"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="10,000 KM"
@@ -472,6 +484,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/traveler_progress_4"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="20,000 KM"
@@ -530,7 +543,8 @@
                     android:background="@color/white"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:progressTint="@android:color/holo_green_light" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -547,6 +561,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/refuel_master_progress_1"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="50 times"
@@ -561,6 +576,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/refuel_master_progress_2"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="75 times"
@@ -575,6 +591,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/refuel_master_progress_3"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="100 times"
@@ -589,6 +606,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/refuel_master_progress_4"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="250 times"
@@ -603,6 +621,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/refuel_master_progress_5"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="500 times"
@@ -661,7 +680,8 @@
                     android:background="@color/white"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:progressTint="@android:color/holo_green_light" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -678,6 +698,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/service_master_progress_1"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="10 times"
@@ -692,6 +713,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/service_master_progress_2"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="25 times"
@@ -706,6 +728,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/service_master_progress_3"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="50 times"
@@ -720,6 +743,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/service_master_progress_4"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="100 times"
@@ -781,7 +805,8 @@
                     android:background="@color/white"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:progressTint="@android:color/holo_green_light" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -798,6 +823,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/loyal_motorbro_progress_1"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="For 1 month"
@@ -812,6 +838,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/loyal_motorbro_progress_2"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="For 6 months"
@@ -826,6 +853,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/loyal_motorbro_progress_3"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="For 1 year"
@@ -840,6 +868,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/loyal_motorbro_progress_4"
                     android:layout_width="wrap_content"
                     android:layout_height= "wrap_content"
                     android:text="For 2 years"

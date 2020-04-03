@@ -18,4 +18,6 @@
     <color name="inactiveTabGray">#8A8A8A</color>
 
     <color name="textColorBlack">#1D1D1D</color>
+    <color name="achievedGreen">@android:color/holo_green_light</color>
+
 </resources>

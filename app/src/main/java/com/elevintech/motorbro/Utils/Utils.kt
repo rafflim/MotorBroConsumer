@@ -8,6 +8,7 @@ import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class Utils {
 
@@ -26,6 +27,13 @@ class Utils {
         val netDate = Date(dateInMilliseconds * 1000)
 
         return sdf.format(netDate).toString()
+    }
+
+    fun getMonthsFromNow(dateInMilliseconds: Long): Int{
+        val msDiff: Long =  Calendar.getInstance().timeInMillis - dateInMilliseconds
+        val daysDiff: Long = TimeUnit.MILLISECONDS.toDays(msDiff)
+
+        return (daysDiff / 30).toInt()
     }
 
 

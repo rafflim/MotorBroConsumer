@@ -1,11 +1,19 @@
 package com.elevintech.motorbro.Achievements
 
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Typeface
 import android.os.Bundle
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.elevintech.motorbro.Model.Achievement
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
+import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_achievements.*
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 class AchievementsActivity : AppCompatActivity() {
 
@@ -32,6 +40,8 @@ class AchievementsActivity : AppCompatActivity() {
                 new_start_progress_bar.max = 1
                 new_start_progress_bar.progress = 1
 
+                applyAchievedStyling(new_start_text)
+
             }
 
             if (firstOdometerUpdate != null && firstOdometerUpdate.isAchieved){
@@ -39,12 +49,15 @@ class AchievementsActivity : AppCompatActivity() {
                 odometer_reader_progress_bar.max = 1
                 odometer_reader_progress_bar.progress = 1
 
+                applyAchievedStyling(odometer_reader_text)
             }
 
             if (firstPartService != null && firstPartService.isAchieved){
 
                 entry_mechanic_progress_bar.max = 1
                 entry_mechanic_progress_bar.progress = 1
+
+                applyAchievedStyling(entry_mechanic_text)
 
             }
 
@@ -53,12 +66,19 @@ class AchievementsActivity : AppCompatActivity() {
                 first_fuel_progress_bar.max = 1
                 first_fuel_progress_bar.progress = 1
 
+                applyAchievedStyling(first_fuel_text)
             }
 
             if (distanceTraveled != null){
 
                 traveler_progress_bar.max = 20000
                 traveler_progress_bar.progress = distanceTraveled.progress
+
+                if(distanceTraveled.progress >= 1000) applyAchievedStyling( traveler_progress_1 )
+                if(distanceTraveled.progress >= 5000) applyAchievedStyling( traveler_progress_2 )
+                if(distanceTraveled.progress >= 10000) applyAchievedStyling( traveler_progress_3 )
+                if(distanceTraveled.progress >= 20000) applyAchievedStyling( traveler_progress_4 )
+
 
             }
 
@@ -67,6 +87,12 @@ class AchievementsActivity : AppCompatActivity() {
                 refuel_master_progress_bar.max = 500
                 refuel_master_progress_bar.progress = refuelTimes.progress
 
+                if(refuelTimes.progress >= 50) applyAchievedStyling( refuel_master_progress_1 )
+                if(refuelTimes.progress >= 75) applyAchievedStyling( refuel_master_progress_2 )
+                if(refuelTimes.progress >= 100) applyAchievedStyling( refuel_master_progress_3 )
+                if(refuelTimes.progress >= 250) applyAchievedStyling( refuel_master_progress_4 )
+                if(refuelTimes.progress >= 500) applyAchievedStyling( refuel_master_progress_5 )
+
             }
 
             if (createdPartService != null){
@@ -74,8 +100,26 @@ class AchievementsActivity : AppCompatActivity() {
                 service_master_progress_bar.max = 100
                 service_master_progress_bar.progress = createdPartService.progress
 
+
+                if(createdPartService.progress >= 10) applyAchievedStyling( service_master_progress_1 )
+                if(createdPartService.progress >= 25) applyAchievedStyling( service_master_progress_2 )
+                if(createdPartService.progress >= 50) applyAchievedStyling( service_master_progress_3 )
+                if(createdPartService.progress >= 100) applyAchievedStyling( service_master_progress_4 )
             }
 
+            val userCreatedDate = FirebaseAuth.getInstance().currentUser!!.metadata!!.creationTimestamp
+            val userDurationInMonths = Utils().getMonthsFromNow(userCreatedDate)
+            if (userDurationInMonths >= 1){
+
+                loyal_motorbro_progress_bar.max = 24 // months = 2 years max
+                loyal_motorbro_progress_bar.progress = userDurationInMonths
+
+                if(userDurationInMonths >= 1) applyAchievedStyling( loyal_motorbro_progress_1 )
+                if(userDurationInMonths >= 6) applyAchievedStyling( loyal_motorbro_progress_2 )
+                if(userDurationInMonths >= 12) applyAchievedStyling( loyal_motorbro_progress_3 )
+                if(userDurationInMonths >= 24) applyAchievedStyling( loyal_motorbro_progress_4 )
+
+            }
 
 
         }
@@ -83,5 +127,13 @@ class AchievementsActivity : AppCompatActivity() {
         backView.setOnClickListener {
             finish()
         }
+    }
+
+    fun applyAchievedStyling(textView: TextView){
+
+        textView.textSize = 16f
+        textView.typeface = Typeface.DEFAULT_BOLD
+        textView.setTextColor(resources.getColor(R.color.achievedGreen))
+
     }
 }
