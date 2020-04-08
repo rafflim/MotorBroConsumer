@@ -9,16 +9,15 @@
     tools:context=".SplashPage.SplashPageActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         android:src="@drawable/motorbroicon"
         android:layout_gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:tint="@color/white"
-        />
+        android:tint="@color/loginRedButtonBackground"/>
 
     <TextView
         android:layout_width="wrap_content"
