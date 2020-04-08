@@ -1,91 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
         android:id="@+id/firstBikeLayout"
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:layout_margin="5dp"
         android:background="@drawable/shadow_background">
 
-        <ImageView
-            android:id="@+id/bikeImageView"
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            android:src="@drawable/motorcycle_demo_1" />
+    <ImageView
+        android:id="@+id/bikeImageView"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:src="@drawable/motorcycle_demo_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="3dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bikeImageView"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/bikeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Jon"
+            android:textColor="@color/textColorBlack"
+            android:textSize="18sp" />
+
+        <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--                android:id="@+id/plateNumberLayout"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="10dp"-->
+        <!--                android:background="@drawable/plate_number_background"-->
+        <!--                android:padding="7dp">-->
+
+        <!--                <TextView-->
+        <!--                    android:id="@+id/plateNumberText"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:fontFamily="@font/open_sans_bold"-->
+        <!--                    android:paddingLeft="10dp"-->
+        <!--                    android:paddingRight="10dp"-->
+        <!--                    android:text=""-->
+
+        <!--                    android:textColor="@color/textColorBlack"-->
+        <!--                    android:textSize="12sp"-->
+        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                    app:layout_constraintStart_toStartOf="parent"-->
+        <!--                    app:layout_constraintTop_toTopOf="parent"-->
+
+        <!--                    />-->
+        <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/wrench_icon" />
 
             <TextView
-                android:id="@+id/bikeName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_semibold"
-                android:text="Jon"
+                android:id="@+id/plateNumberText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/open_sans"
+                android:text="Plate# 20232"
                 android:textColor="@color/textColorBlack"
-                android:textSize="18sp" />
-
-<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                android:id="@+id/plateNumberLayout"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:background="@drawable/plate_number_background"-->
-<!--                android:padding="7dp">-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/plateNumberText"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:fontFamily="@font/open_sans_bold"-->
-<!--                    android:paddingLeft="10dp"-->
-<!--                    android:paddingRight="10dp"-->
-<!--                    android:text=""-->
-
-<!--                    android:textColor="@color/textColorBlack"-->
-<!--                    android:textSize="12sp"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent"-->
-
-<!--                    />-->
-<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp">
-                <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:src="@drawable/wrench_icon"
-                    />
-
-                <TextView
-                    android:id="@+id/plateNumberText"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:fontFamily="@font/open_sans"
-                    android:textColor="@color/textColorBlack"
-                    android:text="Plate# 20232"
-                    android:textSize="9sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
+                android:textSize="9sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
     </LinearLayout>
+
+    <ImageView
+        android:tint="@color/loginRedButtonBackground"
+        android:id="@+id/deleteButton"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/delete_parts_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

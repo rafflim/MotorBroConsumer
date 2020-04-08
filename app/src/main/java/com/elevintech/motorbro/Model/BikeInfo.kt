@@ -15,4 +15,5 @@ class BikeInfo():Serializable {
     var yearBought: String = ""
     var imageUrl: String = ""
     var bikeId: String = ""
+    var deleted: Boolean = false
 }

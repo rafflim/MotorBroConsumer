@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.elevintech.motorbro.BikeRegistration.BikeRegistrationActivity
@@ -45,15 +46,19 @@ class GarageActivity : AppCompatActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-
+    fun getBikes(){
         val db = MotoroBroDatabase()
         db.getUserBikes {
 
             if (it.size > 0)
                 displayBikes(it)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        getBikes()
     }
 
     private fun displayBikes(bikeList: MutableList<BikeInfo>) {
@@ -64,10 +69,33 @@ class GarageActivity : AppCompatActivity() {
         var adapter = GroupAdapter<ViewHolder>()
 
         for (bike in bikeList){
-            adapter.add(BikeItem(bike))
+            if (!bike.deleted)
+                adapter.add(BikeItem(bike))
         }
 
         reycler_view.adapter = adapter
+
+    }
+
+    fun confirmDelete(bike: BikeInfo){
+
+        val options = arrayOf("Yes, Delete this bike", "No, I've changed my mind")
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Delete of bike cannot be undone. Do you want to proceed?")
+        builder.setItems(options){ _, which ->
+
+            if(which == 0){
+                // IF YES is clicked
+                MotoroBroDatabase().deleteBike(bike){
+                    getBikes()
+                }
+
+            }else if(which == 1){
+                // IF NO is clicked
+
+            }
+        }
+        builder.show()
 
     }
 
@@ -86,6 +114,14 @@ class GarageActivity : AppCompatActivity() {
 
 
             }
+
+            viewHolder.itemView.deleteButton.setOnClickListener {
+
+                confirmDelete(bike)
+
+            }
+
+
 
         }
 

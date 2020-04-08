@@ -913,5 +913,19 @@ class MotoroBroDatabase {
 
     }
 
+    fun deleteBike(bike: BikeInfo, callback: () -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val bikeRef = db.collection("bikes").document(bike.bikeId)
+
+        bikeRef.update(mapOf("deleted" to true))
+            .addOnSuccessListener { callback() }
+            .addOnFailureListener { e->
+                println("Error updating bike as deleted: $e")
+                callback()
+            }
+
+    }
+
 
 }
