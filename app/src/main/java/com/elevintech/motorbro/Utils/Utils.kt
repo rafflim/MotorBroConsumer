@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -129,5 +130,11 @@ class Utils {
         progressDialog.setCancelable(false)
 
         return progressDialog
+    }
+
+    fun numberFormatWithComma(number: Double) : String{
+
+        return NumberFormat.getNumberInstance(Locale.US).format(number)
+
     }
 }

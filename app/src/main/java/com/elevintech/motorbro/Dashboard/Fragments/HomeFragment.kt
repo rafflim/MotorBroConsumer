@@ -50,7 +50,8 @@ class HomeFragment : Fragment() {
 
             if (it.isNotEmpty()){
                 val firstOdo = it.first()
-                view.odometerStatementText.text = "Odometer : ${firstOdo.odometer}km updated as of ${firstOdo.date}"
+                val firstOdoDistance = Utils().numberFormatWithComma( firstOdo.odometer )
+                view.odometerStatementText.text = "Odometer : $firstOdoDistance km updated as of ${firstOdo.date}"
             }
 
             //db.getUserBike { setBikeValues(it) }
