@@ -42,6 +42,7 @@
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:visibility="gone"
                     android:id="@+id/topHeaderRefuelLayout"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="10dp"
