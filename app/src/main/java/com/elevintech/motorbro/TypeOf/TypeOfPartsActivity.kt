@@ -30,7 +30,7 @@ import kotlinx.android.synthetic.main.row_type_of_parts.view.*
 class TypeOfPartsActivity : AppCompatActivity() {
 
     private lateinit var viewAdapter : RecyclerView.Adapter<*>
-    val totalList = ArrayList<checkboxObj>()
+    val totalList = ArrayList<CheckboxObj>()
     //private val partsListAdapter = MyAdapter<MyAdapter.MyViewHolder>()
 
     var isFromAddParts = false
@@ -73,7 +73,7 @@ class TypeOfPartsActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val totalArrayList = ArrayList<checkboxObj>(filteredList)
+            val totalArrayList = ArrayList<CheckboxObj>(filteredList)
             totalList.clear()
             totalList.addAll(totalArrayList)
             viewAdapter.notifyDataSetChanged()
@@ -119,52 +119,39 @@ class TypeOfPartsActivity : AppCompatActivity() {
         displayParts()
     }
 
+    private fun checkIfPartIsActive(deletedParts: List<String>, part: String):Boolean{
+
+        // isActive == not in the deleted parts list
+        var isActive = true
+
+        for (deletedPart in deletedParts){
+
+            if (deletedPart.trim().toLowerCase() == part.trim().toLowerCase() ){
+                isActive = false
+            }
+
+        }
+
+        return isActive
+    }
 
     private fun displayParts() {
-        // Parts Created By User
         totalList.clear()
         viewAdapter.notifyDataSetChanged()
 
         MotoroBroDatabase().getUser {
-            // Default Parts
-            // Put this after getting the users custom part, para sabay silang magdisplay sa recyclerview
+
             val deletedParts = it.deletedParts
+            val allParts = Constants.TYPE_OF.parts + it.customParts // combine the default parts and custom parts into one list
+            val allPartsWithoutDeletedParts = allParts.filter { checkIfPartIsActive(deletedParts, it) } // remove the deleted parts from the list
+            val allPartsWithoutDeletedPartsSorted = allPartsWithoutDeletedParts.sortedBy { it } // arrange alphabetically
 
-            for (part in Constants.TYPE_OF.parts) {
-                var isIncluded = false
-                for (deletedPart in deletedParts) {
-                    if (part == deletedPart.trim()) {
-                        println("HI THER")
-                        println("$deletedPart and $part")
-                        isIncluded = true
-                        break
-                    }
-                }
-                if (!isIncluded) {
-                    val part = checkboxObj(part, false)
-                    totalList.add(part)
-                }
+            for (part in allPartsWithoutDeletedPartsSorted) {
+                val properlyCapitalized = (part.toLowerCase()).capitalize().trim()
+                val part = CheckboxObj(properlyCapitalized, false)
+                totalList.add(part)
             }
 
-            for (customPart in it.customParts) {
-                val properlyCapitalized = (customPart.toLowerCase()).capitalize()
-                //totalList.add(properlyCapitalized)
-                var isIncluded = false
-                for (deletedPart in deletedParts) {
-
-                    if (properlyCapitalized == deletedPart.trim()) {
-                        println("HI THER")
-                        println("$deletedPart and $properlyCapitalized")
-                        isIncluded = true
-                        break
-                    }
-                }
-
-                if (!isIncluded) {
-                    val part = checkboxObj(properlyCapitalized, false)
-                    totalList.add(part)
-                }
-            }
 
             viewAdapter.notifyDataSetChanged()
 
@@ -172,33 +159,7 @@ class TypeOfPartsActivity : AppCompatActivity() {
 
     }
 
-
-
-//    inner class PartsItem(val part: String): Item<ViewHolder>() {
-//
-//
-//        override fun bind(viewHolder: ViewHolder, position: Int) {
-//
-//            viewHolder.itemView.parts_name.text = part
-//            viewHolder.itemView.setOnClickListener {
-//                val returnIntent = Intent()
-//                returnIntent.putExtra("selectedPart", part)
-//                setResult(Activity.RESULT_OK, returnIntent)
-//                finish()
-//            }
-//
-//            viewHolder.itemView.removeItem.setOnClickListener {
-//
-//            }
-//        }
-//
-//        override fun getLayout(): Int {
-//
-//            return com.elevintech.myapplication.R.layout.row_type_of_parts
-//        }
-
-
-    inner class MyAdapter(private val myDataset: ArrayList<checkboxObj>) :
+    inner class MyAdapter(private val myDataset: ArrayList<CheckboxObj>) :
         RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
         private var removedPosition: Int = 0
@@ -230,18 +191,6 @@ class TypeOfPartsActivity : AppCompatActivity() {
             val part = myDataset[position]
             viewHolder.itemView.parts_name.text = part.name
 
-//            viewHolder.itemView.setOnClickListener {
-//
-//                val returnIntent = Intent()
-//                returnIntent.putExtra("selectedPart", part)
-//                setResult(Activity.RESULT_OK, returnIntent)
-//                finish()
-//            }
-
-//            viewHolder.itemView.removeItem.setOnClickListener {
-//                removeItem(viewHolder.adapterPosition, viewHolder)
-//            }
-
             viewHolder.itemView.checkbox.isChecked = part.isChecked
 
             viewHolder.itemView.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -263,23 +212,8 @@ class TypeOfPartsActivity : AppCompatActivity() {
         // Return the size of your dataset (invoked by the layout manager)
         override fun getItemCount() = myDataset.size
 
-//        fun removeItem(position: Int, viewHolder: RecyclerView.ViewHolder) {
-//            removedItem = myDataset[position]
-//            removedPosition = position
-//
-//            myDataset.removeAt(position)
-//            notifyItemRemoved(position)
-//
-//            val db = MotoroBroDatabase()
-//            db.saveDeletedParts(removedItem) {
-//                println("deleted $removedItem")
-//            }
-//
-//            Snackbar.make(viewHolder.itemView, "$removedItem removed", Snackbar.LENGTH_LONG).show()
-//            // Add the delete to the users deleted parts
-//        }
     }
 
 }
 
-class checkboxObj(var name: String = "", var isChecked: Boolean = false)
+class CheckboxObj(var name: String = "", var isChecked: Boolean = false)
