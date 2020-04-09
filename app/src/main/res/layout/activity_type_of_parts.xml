@@ -68,7 +68,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add new parts"
+                android:text="Add new part"
                 android:layout_gravity="center"
                 android:textSize="10sp"
                 android:textColor="@color/white"
