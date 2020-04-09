@@ -141,10 +141,13 @@ class TypeOfPartsActivity : AppCompatActivity() {
 
         MotoroBroDatabase().getUser {
 
+            val defaultParts = Constants.TYPE_OF.parts
+            val customParts = it.customParts
             val deletedParts = it.deletedParts
-            val allParts = Constants.TYPE_OF.parts + it.customParts // combine the default parts and custom parts into one list
-            val allPartsWithoutDeletedParts = allParts.filter { checkIfPartIsActive(deletedParts, it) } // remove the deleted parts from the list
-            val allPartsWithoutDeletedPartsSorted = allPartsWithoutDeletedParts.sortedBy { it } // arrange alphabetically
+
+            val allParts = defaultParts + customParts
+            val allPartsWithoutDeletedParts = allParts.filter { checkIfPartIsActive(deletedParts, it) }
+            val allPartsWithoutDeletedPartsSorted = allPartsWithoutDeletedParts.sortedBy { it }
 
             for (part in allPartsWithoutDeletedPartsSorted) {
                 val properlyCapitalized = (part.toLowerCase()).capitalize().trim()
