@@ -53,7 +53,7 @@ class TypeOfFuelActivity : AppCompatActivity() {
             var filteredList = totalList.filter { !it.isChecked }
 
             if (listToDelete.isEmpty()) {
-                Snackbar.make(addItemsButton, "Please at least one parts / services", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(addItemsButton, "Please pick at least one fuel type", Snackbar.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
