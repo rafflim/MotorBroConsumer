@@ -69,7 +69,7 @@ class TypeOfPartsActivity : AppCompatActivity() {
             var filteredList = totalList.filter { !it.isChecked }
 
             if (listToDelete.isEmpty()) {
-                Snackbar.make(addItemsButton, "Please at least one parts / services", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(addItemsButton, "Please pick at least one parts / services", Snackbar.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
@@ -91,7 +91,7 @@ class TypeOfPartsActivity : AppCompatActivity() {
             val listToAdd = totalList.filter { it.isChecked }
 
             if (listToAdd.isEmpty()) {
-                Snackbar.make(addItemsButton, "Please at least one parts / services", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(addItemsButton, "Please pick at least one parts / services", Snackbar.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
@@ -242,17 +242,21 @@ class TypeOfPartsActivity : AppCompatActivity() {
 //                removeItem(viewHolder.adapterPosition, viewHolder)
 //            }
 
-            if (part.isChecked) {
-                viewHolder.itemView.checkbox.isChecked = true
-            } else {
-                viewHolder.itemView.checkbox.isChecked = false
-            }
-
+            viewHolder.itemView.checkbox.isChecked = part.isChecked
 
             viewHolder.itemView.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
-                if (isChecked) {
-                    part.isChecked = true
+
+                part.isChecked = isChecked
+
+                val partsChecked = myDataset.filter { it.isChecked }
+                if (partsChecked.count() == 0){
+                    addItemsButton.alpha = 0.65f
+                    deleteItemsButton.alpha = 0.65f
+                } else {
+                    addItemsButton.alpha = 1f
+                    deleteItemsButton.alpha = 1f
                 }
+
             }
         }
 

@@ -32,4 +32,10 @@
         <item name="layout_editor_absoluteX">16dp</item>
     </style>
 
+    <style name="disabled">
+        <item name="android:alpha">0.65</item>
+    </style>
+
+
+
 </resources>
