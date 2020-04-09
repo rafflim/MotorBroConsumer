@@ -153,6 +153,7 @@
     </LinearLayout>
 
     <Button
+        android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="60dp"
         android:layout_centerHorizontal="true"
