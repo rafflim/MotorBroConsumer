@@ -54,7 +54,7 @@ class TypeOfBrandActivity : AppCompatActivity() {
             var filteredList = totalList.filter { !it.isChecked }
 
             if (listToDelete.isEmpty()) {
-                Snackbar.make(addItemsButton, "Please at least one parts / services", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(addItemsButton, "Please pick at least one custom brand", Snackbar.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
