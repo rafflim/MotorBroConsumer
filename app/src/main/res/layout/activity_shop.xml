@@ -45,10 +45,17 @@
             app:layout_constraintEnd_toEndOf="@+id/toolbar"
             app:layout_constraintStart_toStartOf="@+id/toolbar" />
 
+        <ImageView
+            android:id="@+id/motorBroMainImage"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/motorbroinicon" />
 
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -108,6 +115,7 @@ Go ahead start a conversation!"
         android:orientation="horizontal">
 
         <EditText
+            android:layout_gravity="center_vertical"
             android:layout_margin="5dp"
             android:layout_weight="5"
             android:background="@drawable/bordered_edit_text"
@@ -122,12 +130,18 @@ Go ahead start a conversation!"
             android:hint="Search by store name or area"/>
 
         <Button
-            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:layout_margin="5dp"
+            android:layout_gravity="center_vertical"
             android:id="@+id/searchButton"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:background="#FFFFFF"
-            android:text="GO" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_rounded_blue"
+            android:text="@android:string/search_go" />
 
     </LinearLayout>
 
