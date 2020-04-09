@@ -18,12 +18,11 @@ import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_type_of_fuel.*
 import kotlinx.android.synthetic.main.row_fuel.view.*
 import kotlinx.android.synthetic.main.row_fuel.view.checkbox
-import kotlinx.android.synthetic.main.row_type_of_brand.view.*
 
 class TypeOfFuelActivity : AppCompatActivity() {
 
     private lateinit var viewAdapter : RecyclerView.Adapter<*>
-    val totalList = ArrayList<checkboxObj>()
+    val totalList = ArrayList<CheckboxObj>()
     private var isFromAddRefuel = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,7 +57,7 @@ class TypeOfFuelActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val totalArrayList = ArrayList<checkboxObj>(filteredList)
+            val totalArrayList = ArrayList<CheckboxObj>(filteredList)
             totalList.clear()
             totalList.addAll(totalArrayList)
             viewAdapter.notifyDataSetChanged()
@@ -77,91 +76,45 @@ class TypeOfFuelActivity : AppCompatActivity() {
         displayFuel()
     }
 
+    private fun checkIfFuelIsActive(deletedFuels: List<String>, fuel: String):Boolean{
+
+        // isActive == not in the deleted parts list
+        var isActive = true
+
+        for (deletedFuel in deletedFuels){
+
+            if (deletedFuel.trim().toLowerCase() == fuel.trim().toLowerCase() ){
+                isActive = false
+            }
+
+        }
+
+        return isActive
+    }
 
     private fun displayFuel() {
         totalList.clear()
         viewAdapter.notifyDataSetChanged()
         // fuel Created By User
         MotoroBroDatabase().getUser {
-            // Default fuel
-            // Put this after getting the users custom part, para sabay silang magdisplay sa recyclerview
-//            for (part in Constants.TYPE_OF.fuel) {
-//                fuelListAdapter.add(fuelItem(part))
-//            }
-//
-//            for (customPart in it.customFuel) {
-//                var properlyCapitalized = (customPart.toLowerCase()).capitalize()
-//                fuelListAdapter.add(fuelItem(properlyCapitalized))
-//            }
+            val defaultFuels = Constants.TYPE_OF.fuel
+            val customFuels = it.customFuel
+            val deletedFuels = it.deletedFuels
 
-            val deletedParts = it.deletedFuels
+            val allFuels = defaultFuels + customFuels
+            val allFuelWithoutDeletedFuel = allFuels.filter { checkIfFuelIsActive(deletedFuels, it) }
 
-            for (part in Constants.TYPE_OF.fuel) {
-                var isIncluded = false
-                for (deletedPart in deletedParts) {
-                    if (part == deletedPart.trim()) {
-                        println("HI THER")
-                        println("$deletedPart and $part")
-                        isIncluded = true
-                        break
-                    }
-                }
-                if (!isIncluded) {
-                    val part = checkboxObj(part, false)
-                    totalList.add(part)
-                    //totalList.add(part)
-                }
+            for (Fuel in allFuelWithoutDeletedFuel) {
+                val Fuel = CheckboxObj(Fuel, false)
+                totalList.add(Fuel)
             }
 
-            for (customPart in it.customFuel) {
-                val properlyCapitalized = (customPart.toLowerCase()).capitalize()
-                //totalList.add(properlyCapitalized)
-                var isIncluded = false
-                for (deletedPart in deletedParts) {
-
-                    if (properlyCapitalized == deletedPart.trim()) {
-                        println("HI THER")
-                        println("$deletedPart and $properlyCapitalized")
-                        isIncluded = true
-                        break
-                    }
-                }
-
-                if (!isIncluded) {
-                    val part = checkboxObj(properlyCapitalized, false)
-                    totalList.add(part)
-                }
-
-                    //totalList.add(properlyCapitalized)
-
-            }
             viewAdapter.notifyDataSetChanged()
         }
     }
 
 
-//    inner class fuelItem(val part: String): Item<ViewHolder>() {
-//
-//
-//        override fun bind(viewHolder: ViewHolder, position: Int) {
-//
-//            viewHolder.itemView.fuel_name.text = part
-//            viewHolder.itemView.setOnClickListener {
-//                val returnIntent = Intent()
-//                returnIntent.putExtra("selectedFuel", part)
-//                setResult(Activity.RESULT_OK, returnIntent)
-//                finish()
-//            }
-//        }
-//
-//        override fun getLayout(): Int {
-//
-//            return R.layout.row_fuel
-//        }
-//    }
-
-
-    inner class FuelAdapter(private val myDataset: ArrayList<checkboxObj>) :
+    inner class FuelAdapter(private val myDataset: ArrayList<CheckboxObj>) :
         RecyclerView.Adapter<FuelAdapter.MyViewHolder>() {
 
         private var removedPosition: Int = 0
@@ -199,17 +152,21 @@ class TypeOfFuelActivity : AppCompatActivity() {
                 finish()
             }
 
-            if (fuel.isChecked) {
-                viewHolder.itemView.checkbox.isChecked = true
-            } else {
-                viewHolder.itemView.checkbox.isChecked = false
-            }
-
+            viewHolder.itemView.checkbox.isChecked = fuel.isChecked
 
             viewHolder.itemView.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
-                if (isChecked) {
-                    fuel.isChecked = true
+
+                fuel.isChecked = isChecked
+
+                val partsChecked = myDataset.filter { it.isChecked }
+                if (partsChecked.count() == 0){
+                    addItemsButton.alpha = 0.65f
+                    deleteItemsButton.alpha = 0.65f
+                } else {
+                    addItemsButton.alpha = 1f
+                    deleteItemsButton.alpha = 1f
                 }
+
             }
 
 //            viewHolder.itemView.removeItem.setOnClickListener {

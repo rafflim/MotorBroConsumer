@@ -45,9 +45,12 @@ class Constants {
                             "Motmot",
                             "ND Rubber",
                             "Cyclefix")
+
+        val fuel = listOf("Unleaded", "Premium")
+
         val reminders = listOf("Reminder Default 1", "Reminder Default 2")
         val history = listOf("Income", "Service", "Expenses", "Refueling")
-        val fuel = listOf("CNG", "Diesel", "Electric", "Ethanol", "Gas Midgrade", "Gas Premium", "Gasoline", "LPG")
+
     }
 
 
