@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.row_type_of_parts.view.*
 class TypeOfBrandActivity : AppCompatActivity() {
 
     private lateinit var viewAdapter : RecyclerView.Adapter<*>
-    private val totalList = ArrayList<checkboxObj>()
+    private val totalList = ArrayList<CheckboxObj>()
     private var isFromAddParts = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,7 +58,7 @@ class TypeOfBrandActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val totalArrayList = ArrayList<checkboxObj>(filteredList)
+            val totalArrayList = ArrayList<CheckboxObj>(filteredList)
             totalList.clear()
             totalList.addAll(totalArrayList)
             viewAdapter.notifyDataSetChanged()
@@ -77,65 +77,45 @@ class TypeOfBrandActivity : AppCompatActivity() {
         displayParts()
     }
 
+    private fun checkIfBrandIsActive(deletedBrands: List<String>, brand: String):Boolean{
+
+        // isActive == not in the deleted parts list
+        var isActive = true
+
+        for (deletedBrand in deletedBrands){
+
+            if (deletedBrand.trim().toLowerCase() == brand.trim().toLowerCase() ){
+                isActive = false
+            }
+
+        }
+
+        return isActive
+    }
+
     private fun displayParts() {
-        // Parts Created By User
 
         totalList.clear()
         viewAdapter.notifyDataSetChanged()
         MotoroBroDatabase().getUser{
-            // Default Parts
-            // Put this after getting the users custom part, para sabay silang magdisplay sa recyclerview
-            val deletedParts = it.deletedBrands
 
-            for (part in Constants.TYPE_OF.brands) {
-                var isIncluded = false
-                for (deletedPart in deletedParts) {
-                    if (part == deletedPart.trim()) {
-                        println("HI THER")
-                        println("$deletedPart and $part")
-                        isIncluded = true
-                        break
-                    }
-                }
-                if (!isIncluded) {
-                    val part = checkboxObj(part, false)
-                    totalList.add(part)
+            val defaultBrands = Constants.TYPE_OF.brands
+            val customBrands = it.customBrands
+            val deletedBrands = it.deletedBrands
 
-                    //totalList.add(part)
-                }
-            }
+            val allBrands = defaultBrands + customBrands
+            val allBrandWithoutDeletedBrand = allBrands.filter { checkIfBrandIsActive(deletedBrands, it) }
 
-            for (customPart in it.customBrands) {
-                val properlyCapitalized = (customPart.toLowerCase()).capitalize()
-                //totalList.add(properlyCapitalized)
-                var isIncluded = false
-                for (deletedPart in deletedParts) {
-
-                    if (properlyCapitalized == deletedPart.trim()) {
-                        println("HI THER")
-                        println("$deletedPart and $properlyCapitalized")
-                        isIncluded = true
-                        break
-                    }
-                }
-
-                if (!isIncluded) {
-                    //totalList.add(properlyCapitalized)
-                    val part = checkboxObj(properlyCapitalized, false)
-                    totalList.add(part)}
+            for (brand in allBrandWithoutDeletedBrand) {
+                val brand = CheckboxObj(brand, false)
+                totalList.add(brand)
             }
 
             viewAdapter.notifyDataSetChanged()
-//
-//            for (part in totalList) {
-//                //partsListAdapter.add(PartsItem(part))
-//            }
-
-            //viewAdapter = MyAdapter(totalList)
         }
     }
 
-    inner class BrandAdapter(private val myDataset: ArrayList<checkboxObj>) :
+    inner class BrandAdapter(private val myDataset: ArrayList<CheckboxObj>) :
         RecyclerView.Adapter<BrandAdapter.MyViewHolder>() {
 
         private var removedPosition: Int = 0
@@ -167,36 +147,41 @@ class TypeOfBrandActivity : AppCompatActivity() {
             val part = myDataset[position]
             viewHolder.itemView.parts_name.text = part.name
 
-
-                viewHolder.itemView.setOnClickListener {
-                    if (isFromAddParts) {
-                        val returnIntent = Intent()
-                        returnIntent.putExtra("selectedBrand", part.name)
-                        setResult(Activity.RESULT_OK, returnIntent)
-                        finish()
-                    }
-
+            viewHolder.itemView.setOnClickListener {
+                if (isFromAddParts) {
+                    val returnIntent = Intent()
+                    returnIntent.putExtra("selectedBrand", part.name)
+                    setResult(Activity.RESULT_OK, returnIntent)
+                    finish()
                 }
 
-
-
-            if (part.isChecked) {
-                viewHolder.itemView.checkbox.isChecked = true
-            } else {
-                viewHolder.itemView.checkbox.isChecked = false
             }
 
+            viewHolder.itemView.checkbox.isChecked = part.isChecked
 
             viewHolder.itemView.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
-                if (isChecked) {
-                    part.isChecked = true
+
+                part.isChecked = isChecked
+
+                val partsChecked = myDataset.filter { it.isChecked }
+                if (partsChecked.count() == 0){
+                    addItemsButton.alpha = 0.65f
+                    deleteItemsButton.alpha = 0.65f
+                } else {
+                    addItemsButton.alpha = 1f
+                    deleteItemsButton.alpha = 1f
                 }
+
             }
 
+            // DEFAULT BRANDS CANNOT BE DELETED
+            val defaultBrands: List<String> = Constants.TYPE_OF.brands
 
-//            viewHolder.itemView.removeItem.setOnClickListener {
-//                removeItem(viewHolder.adapterPosition, viewHolder)
-//            }
+            // HIDE CHECKBOX IF IT IS ONE
+            if ( defaultBrands.contains(part.name) ){
+                viewHolder.itemView.checkbox.visibility = View.GONE
+            }
+
         }
 
         // Return the size of your dataset (invoked by the layout manager)

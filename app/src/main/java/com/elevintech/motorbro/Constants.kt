@@ -31,7 +31,20 @@ class Constants {
                             "Axle",
                             "Horn",
                             "Light")
-        val brands = listOf("Yamaha", "Mitsubishi", "Honda", "Kawasaki", "Suzuki", "KTM", "Harley-Davidson", "Ducati", "Skygo", "Kymco", "MV Agusta", "SYM Motors", "TVS Motors", "Keeway", "Benelli")
+
+        val brands = listOf("GPC",
+                            "Osaki",
+                            "Samurai",
+                            "Comstar",
+                            "E-Power",
+                            "Owens",
+                            "TSR",
+                            "Tiger",
+                            "Keyster",
+                            "OKK",
+                            "Motmot",
+                            "ND Rubber",
+                            "Cyclefix")
         val reminders = listOf("Reminder Default 1", "Reminder Default 2")
         val history = listOf("Income", "Service", "Expenses", "Refueling")
         val fuel = listOf("CNG", "Diesel", "Electric", "Ethanol", "Gas Midgrade", "Gas Premium", "Gasoline", "LPG")
