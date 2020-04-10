@@ -14,15 +14,19 @@ import java.util.*
 
 class ScheduledNotification {
 
-    var channelId = "com.elevintech.motorbro"
+    /* Creation of notification channel moved inside DashboardActivity
+    *  because nag-eerror  sya pag hindi pa na-create yung activity
+    * */
 
-    // Values displayed on phone's system settings
-    val notificationName = "Motor Bro"
-    val notificationDescription = "Odometer Update"
-
-    // Values displayed by the notification when it pops up on the phone's notification tray
-    val notificationTitle = "Odometer Change"
-    val notificationText = "Any odometer updates this day?"
+//    var channelId = "com.elevintech.motorbro"
+//
+//    // Values displayed on phone's system settings
+//    val notificationName = "Daily Odometer Update"
+//    val notificationDescription = "Daily notification reminder for any odometer changes"
+//
+//    // Values displayed by the notification when it pops up on the phone's notification tray
+//    val notificationTitle = "Odometer Update"
+//    val notificationText = "Wassup bro! Update odometer?"
 
     fun startAlarm(context: Context){
 //        println("Alarm Started")

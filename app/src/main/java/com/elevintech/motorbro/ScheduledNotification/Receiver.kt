@@ -15,8 +15,8 @@ class Receiver: BroadcastReceiver(){
     var channelId = "com.elevintech.motorbro"
 
     // Values displayed by the notification when it pops up on the phone's notification tray
-    val notificationTitle = "Odometer Change"
-    val notificationText = "Goodevening! any updates for your odometer?"
+    val notificationTitle = "Odometer Update"
+    val notificationText = "Wassup bro! Update odometer?"
 
     override fun onReceive(p0: Context?, p1: Intent?) {
 
@@ -33,7 +33,6 @@ class Receiver: BroadcastReceiver(){
             .setPriority(Notification.PRIORITY_MAX) //Important for heads-up notification
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
-            .setOngoing(true)
 
         val manager = p0!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 

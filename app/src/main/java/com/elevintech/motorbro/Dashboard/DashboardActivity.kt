@@ -78,18 +78,18 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
         AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_MONITOR )
         ScheduledNotification().startAlarm(this)
+        CloudFunctions().checkRegistrationToken()
+
         createNotificationChannel()
+
     }
 
     var channelId = "com.elevintech.motorbro"
 
     // Values displayed on phone's system settings
-    val notificationName = "Motor Bro"
-    val notificationDescription = "Odometer Update"
+    val notificationName = "Daily Odometer Update"
+    val notificationDescription = "Daily notification reminder for any odometer changes"
 
-    // Values displayed by the notification when it pops up on the phone's notification tray
-    val notificationTitle = "Odometer Change"
-    val notificationText = "Any odometer updates this day?"
     // Create the NotificationChannel
     // because phones with API 26 and above requires it to show notifications
     private fun createNotificationChannel() {

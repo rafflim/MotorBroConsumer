@@ -1,5 +1,6 @@
 package com.elevintech.motorbro.CloudFunctions
 
+import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.iid.FirebaseInstanceId
@@ -27,27 +28,19 @@ class CloudFunctions {
             })
     }
 
-    fun test(){
+    fun checkRegistrationToken(){
 
-        val data = hashMapOf(
-            "test" to "data"
-        )
+        retrieveCurrentRegistrationToken{ currentToken ->
 
-        cloudFunction
-            .getHttpsCallable("helloWorld")
-            .call(data)
-            .continueWith { task ->
+            MotoroBroDatabase().getUserToken { savedToken ->
 
-            }
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    println("addOnCompleteListener isSuccessful")
-                    println("result is: ${it.result}")
+                if (savedToken != currentToken){
+                    MotoroBroDatabase().updateFcmToken(currentToken)
                 }
+
             }
-            .addOnFailureListener {
-                println("failure: ${it.localizedMessage}")
-            }
+
+        }
     }
 
 }
