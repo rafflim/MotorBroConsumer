@@ -927,5 +927,38 @@ class MotoroBroDatabase {
 
     }
 
+    fun updateBikeById(bikeId: String, bike: BikeInfo, callback: () -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val bikeRef = db.collection("bikes").document(bikeId)
+
+        bikeRef.set(bike)
+            .addOnSuccessListener { callback() }
+            .addOnFailureListener { e->
+                println("Error updating bike: $e")
+                callback()
+            }
+
+    }
+
+    fun getBikeById(bikeId: String, callback: (BikeInfo) -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val docRef = db.collection("bikes").document(bikeId)
+
+        docRef.get().addOnSuccessListener { documentSnapshot ->
+
+            var bike = BikeInfo()
+
+            if (documentSnapshot != null && documentSnapshot.exists()) {
+                bike = documentSnapshot.toObject(BikeInfo::class.java)!!
+
+            }
+
+            callback( bike )
+        }
+
+    }
+
 
 }

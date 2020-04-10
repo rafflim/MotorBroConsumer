@@ -52,15 +52,23 @@
             app:layout_constraintEnd_toEndOf="@+id/toolbar"
             app:layout_constraintStart_toStartOf="@+id/toolbar" />
 
+        <ImageButton
+            android:layout_marginEnd="10dp"
+            android:background="#064283"
+            android:layout_gravity="end"
+            android:id="@+id/editButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@android:drawable/ic_menu_edit" />
+
     </androidx.appcompat.widget.Toolbar>
 
     <ImageView
         android:id="@+id/bikeImageView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:src="@drawable/motorcycle_demo_1"
         android:background="#646464"
-        android:scaleType="centerInside"
+        android:scaleType="fitCenter"
         />
 
     <TextView
@@ -210,10 +218,6 @@
             android:textStyle="bold" />
 
     </LinearLayout>
-
-
-
-
 
 
 
