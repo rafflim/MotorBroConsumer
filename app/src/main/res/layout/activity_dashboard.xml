@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/motorBroMainImage"
-            android:layout_width="80dp"
-            android:layout_height="75dp"
+            android:layout_width="65dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
             app:srcCompat="@drawable/motorbroinicon" />
 

@@ -166,8 +166,8 @@
                 >
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:tint="#364f6b"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/odometer_icon"
@@ -223,8 +223,8 @@
                 >
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:tint="#364f6b"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/calendar_small_icon"
@@ -271,8 +271,8 @@
                 >
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:tint="#364f6b"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/wrenchicon"
@@ -315,8 +315,8 @@
                 >
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:tint="#364f6b"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/brand_icon"
@@ -363,8 +363,8 @@
                 >
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:tint="#364f6b"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/cash_new_small_icon"
@@ -423,8 +423,8 @@
                 >
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
 
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/pencil_new_icon"

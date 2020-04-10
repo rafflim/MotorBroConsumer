@@ -18,6 +18,7 @@ import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_type_of_fuel.*
 import kotlinx.android.synthetic.main.row_fuel.view.*
 import kotlinx.android.synthetic.main.row_fuel.view.checkbox
+import kotlinx.android.synthetic.main.row_type_of_parts.view.*
 
 class TypeOfFuelActivity : AppCompatActivity() {
 
@@ -174,6 +175,13 @@ class TypeOfFuelActivity : AppCompatActivity() {
             }
 
             viewHolder.itemView.checkbox.isChecked = fuel.isChecked
+
+            // MARK: wag to idelete bro kasi pag tinanggal to pag iniscroll down ung recycler view nawawala ung check.
+            if (fuel.isChecked) {
+                viewHolder.itemView.checkbox.isChecked = true
+            } else {
+                viewHolder.itemView.checkbox.isChecked = false
+            }
 
             viewHolder.itemView.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
 

@@ -927,6 +927,33 @@ class MotoroBroDatabase {
 
     }
 
+    fun getShopProducts(shopId: String, callback: (MutableList<ShopProduct>) -> Unit) {
+
+        var list = mutableListOf<ShopProduct>()
+        val db = FirebaseFirestore.getInstance()
+        db.collection("shops")
+            .document(shopId)
+            .collection("products")
+            .get()
+            .addOnSuccessListener {
+
+                println()
+                for (productDocument in it){
+                    val product = productDocument.toObject(ShopProduct::class.java)
+                    list.add(product)
+                    println("product: " + product.name)
+                }
+
+                callback(list)
+
+                println("addOnSuccessListener")
+            }
+            .addOnFailureListener {
+                    e -> println("FailureListener: $e")
+                callback(list)
+            }
+
+    }
     fun updateBikeById(bikeId: String, bike: BikeInfo, callback: () -> Unit) {
 
         val db = FirebaseFirestore.getInstance()

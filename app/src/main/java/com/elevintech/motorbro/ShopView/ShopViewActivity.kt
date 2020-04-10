@@ -77,5 +77,24 @@ class ShopViewActivity : AppCompatActivity() {
                 favoriteYesIcon.visibility = View.VISIBLE
             }
         }
+
+        MotoroBroDatabase().getShopProducts(shop.shopId) {
+
+            var productsVar = ""
+            for (product in it) {
+                if (productsVar.isEmpty()) {
+                    productsVar = product.brand + " " + product.type
+                } else {
+                    productsVar += ", " + product.brand + " " + product.type
+                }
+            }
+
+            if (productsVar != "") {
+                listOfPartsText.text = productsVar
+            } else {
+                listOfPartsText.text = "This Shop has no parts / services."
+            }
+
+        }
     }
 }

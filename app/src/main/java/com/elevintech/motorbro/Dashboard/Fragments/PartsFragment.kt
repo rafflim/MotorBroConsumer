@@ -59,7 +59,6 @@ class PartsFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-
         partsListAdapter.clear()
 
     }
@@ -98,8 +97,6 @@ class PartsFragment : Fragment() {
             val bikePartsList = it
             if(bikePartsList.isNotEmpty()) {
 
-
-
                 if (noDataLayout != null) {
                     noDataLayout.visibility = GONE
                 }
@@ -110,6 +107,7 @@ class PartsFragment : Fragment() {
                 }
             }
 
+            bikePartsList.reversed()
             for (bikePart in bikePartsList){
                 println("bike23 " + bikePart)
                 partsListAdapter.add(partsItem(bikePart))

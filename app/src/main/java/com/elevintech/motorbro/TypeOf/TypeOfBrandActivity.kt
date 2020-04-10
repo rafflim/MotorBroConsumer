@@ -14,6 +14,7 @@ import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.myapplication.R
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_type_of_brand.*
+import kotlinx.android.synthetic.main.row_fuel.view.*
 import kotlinx.android.synthetic.main.row_type_of_brand.view.*
 import kotlinx.android.synthetic.main.row_type_of_brand.view.checkbox
 import kotlinx.android.synthetic.main.row_type_of_brand.view.parts_name
@@ -181,6 +182,14 @@ class TypeOfBrandActivity : AppCompatActivity() {
             }
 
             viewHolder.itemView.checkbox.isChecked = part.isChecked
+
+            // MARK: wag to idelete bro kasi pag tinanggal to pag iniscroll down ung recycler view nawawala ung check.
+            if (part.isChecked) {
+                viewHolder.itemView.checkbox.isChecked = true
+            } else {
+                viewHolder.itemView.checkbox.isChecked = false
+            }
+
 
             viewHolder.itemView.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
 
