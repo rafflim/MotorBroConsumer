@@ -3,6 +3,7 @@ package com.elevintech.motorbro.Garage
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -67,10 +68,10 @@ class GarageActivity : AppCompatActivity() {
         reycler_view.layoutManager = LinearLayoutManager(this)
 
         var adapter = GroupAdapter<ViewHolder>()
+        val allActiveBikes = bikeList.filter { !it.deleted }
 
-        for (bike in bikeList){
-            if (!bike.deleted)
-                adapter.add(BikeItem(bike))
+        for (bike in allActiveBikes){
+            adapter.add(BikeItem(bike, allActiveBikes.count()))
         }
 
         reycler_view.adapter = adapter
@@ -99,7 +100,7 @@ class GarageActivity : AppCompatActivity() {
 
     }
 
-    inner class BikeItem(val bike: BikeInfo): Item<ViewHolder>() {
+    inner class BikeItem(val bike: BikeInfo, val bikeCount: Int): Item<ViewHolder>() {
         override fun bind(viewHolder: ViewHolder, position: Int) {
 
             Glide.with(this@GarageActivity).load(bike.imageUrl).into(viewHolder.itemView.bikeImageView)
@@ -121,6 +122,10 @@ class GarageActivity : AppCompatActivity() {
 
             }
 
+            // disable delete if only one bike is the garage
+            println("bikeCount: $bikeCount")
+            if (bikeCount == 1)
+                viewHolder.itemView.deleteButton.visibility = View.GONE
 
 
         }
