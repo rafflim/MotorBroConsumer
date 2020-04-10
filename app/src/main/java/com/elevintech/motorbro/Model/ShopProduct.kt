@@ -1,19 +1,16 @@
 package com.elevintech.motorbro.Model
 
-class ShopProduct {
-    var userId: String = ""
-    var productId: Int = 0
-    var mainImage: String = ""
-    var title: String = ""
-    var price: Double = 0.0
-
-
-    constructor(userId: String, productId: Int, mainImage: String, title: String, price: Double ) {
-        this.userId = userId
-        this.productId = productId
-        this.mainImage = mainImage
-        this.title = title
-        this.price = price
-
-    }
-}
+class ShopProduct (
+    var id: String = "",
+    var name: String = "",
+    var description: String = "",
+    var price: String = "",
+    var imageUrl: String = "",
+    var type: String = "", // either a part or service
+    var brand: String = "",
+    var shopId: String = "",
+    var dateCreated: String ="",
+    var odometer: Double = 0.0,
+    var isShopProduct: Boolean = true,
+    var customerId: String = ""
+    )

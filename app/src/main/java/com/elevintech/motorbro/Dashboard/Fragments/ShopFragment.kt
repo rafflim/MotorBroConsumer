@@ -42,17 +42,17 @@ class ShopFragment : Fragment() {
         shopRecyclerView.layoutManager = GridLayoutManager(activity, 2)
 
 
-        val product1 = ShopProduct("", 0, "", "Posh New Brakes", 2000.0)
-        val product2 = ShopProduct("", 0, "", "Posh New Helmet", 2000.0)
-        val product3 = ShopProduct("", 0, "", "Posh New Jacket", 2000.0)
-        val product4 = ShopProduct("", 0, "", "Posh New Brakes", 2000.0)
-
+//        val product1 = ShopProduct("", 0, "", "Posh New Brakes", 2000.0)
+//        val product2 = ShopProduct("", 0, "", "Posh New Helmet", 2000.0)
+//        val product3 = ShopProduct("", 0, "", "Posh New Jacket", 2000.0)
+//        val product4 = ShopProduct("", 0, "", "Posh New Brakes", 2000.0)
+//
         val shopAdapter = GroupAdapter<ViewHolder>()
-
-        shopAdapter.add(shopItem(product1))
-        shopAdapter.add(shopItem(product2))
-        shopAdapter.add(shopItem(product3))
-        shopAdapter.add(shopItem(product4))
+//
+//        shopAdapter.add(shopItem(product1))
+//        shopAdapter.add(shopItem(product2))
+//        shopAdapter.add(shopItem(product3))
+//        shopAdapter.add(shopItem(product4))
 
         shopRecyclerView.adapter = shopAdapter
 
