@@ -1046,5 +1046,16 @@ class MotoroBroDatabase {
 
     }
 
+    fun updateBikeOdometer(selectedBike: BikeInfo, odometerValue: Double, callback: () -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val bikeRef = db.collection("bikes").document(selectedBike.bikeId)
+
+        bikeRef.update("odometer", "$odometerValue")
+            .addOnSuccessListener { callback() }
+            .addOnFailureListener { e -> println("error updating bike odometer: $e") }
+
+    }
+
 
 }
