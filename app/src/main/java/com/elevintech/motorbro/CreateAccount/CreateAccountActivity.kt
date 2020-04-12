@@ -135,7 +135,7 @@ class CreateAccountActivity : AppCompatActivity() {
 
     }
 
-    fun registerUser() {
+    private fun registerUser() {
 
         var gender: String
         if (maleGenderLayoutIsClicked) {
@@ -179,16 +179,9 @@ class CreateAccountActivity : AppCompatActivity() {
                                     startActivity(intent)
 
                                     finish()
-
                                 }
-
                             }
-
-
-
                     }
-
-
                 } else {
                     Toast.makeText(baseContext, "${task.exception?.localizedMessage}", Toast.LENGTH_SHORT).show()
                     progressDialog.dismiss()
