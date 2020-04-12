@@ -15,6 +15,7 @@ import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.MotorcycleEditGeneralInformation.EditGeneralInformationActivity
 import com.elevintech.motorbro.MyAccount.MyAccountActivity
 import com.elevintech.motorbro.Utils.Utils
+import com.elevintech.motorbro.ViewBike.ViewBikeActivity
 
 import com.elevintech.myapplication.R
 import com.google.firebase.auth.FirebaseAuth
@@ -55,9 +56,8 @@ class HomeFragment : Fragment() {
             }
 
             //db.getUserBike { setBikeValues(it) }
-            db.getUserBikes {
-                val firstBike = it[0]
-                setBikeValues(view, firstBike)
+            db.getMainBike { mainBike ->
+                setBikeValues(view, mainBike)
             }
 
             displayQrCode(view)
@@ -86,6 +86,14 @@ class HomeFragment : Fragment() {
 //        fuelLiterText.setText(bike.fuelLiter.toString() + "L")
 //        odometerText.setText(bike.odometerValue.toString() + "km")
 //        fuelText.setText("₱ " + bike.income.toString() )
+
+        motorcycleLayout.setOnClickListener {
+
+            val intent = Intent(activity, ViewBikeActivity::class.java)
+            intent.putExtra("bike", bike)
+            startActivity(intent)
+
+        }
     }
 
 
