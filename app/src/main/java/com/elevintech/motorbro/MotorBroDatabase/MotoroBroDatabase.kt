@@ -999,5 +999,52 @@ class MotoroBroDatabase {
 
     }
 
+    fun getMainBike(callback: (BikeInfo) -> Unit){
+
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val docRef = db.collection("bikes")
+            .whereEqualTo("userId", "$uid")
+            .whereEqualTo("primary", true)
+
+        docRef.get().addOnSuccessListener { documentSnapshots ->
+
+            for (documentSnapshot in documentSnapshots){
+                val bike = documentSnapshot.toObject(BikeInfo::class.java)!!
+                callback( bike )
+            }
+
+
+        }
+
+
+    }
+
+    fun updateMainBike(newMainBike: BikeInfo, callback: () -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val bikeRef = db.collection("bikes")
+
+        getMainBike{ oldMainBike ->
+
+            // unset the old bike
+            bikeRef.document(oldMainBike.bikeId)
+                .update("primary", false)
+                .addOnSuccessListener {
+
+
+                    // set the new bike as primary
+                    bikeRef.document(newMainBike.bikeId)
+                        .update("primary", true)
+                        .addOnSuccessListener { callback() }
+                        .addOnFailureListener { println("error setting new main bike: $it")}
+
+                }
+                .addOnFailureListener { println("error unsetting old main bike: $it")}
+
+        }
+
+    }
+
 
 }

@@ -71,12 +71,43 @@
         android:scaleType="fitCenter"
         />
 
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:id="@+id/isPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/deleteButton"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/motorcycle"
+            android:tint="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Main Bike"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="9sp" />
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/brandAndModelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Motor NMAX 2020"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:textSize="18sp"
         android:fontFamily="@font/open_sans_semibold"

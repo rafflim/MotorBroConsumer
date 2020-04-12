@@ -88,7 +88,7 @@
                 android:fontFamily="@font/open_sans"
                 android:text="Plate# 20232"
                 android:textColor="@color/textColorBlack"
-                android:textSize="9sp"
+                android:textSize="10sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -107,5 +107,71 @@
         android:src="@drawable/delete_parts_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_marginEnd="5dp"
+        android:id="@+id/isPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/deleteButton"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/motorcycle"
+            android:tint="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Main Bike"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="9sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:visibility="gone"
+        android:textColor="@color/white"
+        android:padding="10dp"
+        android:text="Main Bike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/primary_bike"
+        android:tint="@color/loginRedButtonBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:visibility="gone"
+        android:paddingTop="0dp"
+        android:textSize="10sp"
+        android:elevation="10dp"
+        android:textColor="@color/colorPrimary"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="Set as Main Bike"
+        android:id="@+id/setAsNewPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/set_as_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

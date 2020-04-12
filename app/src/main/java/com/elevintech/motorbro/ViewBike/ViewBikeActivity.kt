@@ -3,6 +3,7 @@ package com.elevintech.motorbro.ViewBike
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.bumptech.glide.Glide
 import com.elevintech.motorbro.EditBike.EditBikeActivity
 import com.elevintech.motorbro.Model.BikeInfo
@@ -35,10 +36,8 @@ class ViewBikeActivity : AppCompatActivity() {
         // the default bikes created at the start of registration do not have a bikeId
         // set it as the user ID
         // TODO: on registration set a value for the user ID
-        if (bike.bikeId == ""){
+        if (bike.bikeId == "")
             bike.bikeId = FirebaseAuth.getInstance().uid!!
-        }
-
 
         MotoroBroDatabase().getBikeById(bike.bikeId){ bike ->
 
@@ -54,6 +53,9 @@ class ViewBikeActivity : AppCompatActivity() {
             yearBoughtText.text = "Year Bought: " + bike.yearBought
             brandText.text = bike.brand.capitalize()
             modelText.text = bike.model.capitalize()
+
+            if (bike.primary)
+                isPrimary.visibility = View.VISIBLE
 
             backView.setOnClickListener {
                 finish()

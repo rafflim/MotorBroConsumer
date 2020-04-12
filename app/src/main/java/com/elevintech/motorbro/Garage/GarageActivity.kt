@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.elevintech.motorbro.BikeRegistration.BikeRegistrationActivity
 import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
+import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.motorbro.ViewBike.ViewBikeActivity
 import com.elevintech.myapplication.R
 import com.xwray.groupie.GroupAdapter
@@ -69,8 +70,9 @@ class GarageActivity : AppCompatActivity() {
 
         var adapter = GroupAdapter<ViewHolder>()
         val allActiveBikes = bikeList.filter { !it.deleted }
+        val allSortedByMain = allActiveBikes.sortedBy { !it.primary }
 
-        for (bike in allActiveBikes){
+        for (bike in allSortedByMain){
             adapter.add(BikeItem(bike, allActiveBikes.count()))
         }
 
@@ -100,6 +102,18 @@ class GarageActivity : AppCompatActivity() {
 
     }
 
+    fun updateMainBike(bike: BikeInfo){
+
+        val progressDialog = Utils().easyProgressDialog(this, "Updating Main Bike...")
+        progressDialog.show()
+
+        MotoroBroDatabase().updateMainBike(bike){
+            getBikes()
+
+            progressDialog.dismiss()
+        }
+    }
+
     inner class BikeItem(val bike: BikeInfo, val bikeCount: Int): Item<ViewHolder>() {
         override fun bind(viewHolder: ViewHolder, position: Int) {
 
@@ -122,10 +136,21 @@ class GarageActivity : AppCompatActivity() {
 
             }
 
+            viewHolder.itemView.setAsNewPrimary.setOnClickListener {
+
+                updateMainBike(bike)
+
+            }
+
             // disable delete if only one bike is the garage
-            println("bikeCount: $bikeCount")
             if (bikeCount == 1)
                 viewHolder.itemView.deleteButton.visibility = View.GONE
+
+            // show primary bike label
+            if (bike.primary)
+                viewHolder.itemView.isPrimary.visibility = View.VISIBLE
+            else
+                viewHolder.itemView.setAsNewPrimary.visibility = View.VISIBLE
 
 
         }

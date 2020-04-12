@@ -179,6 +179,7 @@ class BikeRegistrationActivity : AppCompatActivity() {
         bike.yearBought = yearBoughtEditText.text.toString() // TODO: Fix year bought to year selector
         bike.userId = FirebaseAuth.getInstance().uid!!
         bike.bikeId = FirebaseFirestore.getInstance().collection("bikes").document().id
+        bike.primary = (openedFromWhatActivity == "splashPage" || openedFromWhatActivity == "createAccount") // set to true if created from splash page or create account activity
 
         val database = MotoroBroDatabase()
         val progressDialog = Utils().easyProgressDialog(this, "Registering Bike...")
