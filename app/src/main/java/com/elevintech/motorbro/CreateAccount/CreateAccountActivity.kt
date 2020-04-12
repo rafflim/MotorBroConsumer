@@ -157,7 +157,6 @@ class CreateAccountActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
 
                     val user = User()
-
                     user.uid = task.result!!.user!!.uid
                     user.firstName = firstNameEditText.text.toString()
                     user.lastName = lastNameEditText.text.toString()
@@ -166,13 +165,9 @@ class CreateAccountActivity : AppCompatActivity() {
                     user.usersRegistrationProgress = 1
 
                     firebaseDatabase.createUserType {
-
                             firebaseDatabase.uploadImageToFirebaseStorage(imageUri!!){ imageUrl ->
-
                                 user.profileImage = imageUrl
-
                                 firebaseDatabase.createUser(user){
-
                                     progressDialog.dismiss()
                                     val intent = Intent(applicationContext, BikeRegistrationActivity::class.java)
                                     intent.putExtra("previousActivity", "createAccount")

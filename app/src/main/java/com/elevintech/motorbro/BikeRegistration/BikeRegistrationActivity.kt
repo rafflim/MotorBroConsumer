@@ -24,11 +24,11 @@ import java.util.*
 
 class BikeRegistrationActivity : AppCompatActivity() {
 
-    var imageUri: Uri? = null
-    var OPEN_CAMERA = 10
-    var OPEN_GALLERY = 11
+    private var imageUri: Uri? = null
+    private var OPEN_CAMERA = 10
+    private var OPEN_GALLERY = 11
 
-    var openedFromWhatActivity = ""
+    private var openedFromWhatActivity = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,7 +91,7 @@ class BikeRegistrationActivity : AppCompatActivity() {
         builder.show()
     }
 
-    fun openCamera(){
+    private fun openCamera(){
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         var filename = UUID.randomUUID().toString() + ".jpg"
         var file = File(this.externalCacheDir, filename)
@@ -100,7 +100,7 @@ class BikeRegistrationActivity : AppCompatActivity() {
         startActivityForResult(intent, OPEN_CAMERA)
     }
 
-    fun openGallery(){
+    private fun openGallery(){
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, OPEN_GALLERY)
@@ -109,7 +109,7 @@ class BikeRegistrationActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == OPEN_GALLERY && data!= null) { imageUri = data!!.data }
+        if (requestCode == OPEN_GALLERY && data!= null) { imageUri = data.data }
 
         if (resultCode == RESULT_OK && imageUri != null) {
 
@@ -122,7 +122,7 @@ class BikeRegistrationActivity : AppCompatActivity() {
 
     }
 
-    fun validateFields(): Boolean {
+    private fun validateFields(): Boolean {
         if (editBrandText.text.isEmpty()) {
             Toast.makeText(this, "Brand Text Field is Empty", Toast.LENGTH_LONG).show()
             return false
@@ -162,7 +162,7 @@ class BikeRegistrationActivity : AppCompatActivity() {
 
     }
 
-    fun registerBike() {
+    private fun registerBike() {
         //add validation here
 
         if (!validateFields()) {
@@ -181,35 +181,23 @@ class BikeRegistrationActivity : AppCompatActivity() {
         bike.bikeId = FirebaseFirestore.getInstance().collection("bikes").document().id
 
         val database = MotoroBroDatabase()
-
         val progressDialog = Utils().easyProgressDialog(this, "Registering Bike...")
         progressDialog.show()
 
         database.uploadImageToFirebaseStorage(imageUri!!) { imageUrl ->
-
             bike.imageUrl = imageUrl
-
             database.saveBikeInfo(bike) {
-
                 if (openedFromWhatActivity == "splashPage" || openedFromWhatActivity == "createAccount"){
-
                     database.updateUserRegistrationProgress(2) {
-
                             progressDialog.dismiss()
                             Toast.makeText(this, "Bike Registration Successful!", Toast.LENGTH_LONG).show()
-
                             val intent = Intent(applicationContext, DashboardActivity::class.java)
                             startActivity(intent)
-
                     }
-
                 } else if (openedFromWhatActivity == "garage"){
-
                     progressDialog.dismiss()
                     finish()
-
                 }
-
             }
         }
 

@@ -31,6 +31,23 @@ class MotoroBroDatabase {
         }
     }
 
+    fun doesUserExist(uid: String, callback: (Boolean) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val docRef = db.collection("customers").document(uid)
+
+        docRef.get().addOnSuccessListener {
+            if (it.exists()) {
+                callback(true)
+            }
+
+            callback(false)
+        }
+
+        docRef.get().addOnFailureListener {
+            callback(false)
+        }
+    }
+
     fun getUser(callback: (User) -> Unit){
 
         val db = FirebaseFirestore.getInstance()
@@ -40,12 +57,9 @@ class MotoroBroDatabase {
         docRef.get().addOnSuccessListener { documentSnapshot ->
 
             var user = User()
-
             if (documentSnapshot != null && documentSnapshot.exists()) {
                 user = documentSnapshot.toObject(User::class.java)!!
-
             }
-
             callback( user )
         }
     }
@@ -84,9 +98,7 @@ class MotoroBroDatabase {
         db.collection("users").document(uid)
             .set(userType)
             .addOnSuccessListener {
-
                 callback()
-
             }
             .addOnFailureListener {
                 e -> println(e)

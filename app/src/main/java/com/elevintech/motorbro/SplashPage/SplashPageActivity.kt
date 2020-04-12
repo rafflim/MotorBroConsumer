@@ -50,28 +50,28 @@ class SplashPageActivity : AppCompatActivity() {
             auth = FirebaseAuth.getInstance()
 
             val currentUser = auth.currentUser
-            if (currentUser != null) {
-
-                val firebaseDb = MotoroBroDatabase()
-                firebaseDb.getUser {
-
-                    if (it.usersRegistrationProgress == 1) {
-                        val intent = Intent(applicationContext, BikeRegistrationActivity::class.java)
-                        intent.putExtra("previousActivity", "splashPage")
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        val intent = Intent(applicationContext, DashboardActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
-                }
-
-            } else {
+//            if (currentUser != null) {
+//
+//                val firebaseDb = MotoroBroDatabase()
+//                firebaseDb.getUser {
+//
+//                    if (it.usersRegistrationProgress == 1) {
+//                        val intent = Intent(applicationContext, BikeRegistrationActivity::class.java)
+//                        intent.putExtra("previousActivity", "splashPage")
+//                        startActivity(intent)
+//                        finish()
+//                    } else {
+//                        val intent = Intent(applicationContext, DashboardActivity::class.java)
+//                        startActivity(intent)
+//                        finish()
+//                    }
+//                }
+//
+//            } else {
                 val intent = Intent(applicationContext, MainActivity::class.java)
                 startActivity(intent)
                 finish()
-            }
+//            }
 
 //            val sharedPref = SharedPreferences(applicationContext)
 //            //val isNotFirstTimeOpening = sharedPref.getValueBool("IS_NOT_FIRST_TIME_OPENING_APP"

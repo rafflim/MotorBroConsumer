@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#4F6B91"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -59,9 +59,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="20dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
+            android:layout_margin="10dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:paddingBottom="100dp">
 
             <TextView
@@ -426,7 +426,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
-                android:background="@drawable/create_account_button_background"
+                android:background="@drawable/login_button_background"
                 android:text="Create Account"
                 android:textColor="#fff"
                 />

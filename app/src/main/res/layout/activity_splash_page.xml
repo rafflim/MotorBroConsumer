@@ -9,9 +9,9 @@
     tools:context=".SplashPage.SplashPageActivity">
 
     <ImageView
-        android:layout_width="350dp"
-        android:layout_height="350dp"
-        android:src="@drawable/motorbroicon"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/motor_bro_main_icon_red_blue"
         android:layout_gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"

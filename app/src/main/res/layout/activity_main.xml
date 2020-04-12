@@ -6,290 +6,330 @@
     android:layout_height="match_parent"
     tools:context="com.elevintech.motorbro.MainActivity"
     android:fillViewport="true"
+    android:background="@drawable/dashboard_gradient_bg"
     >
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#FFFFFF"
+        android:layout_height="wrap_content"
+
         >
-
-<!--        <RelativeLayout-->
-<!--            android:id="@+id/topNegativeLayout"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_marginTop="-300dp"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-
-<!--            />-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/motorBroLoginImage"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:scaleType="centerCrop"-->
-<!--            android:src="@drawable/motorbrologinbg"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="@id/topNegativeLayout" />-->
-
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:src="@drawable/motorskyline"
-                />
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="100dp"
-                android:src="@drawable/motorbroinicon"
-                android:layout_gravity="center"
-                />
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Email"-->
-<!--                android:fontFamily="@font/open_sans"-->
-<!--                android:textSize="19sp"-->
-<!--                android:layout_marginLeft="40dp"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:layout_marginBottom="10dp"-->
-<!--                android:textColor="#3D3D3D"-->
-<!--                />-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="50dp"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:layout_marginLeft="30dp"-->
-<!--                android:layout_marginRight="20dp"-->
-<!--                >-->
-
-<!--                <ImageView-->
-<!--                    android:layout_width="25dp"-->
-<!--                    android:layout_height="25dp"-->
-<!--                    android:src="@drawable/email_icon"-->
-<!--                    />-->
-
-<!--                <EditText-->
-<!--                    android:id="@+id/userNameEditText"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="40dp"-->
-<!--                    android:text=""-->
-<!--                    android:layout_marginLeft="10dp"-->
-<!--                    android:layout_marginRight="40dp"-->
-<!--                    android:inputType="textEmailAddress"-->
-
-<!--                    />-->
-<!--            </LinearLayout>-->
-
-
-            <TextView
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/open_sans"
-            android:text="Email"
-            android:textSize="15sp"
-            android:textColor="@color/textColorBlack"
-
-            />
+            android:orientation="vertical"
+            android:paddingBottom="50dp"
+            >
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="30dp"
-                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                >
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/email_new_icon"
-                    android:tint="@color/colorPrimaryDark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:src="@drawable/motorskyline"
                     />
 
-                <EditText
-                    android:id="@+id/userNameEditText"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_weight="1"
-                    android:text=""
-                    android:inputType="text"
-                    android:focusable="true"
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/motor_bro_main_icon_red_blue"
+                    android:layout_gravity="center"
                     />
+
+                <!--            <TextView-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="Email"-->
+                <!--                android:fontFamily="@font/open_sans"-->
+                <!--                android:textSize="19sp"-->
+                <!--                android:layout_marginLeft="40dp"-->
+                <!--                android:layout_marginTop="20dp"-->
+                <!--                android:layout_marginBottom="10dp"-->
+                <!--                android:textColor="#3D3D3D"-->
+                <!--                />-->
+
+                <!--            <LinearLayout-->
+                <!--                android:layout_marginTop="10dp"-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="50dp"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layout_marginLeft="30dp"-->
+                <!--                android:layout_marginRight="20dp"-->
+                <!--                >-->
+
+                <!--                <ImageView-->
+                <!--                    android:layout_width="25dp"-->
+                <!--                    android:layout_height="25dp"-->
+                <!--                    android:src="@drawable/email_icon"-->
+                <!--                    />-->
+
+                <!--                <EditText-->
+                <!--                    android:id="@+id/userNameEditText"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="40dp"-->
+                <!--                    android:text=""-->
+                <!--                    android:layout_marginLeft="10dp"-->
+                <!--                    android:layout_marginRight="40dp"-->
+                <!--                    android:inputType="textEmailAddress"-->
+
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Email"
+                    android:textSize="16sp"
+                    android:textColor="@color/textColorBlack"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="30dp"
+                    android:orientation="horizontal"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/email_new_icon"
+                        android:tint="@color/colorPrimaryDark"
+                        />
+
+                    <EditText
+                        android:id="@+id/userNameEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:inputType="text"
+                        android:focusable="true"
+                        android:fontFamily="@font/open_sans"
+                        android:maxLength="100"
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Password"
+                    android:textSize="15sp"
+                    android:textColor="@color/textColorBlack"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:tint="@color/colorPrimaryDark"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/password_new_icon"
+
+                        />
+
+                    <EditText
+                        android:id="@+id/passwordEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:inputType="textPassword"
+                        android:focusable="true"
+                        android:fontFamily="@font/open_sans"
+                        android:maxLength="50"
+                        />
+
+                </LinearLayout>
+
+                <!--            <TextView-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="Password"-->
+                <!--                android:fontFamily="@font/open_sans"-->
+                <!--                android:textSize="19sp"-->
+                <!--                android:layout_marginLeft="40dp"-->
+                <!--                android:layout_marginTop="10dp"-->
+                <!--                android:layout_marginBottom="10dp"-->
+                <!--                android:textColor="#3D3D3D"-->
+                <!--                />-->
+
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="50dp"-->
+                <!--                android:orientation="horizontal"-->
+                <!--                android:layout_marginLeft="30dp"-->
+                <!--                android:layout_marginRight="20dp"-->
+                <!--                android:layout_marginTop="10dp"-->
+                <!--                >-->
+
+                <!--                <ImageView-->
+                <!--                    android:layout_width="25dp"-->
+                <!--                    android:layout_height="25dp"-->
+                <!--                    android:src="@drawable/password_icon"-->
+                <!--                    />-->
+
+                <!--                <EditText-->
+                <!--                    android:id="@+id/passwordEditText"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="40dp"-->
+                <!--                    android:text=""-->
+                <!--                    android:layout_marginLeft="10dp"-->
+                <!--                    android:layout_marginRight="40dp"-->
+                <!--                    android:inputType="textPassword"-->
+
+                <!--                    />-->
+                <!--            </LinearLayout>-->
+
+                <Button
+                    android:id="@+id/loginButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="Sign In"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/login_button_background"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <com.facebook.login.widget.LoginButton
+                    android:id="@+id/facebookLoginButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="Facebook Login"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/forgot_password_button_bg"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    />
+
+
+                <Button
+                    android:id="@+id/forgotPasswordButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="29dp"
+                    android:text="Forgot your password?"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/forgot_password_button_bg"
+                    android:textColor="#3E3E3E"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    />
+
+
+                <!--            <com.facebook.login.widget.LoginButton-->
+                <!--                android:id="@+id/login_button"-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_gravity="center_horizontal"-->
+                <!--                android:layout_marginTop="30dp"-->
+                <!--                android:layout_marginBottom="30dp" />-->
+
+                <!--            <Button-->
+                <!--                android:id="@+id/facebookRegister"-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="45dp"-->
+                <!--                android:textAllCaps="false"-->
+                <!--                android:text="Login with Facebook"-->
+                <!--                android:layout_marginLeft="30dp"-->
+                <!--                android:layout_marginRight="30dp"-->
+                <!--                android:background="@drawable/login_button_background"-->
+                <!--                android:textColor="@color/white"-->
+                <!--                android:fontFamily="@font/roboto_bold"-->
+                <!--                android:textSize="16sp"-->
+                <!--                android:layout_marginTop="10dp"-->
+                <!--                />-->
+
+
+
+                <LinearLayout
+                    android:id="@+id/createAccountText"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:gravity="center_horizontal" android:layout_marginBottom="25dp">
+
+                    <TextView
+                        android:text="Don't have an Account?"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/textView2" android:textSize="15sp"/>
+
+
+                    <TextView
+                        android:text=" Register Here"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/signInText"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold" android:textSize="16sp"/>
+
+                </LinearLayout>
+
+
+
+
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/open_sans"
-                android:text="Password"
-                android:textSize="15sp"
-                android:textColor="@color/textColorBlack"
-
-                />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-
-                >
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:tint="@color/colorPrimaryDark"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/password_new_icon"
-
-                    />
-
-                <EditText
-                    android:id="@+id/passwordEditText"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_weight="1"
-                    android:text=""
-                    android:inputType="textPassword"
-                    android:focusable="true"
-                    />
-
-            </LinearLayout>
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Password"-->
-<!--                android:fontFamily="@font/open_sans"-->
-<!--                android:textSize="19sp"-->
-<!--                android:layout_marginLeft="40dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginBottom="10dp"-->
-<!--                android:textColor="#3D3D3D"-->
-<!--                />-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="50dp"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:layout_marginLeft="30dp"-->
-<!--                android:layout_marginRight="20dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                >-->
-
-<!--                <ImageView-->
-<!--                    android:layout_width="25dp"-->
-<!--                    android:layout_height="25dp"-->
-<!--                    android:src="@drawable/password_icon"-->
-<!--                    />-->
-
-<!--                <EditText-->
-<!--                    android:id="@+id/passwordEditText"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="40dp"-->
-<!--                    android:text=""-->
-<!--                    android:layout_marginLeft="10dp"-->
-<!--                    android:layout_marginRight="40dp"-->
-<!--                    android:inputType="textPassword"-->
-
-<!--                    />-->
-<!--            </LinearLayout>-->
-
-            <Button
-                android:id="@+id/loginButton"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:text="Sign In"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:textAllCaps="false"
-                android:background="@drawable/login_button_background"
-                android:textColor="@color/white"
-                android:fontFamily="@font/roboto_bold"
-                android:textSize="16sp"
-                android:layout_marginTop="10dp"
-                />
-
-<!--            <com.facebook.login.widget.LoginButton-->
-<!--                android:id="@+id/login_button"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center_horizontal"-->
-<!--                android:layout_marginTop="30dp"-->
-<!--                android:layout_marginBottom="30dp" />-->
-
-<!--            <Button-->
-<!--                android:id="@+id/facebookRegister"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="45dp"-->
-<!--                android:textAllCaps="false"-->
-<!--                android:text="Login with Facebook"-->
-<!--                android:layout_marginLeft="30dp"-->
-<!--                android:layout_marginRight="30dp"-->
-<!--                android:background="@drawable/login_button_background"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:fontFamily="@font/roboto_bold"-->
-<!--                android:textSize="16sp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                />-->
-
-
-            <TextView
-                android:id="@+id/createAccountText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Don't have an Account? Register Here"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:textColor="#280A7C"
-                />
 
 
 
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </LinearLayout>
+    </ScrollView>
 
-
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 <!--        -->
 <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
 <!--        android:layout_width="match_parent"-->

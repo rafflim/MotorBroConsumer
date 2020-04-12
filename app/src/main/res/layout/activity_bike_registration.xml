@@ -64,6 +64,18 @@
             android:paddingBottom="100dp">
 
             <TextView
+                android:id="@+id/textView28"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/lato"
+                android:text="Please enter your bike information to proceed with the MotorBro App. This bike will be your primary bike and can be changed in the garage section."
+                android:textColor="#7A7A7A"
+                android:textSize="13sp"/>
+
+            <TextView
                 android:id="@+id/textView18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,7 +83,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="@font/lato"
-                android:text="Bike Image"
+                android:text="Select Bike Image"
                 android:textColor="#064283"
                 android:textSize="15sp"
                 android:textStyle="bold"
@@ -397,8 +409,8 @@
                 android:id="@+id/sendButton"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:text="Send"
-                android:background="#064283"
+                android:text="Save Primary Bike"
+                android:background="@drawable/login_button_background"
                 android:textColor="@color/white"
                 android:layout_marginTop="40dp"
                 android:textAllCaps="false"
