@@ -31,6 +31,9 @@ class TypeOfFuelActivity : AppCompatActivity() {
         setContentView(R.layout.activity_type_of_fuel)
 
         isFromAddRefuel = intent.getBooleanExtra("fromAddExtra", false)
+        if (isFromAddRefuel) {
+            addItemsButton.visibility = View.VISIBLE
+        }
 
         viewAdapter = FuelAdapter(totalList)
 
@@ -38,6 +41,24 @@ class TypeOfFuelActivity : AppCompatActivity() {
             //this.adapter = partsListAdapter
             this.adapter = viewAdapter
             setHasFixedSize(true)
+        }
+
+        addItemsButton.setOnClickListener {
+
+            val selectedFuel = totalList.filter { it.isChecked }
+            if (selectedFuel.count() != 1){
+                Snackbar.make(addItemsButton, "Please select only one fuel type", Snackbar.LENGTH_LONG).show()
+            }
+
+            else {
+
+                val returnIntent = Intent()
+                returnIntent.putExtra("selectedFuel", selectedFuel.first().name)
+                setResult(Activity.RESULT_OK, returnIntent)
+                finish()
+
+            }
+
         }
 
         add_parts_floating_button.setOnClickListener {

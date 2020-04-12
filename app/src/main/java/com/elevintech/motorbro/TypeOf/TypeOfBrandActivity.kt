@@ -32,11 +32,34 @@ class TypeOfBrandActivity : AppCompatActivity() {
         setContentView(R.layout.activity_type_of_brand)
 
         isFromAddParts = intent.getBooleanExtra("fromAddExtra", false)
+        if (isFromAddParts) {
+            addItemsButton.visibility = View.VISIBLE
+        }
+
+
         viewAdapter = BrandAdapter(totalList)
         recycler_view_type_of_brands.apply {
             //this.adapter = partsListAdapter
             this.adapter = viewAdapter
             setHasFixedSize(true)
+        }
+
+        addItemsButton.setOnClickListener {
+
+            val selectedBrand = totalList.filter { it.isChecked }
+            if (selectedBrand.count() != 1){
+                Snackbar.make(addItemsButton, "Please select only one brand", Snackbar.LENGTH_LONG).show()
+            }
+
+            else {
+
+                val returnIntent = Intent()
+                returnIntent.putExtra("selectedBrand", selectedBrand.first().name)
+                setResult(Activity.RESULT_OK, returnIntent)
+                finish()
+
+            }
+
         }
 
         // If from nav bar then set click will be different
@@ -188,6 +211,7 @@ class TypeOfBrandActivity : AppCompatActivity() {
 
             // HIDE CHECKBOX IF IT IS ONE
             if ( defaultBrands.contains(part.name) ){
+//                viewHolder.itemView.defaultBrandText.visibility = View.VISIBLE
                 viewHolder.itemView.checkbox.visibility = View.GONE
             }
 
