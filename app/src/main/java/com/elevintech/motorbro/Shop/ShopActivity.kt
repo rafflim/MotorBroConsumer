@@ -1,5 +1,6 @@
 package com.elevintech.motorbro.Shop
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_shop.*
 import kotlinx.android.synthetic.main.row_shop_item_layout.view.*
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import com.elevintech.motorbro.Favorites.FavoritesActivity
 
 
@@ -44,18 +46,16 @@ class ShopActivity : AppCompatActivity() {
                 val db = MotoroBroDatabase()
                 db.searchShop(searchTagsArray){ shopsSearched ->
 
+                    searchCriteria.hideKeyboard()
+                    refresh.visibility = View.VISIBLE
+
                     if (shopsSearched.count() == 0){
-
                         noShopsFoundLayout.visibility = View.VISIBLE
-
                     } else{
                         for (shop in shopsSearched) {
                             shopAdapter.add(shopItem(shop))
                         }
                     }
-
-
-
 
                 }
 
@@ -64,8 +64,9 @@ class ShopActivity : AppCompatActivity() {
 
         }
 
-        noShopsFoundLayout.setOnClickListener {
+        refresh.setOnClickListener {
             getShops()
+            refresh.visibility = View.GONE
             noShopsFoundLayout.visibility = View.GONE
             searchCriteria.setText("")
         }
@@ -120,12 +121,21 @@ class ShopActivity : AppCompatActivity() {
     }
 
     fun getShops() {
+
+        shopAdapter.clear()
+
         val db = MotoroBroDatabase()
         db.getShops {
             for (shop in it) {
                 shopAdapter.add(shopItem(shop))
             }
         }
+
+    }
+
+    fun View.hideKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
     }
 
     inner class shopItem(val shop: Shop): Item<ViewHolder>() {
