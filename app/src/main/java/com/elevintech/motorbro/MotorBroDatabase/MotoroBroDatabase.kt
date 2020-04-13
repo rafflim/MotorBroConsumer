@@ -2,6 +2,7 @@ package com.elevintech.motorbro.MotorBroDatabase
 
 import android.net.Uri
 import com.elevintech.motorbro.Model.*
+import com.elevintech.motorbro.Utils.Constants
 import com.elevintech.motorbro.Utils.Utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
@@ -163,6 +164,63 @@ class MotoroBroDatabase {
                 callback(null)
             }
     }
+
+    fun editBikeParts(bikeParts: BikeParts, callback: (String?) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("bike-parts")
+            .document(bikeParts.id).set(bikeParts)
+            .addOnSuccessListener {
+                callback("Success")
+            }
+            .addOnFailureListener {
+                    e -> println(e)
+                callback(null)
+            }
+    }
+
+    fun deleteBikeParts(bikeParts: BikeParts, callback: (String?) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("bike-parts")
+            .document(bikeParts.id).delete()
+            .addOnSuccessListener {
+                callback("Success")
+            }
+            .addOnFailureListener {
+                    e -> println(e)
+                callback(null)
+            }
+    }
+
+    fun deleteRefuel(refuel: Refueling, callback: (String?) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("refueling")
+            .document(refuel.id).delete()
+            .addOnSuccessListener {
+                callback("Success")
+            }
+            .addOnFailureListener {
+                    e -> println(e)
+                callback(null)
+            }
+    }
+
+    fun editRefuel(refuel: Refueling, callback: (String?) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("refueling")
+            .document(refuel.id).set(refuel)
+            .addOnSuccessListener {
+                callback("Success")
+            }
+            .addOnFailureListener {
+                    e -> println(e)
+                callback(null)
+            }
+    }
+
 
     fun saveHistory(historyType: String, historyItemId: String, historyItemValue: Any, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
@@ -327,14 +385,31 @@ class MotoroBroDatabase {
         docRef.get()
             .addOnSuccessListener {
 
-                for (history in it){
-                    println("perLine: " + history)
-                    val reminder = history.toObject(History::class.java)
-                    list.add(reminder)
+                for (historyObj in it){
+                    println("perLine: " + historyObj)
+                    val history = historyObj.toObject(History::class.java)
+                    history.id = historyObj.id
+                    list.add(history)
                 }
 
                 callback(list)
 
+            }
+    }
+
+    fun deleteUserHistory(history: History, callback: (String) -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val docRef = db.collection("customers").document(uid).collection("history").document(history.id)
+        val list = mutableListOf<History>()
+
+        docRef.delete()
+            .addOnSuccessListener {
+                callback(Constants.RESULT_STRING.SUCCESS)
+            }
+            .addOnFailureListener {
+                callback(Constants.RESULT_STRING.FAILURE)
             }
     }
 
@@ -346,8 +421,9 @@ class MotoroBroDatabase {
 
         docRef.get()
             .addOnSuccessListener {
-                for (bikePart in it){
-                    val bikePart = bikePart.toObject(BikeParts::class.java)
+                for (obj in it){
+                    val bikePart = obj.toObject(BikeParts::class.java)
+                    bikePart.id = obj.id
                     list.add(bikePart)
                 }
 
@@ -363,8 +439,9 @@ class MotoroBroDatabase {
 
         docRef.get()
             .addOnSuccessListener {
-                for (refuel in it){
-                    val refuel = refuel.toObject(Refueling::class.java)
+                for (refuelObj in it){
+                    val refuel = refuelObj.toObject(Refueling::class.java)
+                    refuel.id = refuelObj.id
                     list.add(refuel)
                 }
 
@@ -574,6 +651,7 @@ class MotoroBroDatabase {
             }
             .addOnFailureListener{
                 println( it.toString())
+
             }
     }
 

@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="#3d5af1"
+        android:background="#5C6BC0"
         android:paddingTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
             >
 
             <ImageView
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="25dp"
 
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -52,16 +52,77 @@
             android:layout_marginLeft="30dp"
             />
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/checkMarkButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="24dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="15dp"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             android:layout_gravity="right"
+            >
 
-            app:srcCompat="@drawable/check_mark_icon" />
+            <ImageView
+                android:layout_marginTop="15dp"
+
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/check_mark_icon"
+                android:tint="#4CAF50" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/open_sans_bold"
+                android:textSize="11sp"
+                android:textColor="#4CAF50"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/deleteLayout"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:visibility="visible"
+            >
+
+            <ImageView
+                android:layout_marginTop="15dp"
+
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/trash_icon"
+                android:fontFamily="@font/open_sans_bold"
+                android:textSize="11sp"
+                android:tint="#DD4C4C"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/open_sans_bold"
+                android:textSize="11sp"
+                android:textColor="#DD4C4C"
+                />
+
+        </LinearLayout>
+<!--        <ImageView-->
+<!--            android:id="@+id/checkMarkButton"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_marginRight="24dp"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:layout_gravity="right"-->
+
+<!--            app:srcCompat="@drawable/check_mark_icon" />-->
 
 
     </androidx.appcompat.widget.Toolbar>
@@ -86,6 +147,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:paddingBottom="40dp"
 
             >
             <LinearLayout
@@ -161,13 +223,14 @@
                 <EditText
                     android:id="@+id/dateText"
                     android:layout_width="0dp"
-                    android:layout_height="35dp"
+                    android:layout_height="38dp"
+                    android:textSize="14sp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:inputType="datetime"
                     android:focusable="false"
-                    android:textSize="13sp"
+                    android:fontFamily="@font/open_sans"
                     />
 
             </LinearLayout>
@@ -204,13 +267,13 @@
                 <EditText
                     android:id="@+id/odometerText"
                     android:layout_width="0dp"
-                    android:layout_height="35dp"
+                    android:layout_height="38dp"
+                    android:textSize="14sp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:text=""
                     android:inputType="number"
-                    android:textSize="13sp"
                     />
 
             </LinearLayout>
@@ -226,16 +289,51 @@
 
                 />
 
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            >
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/open_sans"
                 android:text="Price"
                 android:textSize="13sp"
                 android:textColor="#182463"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 />
+
+            <Button
+                android:id="@+id/clearPriceValues"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:padding="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:background="#EF5350"
+                android:fontFamily="@font/open_sans_semibold"
+                android:text="Clear Price Values"
+                android:textAllCaps="false"
+                android:textSize="12sp"
+                android:textColor="#FFFFFF"
+                android:layout_marginRight="30dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -258,37 +356,37 @@
                 <EditText
                     android:id="@+id/pricePerGallonText"
                     android:layout_width="0dp"
-                    android:layout_height="35dp"
+                    android:layout_height="38dp"
+                    android:textSize="14sp"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text=""
                     android:inputType="numberDecimal"
                     android:hint="Price per liter"
-                    android:textSize="13sp"
                     />
 
                 <EditText
                     android:id="@+id/litersText"
                     android:layout_width="0dp"
-                    android:layout_height="35dp"
+                    android:layout_height="38dp"
+                    android:textSize="14sp"
                     android:layout_weight="1"
                     android:text=""
                     android:inputType="numberDecimal"
                     android:hint="Liter"
-                    android:textSize="13sp"
                     />
 
                 <EditText
                     android:id="@+id/totalCostText"
                     android:layout_width="0dp"
-                    android:layout_height="35dp"
+                    android:layout_height="38dp"
+                    android:textSize="14sp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:text=""
                     android:inputType="numberDecimal"
 
                     android:hint="Total cost"
-                    android:textSize="13sp"
                     />
 
 
@@ -329,14 +427,14 @@
                 <EditText
                     android:id="@+id/locationText"
                     android:layout_width="0dp"
-                    android:layout_height="35dp"
+                    android:layout_height="38dp"
+                    android:textSize="14sp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:text=""
                     android:inputType="text"
                     android:hint="optional"
-                    android:textSize="13sp"
                     />
 
             </LinearLayout>
@@ -380,13 +478,13 @@
                 <EditText
                     android:id="@+id/typeOfFuelText"
                     android:layout_width="0dp"
-                    android:layout_height="35dp"
+                    android:layout_height="38dp"
+                    android:textSize="14sp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:focusable="false"
                     android:text=""
-                    android:textSize="13sp"
                     android:hint=""/>
 
             </LinearLayout>
@@ -422,15 +520,14 @@
 
                 <EditText
                     android:id="@+id/noteText"
-
                     android:layout_width="0dp"
-                    android:layout_height="35dp"
+                    android:layout_height="38dp"
+                    android:textSize="14sp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:focusable="true"
                     android:text=""
-                    android:textSize="13sp"
                     android:hint="optional"/>
 
             </LinearLayout>

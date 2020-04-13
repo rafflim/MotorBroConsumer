@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.elevintech.motorbro.Model.History
 import com.elevintech.motorbro.Model.OdometerUpdate
 import com.elevintech.motorbro.Model.Reminders
@@ -119,5 +120,70 @@ class HistoryFragment : Fragment() {
         override fun getLayout(): Int {
             return R.layout.row_history_layout
         }
+    }
+
+    inner class MyAdapter(private val myDataset: ArrayList<History>) :
+        RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+
+        private var removedPosition: Int = 0
+        private var removedItem: String = ""
+        // Provide a reference to the views for each data item
+        // Complex data items may need more than one view per item, and
+        // you provide access to all the views for a data item in a view holder.
+        // Each data item is just a string in this case that is shown in a TextView.
+        inner class MyViewHolder(val v: View) : RecyclerView.ViewHolder(v)
+
+
+        // Create new views (invoked by the layout manager)
+        override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+        ): MyAdapter.MyViewHolder {
+            // create a new view
+            val v = LayoutInflater.from(parent.context)
+                .inflate(R.layout.row_history_layout, parent, false)
+            // set the view's size, margins, paddings and layout parameters
+
+            return MyViewHolder(v)
+        }
+
+        // Replace the contents of a view (invoked by the layout manager)
+        override fun onBindViewHolder(viewHolder: MyViewHolder, position: Int) {
+            // - get element from your dataset at this position
+            // - replace the contents of the view with that element
+            val history = myDataset[position]
+
+            var historyTitle = ""
+
+            when(history.typeOfHistory){
+                "bike-parts" -> { historyTitle = "Added ${history.value}"}
+                "odometer" -> { historyTitle = "Updated odometer to ${history.value} km " }
+                "refueling" -> { historyTitle = "Refueled ${history.value}"}
+            }
+
+            viewHolder.itemView.historyDate.text = Utils().convertMillisecondsToDate(history.dateLong, "MMM d, yyyy")
+            viewHolder.itemView.historyTitle.text = historyTitle
+
+            viewHolder.itemView.deleteHistory.setOnClickListener {
+                // delete the item
+                deleteHistory(position, history)
+            }
+
+        }
+
+        private fun deleteHistory(position: Int, history: History) {
+
+            myDataset.removeAt(position)
+            notifyDataSetChanged()
+
+            MotoroBroDatabase().deleteUserHistory(history) {
+
+            }
+
+        }
+
+        // Return the size of your dataset (invoked by the layout manager)
+        override fun getItemCount() = myDataset.size
+
     }
 }

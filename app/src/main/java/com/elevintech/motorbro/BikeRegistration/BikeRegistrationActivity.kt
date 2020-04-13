@@ -40,6 +40,8 @@ class BikeRegistrationActivity : AppCompatActivity() {
 
         openedFromWhatActivity = intent.getStringExtra("previousActivity")!!
 
+        createAccountBackImageView.visibility = View.GONE
+
         imgBikeProfile.setOnClickListener {
             askUploadSource()
         }
@@ -200,6 +202,7 @@ class BikeRegistrationActivity : AppCompatActivity() {
                     finish()
                 }
             }
+
         }
 
     }

@@ -18,10 +18,18 @@ import com.elevintech.motorbro.Model.Refueling
 import com.elevintech.motorbro.TypeOf.TypeOfFuelActivity
 import com.elevintech.motorbro.TypeOf.TypeOfHistoryActivity
 import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
+import com.elevintech.motorbro.Utils.Constants
 import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_add_parts.*
 import kotlinx.android.synthetic.main.activity_add_refueling.*
+import kotlinx.android.synthetic.main.activity_add_refueling.backButton
+import kotlinx.android.synthetic.main.activity_add_refueling.checkMarkButton
+import kotlinx.android.synthetic.main.activity_add_refueling.dateText
+import kotlinx.android.synthetic.main.activity_add_refueling.deleteLayout
+import kotlinx.android.synthetic.main.activity_add_refueling.noteText
+import kotlinx.android.synthetic.main.activity_add_refueling.odometerText
 import java.text.DecimalFormat
 import java.util.*
 
@@ -30,6 +38,7 @@ class AddRefuelingActivity : AppCompatActivity() {
     var birthDayInMilliseconds = 0.toLong()
 
     lateinit var mDateSetListener: DatePickerDialog.OnDateSetListener
+    private var isForEditRefuel = false
 
     companion object {
         val SELECT_PART_TYPE = 1
@@ -39,7 +48,31 @@ class AddRefuelingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_refueling)
 
+        isForEditRefuel = intent.getBooleanExtra("editRefuel", false)
 
+        if (isForEditRefuel) {
+            val refuel: Refueling? = intent.getParcelableExtra("refuelObject")
+
+            if (refuel != null) {
+
+                dateText.setText(refuel.date)
+                odometerText.setText(refuel.kilometers.toString())
+                typeOfFuelText.setText(refuel.typeOfFuel)
+                pricePerGallonText.setText(refuel.pricePerGallon.toString())
+                totalCostText.setText(refuel.totalCost.toString())
+                litersText.setText(refuel.priceGallons.toString())
+                locationText.setText(refuel.location)
+                noteText.setText(refuel.note)
+
+                disableAllCostButtons()
+
+                deleteLayout.visibility = View.VISIBLE
+
+                deleteLayout.setOnClickListener {
+                    deleteRefuel(refuel)
+                }
+            }
+        }
         backButton.setOnClickListener {
             finish()
         }
@@ -73,7 +106,24 @@ class AddRefuelingActivity : AppCompatActivity() {
             calculateText(v)
         }
 
+        clearPriceValues.setOnClickListener {
+            pricePerGallonText.isEnabled = true
+            totalCostText.isEnabled = true
+            litersText.isEnabled = true
+            clearPriceValues.visibility = View.GONE
+        }
 
+
+    }
+
+    private fun deleteRefuel(refuel: Refueling) {
+        MotoroBroDatabase().deleteRefuel(refuel) {
+            if (Constants.RESULT_STRING.SUCCESS == it) {
+                finish()
+            } else {
+                Toast.makeText(this, "Unable to delete this part. Please check your internet connection", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     fun calculateText(v: View) {
@@ -91,6 +141,8 @@ class AddRefuelingActivity : AppCompatActivity() {
 
             val result = totalCost / liter
             pricePerGallonText.setText(result.toString())
+            disableAllCostButtons()
+
             return
         }
 
@@ -100,6 +152,7 @@ class AddRefuelingActivity : AppCompatActivity() {
 
             val result = totalCost / pricePerLiter
             litersText.setText(result.toString())
+            disableAllCostButtons()
             return
         }
 
@@ -109,20 +162,29 @@ class AddRefuelingActivity : AppCompatActivity() {
 
             val result = liter * pricePerGallon
             totalCostText.setText(result.toString())
+            disableAllCostButtons()
             return
         }
 
         // TODO: What if everything has a value??
+
         // Get the last text view change
         // Base it on that
-        if (v == pricePerGallonText || v == litersText) {
-            val liter = liter.toFloat()
-            val pricePerGallon = pricePerLiter.toFloat()
+//        if (v == pricePerGallonText || v == litersText) {
+//            val liter = liter.toFloat()
+//            val pricePerGallon = pricePerLiter.toFloat()
+//
+//            val result = liter * pricePerGallon
+//            totalCostText.setText(result.toString())
+//            // This means the price per gallon text is changed
+//        }
+    }
 
-            val result = liter * pricePerGallon
-            totalCostText.setText(result.toString())
-            // This means the price per gallon text is changed
-        }
+    private fun disableAllCostButtons() {
+        pricePerGallonText.isEnabled = false
+        totalCostText.isEnabled = false
+        litersText.isEnabled = false
+        clearPriceValues.visibility = View.VISIBLE
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -141,15 +203,15 @@ class AddRefuelingActivity : AppCompatActivity() {
     private fun openDatePicker() {
 
         // INSTANTIATE CALENDAR
-        var cal = Calendar.getInstance()
+        val cal = Calendar.getInstance()
         cal.add(Calendar.YEAR, 0)
 
-        var year = cal.get(Calendar.YEAR)
-        var month = cal.get(Calendar.MONTH)
-        var day = cal.get(Calendar.DAY_OF_MONTH)
+        val year = cal.get(Calendar.YEAR)
+        val month = cal.get(Calendar.MONTH)
+        val day = cal.get(Calendar.DAY_OF_MONTH)
 
         // INSTANTIATE DATE PICKER DIALOG
-        var dialog = DatePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, mDateSetListener, year, month, day)
+        val dialog = DatePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, mDateSetListener, year, month, day)
 
         // SET DATE PICKER DIALOG STYLE
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -160,7 +222,6 @@ class AddRefuelingActivity : AppCompatActivity() {
     }
 
     private fun setDatePickerAction(){
-
 
         // SET ACTION AFTER SELECTING THE DATE
         mDateSetListener = DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
@@ -205,17 +266,24 @@ class AddRefuelingActivity : AppCompatActivity() {
             refueling.note = noteText.text.toString()
 
             val database = MotoroBroDatabase()
-            database.saveRefueling(refueling) {
-                database.saveHistory("refueling", it!!, refueling.typeOfFuel) {
-                    AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_FUEL )
-                    AchievementManager().incrementAchievementProgress( Achievement.Names.REFUEL_TIMES, 1)
+
+            if (isForEditRefuel) {
+                database.editRefuel(refueling) {
                     showDialog.dismiss()
-                    Toast.makeText(this, "Successfully saved refuel data", Toast.LENGTH_SHORT)
-                        .show()
                     finish()
                 }
+            } else {
+                database.saveRefueling(refueling) {
+                    database.saveHistory("refueling", it!!, refueling.typeOfFuel) {
+                        AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_FUEL )
+                        AchievementManager().incrementAchievementProgress( Achievement.Names.REFUEL_TIMES, 1)
+                        showDialog.dismiss()
+                        Toast.makeText(this, "Successfully saved refuel data", Toast.LENGTH_SHORT)
+                            .show()
+                        finish()
+                    }
+                }
             }
-
         } else {
 
             Toast.makeText(this, "Please fill up all the fields", Toast.LENGTH_SHORT).show()
@@ -235,9 +303,6 @@ class AddRefuelingActivity : AppCompatActivity() {
                     totalCostText.text.toString()== "" ||
                     litersText.text.toString()== ""
                 ))
-
-
     }
-
 
 }

@@ -123,12 +123,25 @@ class PartsFragment : Fragment() {
             viewHolder.itemView.odometerText.text = bikePart.odometer.toString() + "km"
             viewHolder.itemView.cashText.text = " ₱" + bikePart.price.toString()
             viewHolder.itemView.noteText.text = bikePart.note
-            viewHolder.itemView.dateText.text = Utils().convertMillisecondsToDate(bikePart.dateLong, "MMM d, yyyy")
+
+            if (bikePart.dateLong == 0.toLong()) {
+                viewHolder.itemView.dateText.text = Utils().convertMillisecondsToDate(bikePart.dateLong, "MMM d, yyyy")
+            } else {
+                viewHolder.itemView.dateText.text = "Date not supported"
+            }
+
+
+            viewHolder.itemView.setOnClickListener {
+                // intent to go to parts edit page
+                val intent = Intent(activity, AddPartsActivity::class.java)
+                intent.putExtra("bikePart", bikePart)
+                intent.putExtra("isForEditParts", true)
+                startActivity(intent)
+            }
             // Get date bought
         }
 
         override fun getLayout(): Int {
-
             return R.layout.row_parts
         }
     }

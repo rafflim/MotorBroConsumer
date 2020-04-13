@@ -1,6 +1,12 @@
 package com.elevintech.motorbro.Model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
+
+@Parcelize
 class BikeParts(
+    var id: String = "",
     var userId: String = "",
     var date: String = "",
     var dateLong: Long = 0.toLong(),
@@ -9,4 +15,4 @@ class BikeParts(
     var brand: String = "",
     var note: String = "",
     var price: Double = 0.0,
-    var createdByShop: Boolean = false)
+    var createdByShop: Boolean = false) : Parcelable
