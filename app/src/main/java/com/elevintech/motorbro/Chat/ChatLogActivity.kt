@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.elevintech.motorbro.Model.ChatMessage
 import com.elevintech.motorbro.Model.Shop
+import com.elevintech.motorbro.Model.User
 import com.elevintech.motorbro.MotorBroDatabase.ChatDatabase
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.myapplication.R
@@ -28,6 +29,7 @@ class ChatLogActivity : AppCompatActivity() {
     lateinit var shop: Shop
     lateinit var chatRoomId: String
     lateinit var shopId: String
+    lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,15 +40,22 @@ class ChatLogActivity : AppCompatActivity() {
 
         getShop()
         getChats()
+        getUser()
 
         btnSendChat.setOnClickListener {
             val message = txtChatMessage.text.toString()
-            if ( message != "" && recipientTokenArray.isNotEmpty() )
+            if ( message != "" && user.firstName != "" && recipientTokenArray.isNotEmpty() )
                 sendChat()
         }
 
         btnBack.setOnClickListener {
             finish()
+        }
+    }
+
+    private fun getUser(){
+        MotoroBroDatabase().getUser {
+            user = it
         }
     }
 
@@ -73,6 +82,7 @@ class ChatLogActivity : AppCompatActivity() {
         val createdDate = System.currentTimeMillis() / 1000
         val message = txtChatMessage.text.toString()
         val senderId = FirebaseAuth.getInstance().currentUser?.uid!!
+        val senderName = user.firstName
         val receiverId = shop.shopId
         val fcmTokenList = ArrayList(shop.deviceTokens.values)  // list of the device tokens of users who will receive the chat message (e.g. the shop owner and employees)
 
@@ -80,14 +90,13 @@ class ChatLogActivity : AppCompatActivity() {
 
         txtChatMessage.setText("")
 
+        // create new chat room
         if (chatRoomId == ""){
-
-            // create new chat room
             val participants = mapOf("user" to senderId, "shop" to receiverId)
             db.createNewChatRoom ( participants ){ chatRoomId ->
 
                 // save message in chat room
-                val chatMessage = ChatMessage(createdDate, senderId, receiverId, message, false, chatRoomId, fcmTokenList)
+                val chatMessage = ChatMessage(createdDate, senderId, receiverId, message, false, chatRoomId, fcmTokenList, senderName)
                 db.saveMessageInChatRoom(chatMessage){
 
                     // save message in last messages
@@ -103,7 +112,7 @@ class ChatLogActivity : AppCompatActivity() {
 
         } else {
 
-            val chatMessage = ChatMessage(createdDate, senderId, receiverId, message, false, chatRoomId!!, fcmTokenList)
+            val chatMessage = ChatMessage(createdDate, senderId, receiverId, message, false, chatRoomId!!, fcmTokenList, senderName)
 
             // save message in chat room
             db.saveMessageInChatRoom(chatMessage){
