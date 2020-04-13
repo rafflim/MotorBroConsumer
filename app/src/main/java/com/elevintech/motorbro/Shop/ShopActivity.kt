@@ -16,6 +16,7 @@ import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_shop.*
 import kotlinx.android.synthetic.main.row_shop_item_layout.view.*
 import android.view.MenuItem
+import android.view.View
 import com.elevintech.motorbro.Favorites.FavoritesActivity
 
 
@@ -41,15 +42,32 @@ class ShopActivity : AppCompatActivity() {
             } else {
                 val searchTagsArray = stringToWords( searchCriteria.text.toString() )
                 val db = MotoroBroDatabase()
-                db.searchShop(searchTagsArray){
-                    for (shop in it) {
-                        shopAdapter.add(shopItem(shop))
+                db.searchShop(searchTagsArray){ shopsSearched ->
+
+                    if (shopsSearched.count() == 0){
+
+                        noShopsFoundLayout.visibility = View.VISIBLE
+
+                    } else{
+                        for (shop in shopsSearched) {
+                            shopAdapter.add(shopItem(shop))
+                        }
                     }
+
+
+
+
                 }
 
             }
 
 
+        }
+
+        noShopsFoundLayout.setOnClickListener {
+            getShops()
+            noShopsFoundLayout.visibility = View.GONE
+            searchCriteria.setText("")
         }
 
         setupActionBar()
