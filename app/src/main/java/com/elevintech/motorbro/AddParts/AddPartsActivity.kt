@@ -20,6 +20,7 @@ import android.view.View
 import com.elevintech.motorbro.Achievements.AchievementManager
 import com.elevintech.motorbro.Model.Achievement
 import com.elevintech.motorbro.TypeOf.TypeOfBrandActivity
+import com.elevintech.motorbro.Utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -27,21 +28,43 @@ class AddPartsActivity : AppCompatActivity() {
 
     var birthDayInMilliseconds = 0.toLong()
 
-    lateinit var mDateSetListener: DatePickerDialog.OnDateSetListener
+    private lateinit var mDateSetListener: DatePickerDialog.OnDateSetListener
+    private var isForEditParts = false
 
     companion object {
-        val SELECT_PART_TYPE = 1
-        val SELECT_PART_BRAND = 2
+        const val SELECT_PART_TYPE = 1
+        const val SELECT_PART_BRAND = 2
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.elevintech.myapplication.R.layout.activity_add_parts)
 
-//        getWindow().setFlags(
-//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-//        );
+        // get the intent if from parts fragment edit
+        isForEditParts = intent.getBooleanExtra("isForEditParts", false)
+
+        if (isForEditParts) {
+            // assign the values and assign parts details
+            val bikeParts: BikeParts? = intent.getParcelableExtra("bikeParts")
+
+            if (bikeParts != null) {
+                //assign the values also change the saving
+                dateText.setText(bikeParts.date)
+                odometerText.setText(bikeParts.odometer.toString())
+                typeOfPartsText.setText(bikeParts.typeOfParts)
+                brandText.setText(bikeParts.brand)
+                priceText.setText(bikeParts.price.toString())
+                noteText.setText(bikeParts.note)
+
+                deleteLayout.visibility = View.VISIBLE
+
+                deleteLayout.setOnClickListener {
+                    deleteParts(bikeParts)
+                }
+            }
+        } else {
+            deleteLayout.visibility = View.GONE
+        }
 
         backButton.setOnClickListener {
             finish()
@@ -72,6 +95,16 @@ class AddPartsActivity : AppCompatActivity() {
             noteText.getParent().requestDisallowInterceptTouchEvent(true);
         }
 
+    }
+
+    private fun deleteParts(bikeParts: BikeParts) {
+        MotoroBroDatabase().deleteBikeParts(bikeParts) {
+            if (Constants.RESULT_STRING.SUCCESS == it) {
+                finish()
+            } else {
+                Toast.makeText(this, "Unable to delete this part. Please check your internet connection", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     fun onTouch(view: View, event: MotionEvent): Boolean {
@@ -126,10 +159,8 @@ class AddPartsActivity : AppCompatActivity() {
 
     private fun setDatePickerAction(){
 
-
         // SET ACTION AFTER SELECTING THE DATE
         mDateSetListener = DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
-
             // FORMAT  DAY and MONTH to always show two digits (add zero if single digit)
             var mFormat = DecimalFormat("00");
             var monthString = mFormat.format(month + 1)
@@ -153,12 +184,14 @@ class AddPartsActivity : AppCompatActivity() {
 
         if (validateFields()){
 
-
             val showDialog = Utils().showProgressDialog(this, "Saving bike part")
 
             val bikeParts = BikeParts()
-            bikeParts.date = dateText.text.toString()
-            bikeParts.dateLong = Utils().convertDateToTimestamp(dateText.text.toString(), "yyyy-MM-dd")
+            //bikeParts.date = dateText.text.toString()
+            //bikeParts.dateLong = Utils().convertDateToTimestamp(dateText.text.toString(), "yyyy-MM-dd")
+
+            // Based on Raff Lim's changes change this to the current timestamp instead.
+            bikeParts.dateLong = Utils().getCurrentTimestamp()
             bikeParts.odometer = odometerText.text.toString().toDouble()
             bikeParts.typeOfParts = typeOfPartsText.text.toString()
             bikeParts.brand = brandText.text.toString()
@@ -167,26 +200,46 @@ class AddPartsActivity : AppCompatActivity() {
             bikeParts.userId = FirebaseAuth.getInstance().uid!!
 
             val database = MotoroBroDatabase()
-            database.saveBikeParts(bikeParts) {
-                database.saveHistory("bike-parts", it!!, bikeParts.typeOfParts){
-                    AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_PART_SERVICE )
-                    AchievementManager().incrementAchievementProgress( Achievement.Names.CREATED_PART_SERVICE, 1)
-                    showDialog.dismiss()
-                    Toast.makeText(this, "Successfully saved bike part", Toast.LENGTH_SHORT).show()
-                    finish()
+
+            if (isForEditParts) {
+                database.editBikeParts(bikeParts) {
+                    if (it == "Success") {
+                        database.saveHistory("bike-parts", it!!, bikeParts.typeOfParts){
+                            showDialog.dismiss()
+                            Toast.makeText(this, "Successfully edited bike part", Toast.LENGTH_SHORT).show()
+                            finish()
+                        }
+                    } else {
+                        Toast.makeText(this, "Error editing bike parts. Please check your internet connection.", Toast.LENGTH_SHORT).show()
+                    }
+                    Toast.makeText(this, "Error editing bike parts. Please check your internet connection.", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                database.saveBikeParts(bikeParts) {
+                    if (it != null) {
+                        database.saveHistory("bike-parts", it!!, bikeParts.typeOfParts){
+                            AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_PART_SERVICE )
+                            AchievementManager().incrementAchievementProgress( Achievement.Names.CREATED_PART_SERVICE, 1)
+                            showDialog.dismiss()
+                            Toast.makeText(this, "Successfully saved bike part", Toast.LENGTH_SHORT).show()
+                            finish()
+                        }
+                    } else {
+                        Toast.makeText(this, "Error saving bike parts. Please check your internet connection.", Toast.LENGTH_SHORT).show()
+                    }
+                    Toast.makeText(this, "Error saving bike parts. Please check your internet connection.", Toast.LENGTH_SHORT).show()
                 }
             }
+
         } else {
             Toast.makeText(this, "Please fill up all the fields", Toast.LENGTH_SHORT).show()
         }
-
-
     }
 
     private fun validateFields(): Boolean {
 
         return (!(
-                    dateText.text.toString() == "" ||
+                    //dateText.text.toString() == "" ||
 //                    odometerText.text.toString()== ""||
                     typeOfPartsText.text.toString() == ""||
                     brandText.text.toString() == ""||

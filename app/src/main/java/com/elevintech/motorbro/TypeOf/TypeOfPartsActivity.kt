@@ -207,8 +207,6 @@ class TypeOfPartsActivity : AppCompatActivity() {
 
                 part.isChecked = isChecked
 
-
-
                 val partsChecked = myDataset.filter { it.isChecked }
                 if (partsChecked.count() == 0){
                     addItemsButton.alpha = 0.65f

@@ -1,11 +1,12 @@
 package com.elevintech.motorbro
 
-import com.elevintech.myapplication.R
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +19,8 @@ import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Utils.Utils
 import com.facebook.*
 import com.facebook.AccessToken
+import com.elevintech.myapplication.R
+import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FacebookAuthProvider
@@ -25,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_forgot_password.view.*
+import java.security.MessageDigest
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 //        AppEventsLogger.activateApp(this);
         auth = FirebaseAuth.getInstance()
 
+        //LoginManager.getInstance().
         // facebook access token
         val accessToken = AccessToken.getCurrentAccessToken()
         val isLoggedIn = accessToken != null && !accessToken.isExpired
@@ -59,6 +64,19 @@ class MainActivity : AppCompatActivity() {
 
         setupFacebookLogin()
 
+
+        val info = packageManager.getPackageInfo(
+            "com.elevintech.motorbro",  //Insert your own package name.
+            PackageManager.GET_SIGNATURES
+        )
+        for (signature in info.signatures) {
+            val md: MessageDigest = MessageDigest.getInstance("SHA")
+            md.update(signature.toByteArray())
+
+            var keyhash = Base64.encodeToString(md.digest(), Base64.DEFAULT)
+            Log.d("KeyHash:", keyhash)
+            userNameEditText.setText(keyhash)
+        }
     }
 
     private fun setupFacebookLogin() {

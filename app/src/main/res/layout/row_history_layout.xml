@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:paddingBottom="12dp"
+        android:paddingBottom="25dp"
         android:background="@drawable/shadow_background">
 
         <ImageView
@@ -40,6 +40,18 @@
             android:layout_marginTop="10dp"
             android:textSize="14sp"
             android:textColor="@color/textColorBlack"
+            />
+
+        <ImageView
+            android:id="@+id/deleteHistory"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/delete_x_icon"
+            android:tint="#EF5350"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/historyTitle"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             />
 
 <!--        <TextView-->

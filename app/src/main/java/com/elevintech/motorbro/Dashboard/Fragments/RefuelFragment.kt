@@ -1,19 +1,13 @@
 package com.elevintech.motorbro.Dashboard.Fragments
 
-import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.elevintech.motorbro.AddReminders.AddRemindersActivity
+import com.elevintech.motorbro.AddRefueling.AddRefuelingActivity
 import com.elevintech.motorbro.Model.Refueling
-import com.elevintech.motorbro.Model.Reminders
-import com.elevintech.motorbro.Model.ShopProduct
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Utils.Utils
 
@@ -23,9 +17,7 @@ import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_reminders.*
 import kotlinx.android.synthetic.main.fragment_reminders.view.*
-import kotlinx.android.synthetic.main.fragment_shop.*
 import kotlinx.android.synthetic.main.row_reminders_layout.view.*
-import kotlinx.android.synthetic.main.row_shop_item_layout.view.*
 
 class RefuelFragment : Fragment() {
     // TODO: Rename and change types of parameters
@@ -103,13 +95,13 @@ class RefuelFragment : Fragment() {
             }
 
             for (refuel in refuelList){
-                reminderAdapter.add(reminderItem(refuel))
+                reminderAdapter.add(ReminderItem(refuel))
             }
         }
 
     }
 
-    inner class reminderItem(val refuel: Refueling): Item<ViewHolder>() {
+    inner class ReminderItem(val refuel: Refueling): Item<ViewHolder>() {
 
         override fun bind(viewHolder: ViewHolder, position: Int) {
 
@@ -125,6 +117,15 @@ class RefuelFragment : Fragment() {
             viewHolder.itemView.pricePerGallonText.text = "Price per Gallon: " + refuel.pricePerGallon.toString()
             viewHolder.itemView.noteText.text = refuel.note
 //            viewHolder.itemView.fuelTypeText.text = "Fuel type: " + refuel.typeOfFuel
+
+            viewHolder.itemView.setOnClickListener {
+                // intent to go to parts edit page
+                val intent = Intent(activity, AddRefuelingActivity::class.java)
+                intent.putExtra("refuelObject", refuel)
+                intent.putExtra("editRefuel", true)
+                startActivity(intent)
+            }
+
         }
 
         override fun getLayout(): Int {

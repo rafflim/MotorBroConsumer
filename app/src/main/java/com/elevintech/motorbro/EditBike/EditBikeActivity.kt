@@ -37,15 +37,15 @@ class EditBikeActivity : AppCompatActivity() {
         displayBikeData()
 
         imgBikeProfile.setOnClickListener {
-
             askUploadSource()
-
         }
 
         sendButton.setOnClickListener {
-
             updateBike()
+        }
 
+        createAccountBackImageView.setOnClickListener {
+            finish()
         }
 
     }

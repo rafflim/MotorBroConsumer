@@ -4,6 +4,7 @@ import java.io.Serializable
 
 
 class History (
+    var id: String = "",
     var userId: String = "",
     var dateLong: Long = 0.toLong(),
     var typeOfHistory: String = "",

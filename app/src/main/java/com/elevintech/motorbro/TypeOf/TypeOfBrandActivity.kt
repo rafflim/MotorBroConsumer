@@ -181,7 +181,7 @@ class TypeOfBrandActivity : AppCompatActivity() {
 
             }
 
-            viewHolder.itemView.checkbox.isChecked = part.isChecked
+            //viewHolder.itemView.checkbox.isChecked = part.isChecked
 
             // MARK: wag to idelete bro kasi pag tinanggal to pag iniscroll down ung recycler view nawawala ung check.
             if (part.isChecked) {
@@ -193,7 +193,9 @@ class TypeOfBrandActivity : AppCompatActivity() {
 
             viewHolder.itemView.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
 
-                part.isChecked = isChecked
+                if (isChecked) {
+                    part.isChecked = true
+                }
 
                 val partsChecked = myDataset.filter { it.isChecked }
                 if (partsChecked.count() == 0){
