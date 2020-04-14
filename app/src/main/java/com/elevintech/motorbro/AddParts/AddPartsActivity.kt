@@ -19,20 +19,32 @@ import java.text.DecimalFormat
 import java.util.*
 import android.view.MotionEvent
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.elevintech.motorbro.Achievements.AchievementManager
 import com.elevintech.motorbro.Model.Achievement
+import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.TypeOf.TypeOfBrandActivity
 import com.elevintech.motorbro.Utils.Constants
 import com.elevintech.myapplication.R
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.Item
+import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.row_bike.view.*
 
 
 class AddPartsActivity : AppCompatActivity() {
 
+    var selectedBike = BikeInfo()
     var birthDayInMilliseconds = 0.toLong()
 
     private lateinit var mDateSetListener: DatePickerDialog.OnDateSetListener
     private var isForEditParts = false
+
+    lateinit var bottomSheetDialog: BottomSheetDialog
 
     companion object {
         const val SELECT_PART_TYPE = 1
@@ -42,6 +54,8 @@ class AddPartsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.elevintech.myapplication.R.layout.activity_add_parts)
+
+        bottomSheetDialog = BottomSheetDialog(this)
 
         // get the intent if from parts fragment edit
         isForEditParts = intent.getBooleanExtra("isForEditParts", false)
@@ -99,6 +113,43 @@ class AddPartsActivity : AppCompatActivity() {
             noteText.getParent().requestDisallowInterceptTouchEvent(true);
         }
 
+        bikeText.setOnClickListener {
+            openBikePicker()
+        }
+
+    }
+
+    private fun openBikePicker(){
+
+        val progressDialog = Utils().easyProgressDialog(this, "Gathering your bikes...")
+        progressDialog.show()
+
+        MotoroBroDatabase().getUserBikes { bikes ->
+
+            val view = layoutInflater.inflate(R.layout.bottom_sheet_dialog_select_bike, null)
+            val bikeAdapter = GroupAdapter<ViewHolder>()
+
+            for (bike in bikes.filter { !it.deleted }){
+                bikeAdapter.add(BikeItem(bike))
+            }
+
+            view.findViewById<RecyclerView>(R.id.bikeRecyclerView).isNestedScrollingEnabled = false
+            view.findViewById<RecyclerView>(R.id.bikeRecyclerView).layoutManager = LinearLayoutManager(this)
+            view.findViewById<RecyclerView>(R.id.bikeRecyclerView).adapter = bikeAdapter
+
+            bottomSheetDialog.setContentView(view)
+            bottomSheetDialog.show()
+
+            progressDialog.dismiss()
+
+        }
+
+    }
+
+    private fun onBikeSelect(bike: BikeInfo){
+        selectedBike = bike
+        bikeText.setText(bike.brand + " " + bike.model + " (${bike.nickname})")
+        bottomSheetDialog.dismiss()
     }
 
     private fun deleteParts(bikeParts: BikeParts) {
@@ -228,6 +279,7 @@ class AddPartsActivity : AppCompatActivity() {
             bikeParts.price = priceText.text.toString().toDouble()
             //bikeParts.note = noteText.text.toString()
             bikeParts.userId = FirebaseAuth.getInstance().uid!!
+            bikeParts.bikeId = selectedBike.bikeId
 
             val database = MotoroBroDatabase()
 
@@ -279,5 +331,26 @@ class AddPartsActivity : AppCompatActivity() {
 
     }
 
+    inner class BikeItem(val bike: BikeInfo): Item<ViewHolder>() {
+        override fun bind(viewHolder: ViewHolder, position: Int) {
+            viewHolder.itemView.bikeName.text = bike.nickname
+            viewHolder.itemView.plateNumberText.text = bike.plateNumber
+            viewHolder.itemView.deleteButton.visibility = View.INVISIBLE
+
+            viewHolder.itemView.setOnClickListener { onBikeSelect(bike) }
+
+            if (bike.imageUrl != "")
+                Glide.with(this@AddPartsActivity).load(bike.imageUrl).into(viewHolder.itemView.bikeImageView)
+
+            if (bike.primary)
+                viewHolder.itemView.isPrimary.visibility = View.VISIBLE
+
+        }
+
+        override fun getLayout(): Int {
+            return R.layout.row_bike
+
+        }
+    }
 
 }

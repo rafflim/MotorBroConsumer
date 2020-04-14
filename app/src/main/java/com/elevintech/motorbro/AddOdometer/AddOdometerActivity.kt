@@ -29,7 +29,6 @@ import kotlinx.android.synthetic.main.activity_add_odometer.backButton
 import kotlinx.android.synthetic.main.activity_add_odometer.checkMarkButton
 import kotlinx.android.synthetic.main.activity_add_odometer.dateText
 import kotlinx.android.synthetic.main.activity_add_odometer.odometerText
-import kotlinx.android.synthetic.main.activity_add_parts.*
 import kotlinx.android.synthetic.main.row_bike.view.*
 import java.text.DecimalFormat
 import java.util.*
@@ -62,9 +61,7 @@ class AddOdometerActivity : AppCompatActivity() {
         }
 
         bikeText.setOnClickListener {
-
             openBikePicker()
-
         }
     }
 
