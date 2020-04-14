@@ -94,22 +94,22 @@
 
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="80dp"
                 app:cardCornerRadius="15dp"
                 app:cardPreventCornerOverlap="false"
-                app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginRight="80dp"
-                            android:layout_marginTop="30dp"
-            >
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:id="@+id/motorcycleImage"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/no_data"
-                    android:scaleType="centerCrop"/>
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/no_data" />
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -166,6 +166,27 @@
 
                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/changePrimaryBike"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="80dp"
+                android:background="@drawable/set_as_primary"
+                android:elevation="10dp"
+                android:paddingStart="10dp"
+                android:paddingTop="0dp"
+                android:paddingEnd="10dp"
+                android:scaleType="centerCrop"
+                android:text="Change Primary Bike"
+                android:textColor="@color/colorPrimary"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView4" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -582,4 +603,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+
 </FrameLayout>
