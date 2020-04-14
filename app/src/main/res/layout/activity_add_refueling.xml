@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="#5C6BC0"
+        android:background="#3C4CA8"
         android:paddingTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
             android:fontFamily="@font/lato"
             android:text="Add Refueling"
             android:textColor="#fff"
-            android:textSize="21sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:layout_gravity="left"
             android:layout_marginLeft="30dp"
@@ -86,8 +86,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_gravity="right"
-            android:layout_marginRight="10dp"
-            android:visibility="visible"
+            android:layout_marginRight="2dp"
+            android:visibility="gone"
             >
 
             <ImageView
@@ -328,7 +328,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-
+                android:visibility="gone"
                 />
 
 

@@ -50,12 +50,27 @@ class SplashPageActivity : AppCompatActivity() {
             auth = FirebaseAuth.getInstance()
 
             val currentUser = auth.currentUser
-//            if (currentUser != null) {
-//
-//                val firebaseDb = MotoroBroDatabase()
-//                firebaseDb.getUser {
-//
+            if (currentUser != null) {
+
+                val db = MotoroBroDatabase()
+                db.getUser {
+
+                    db.getUserBikes {
+                        if (it.count() != 0) {
+                            val intent = Intent(applicationContext, DashboardActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            val intent = Intent(applicationContext, BikeRegistrationActivity::class.java)
+                            intent.putExtra("previousActivity", "splashPage")
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
+                    // Rather check if user has any bike?
 //                    if (it.usersRegistrationProgress == 1) {
+//
+//
 //                        val intent = Intent(applicationContext, BikeRegistrationActivity::class.java)
 //                        intent.putExtra("previousActivity", "splashPage")
 //                        startActivity(intent)
@@ -65,13 +80,13 @@ class SplashPageActivity : AppCompatActivity() {
 //                        startActivity(intent)
 //                        finish()
 //                    }
-//                }
-//
-//            } else {
+                }
+
+            } else {
                 val intent = Intent(applicationContext, MainActivity::class.java)
                 startActivity(intent)
                 finish()
-//            }
+            }
 
 //            val sharedPref = SharedPreferences(applicationContext)
 //            //val isNotFirstTimeOpening = sharedPref.getValueBool("IS_NOT_FIRST_TIME_OPENING_APP"

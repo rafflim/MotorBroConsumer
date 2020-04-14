@@ -47,6 +47,9 @@ class HomeFragment : Fragment() {
     private fun setupViews(view: View){
         db.getUserOdometers {
             // TODO: somehow get the last value only
+            if (!isAdded) {
+                return@getUserOdometers
+            }
 
             if (it.isNotEmpty()){
                 val firstOdo = it.first()
@@ -56,6 +59,10 @@ class HomeFragment : Fragment() {
 
             //db.getUserBike { setBikeValues(it) }
             db.getUserBikes {
+                if (!isAdded) {
+                    return@getUserBikes
+                }
+
                 val firstBike = it[0]
                 setBikeValues(view, firstBike)
             }

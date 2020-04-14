@@ -65,18 +65,18 @@ class MainActivity : AppCompatActivity() {
         setupFacebookLogin()
 
 
-        val info = packageManager.getPackageInfo(
-            "com.elevintech.motorbro",  //Insert your own package name.
-            PackageManager.GET_SIGNATURES
-        )
-        for (signature in info.signatures) {
-            val md: MessageDigest = MessageDigest.getInstance("SHA")
-            md.update(signature.toByteArray())
-
-            var keyhash = Base64.encodeToString(md.digest(), Base64.DEFAULT)
-            Log.d("KeyHash:", keyhash)
-            userNameEditText.setText(keyhash)
-        }
+//        val info = packageManager.getPackageInfo(
+//            "com.elevintech.motorbro",  //Insert your own package name.
+//            PackageManager.GET_SIGNATURES
+//        )
+//        for (signature in info.signatures) {
+//            val md: MessageDigest = MessageDigest.getInstance("SHA")
+//            md.update(signature.toByteArray())
+//
+//            var keyhash = Base64.encodeToString(md.digest(), Base64.DEFAULT)
+//            Log.d("KeyHash:", keyhash)
+//            userNameEditText.setText(keyhash)
+//        }
     }
 
     private fun setupFacebookLogin() {

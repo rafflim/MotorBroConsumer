@@ -16,6 +16,7 @@ import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_shop.*
 import kotlinx.android.synthetic.main.row_shop_item_layout.view.*
 import android.view.MenuItem
+import android.view.View
 import com.elevintech.motorbro.Favorites.FavoritesActivity
 
 
@@ -37,7 +38,6 @@ class ShopActivity : AppCompatActivity() {
 
             if ( searchCriteria.text.toString() == "" ){
                 getShops()
-
             } else {
                 val searchTagsArray = stringToWords( searchCriteria.text.toString() )
                 val db = MotoroBroDatabase()
@@ -46,10 +46,7 @@ class ShopActivity : AppCompatActivity() {
                         shopAdapter.add(shopItem(shop))
                     }
                 }
-
             }
-
-
         }
 
         setupActionBar()
@@ -94,19 +91,28 @@ class ShopActivity : AppCompatActivity() {
         return true
     }
 
-    fun setupViews() {
+    private fun setupViews() {
         shopRecyclerView.isNestedScrollingEnabled = false
         shopRecyclerView.layoutManager = GridLayoutManager(this, 2)
         shopRecyclerView.adapter = shopAdapter
 
     }
 
-    fun getShops() {
+    private fun getShops() {
         val db = MotoroBroDatabase()
         db.getShops {
-            for (shop in it) {
+//            for (shop in it) {
+//                shopAdapter.add(shopItem(shop))
+//            }
+//
+//            it.sortBy {  }
+
+            val sortedList = it.sortedWith(compareBy { it.spotlight })
+            val reversedList = sortedList.reversed()
+            for (shop in reversedList) {
                 shopAdapter.add(shopItem(shop))
             }
+
         }
     }
 
@@ -116,6 +122,12 @@ class ShopActivity : AppCompatActivity() {
 
             if (shop.imageUrl != ""){
                 Glide.with(this@ShopActivity).load(shop.imageUrl).into(viewHolder.itemView.shopImageView)
+            }
+
+            if(shop.spotlight) {
+                viewHolder.itemView.topStoreLayout.visibility = View.VISIBLE
+            } else {
+                viewHolder.itemView.topStoreLayout.visibility = View.GONE
             }
 
             //Glide.with(activity!!).load(user.userProfileMainImageUrl).into(viewHolder.itemView.shopImageView)
@@ -133,7 +145,6 @@ class ShopActivity : AppCompatActivity() {
 
         override fun getLayout(): Int {
             return R.layout.row_shop_item_layout
-
         }
     }
 }

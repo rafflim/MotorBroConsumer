@@ -1,6 +1,8 @@
 package com.elevintech.motorbro.Dashboard.Fragments
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.elevintech.motorbro.Model.BikeParts
 import com.elevintech.motorbro.Model.History
 import com.elevintech.motorbro.Model.OdometerUpdate
 import com.elevintech.motorbro.Model.Reminders
@@ -27,7 +30,9 @@ import kotlinx.android.synthetic.main.row_history_layout.view.*
 class HistoryFragment : Fragment() {
 
 
-    val historyAdapter = GroupAdapter<ViewHolder>()
+    //val historyAdapter = GroupAdapter<ViewHolder>()
+    lateinit var historyAdapter: MyAdapter
+    var listOfHistory = ArrayList<History>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,23 +51,30 @@ class HistoryFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        historyAdapter.clear()
+        //historyAdapter.clear()
+        //historyAdapter
+        listOfHistory.clear()
         setupViews()
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
-        historyAdapter.clear()
+        //historyAdapter.clear()
+        listOfHistory.clear()
     }
 
     fun setupRecyclerView() {
+
+        historyAdapter = MyAdapter(listOfHistory)
         historyRecyclerView.layoutManager = LinearLayoutManager(activity)
         historyRecyclerView.isNestedScrollingEnabled = true
         historyRecyclerView.adapter = historyAdapter
+
+        //historyRecyclerView.adapter = newHistoryAdapter
     }
 
-    fun setupViews() {
+    private fun setupViews() {
 
         val db = MotoroBroDatabase()
         db.getUserHistory {
@@ -78,27 +90,13 @@ class HistoryFragment : Fragment() {
                 }
             }
 
-            for (history in it) {
-                historyAdapter.add(historyItem(history))
-            }
-        }
-//        MotoroBroDatabase().getUserHistory {
-//
-//            val historyList = it
-//            if(historyList.isNotEmpty()){
-//                if (noDataLayout != null) {
-//                    noDataLayout.visibility = View.GONE
-//                }
-//            } else {
-//                if (noDataLayout != null) {
-//                    noDataLayout.visibility = View.VISIBLE
-//                }
-//            }
-//
-//            for (history in historyList){
+            this.listOfHistory.addAll(historyList)
+            historyAdapter.notifyDataSetChanged()
+
+//            for (history in it) {
 //                historyAdapter.add(historyItem(history))
 //            }
-//        }
+        }
     }
 
     inner class historyItem(val history: History): Item<ViewHolder>() {
@@ -166,7 +164,7 @@ class HistoryFragment : Fragment() {
 
             viewHolder.itemView.deleteHistory.setOnClickListener {
                 // delete the item
-                deleteHistory(position, history)
+                createAlertDialog(position, history)
             }
 
         }
@@ -179,11 +177,36 @@ class HistoryFragment : Fragment() {
             MotoroBroDatabase().deleteUserHistory(history) {
 
             }
-
         }
 
         // Return the size of your dataset (invoked by the layout manager)
         override fun getItemCount() = myDataset.size
 
+
+        private fun createAlertDialog(position: Int, history: History){
+            // instantiate dialog
+            val builder = AlertDialog.Builder(activity)
+            val optionDialog = AlertDialog.Builder(activity).create()
+            // instantiate the view for the dialog
+            val viewInflated = layoutInflater.inflate(R.layout.dialog_delete_item, null)
+            // inflate the view in the dialog
+            builder.setView(viewInflated)
+            // set the dialog title
+            builder.setTitle("Delete item?")
+            builder.setCancelable(true) // can be set to false, to make the dialog undismissable
+            builder.setPositiveButton("Yes",
+                DialogInterface.OnClickListener { dialog, which ->
+                    println("works")
+                    // dismiss dialog after
+                    dialog.dismiss()
+                    deleteHistory(position, history)
+                })
+            builder.setNegativeButton("Cancel",
+                DialogInterface.OnClickListener { dialog, which ->
+                    dialog.cancel()
+                })
+
+            builder.show()
+        }
     }
 }
