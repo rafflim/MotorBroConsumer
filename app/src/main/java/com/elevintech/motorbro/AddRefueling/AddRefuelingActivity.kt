@@ -1,7 +1,9 @@
 package com.elevintech.motorbro.AddRefueling
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -69,7 +71,7 @@ class AddRefuelingActivity : AppCompatActivity() {
                 deleteLayout.visibility = View.VISIBLE
 
                 deleteLayout.setOnClickListener {
-                    deleteRefuel(refuel)
+                    createAlertDialog(refuel)
                 }
             }
         }
@@ -110,10 +112,41 @@ class AddRefuelingActivity : AppCompatActivity() {
             pricePerGallonText.isEnabled = true
             totalCostText.isEnabled = true
             litersText.isEnabled = true
+
+            pricePerGallonText.setText("")
+            totalCostText.setText("")
+            litersText.setText("")
+
             clearPriceValues.visibility = View.GONE
         }
 
 
+    }
+
+    private fun createAlertDialog(refuel: Refueling){
+        // instantiate dialog
+        val builder = AlertDialog.Builder(this)
+        val optionDialog = AlertDialog.Builder(this).create()
+        // instantiate the view for the dialog
+        val viewInflated = layoutInflater.inflate(R.layout.dialog_delete_item, null)
+        // inflate the view in the dialog
+        builder.setView(viewInflated)
+        // set the dialog title
+        builder.setTitle("Delete item?")
+        builder.setCancelable(true) // can be set to false, to make the dialog undismissable
+        builder.setPositiveButton("Yes",
+            DialogInterface.OnClickListener { dialog, which ->
+                println("works")
+                // dismiss dialog after
+                dialog.dismiss()
+                deleteRefuel(refuel)
+            })
+        builder.setNegativeButton("Cancel",
+            DialogInterface.OnClickListener { dialog, which ->
+                dialog.cancel()
+            })
+
+        builder.show()
     }
 
     private fun deleteRefuel(refuel: Refueling) {
@@ -121,7 +154,7 @@ class AddRefuelingActivity : AppCompatActivity() {
             if (Constants.RESULT_STRING.SUCCESS == it) {
                 finish()
             } else {
-                Toast.makeText(this, "Unable to delete this part. Please check your internet connection", Toast.LENGTH_LONG).show()
+                //Toast.makeText(this, "Unable to delete this part. Please check your internet connection", Toast.LENGTH_LONG).show()
             }
         }
     }

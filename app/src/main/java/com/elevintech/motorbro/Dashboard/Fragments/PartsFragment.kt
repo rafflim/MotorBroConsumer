@@ -110,12 +110,12 @@ class PartsFragment : Fragment() {
             bikePartsList.reversed()
             for (bikePart in bikePartsList){
                 println("bike23 " + bikePart)
-                partsListAdapter.add(partsItem(bikePart))
+                partsListAdapter.add(PartsItem(bikePart))
             }
         }
     }
 
-    inner class partsItem(val bikePart: BikeParts): Item<ViewHolder>() {
+    inner class PartsItem(val bikePart: BikeParts): Item<ViewHolder>() {
 
 
         override fun bind(viewHolder: ViewHolder, position: Int) {
@@ -124,7 +124,7 @@ class PartsFragment : Fragment() {
             viewHolder.itemView.cashText.text = " ₱" + bikePart.price.toString()
             viewHolder.itemView.noteText.text = bikePart.note
 
-            if (bikePart.dateLong == 0.toLong()) {
+            if (bikePart.dateLong != 0.toLong()) {
                 viewHolder.itemView.dateText.text = Utils().convertMillisecondsToDate(bikePart.dateLong, "MMM d, yyyy")
             } else {
                 viewHolder.itemView.dateText.text = "Date not supported"
@@ -134,7 +134,7 @@ class PartsFragment : Fragment() {
             viewHolder.itemView.setOnClickListener {
                 // intent to go to parts edit page
                 val intent = Intent(activity, AddPartsActivity::class.java)
-                intent.putExtra("bikePart", bikePart)
+                intent.putExtra("bikeParts", bikePart)
                 intent.putExtra("isForEditParts", true)
                 startActivity(intent)
             }

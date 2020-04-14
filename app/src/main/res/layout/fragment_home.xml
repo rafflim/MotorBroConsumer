@@ -108,22 +108,35 @@
                     android:id="@+id/motorcycleImage"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/motorcycle_demo_1"
+                    android:src="@drawable/no_data"
                     android:scaleType="centerCrop"/>
             </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/primaryBikeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/open_sans_semibold"
+                android:text="Primary Bike"
+                android:textColor="#1C1C1C"
+                android:textSize="19sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/motorNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/open_sans_semibold"
-                android:text=""
-                android:textColor="@color/textColorBlack"
-                android:textSize="16sp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/open_sans"
+                android:text="Toyota Camey"
+                android:textColor="#3C3C3C"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/primaryBikeName" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/plateNumberLayout"

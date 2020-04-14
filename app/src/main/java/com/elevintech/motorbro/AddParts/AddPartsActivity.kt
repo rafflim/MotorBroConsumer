@@ -1,7 +1,9 @@
 package com.elevintech.motorbro.AddParts
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -21,6 +23,7 @@ import com.elevintech.motorbro.Achievements.AchievementManager
 import com.elevintech.motorbro.Model.Achievement
 import com.elevintech.motorbro.TypeOf.TypeOfBrandActivity
 import com.elevintech.motorbro.Utils.Constants
+import com.elevintech.myapplication.R
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -59,7 +62,8 @@ class AddPartsActivity : AppCompatActivity() {
                 deleteLayout.visibility = View.VISIBLE
 
                 deleteLayout.setOnClickListener {
-                    deleteParts(bikeParts)
+                    createAlertDialog(bikeParts)
+
                 }
             }
         } else {
@@ -102,7 +106,7 @@ class AddPartsActivity : AppCompatActivity() {
             if (Constants.RESULT_STRING.SUCCESS == it) {
                 finish()
             } else {
-                Toast.makeText(this, "Unable to delete this part. Please check your internet connection", Toast.LENGTH_LONG).show()
+                //Toast.makeText(this, "Unable to delete this part. Please check your internet connection", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -133,6 +137,32 @@ class AddPartsActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun createAlertDialog(bikeParts: BikeParts){
+        // instantiate dialog
+        val builder = AlertDialog.Builder(this)
+        val optionDialog = AlertDialog.Builder(this).create()
+        // instantiate the view for the dialog
+        val viewInflated = layoutInflater.inflate(R.layout.dialog_delete_item, null)
+        // inflate the view in the dialog
+        builder.setView(viewInflated)
+        // set the dialog title
+        builder.setTitle("Delete item?")
+        builder.setCancelable(true) // can be set to false, to make the dialog undismissable
+        builder.setPositiveButton("Yes",
+            DialogInterface.OnClickListener { dialog, which ->
+                println("works")
+                // dismiss dialog after
+                dialog.dismiss()
+                deleteParts(bikeParts)
+            })
+        builder.setNegativeButton("Cancel",
+            DialogInterface.OnClickListener { dialog, which ->
+                dialog.cancel()
+            })
+
+        builder.show()
     }
 
 
@@ -192,11 +222,11 @@ class AddPartsActivity : AppCompatActivity() {
 
             // Based on Raff Lim's changes change this to the current timestamp instead.
             bikeParts.dateLong = Utils().getCurrentTimestamp()
-            bikeParts.odometer = odometerText.text.toString().toDouble()
+            //bikeParts.odometer = odometerText.text.toString().toDouble()
             bikeParts.typeOfParts = typeOfPartsText.text.toString()
             bikeParts.brand = brandText.text.toString()
             bikeParts.price = priceText.text.toString().toDouble()
-            bikeParts.note = noteText.text.toString()
+            //bikeParts.note = noteText.text.toString()
             bikeParts.userId = FirebaseAuth.getInstance().uid!!
 
             val database = MotoroBroDatabase()

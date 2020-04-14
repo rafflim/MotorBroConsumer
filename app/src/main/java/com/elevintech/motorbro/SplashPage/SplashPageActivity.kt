@@ -52,19 +52,34 @@ class SplashPageActivity : AppCompatActivity() {
             val currentUser = auth.currentUser
             if (currentUser != null) {
 
-                val firebaseDb = MotoroBroDatabase()
-                firebaseDb.getUser {
+                val db = MotoroBroDatabase()
+                db.getUser {
 
-                    if (it.usersRegistrationProgress == 1) {
-                        val intent = Intent(applicationContext, BikeRegistrationActivity::class.java)
-                        intent.putExtra("previousActivity", "splashPage")
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        val intent = Intent(applicationContext, DashboardActivity::class.java)
-                        startActivity(intent)
-                        finish()
+                    db.getUserBikes {
+                        if (it.count() != 0) {
+                            val intent = Intent(applicationContext, DashboardActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            val intent = Intent(applicationContext, BikeRegistrationActivity::class.java)
+                            intent.putExtra("previousActivity", "splashPage")
+                            startActivity(intent)
+                            finish()
+                        }
                     }
+                    // Rather check if user has any bike?
+//                    if (it.usersRegistrationProgress == 1) {
+//
+//
+//                        val intent = Intent(applicationContext, BikeRegistrationActivity::class.java)
+//                        intent.putExtra("previousActivity", "splashPage")
+//                        startActivity(intent)
+//                        finish()
+//                    } else {
+//                        val intent = Intent(applicationContext, DashboardActivity::class.java)
+//                        startActivity(intent)
+//                        finish()
+//                    }
                 }
 
             } else {

@@ -113,7 +113,7 @@ class ShopActivity : AppCompatActivity() {
         return true
     }
 
-    fun setupViews() {
+    private fun setupViews() {
         shopRecyclerView.isNestedScrollingEnabled = false
         shopRecyclerView.layoutManager = GridLayoutManager(this, 2)
         shopRecyclerView.adapter = shopAdapter
@@ -126,9 +126,18 @@ class ShopActivity : AppCompatActivity() {
 
         val db = MotoroBroDatabase()
         db.getShops {
-            for (shop in it) {
+//            for (shop in it) {
+//                shopAdapter.add(shopItem(shop))
+//            }
+//
+//            it.sortBy {  }
+
+            val sortedList = it.sortedWith(compareBy { it.spotlight })
+            val reversedList = sortedList.reversed()
+            for (shop in reversedList) {
                 shopAdapter.add(shopItem(shop))
             }
+
         }
 
     }
@@ -146,6 +155,12 @@ class ShopActivity : AppCompatActivity() {
                 Glide.with(this@ShopActivity).load(shop.imageUrl).into(viewHolder.itemView.shopImageView)
             }
 
+            if(shop.spotlight) {
+                viewHolder.itemView.topStoreLayout.visibility = View.VISIBLE
+            } else {
+                viewHolder.itemView.topStoreLayout.visibility = View.GONE
+            }
+
             //Glide.with(activity!!).load(user.userProfileMainImageUrl).into(viewHolder.itemView.shopImageView)
             viewHolder.itemView.shopName.text = shop.name.capitalize()
 //            viewHolder.itemView.shopDescription.text = shop.description
@@ -161,7 +176,6 @@ class ShopActivity : AppCompatActivity() {
 
         override fun getLayout(): Int {
             return R.layout.row_shop_item_layout
-
         }
     }
 }

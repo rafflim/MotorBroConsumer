@@ -10,6 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 class MotoroBroDatabase {
@@ -344,16 +345,22 @@ class MotoroBroDatabase {
         docRef.get()
             .addOnSuccessListener {
 
-
-                for (minShop in it){
-
+                it.forEachIndexed { index, minShop ->
                     val shop = minShop.toObject(Shop::class.java)
+                    //TODO: This is for testing putting a spotlihgt in here
+                    if (index <= 1) { shop.spotlight = true }
                     shop.shopId = minShop.id
                     list.add(shop)
                 }
-
                 callback(list)
 
+//                for (minShop in it){
+//
+//                    val shop = minShop.toObject(Shop::class.java)
+//                    shop.shopId = minShop.id
+//                    list.add(shop)
+//                }
+//                callback(list)
             }
     }
 
@@ -375,12 +382,12 @@ class MotoroBroDatabase {
             }
     }
 
-    fun getUserHistory(callback: (MutableList<History>) -> Unit) {
+    fun getUserHistory(callback: (ArrayList<History>) -> Unit) {
 
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
         val docRef = db.collection("customers").document(uid).collection("history").orderBy("dateLong", Query.Direction.DESCENDING)
-        val list = mutableListOf<History>()
+        val list = ArrayList<History>()
 
         docRef.get()
             .addOnSuccessListener {

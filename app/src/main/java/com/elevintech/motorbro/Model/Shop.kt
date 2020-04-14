@@ -4,6 +4,7 @@ import java.io.Serializable
 
 class Shop (
     var name: String = "",
+    var spotlight: Boolean = false,
     var description: String = "",
     var imageUrl: String = "",
     var dateEstablished: String = "",

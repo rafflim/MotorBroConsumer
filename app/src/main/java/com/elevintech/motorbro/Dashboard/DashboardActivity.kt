@@ -37,10 +37,13 @@ import com.elevintech.motorbro.TypeOf.TypeOfBrandActivity
 import com.elevintech.motorbro.TypeOf.TypeOfFuelActivity
 import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
 import com.elevintech.myapplication.R
+import com.facebook.login.LoginManager
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FacebookAuthCredential
+import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_dashboard.*
@@ -140,25 +143,19 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             val odometer = bottomSheetDialog.findViewById<LinearLayout>(R.id.layoutOdometer)
             val refueling = bottomSheetDialog.findViewById<LinearLayout>(R.id.layoutRefueling)
 
-            parts!!.setOnClickListener {
-
+            parts?.setOnClickListener {
                 val intent = Intent(this, AddPartsActivity::class.java)
                 startActivity(intent)
-
             }
 
-            odometer!!.setOnClickListener {
-
+            odometer?.setOnClickListener {
                 val intent = Intent(this, AddOdometerActivity::class.java)
                 startActivity(intent)
-
             }
 
-            refueling!!.setOnClickListener {
-
+            refueling?.setOnClickListener {
                 val intent = Intent(this, AddRefuelingActivity::class.java)
                 startActivity(intent)
-
             }
 
         }
@@ -309,6 +306,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     private fun logOut() {
 
         FirebaseAuth.getInstance().signOut()
+        LoginManager.getInstance().logOut()
         val intent = Intent(this, MainActivity::class.java)
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
