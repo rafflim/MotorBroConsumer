@@ -92,7 +92,6 @@ class AddOdometerActivity : AppCompatActivity() {
             progressDialog.dismiss()
 
         }
-
     }
 
     private fun onBikeSelect(bike: BikeInfo){

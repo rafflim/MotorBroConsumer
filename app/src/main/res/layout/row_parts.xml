@@ -96,7 +96,7 @@
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/odometer_small_icon"
+                        android:src="@drawable/brand_icon"
                         android:tint="#1B1B1B" />
 
                     <TextView
@@ -106,7 +106,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/open_sans"
-                        android:text="24,000 km"
+                        android:text=""
                         android:textColor="@color/textColorBlack"
 
                         android:textSize="11sp"

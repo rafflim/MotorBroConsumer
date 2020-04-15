@@ -46,21 +46,38 @@ class TypeOfBrandActivity : AppCompatActivity() {
 
         addItemsButton.setOnClickListener {
 
-            val selectedBrand = totalList.filter { it.isChecked }
-            if (selectedBrand.count() != 1){
-                Snackbar.make(addItemsButton, "Please select only one brand", Snackbar.LENGTH_LONG).show()
+            val selectedBrands = totalList.filter { it.isChecked }
+//            if (selectedBrand.count() != 1){
+//                Snackbar.make(addItemsButton, "Please select only one brand", Snackbar.LENGTH_LONG).show()
+//            }
+
+//            else {
+
+
+            if (selectedBrands.isEmpty()) {
+                Snackbar.make(addItemsButton, "Please pick at least one brand", Snackbar.LENGTH_LONG).show()
+                return@setOnClickListener
             }
 
-            else {
+            var partsRemaining = ""
+            var isFirst = true
+
+            for (part in selectedBrands) {
+                if (!isFirst) {
+                    partsRemaining += ", "
+                }
+                partsRemaining += part.name
+                isFirst = false
+            }
 
                 val returnIntent = Intent()
-                returnIntent.putExtra("selectedBrand", selectedBrand.first().name)
+                returnIntent.putExtra("selectedBrand", partsRemaining)
                 setResult(Activity.RESULT_OK, returnIntent)
                 finish()
 
             }
 
-        }
+//        }
 
         // If from nav bar then set click will be different
         add_parts_floating_button.setOnClickListener {
@@ -171,31 +188,19 @@ class TypeOfBrandActivity : AppCompatActivity() {
             val part = myDataset[position]
             viewHolder.itemView.parts_name.text = part.name
 
-            viewHolder.itemView.setOnClickListener {
-                if (isFromAddParts) {
-                    val returnIntent = Intent()
-                    returnIntent.putExtra("selectedBrand", part.name)
-                    setResult(Activity.RESULT_OK, returnIntent)
-                    finish()
-                }
+//            viewHolder.itemView.setOnClickListener {
+//                if (isFromAddParts) {
+//                    val returnIntent = Intent()
+//                    returnIntent.putExtra("selectedBrand", part.name)
+//                    setResult(Activity.RESULT_OK, returnIntent)
+//                    finish()
+//                }
+//            }
 
-            }
+            viewHolder.itemView.checkbox.isChecked = part.isChecked
 
-            //viewHolder.itemView.checkbox.isChecked = part.isChecked
-
-            // MARK: wag to idelete bro kasi pag tinanggal to pag iniscroll down ung recycler view nawawala ung check.
-            if (part.isChecked) {
-                viewHolder.itemView.checkbox.isChecked = true
-            } else {
-                viewHolder.itemView.checkbox.isChecked = false
-            }
-
-
-            viewHolder.itemView.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
-
-                if (isChecked) {
-                    part.isChecked = true
-                }
+            viewHolder.itemView.checkbox.setOnClickListener {
+                part.isChecked = !part.isChecked
 
                 val partsChecked = myDataset.filter { it.isChecked }
                 if (partsChecked.count() == 0){
@@ -205,7 +210,6 @@ class TypeOfBrandActivity : AppCompatActivity() {
                     addItemsButton.alpha = 1f
                     deleteItemsButton.alpha = 1f
                 }
-
             }
 
             // DEFAULT BRANDS CANNOT BE DELETED
@@ -214,7 +218,7 @@ class TypeOfBrandActivity : AppCompatActivity() {
             // HIDE CHECKBOX IF IT IS ONE
             if ( defaultBrands.contains(part.name) ){
 //                viewHolder.itemView.defaultBrandText.visibility = View.VISIBLE
-                viewHolder.itemView.checkbox.visibility = View.GONE
+                //viewHolder.itemView.checkbox.visibility = View.GONE
             }
 
         }

@@ -59,12 +59,26 @@ class HomeFragment : Fragment() {
             }
 
             //db.getUserBike { setBikeValues(it) }
-            db.getMainBike { mainBike ->
+//            db.getMainBike { mainBike ->
+//                if (!isAdded) {
+//                    return@getMainBike
+//                }
+//
+//                setBikeValues(view, mainBike)
+//            }
+
+            db.getUserMainBikeFromBikes {
+                // For now just get the user bikes
+                // if there is no primary bike get the first bike of the array do it on the getuserbikes method
                 if (!isAdded) {
-                    return@getMainBike
+                    return@getUserMainBikeFromBikes
                 }
 
-                setBikeValues(view, mainBike)
+                if (it != null) {
+                    setBikeValues(view, it)
+                }
+
+
             }
 
             displayQrCode(view)

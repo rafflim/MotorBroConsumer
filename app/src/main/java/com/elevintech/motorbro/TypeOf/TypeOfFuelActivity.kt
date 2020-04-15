@@ -177,15 +177,29 @@ class TypeOfFuelActivity : AppCompatActivity() {
             viewHolder.itemView.checkbox.isChecked = fuel.isChecked
 
             // MARK: wag to idelete bro kasi pag tinanggal to pag iniscroll down ung recycler view nawawala ung check.
-            if (fuel.isChecked) {
-                viewHolder.itemView.checkbox.isChecked = true
-            } else {
-                viewHolder.itemView.checkbox.isChecked = false
-            }
+//            if (fuel.isChecked) {
+//                viewHolder.itemView.checkbox.isChecked = true
+//            } else {
+//                viewHolder.itemView.checkbox.isChecked = false
+//            }
 
-            viewHolder.itemView.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
+//            viewHolder.itemView.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
+//
+//                fuel.isChecked = isChecked
+//
+//                val partsChecked = myDataset.filter { it.isChecked }
+//                if (partsChecked.count() == 0){
+//                    addItemsButton.alpha = 0.65f
+//                    deleteItemsButton.alpha = 0.65f
+//                } else {
+//                    addItemsButton.alpha = 1f
+//                    deleteItemsButton.alpha = 1f
+//                }
+//
+//            }
 
-                fuel.isChecked = isChecked
+            viewHolder.itemView.checkbox.setOnClickListener {
+                fuel.isChecked = !fuel.isChecked
 
                 val partsChecked = myDataset.filter { it.isChecked }
                 if (partsChecked.count() == 0){
@@ -195,7 +209,6 @@ class TypeOfFuelActivity : AppCompatActivity() {
                     addItemsButton.alpha = 1f
                     deleteItemsButton.alpha = 1f
                 }
-
             }
 
 //            viewHolder.itemView.removeItem.setOnClickListener {
