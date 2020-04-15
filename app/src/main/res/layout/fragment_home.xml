@@ -414,7 +414,7 @@
                 
                 <ImageView
                     android:id="@+id/motorAds1"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="200dp"
                     android:src="@drawable/blackmotorads1"
                     android:scaleType="centerCrop"

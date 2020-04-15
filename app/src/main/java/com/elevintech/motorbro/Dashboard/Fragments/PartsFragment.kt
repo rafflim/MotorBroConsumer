@@ -120,7 +120,7 @@ class PartsFragment : Fragment() {
 
         override fun bind(viewHolder: ViewHolder, position: Int) {
             viewHolder.itemView.partsName.text = bikePart.typeOfParts
-            viewHolder.itemView.odometerText.text = bikePart.brand
+            viewHolder.itemView.odometerText.text = "Brand: " + bikePart.brand
             viewHolder.itemView.cashText.text = " ₱" + bikePart.price.toString()
             viewHolder.itemView.noteText.text = bikePart.note
 

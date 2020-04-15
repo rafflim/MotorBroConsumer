@@ -199,21 +199,22 @@ class MotoroBroDatabase {
         db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("refueling")
             .document(refuel.id).delete()
             .addOnSuccessListener {
-                callback("Success")
+                callback(Constants.RESULT_STRING.SUCCESS)
             }
             .addOnFailureListener {
                     e -> println(e)
-                callback(null)
+                callback(Constants.RESULT_STRING.FAILURE)
             }
     }
 
     fun editRefuel(refuel: Refueling, callback: (String?) -> Unit) {
+
         val db = FirebaseFirestore.getInstance()
 
         db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("refueling")
             .document(refuel.id).set(refuel)
             .addOnSuccessListener {
-                callback("Success")
+                callback(Constants.RESULT_STRING.SUCCESS)
             }
             .addOnFailureListener {
                     e -> println(e)

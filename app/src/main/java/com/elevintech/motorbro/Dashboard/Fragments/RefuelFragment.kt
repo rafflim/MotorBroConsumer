@@ -74,12 +74,12 @@ class RefuelFragment : Fragment() {
 
     }
 
-    fun setupRecyclerView() {
+    private fun setupRecyclerView() {
         refuelRecyclerView.isNestedScrollingEnabled = false
         refuelRecyclerView.adapter = reminderAdapter
     }
 
-    fun setupViews() {
+    private fun setupViews() {
 
         MotoroBroDatabase().getUserRefueling {
 
