@@ -14,40 +14,21 @@ import java.util.*
 
 class ScheduledNotification {
 
-    /* Creation of notification channel moved inside DashboardActivity
-    *  because nag-eerror  sya pag hindi pa na-create yung activity
-    * */
-
-//    var channelId = "com.elevintech.motorbro"
-//
-//    // Values displayed on phone's system settings
-//    val notificationName = "Daily Odometer Update"
-//    val notificationDescription = "Daily notification reminder for any odometer changes"
-//
-//    // Values displayed by the notification when it pops up on the phone's notification tray
-//    val notificationTitle = "Odometer Update"
-//    val notificationText = "Wassup bro! Update odometer?"
-
     fun startAlarm(context: Context){
-//        println("Alarm Started")
 
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
-//        val alarmManager = getSystemService(AlarmManager) as AlarmManager
         val intent = Intent(context, Receiver::class.java)
         val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
-        // Set the alarm to start at approximately 8:00 a.m.
+        // Set the alarm to start at approximately 7:00 p.m.
         val calendar: Calendar = Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, 8)
-            set(Calendar.MINUTE, 0)
-            set(Calendar.SECOND, 0)
-            set(Calendar.MILLISECOND, 0)
+            set(Calendar.HOUR_OF_DAY, 19)
         }
 
-//        println("Date Now: " + System.currentTimeMillis())
-//        println("Alarm Date: " + calendar.timeInMillis)
+        println("Date Now: " + System.currentTimeMillis())
+        println("Alarm Date: " + calendar.timeInMillis)
 
         // Make alarm repeat everyday
         alarmManager.setInexactRepeating(
@@ -56,6 +37,8 @@ class ScheduledNotification {
             AlarmManager.INTERVAL_DAY,
             pendingIntent
         )
+
+
 
     }
 
