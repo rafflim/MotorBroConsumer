@@ -73,7 +73,11 @@ class AddPartsActivity : AppCompatActivity() {
                 brandText.setText(bikeParts.brand)
                 priceText.setText(bikeParts.price.toString())
                 noteText.setText(bikeParts.note)
-
+                if (bikeParts.bikeId != ""){
+                    MotoroBroDatabase().getBikeById(bikeParts.bikeId){
+                        bikeText.setText(it.brand + " " + it.model + " (${it.nickname})")
+                    }
+                }
                 editBikeId = bikeParts.id
                 deleteLayout.visibility = View.VISIBLE
 
