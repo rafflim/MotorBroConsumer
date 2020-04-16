@@ -157,8 +157,10 @@ class ShopActivity : AppCompatActivity() {
 
             if(shop.spotlight) {
                 viewHolder.itemView.topStoreLayout.visibility = View.VISIBLE
+                viewHolder.itemView.sponsoredLayout.visibility = View.VISIBLE
             } else {
                 viewHolder.itemView.topStoreLayout.visibility = View.GONE
+                viewHolder.itemView.sponsoredLayout.visibility = View.GONE
             }
 
             //Glide.with(activity!!).load(user.userProfileMainImageUrl).into(viewHolder.itemView.shopImageView)

@@ -152,41 +152,18 @@
             >
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 >
                 <ImageView
-                    android:layout_width="match_parent"
+                    android:layout_width="350dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/motoradssample"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ads_image_gpc"
                     />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="MotorBro Ads"
-                    android:textColor="@color/textColorBlack"
-                    android:layout_marginTop="5dp"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/open_sans_semibold"
-                    android:textSize="13sp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ride with the new cruiser 2020 "
-                    android:textColor="@color/textColorBlack"
-                    android:layout_marginTop="5dp"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/open_sans"
-                    android:textSize="11sp"
-                    />
-
-
 
             </LinearLayout>
 
@@ -194,10 +171,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/open_sans"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/open_sans_semibold"
                 android:text="Date"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 android:textColor="#182463"
 
                 />
@@ -212,8 +189,8 @@
                 >
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:tint="#3d5af1"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/calendar_small_icon"
@@ -223,8 +200,8 @@
                 <EditText
                     android:id="@+id/dateText"
                     android:layout_width="0dp"
-                    android:layout_height="38dp"
-                    android:textSize="14sp"
+                    android:layout_height="43dp"
+                    android:textSize="15sp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
@@ -240,9 +217,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/open_sans"
+                android:fontFamily="@font/open_sans_semibold"
                 android:text="Odometer"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 android:textColor="#182463"
                 />
 
@@ -256,8 +233,8 @@
                 >
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:tint="#3d5af1"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/odometer_icon"
@@ -267,8 +244,8 @@
                 <EditText
                     android:id="@+id/odometerText"
                     android:layout_width="0dp"
-                    android:layout_height="38dp"
-                    android:textSize="14sp"
+                    android:layout_height="43dp"
+                    android:textSize="15sp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
@@ -302,9 +279,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/open_sans"
+                android:fontFamily="@font/open_sans_semibold"
                 android:text="Price"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 android:textColor="#182463"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -345,8 +322,8 @@
                 >
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:tint="#3d5af1"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/cash_new_small_icon"
@@ -356,8 +333,8 @@
                 <EditText
                     android:id="@+id/pricePerGallonText"
                     android:layout_width="0dp"
-                    android:layout_height="38dp"
-                    android:textSize="14sp"
+                    android:layout_height="43dp"
+                    android:textSize="15sp"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text=""
@@ -368,8 +345,8 @@
                 <EditText
                     android:id="@+id/litersText"
                     android:layout_width="0dp"
-                    android:layout_height="38dp"
-                    android:textSize="14sp"
+                    android:layout_height="43dp"
+                    android:textSize="15sp"
                     android:layout_weight="1"
                     android:text=""
                     android:inputType="numberDecimal"
@@ -379,8 +356,8 @@
                 <EditText
                     android:id="@+id/totalCostText"
                     android:layout_width="0dp"
-                    android:layout_height="38dp"
-                    android:textSize="14sp"
+                    android:layout_height="43dp"
+                    android:textSize="15sp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:text=""
@@ -399,9 +376,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/open_sans"
+                android:fontFamily="@font/open_sans_semibold"
                 android:text="Location"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 android:textColor="#182463"
                 />
 
@@ -415,8 +392,8 @@
                 >
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:tint="#3d5af1"
 
                     android:layout_marginLeft="20dp"
@@ -427,8 +404,8 @@
                 <EditText
                     android:id="@+id/locationText"
                     android:layout_width="0dp"
-                    android:layout_height="38dp"
-                    android:textSize="14sp"
+                    android:layout_height="43dp"
+                    android:textSize="15sp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
@@ -450,9 +427,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/open_sans"
+                android:fontFamily="@font/open_sans_semibold"
                 android:text="Fuel Type"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 android:textColor="#182463"
                 />
 
@@ -466,8 +443,8 @@
                 >
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:tint="#3d5af1"
 
                     android:layout_marginLeft="20dp"
@@ -478,8 +455,8 @@
                 <EditText
                     android:id="@+id/typeOfFuelText"
                     android:layout_width="0dp"
-                    android:layout_height="38dp"
-                    android:textSize="14sp"
+                    android:layout_height="43dp"
+                    android:textSize="15sp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
@@ -494,9 +471,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/open_sans"
+                android:fontFamily="@font/open_sans_semibold"
                 android:text="Note"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 android:textColor="#182463"
                 />
 
@@ -510,8 +487,8 @@
                 >
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:tint="#3d5af1"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/pencil_new_icon"
@@ -521,8 +498,8 @@
                 <EditText
                     android:id="@+id/noteText"
                     android:layout_width="0dp"
-                    android:layout_height="38dp"
-                    android:textSize="14sp"
+                    android:layout_height="43dp"
+                    android:textSize="15sp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"

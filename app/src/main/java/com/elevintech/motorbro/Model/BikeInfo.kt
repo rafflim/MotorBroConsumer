@@ -3,6 +3,7 @@ package com.elevintech.motorbro.Model
 import java.io.Serializable
 
 class BikeInfo():Serializable {
+    var id: String = ""
     var userId: String = ""
     var brand: String = ""
     var model: String = ""

@@ -38,6 +38,11 @@
             android:icon="@drawable/parts_menu_icon"
             android:title="Types of Fuels" />
 
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/more_icon"
+            android:title="Settings" />
+
 <!--        <item-->
 <!--            android:id="@+id/schedule_menu"-->
 <!--            android:icon="@drawable/schedule_menu_icon"-->
@@ -61,12 +66,12 @@
 
     </group>
 
-    <group android:id="@+id/sign_out_section">
+<!--    <group android:id="@+id/sign_out_section">-->
 
-        <item
-            android:id="@+id/sign_out"
-            android:icon="@drawable/exit_menu_icon"
+<!--        <item-->
+<!--            android:id="@+id/sign_out"-->
+<!--            android:icon="@drawable/exit_menu_icon"-->
 
-            android:title="Sign Out" />
-    </group>
+<!--            android:title="Sign Out" />-->
+<!--    </group>-->
 </menu>

@@ -131,15 +131,11 @@ class GarageActivity : AppCompatActivity() {
             }
 
             viewHolder.itemView.deleteButton.setOnClickListener {
-
                 confirmDelete(bike)
-
             }
 
             viewHolder.itemView.setAsNewPrimary.setOnClickListener {
-
                 updateMainBike(bike)
-
             }
 
             // disable delete if only one bike is the garage

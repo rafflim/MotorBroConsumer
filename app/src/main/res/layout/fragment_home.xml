@@ -132,7 +132,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/open_sans"
-                android:text="Toyota Camey"
+                android:text="No Bike"
                 android:textColor="#3C3C3C"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -435,7 +435,7 @@
                 
                 <ImageView
                     android:id="@+id/motorAds1"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="200dp"
                     android:src="@drawable/blackmotorads1"
                     android:scaleType="centerCrop"

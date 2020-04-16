@@ -125,11 +125,9 @@ class TypeOfPartsActivity : AppCompatActivity() {
         var isActive = true
 
         for (deletedPart in deletedParts){
-
             if (deletedPart.trim().toLowerCase() == part.trim().toLowerCase() ){
                 isActive = false
             }
-
         }
 
         return isActive
@@ -194,18 +192,33 @@ class TypeOfPartsActivity : AppCompatActivity() {
             val part = myDataset[position]
             viewHolder.itemView.parts_name.text = part.name
 
-            //viewHolder.itemView.checkbox.isChecked = part.isChecked
+
+            viewHolder.itemView.checkbox.isChecked = part.isChecked
 
             // MARK: wag to idelete bro kasi pag tinanggal to pag iniscroll down ung recycler view nawawala ung check.
-            if (part.isChecked) {
-                viewHolder.itemView.checkbox.isChecked = true
-            } else {
-                viewHolder.itemView.checkbox.isChecked = false
-            }
+//            if (part.isChecked) {
+//                viewHolder.itemView.checkbox.isChecked = true
+//            } else {
+//                viewHolder.itemView.checkbox.isChecked = false
+//            }
 
-            viewHolder.itemView.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
+//            viewHolder.itemView.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
+//                part.isChecked = true
+//                println(part)
+//                part.name = "Sample!!"
+////                val partsChecked = myDataset.filter { it.isChecked }
+////                if (partsChecked.count() == 0){
+////                    addItemsButton.alpha = 0.65f
+////                    deleteItemsButton.alpha = 0.65f
+////                } else {
+////                    addItemsButton.alpha = 1f
+////                    deleteItemsButton.alpha = 1f
+////                }
+//
+//            }
 
-                part.isChecked = isChecked
+            viewHolder.itemView.checkbox.setOnClickListener {
+                part.isChecked = !part.isChecked
 
                 val partsChecked = myDataset.filter { it.isChecked }
                 if (partsChecked.count() == 0){
@@ -215,7 +228,6 @@ class TypeOfPartsActivity : AppCompatActivity() {
                     addItemsButton.alpha = 1f
                     deleteItemsButton.alpha = 1f
                 }
-
             }
         }
 

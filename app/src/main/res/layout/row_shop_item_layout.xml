@@ -28,17 +28,12 @@
                 android:visibility="visible"
                 >
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/top_store_icon"
-                    android:layout_marginTop="5dp"
-                    />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Top Store"
-                    android:layout_gravity="center"
+                    android:layout_gravity="start"
                     android:layout_marginLeft="5dp"
                     android:paddingRight="10dp"
                     android:textSize="13sp"
@@ -103,11 +98,40 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
 
+
+            <LinearLayout
+                android:id="@+id/sponsoredLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/top_store_icon"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    />
+                <TextView
+                    android:id="@+id/sponsoredText"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Sponsored"
+                    android:textColor="@color/textColorBlack"
+                    android:fontFamily="@font/open_sans"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="10dp">
                 <ImageView
                     android:layout_width="15dp"
                     android:layout_height="15dp"

@@ -43,6 +43,7 @@ class AddPartsActivity : AppCompatActivity() {
 
     private lateinit var mDateSetListener: DatePickerDialog.OnDateSetListener
     private var isForEditParts = false
+    private var editBikeId = ""
 
     lateinit var bottomSheetDialog: BottomSheetDialog
 
@@ -73,6 +74,7 @@ class AddPartsActivity : AppCompatActivity() {
                 priceText.setText(bikeParts.price.toString())
                 noteText.setText(bikeParts.note)
 
+                editBikeId = bikeParts.id
                 deleteLayout.visibility = View.VISIBLE
 
                 deleteLayout.setOnClickListener {
@@ -153,8 +155,11 @@ class AddPartsActivity : AppCompatActivity() {
     }
 
     private fun deleteParts(bikeParts: BikeParts) {
+        val showDialog = Utils().showProgressDialog(this, "Deleting bike part")
         MotoroBroDatabase().deleteBikeParts(bikeParts) {
             if (Constants.RESULT_STRING.SUCCESS == it) {
+                // Add on activity result here
+                showDialog.dismiss()
                 finish()
             } else {
                 //Toast.makeText(this, "Unable to delete this part. Please check your internet connection", Toast.LENGTH_LONG).show()
@@ -281,6 +286,7 @@ class AddPartsActivity : AppCompatActivity() {
             bikeParts.userId = FirebaseAuth.getInstance().uid!!
             bikeParts.bikeId = selectedBike.bikeId
 
+            bikeParts.id = editBikeId
             val database = MotoroBroDatabase()
 
             if (isForEditParts) {
@@ -294,7 +300,7 @@ class AddPartsActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(this, "Error editing bike parts. Please check your internet connection.", Toast.LENGTH_SHORT).show()
                     }
-                    Toast.makeText(this, "Error editing bike parts. Please check your internet connection.", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this, "Error editing bike parts. Please check your internet connection.", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 database.saveBikeParts(bikeParts) {
@@ -309,7 +315,7 @@ class AddPartsActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(this, "Error saving bike parts. Please check your internet connection.", Toast.LENGTH_SHORT).show()
                     }
-                    Toast.makeText(this, "Error saving bike parts. Please check your internet connection.", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this, "Error saving bike parts. Please check your internet connection.", Toast.LENGTH_SHORT).show()
                 }
             }
 

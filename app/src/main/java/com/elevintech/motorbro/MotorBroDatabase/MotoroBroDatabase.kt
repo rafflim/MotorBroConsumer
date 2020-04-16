@@ -169,8 +169,7 @@ class MotoroBroDatabase {
     fun editBikeParts(bikeParts: BikeParts, callback: (String?) -> Unit) {
         val db = FirebaseFirestore.getInstance()
 
-        db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("bike-parts")
-            .document(bikeParts.id).set(bikeParts)
+        db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("bike-parts").document(bikeParts.id).set(bikeParts)
             .addOnSuccessListener {
                 callback("Success")
             }
@@ -186,11 +185,11 @@ class MotoroBroDatabase {
         db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("bike-parts")
             .document(bikeParts.id).delete()
             .addOnSuccessListener {
-                callback("Success")
+                callback(Constants.RESULT_STRING.SUCCESS)
             }
             .addOnFailureListener {
                     e -> println(e)
-                callback(null)
+                callback(Constants.RESULT_STRING.FAILURE)
             }
     }
 
@@ -200,21 +199,22 @@ class MotoroBroDatabase {
         db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("refueling")
             .document(refuel.id).delete()
             .addOnSuccessListener {
-                callback("Success")
+                callback(Constants.RESULT_STRING.SUCCESS)
             }
             .addOnFailureListener {
                     e -> println(e)
-                callback(null)
+                callback(Constants.RESULT_STRING.FAILURE)
             }
     }
 
     fun editRefuel(refuel: Refueling, callback: (String?) -> Unit) {
+
         val db = FirebaseFirestore.getInstance()
 
         db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("refueling")
             .document(refuel.id).set(refuel)
             .addOnSuccessListener {
-                callback("Success")
+                callback(Constants.RESULT_STRING.SUCCESS)
             }
             .addOnFailureListener {
                     e -> println(e)
@@ -673,15 +673,42 @@ class MotoroBroDatabase {
         docRef.get()
             .addOnSuccessListener {
 
+                // if there is no primary bike get the first bike of the array
                 for (bikeDocument in it){
                     val bike = bikeDocument.toObject(BikeInfo::class.java)
+                    bike.id = bikeDocument.id
                     list.add(bike)
                 }
 
                 callback(list)
 
             }
+    }
 
+    fun getUserMainBikeFromBikes(callback: (BikeInfo?) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val docRef = db.collection("bikes").whereEqualTo("userId", uid)
+
+        val list = mutableListOf<BikeInfo>()
+
+        docRef.get()
+            .addOnSuccessListener {
+
+                // if there is no primary bike get the first bike of the array
+                for (bikeDocument in it){
+                    val bike = bikeDocument.toObject(BikeInfo::class.java)
+                    bike.id = bikeDocument.id
+                    list.add(bike)
+                }
+
+                if (list.count() >= 1) {
+                    callback(list[0])
+                }
+
+                callback(null)
+
+            }
     }
 
     fun udpateUserFields(userFields: MutableMap<String, Any>, callback: () -> Unit) {
@@ -1099,10 +1126,7 @@ class MotoroBroDatabase {
                 callback( bike )
             }
 
-
         }
-
-
     }
 
     fun updateMainBike(newMainBike: BikeInfo, callback: () -> Unit) {

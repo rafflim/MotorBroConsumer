@@ -41,6 +41,7 @@ class AddRefuelingActivity : AppCompatActivity() {
 
     lateinit var mDateSetListener: DatePickerDialog.OnDateSetListener
     private var isForEditRefuel = false
+    private var refuelId = ""
 
     companion object {
         val SELECT_PART_TYPE = 1
@@ -65,6 +66,8 @@ class AddRefuelingActivity : AppCompatActivity() {
                 litersText.setText(refuel.priceGallons.toString())
                 locationText.setText(refuel.location)
                 noteText.setText(refuel.note)
+
+                refuelId = refuel.id
 
                 disableAllCostButtons()
 
@@ -150,8 +153,10 @@ class AddRefuelingActivity : AppCompatActivity() {
     }
 
     private fun deleteRefuel(refuel: Refueling) {
+        val showDialog = Utils().showProgressDialog(this, "Deleting refueling data")
         MotoroBroDatabase().deleteRefuel(refuel) {
             if (Constants.RESULT_STRING.SUCCESS == it) {
+                showDialog.dismiss()
                 finish()
             } else {
                 //Toast.makeText(this, "Unable to delete this part. Please check your internet connection", Toast.LENGTH_LONG).show()
@@ -159,7 +164,7 @@ class AddRefuelingActivity : AppCompatActivity() {
         }
     }
 
-    fun calculateText(v: View) {
+    private fun calculateText(v: View) {
         val pricePerLiter = pricePerGallonText.text.toString()
         val liter = litersText.text.toString()
         val totalCost = totalCostText.text.toString()
@@ -298,12 +303,22 @@ class AddRefuelingActivity : AppCompatActivity() {
             refueling.userId =  FirebaseAuth.getInstance().uid!!
             refueling.note = noteText.text.toString()
 
+            if (refuelId != "") {
+                refueling.id = refuelId
+            }
+
+
             val database = MotoroBroDatabase()
 
             if (isForEditRefuel) {
                 database.editRefuel(refueling) {
-                    showDialog.dismiss()
-                    finish()
+                    if (Constants.RESULT_STRING.SUCCESS == it) {
+                        showDialog.dismiss()
+                        finish()
+                    } else {
+                        showDialog.dismiss()
+                        finish()
+                    }
                 }
             } else {
                 database.saveRefueling(refueling) {
