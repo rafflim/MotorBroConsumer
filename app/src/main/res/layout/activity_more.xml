@@ -30,6 +30,25 @@
                 app:layout_constraintTop_toTopOf="parent">
 
 
+                <LinearLayout
+                    android:id="@+id/backView"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
+                    <ImageView
+
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+
+                        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:srcCompat="@drawable/back_icon"
+                        android:tint="@color/white"/>
+
+                </LinearLayout>
                 <!-- android:fontFamily="@font/lato" -->
                 <TextView
                     android:id="@+id/actionBarTitle"

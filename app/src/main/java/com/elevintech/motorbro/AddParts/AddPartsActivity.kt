@@ -128,12 +128,23 @@ class AddPartsActivity : AppCompatActivity() {
         typeOfPartsText.setOnClickListener {
             val intent = Intent(applicationContext, TypeOfPartsActivity::class.java)
             intent.putExtra("fromAddExtra", true)
+
+            val parts = typeOfPartsText.text.toString()
+            if (parts.isNotEmpty()){
+                intent.putExtra("previousParts", parts)
+            }
+
             startActivityForResult(intent, SELECT_PART_TYPE)
         }
 
         brandText.setOnClickListener {
             val intent = Intent(applicationContext, TypeOfBrandActivity::class.java)
             intent.putExtra("fromAddExtra", true)
+
+            val brands = brandText.text.toString()
+            if (brands.isNotEmpty()){
+                intent.putExtra("previousBrands", brands)
+            }
             startActivityForResult(intent, SELECT_PART_BRAND)
         }
 
@@ -305,13 +316,10 @@ class AddPartsActivity : AppCompatActivity() {
             // PUT THE SELECTED DATE ON THE DATE PLACEHOLDER
             dateText.setText("${year}-${monthString}-${dayString}")
 
-            // TODO: How to get current AGE??
-
+            // TODO: How to get current AGE?
             // If todays month is greater than current month
             // if todays day is greater than or equals to day
-
         }
-
     }
 
     private fun askUploadSource(){
@@ -371,7 +379,6 @@ class AddPartsActivity : AppCompatActivity() {
         if (validateFields()){
 
             val showDialog = Utils().showProgressDialog(this, "Saving bike part")
-
             val bikeParts = BikeParts()
             //bikeParts.date = dateText.text.toString()
             //bikeParts.dateLong = Utils().convertDateToTimestamp(dateText.text.toString(), "yyyy-MM-dd")

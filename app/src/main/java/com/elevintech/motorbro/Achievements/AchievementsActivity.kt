@@ -20,7 +20,7 @@ class AchievementsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_achievements)
-
+        new_start_progress_bar.scaleY = 3f
         MotoroBroDatabase().getUser{
 
             val achievements = it.achievements

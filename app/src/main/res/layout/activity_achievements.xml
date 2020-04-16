@@ -164,13 +164,15 @@
 
                 <ProgressBar
                     android:id="@+id/new_start_progress_bar"
-                    style="?android:attr/progressBarStyleHorizontal"
+                    style="@style/MyProgressBar"
+                    android:theme="@style/MyProgressBarTwo"
+                    android:scaleY="2"
+                    android:progress="20"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/white"
-                    android:progressTint="@android:color/holo_green_light" />
+                    />
 
                 <TextView
                     android:id="@+id/new_start_text"
@@ -227,13 +229,13 @@
 
                 <ProgressBar
                     android:id="@+id/odometer_reader_progress_bar"
-                    style="?android:attr/progressBarStyleHorizontal"
+                    style="@style/MyProgressBar"
+                    android:theme="@style/MyProgressBarTwo"
                     android:layout_width="match_parent"
-                    android:background="@color/white"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content"
-                    android:progressTint="@android:color/holo_green_light" />
+                    android:scaleY="2"
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/odometer_reader_text"
@@ -290,13 +292,13 @@
 
                 <ProgressBar
                     android:id="@+id/entry_mechanic_progress_bar"
-                    style="?android:attr/progressBarStyleHorizontal"
+                    style="@style/MyProgressBar"
+                    android:theme="@style/MyProgressBarTwo"
                     android:layout_width="match_parent"
-                    android:background="@color/white"
+                    android:scaleY="2"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content"
-                    android:progressTint="@android:color/holo_green_light" />
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/entry_mechanic_text"
@@ -353,13 +355,13 @@
 
                 <ProgressBar
                     android:id="@+id/first_fuel_progress_bar"
-                    style="?android:attr/progressBarStyleHorizontal"
+                    style="@style/MyProgressBar"
+                    android:theme="@style/MyProgressBarTwo"
                     android:layout_width="match_parent"
-                    android:background="@color/white"
+                    android:scaleY="2"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content"
-                    android:progressTint="@android:color/holo_green_light" />
+                    android:layout_height="wrap_content"/>
 
                 <TextView
                     android:id="@+id/first_fuel_text"
@@ -416,13 +418,13 @@
 
                 <ProgressBar
                     android:id="@+id/traveler_progress_bar"
-                    style="?android:attr/progressBarStyleHorizontal"
+                    style="@style/MyProgressBar"
+                    android:theme="@style/MyProgressBarTwo"
                     android:layout_width="match_parent"
-                    android:background="@color/white"
+                    android:scaleY="2"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content"
-                    android:progressTint="@android:color/holo_green_light" />
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -538,13 +540,13 @@
 
                 <ProgressBar
                     android:id="@+id/refuel_master_progress_bar"
-                    style="?android:attr/progressBarStyleHorizontal"
+                    style="@style/MyProgressBar"
+                    android:theme="@style/MyProgressBarTwo"
                     android:layout_width="match_parent"
-                    android:background="@color/white"
+                    android:scaleY="2"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content"
-                    android:progressTint="@android:color/holo_green_light" />
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -675,13 +677,13 @@
 
                 <ProgressBar
                     android:id="@+id/service_master_progress_bar"
-                    style="?android:attr/progressBarStyleHorizontal"
+                    style="@style/MyProgressBar"
+                    android:theme="@style/MyProgressBarTwo"
                     android:layout_width="match_parent"
-                    android:background="@color/white"
+                    android:scaleY="2"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content"
-                    android:progressTint="@android:color/holo_green_light" />
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -800,13 +802,13 @@
 
                 <ProgressBar
                     android:id="@+id/loyal_motorbro_progress_bar"
-                    style="?android:attr/progressBarStyleHorizontal"
+                    style="@style/MyProgressBar"
+                    android:theme="@style/MyProgressBarTwo"
                     android:layout_width="match_parent"
-                    android:background="@color/white"
+                    android:scaleY="2"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content"
-                    android:progressTint="@android:color/holo_green_light" />
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -450,7 +450,7 @@
                     android:layout_height="25dp"
                     android:tint="#364f6b"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/cash_new_small_icon"
+                    android:src="@drawable/cash_wallet_icon"
 
                     />
 
@@ -523,14 +523,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="80dp"
+                android:layout_marginLeft="90dp"
                 android:fontFamily="@font/open_sans"
-
                 android:text="by ₱"
-                android:textSize="9sp"
+                android:textSize="11sp"
                 android:textColor="#293C52"
-
                 />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

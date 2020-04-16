@@ -26,12 +26,24 @@ class TypeOfBrandActivity : AppCompatActivity() {
     private lateinit var viewAdapter : RecyclerView.Adapter<*>
     private val totalList = ArrayList<CheckboxObj>()
     private var isFromAddParts = false
+    var selectedBrands = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_type_of_brand)
 
         isFromAddParts = intent.getBooleanExtra("fromAddExtra", false)
+
+        val previousExtraBrands = intent.getStringExtra("previousBrands")
+
+        if (previousExtraBrands != null) {
+            val previousParts = previousExtraBrands.split(",")
+            for (part in previousParts) {
+                val trimmedPart = part.trimStart()
+                selectedBrands.add(trimmedPart)
+            }
+        }
+
         if (isFromAddParts) {
             addItemsButton.visibility = View.VISIBLE
         }
@@ -152,6 +164,8 @@ class TypeOfBrandActivity : AppCompatActivity() {
                 totalList.add(brand)
             }
 
+            totalList.sortBy { it.name }
+
             viewAdapter.notifyDataSetChanged()
         }
     }
@@ -189,13 +203,17 @@ class TypeOfBrandActivity : AppCompatActivity() {
             viewHolder.itemView.parts_name.text = part.name
 
 //            viewHolder.itemView.setOnClickListener {
-//                if (isFromAddParts) {
-//                    val returnIntent = Intent()
-//                    returnIntent.putExtra("selectedBrand", part.name)
-//                    setResult(Activity.RESULT_OK, returnIntent)
-//                    finish()
-//                }
-//            }
+////                if (isFromAddParts) {
+////                    val returnIntent = Intent()
+////                    returnIntent.putExtra("selectedBrand", part.name)
+////                    setResult(Activity.RESULT_OK, returnIntent)
+////                    finish()
+////                }
+////            }
+
+            if (selectedBrands.contains(part.name.trimStart())){
+                part.isChecked = true
+            }
 
             viewHolder.itemView.checkbox.isChecked = part.isChecked
 

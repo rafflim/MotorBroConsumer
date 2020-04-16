@@ -168,6 +168,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/changePrimaryBike"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"

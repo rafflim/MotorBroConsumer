@@ -144,9 +144,14 @@ class GarageActivity : AppCompatActivity() {
 
             // show primary bike label
             if (bike.primary)
+            {
                 viewHolder.itemView.isPrimary.visibility = View.VISIBLE
-            else
+                viewHolder.itemView.setAsNewPrimary.visibility = View.GONE
+            }  else {
                 viewHolder.itemView.setAsNewPrimary.visibility = View.VISIBLE
+                viewHolder.itemView.isPrimary.visibility = View.GONE
+            }
+
 
 
         }
