@@ -1155,6 +1155,20 @@ class MotoroBroDatabase {
 
     }
 
+    fun updateNoPreviousMainBike(newMainBike: BikeInfo, callback: () -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val bikeRef = db.collection("bikes")
+
+        // set the new bike as primary
+        bikeRef.document(newMainBike.bikeId)
+            .update("primary", true)
+            .addOnSuccessListener { callback() }
+            .addOnFailureListener { println("error setting new main bike: $it")}
+
+    }
+
+
     fun updateBikeOdometer(selectedBike: BikeInfo, odometerValue: Double, callback: () -> Unit) {
 
         val db = FirebaseFirestore.getInstance()

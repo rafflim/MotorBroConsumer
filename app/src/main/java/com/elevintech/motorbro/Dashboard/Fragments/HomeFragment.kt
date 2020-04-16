@@ -68,19 +68,51 @@ class HomeFragment : Fragment() {
 //                setBikeValues(view, mainBike)
 //            }
 
-            db.getUserMainBikeFromBikes {
-                // For now just get the user bikes
-                // if there is no primary bike get the first bike of the array do it on the getuserbikes method
+            db.getUserBikes {
                 if (!isAdded) {
-                    return@getUserMainBikeFromBikes
+                    return@getUserBikes
                 }
 
-                if (it != null) {
-                    setBikeValues(view, it)
+                var isThereAPrimaryBike = false
+                var primaryBike = BikeInfo()
+
+                if (it.isEmpty()) {
+                    return@getUserBikes
+                }
+
+                for (bike in it) {
+                    if (bike.primary == true ){
+                        isThereAPrimaryBike = true
+                        primaryBike = bike
+                    }
                 }
 
 
+                if (!isThereAPrimaryBike) {
+                    // pag walang primary bike set tayo ng primary bike, yung pinakauna.. this is for old users
+                    MotoroBroDatabase().updateNoPreviousMainBike(it[0]) {
+                        if (!isAdded) {
+                            return@updateNoPreviousMainBike
+                        }
+                        // then setup the views with the bike
+                        setBikeValues(view, it[0])
+                    }
+                } else {
+                    setBikeValues(view, primaryBike)
+                }
             }
+
+//            db.getUserMainBikeFromBikes {
+//                // For now just get the user bikes
+//                // if there is no primary bike get the first bike of the array do it on the getuserbikes method
+//                if (!isAdded) {
+//                    return@getUserMainBikeFromBikes
+//                }
+//                if (it != null) {
+//                    setBikeValues(view, it)
+//                } else {
+//                }
+//            }
 
             displayQrCode(view)
         }

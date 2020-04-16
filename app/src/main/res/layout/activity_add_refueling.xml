@@ -191,7 +191,7 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:tint="#3d5af1"
+                    android:tint="#808FDF"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/calendar_small_icon"
 
@@ -235,7 +235,7 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:tint="#3d5af1"
+                    android:tint="#808FDF"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/odometer_icon"
 
@@ -324,9 +324,9 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:tint="#3d5af1"
+                    android:tint="#808FDF"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/cash_new_small_icon"
+                    android:src="@drawable/cash_wallet_icon"
 
                     />
 
@@ -339,7 +339,7 @@
                     android:layout_weight="1"
                     android:text=""
                     android:inputType="numberDecimal"
-                    android:hint="Price per liter"
+                    android:hint="Price "
                     />
 
                 <EditText
@@ -394,8 +394,7 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:tint="#3d5af1"
-
+                    android:tint="#808FDF"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/lcoation_colored_icon"
 
@@ -445,7 +444,7 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:tint="#3d5af1"
+                    android:tint="#808FDF"
 
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/wrenchicon"
@@ -489,7 +488,7 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:tint="#3d5af1"
+                    android:tint="#808FDF"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/pencil_new_icon"
 
