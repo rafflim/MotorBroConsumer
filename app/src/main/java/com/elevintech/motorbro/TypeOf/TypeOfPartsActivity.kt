@@ -31,6 +31,7 @@ class TypeOfPartsActivity : AppCompatActivity() {
 
     private lateinit var viewAdapter : RecyclerView.Adapter<*>
     val totalList = ArrayList<CheckboxObj>()
+    var selectedParts = ArrayList<String>()
     //private val partsListAdapter = MyAdapter<MyAdapter.MyViewHolder>()
 
     var isFromAddParts = false
@@ -43,6 +44,17 @@ class TypeOfPartsActivity : AppCompatActivity() {
 
         //isFromAddParts = intent.getSerializableExtra("fromAddExtra", false)
         isFromAddParts = intent.getBooleanExtra("fromAddExtra", false)
+        val previousExtraParts = intent.getStringExtra("previousParts")
+
+        if (previousExtraParts != null) {
+            val previousParts = previousExtraParts.split(",")
+            for (part in previousParts) {
+                val trimmedPart = part.trimStart()
+                selectedParts.add(trimmedPart)
+            }
+        }
+
+
         viewAdapter = MyAdapter(totalList)
 
         if (isFromAddParts) {
@@ -153,6 +165,7 @@ class TypeOfPartsActivity : AppCompatActivity() {
                 totalList.add(part)
             }
 
+            totalList.sortBy { it.name }
 
             viewAdapter.notifyDataSetChanged()
 
@@ -193,29 +206,11 @@ class TypeOfPartsActivity : AppCompatActivity() {
             viewHolder.itemView.parts_name.text = part.name
 
 
+            if (selectedParts.contains(part.name.trimStart())){
+                part.isChecked = true
+            }
+
             viewHolder.itemView.checkbox.isChecked = part.isChecked
-
-            // MARK: wag to idelete bro kasi pag tinanggal to pag iniscroll down ung recycler view nawawala ung check.
-//            if (part.isChecked) {
-//                viewHolder.itemView.checkbox.isChecked = true
-//            } else {
-//                viewHolder.itemView.checkbox.isChecked = false
-//            }
-
-//            viewHolder.itemView.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
-//                part.isChecked = true
-//                println(part)
-//                part.name = "Sample!!"
-////                val partsChecked = myDataset.filter { it.isChecked }
-////                if (partsChecked.count() == 0){
-////                    addItemsButton.alpha = 0.65f
-////                    deleteItemsButton.alpha = 0.65f
-////                } else {
-////                    addItemsButton.alpha = 1f
-////                    deleteItemsButton.alpha = 1f
-////                }
-//
-//            }
 
             viewHolder.itemView.checkbox.setOnClickListener {
                 part.isChecked = !part.isChecked

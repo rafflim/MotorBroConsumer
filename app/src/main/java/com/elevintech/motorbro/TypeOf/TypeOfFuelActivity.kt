@@ -131,6 +131,8 @@ class TypeOfFuelActivity : AppCompatActivity() {
                 totalList.add(Fuel)
             }
 
+            totalList.sortBy { it.name }
+
             viewAdapter.notifyDataSetChanged()
         }
     }

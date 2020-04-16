@@ -18,9 +18,9 @@
 
         <ImageView
             android:id="@+id/icon_main"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/parts_new_colored_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/history_icon_two"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="40dp"

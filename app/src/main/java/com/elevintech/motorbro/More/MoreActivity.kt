@@ -36,6 +36,10 @@ class MoreActivity : AppCompatActivity() {
             logOut()
         }
 
+        backView.setOnClickListener {
+            finish()
+        }
+
     }
 
     private fun logOut() {

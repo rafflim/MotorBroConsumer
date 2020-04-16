@@ -32,13 +32,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Top Store"
+                    android:text="Sponsored"
                     android:layout_gravity="start"
                     android:layout_marginLeft="5dp"
                     android:paddingRight="10dp"
                     android:textSize="13sp"
                     android:fontFamily="@font/open_sans_bold"
-                    android:textColor="#536DFE"/>
+                    android:textColor="#448AFF"/>
             </LinearLayout>
 
 
@@ -89,6 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:text="Bike and Coffee"
                 android:textColor="@color/textColorBlack"
                 android:fontFamily="@font/open_sans"
@@ -118,9 +119,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="Sponsored"
-                    android:textColor="@color/textColorBlack"
-                    android:fontFamily="@font/open_sans"
+                    android:text="MotorBro Approved"
+                    android:textColor="#40C4FF"
+                    android:fontFamily="@font/open_sans_bold"
                     android:textSize="9sp"
                     android:textStyle="bold" />
 
