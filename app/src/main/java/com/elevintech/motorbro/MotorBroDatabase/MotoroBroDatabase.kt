@@ -179,6 +179,20 @@ class MotoroBroDatabase {
             }
     }
 
+    fun editBikePartsImageUrl(bikePartId: String, imageUrl: String, callback: (String?) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("bike-parts").document(bikePartId)
+            .update("imageUrl", imageUrl)
+            .addOnSuccessListener {
+                callback("Success")
+            }
+            .addOnFailureListener {
+                    e -> println(e)
+                callback(null)
+            }
+    }
+
     fun deleteBikeParts(bikeParts: BikeParts, callback: (String?) -> Unit) {
         val db = FirebaseFirestore.getInstance()
 

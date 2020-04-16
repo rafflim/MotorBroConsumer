@@ -1,5 +1,6 @@
 package com.elevintech.motorbro.AddParts
 
+import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
@@ -7,8 +8,11 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.StrictMode
+import android.provider.MediaStore
 import android.widget.Toast
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Model.BikeParts
@@ -28,12 +32,14 @@ import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.TypeOf.TypeOfBrandActivity
 import com.elevintech.motorbro.Utils.Constants
 import com.elevintech.myapplication.R
+import com.github.florent37.runtimepermission.RuntimePermission
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.row_bike.view.*
+import java.io.File
 
 
 class AddPartsActivity : AppCompatActivity() {
@@ -44,8 +50,13 @@ class AddPartsActivity : AppCompatActivity() {
     private lateinit var mDateSetListener: DatePickerDialog.OnDateSetListener
     private var isForEditParts = false
     private var editBikeId = ""
+    private var editBikeImageUrl = ""
 
     lateinit var bottomSheetDialog: BottomSheetDialog
+
+    var imageUri: Uri? = null
+    var OPEN_CAMERA = 10
+    var OPEN_GALLERY = 11
 
     companion object {
         const val SELECT_PART_TYPE = 1
@@ -55,6 +66,10 @@ class AddPartsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.elevintech.myapplication.R.layout.activity_add_parts)
+
+        // uri exposure fix
+        var builder = StrictMode.VmPolicy.Builder()
+        StrictMode.setVmPolicy(builder.build())
 
         bottomSheetDialog = BottomSheetDialog(this)
 
@@ -78,6 +93,12 @@ class AddPartsActivity : AppCompatActivity() {
                         selectedBike = it
                         bikeText.setText(it.brand + " " + it.model + " (${it.nickname})")
                     }
+                }
+                if (bikeParts.imageUrl != ""){
+                    editBikeImageUrl = bikeParts.imageUrl
+                    Glide.with(this).load(bikeParts.imageUrl).into(mainProfilePhoto)
+                    mainProfilePhoto.visibility = View.VISIBLE
+                    emptyImageIcon.visibility = View.GONE
                 }
                 editBikeId = bikeParts.id
                 deleteLayout.visibility = View.VISIBLE
@@ -122,6 +143,10 @@ class AddPartsActivity : AppCompatActivity() {
 
         bikeText.setOnClickListener {
             openBikePicker()
+        }
+
+        imgMainProfile.setOnClickListener {
+            askUploadSource()
         }
 
     }
@@ -198,6 +223,24 @@ class AddPartsActivity : AppCompatActivity() {
                 }
             }
         }
+
+        if (requestCode == OPEN_GALLERY){
+            if (data!= null){
+                imageUri = data!!.data
+                mainProfilePhoto.setImageURI(imageUri)
+                mainProfilePhoto.visibility = View.VISIBLE
+                emptyImageIcon.visibility = View.GONE
+            }
+        }
+
+        if (requestCode == OPEN_CAMERA){
+            if (imageUri!= null){
+                mainProfilePhoto.setImageURI(imageUri)
+                mainProfilePhoto.visibility = View.VISIBLE
+                emptyImageIcon.visibility = View.GONE
+            }
+        }
+
     }
 
     private fun createAlertDialog(bikeParts: BikeParts){
@@ -271,6 +314,58 @@ class AddPartsActivity : AppCompatActivity() {
 
     }
 
+    private fun askUploadSource(){
+
+        val options = arrayOf("Open Gallery", "Capture Photo")
+        val builder = android.app.AlertDialog.Builder(this)
+        builder.setTitle("Please pick your image source")
+        builder.setItems(options){ _, which ->
+
+            if(which == 0){
+
+                // ASK PERMISSION TO OPEN GALLERY
+                RuntimePermission.askPermission(this)
+                    .request(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    .onAccepted{
+
+                        // OPEN GALLERY
+                        openGallery()
+
+                    }
+                    .ask()
+
+            }else if(which == 1){
+
+                // ASK PERMISSION TO OPEN CAMERA
+                RuntimePermission.askPermission(this)
+                    .request(Manifest.permission.CAMERA)
+                    .onAccepted{
+
+                        // OPEN CAMERA
+                        openCamera()
+                    }
+                    .ask()
+
+            }
+        }
+        builder.show()
+    }
+
+    fun openCamera(){
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        var filename = UUID.randomUUID().toString() + ".jpg"
+        var file = File(this.externalCacheDir, filename)
+        imageUri = Uri.fromFile(file)
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
+        startActivityForResult(intent, OPEN_CAMERA)
+    }
+
+    fun openGallery(){
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, OPEN_GALLERY)
+    }
+
     fun saveBikePartsData() {
 
         if (validateFields()){
@@ -290,6 +385,7 @@ class AddPartsActivity : AppCompatActivity() {
             //bikeParts.note = noteText.text.toString()
             bikeParts.userId = FirebaseAuth.getInstance().uid!!
             bikeParts.bikeId = selectedBike.bikeId
+            bikeParts.imageUrl = editBikeImageUrl
 
             bikeParts.id = editBikeId
             val database = MotoroBroDatabase()
@@ -298,9 +394,22 @@ class AddPartsActivity : AppCompatActivity() {
                 database.editBikeParts(bikeParts) {
                     if (it == "Success") {
                         database.saveHistory("bike-parts", it!!, bikeParts.typeOfParts){
-                            showDialog.dismiss()
-                            Toast.makeText(this, "Successfully edited bike part", Toast.LENGTH_SHORT).show()
-                            finish()
+
+                            // ADDITIONAL STEP, UPLOAD IMAGE IF IT EXIST
+                            if(imageUri != null){
+                                database.uploadImageToFirebaseStorage(imageUri!!){ imageUrl ->
+                                    database.editBikePartsImageUrl(bikeParts.id, imageUrl){
+                                        showDialog.dismiss()
+                                        Toast.makeText(this, "Successfully edited bike part", Toast.LENGTH_SHORT).show()
+                                        finish()
+                                    }
+                                }
+                            } else {
+                                showDialog.dismiss()
+                                Toast.makeText(this, "Successfully edited bike part", Toast.LENGTH_SHORT).show()
+                                finish()
+                            }
+
                         }
                     } else {
                         Toast.makeText(this, "Error editing bike parts. Please check your internet connection.", Toast.LENGTH_SHORT).show()
@@ -308,14 +417,27 @@ class AddPartsActivity : AppCompatActivity() {
                     //Toast.makeText(this, "Error editing bike parts. Please check your internet connection.", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                database.saveBikeParts(bikeParts) {
-                    if (it != null) {
-                        database.saveHistory("bike-parts", it!!, bikeParts.typeOfParts){
-                            AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_PART_SERVICE )
-                            AchievementManager().incrementAchievementProgress( Achievement.Names.CREATED_PART_SERVICE, 1)
-                            showDialog.dismiss()
-                            Toast.makeText(this, "Successfully saved bike part", Toast.LENGTH_SHORT).show()
-                            finish()
+                database.saveBikeParts(bikeParts) { bikePartId ->
+                    if (bikePartId != null) {
+                        database.saveHistory("bike-parts", bikePartId!!, bikeParts.typeOfParts){
+                            if(imageUri != null){
+                                database.uploadImageToFirebaseStorage(imageUri!!){imageUrl ->
+                                    database.editBikePartsImageUrl(bikePartId, imageUrl){
+                                        AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_PART_SERVICE )
+                                        AchievementManager().incrementAchievementProgress( Achievement.Names.CREATED_PART_SERVICE, 1)
+                                        showDialog.dismiss()
+                                        Toast.makeText(this, "Successfully saved bike part", Toast.LENGTH_SHORT).show()
+                                        finish()
+                                    }
+                                }
+                            } else {
+                                AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_PART_SERVICE )
+                                AchievementManager().incrementAchievementProgress( Achievement.Names.CREATED_PART_SERVICE, 1)
+                                showDialog.dismiss()
+                                Toast.makeText(this, "Successfully saved bike part", Toast.LENGTH_SHORT).show()
+                                finish()
+                            }
+
                         }
                     } else {
                         Toast.makeText(this, "Error saving bike parts. Please check your internet connection.", Toast.LENGTH_SHORT).show()
