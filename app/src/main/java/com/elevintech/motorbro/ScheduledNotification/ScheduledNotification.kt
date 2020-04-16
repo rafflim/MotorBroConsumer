@@ -27,8 +27,8 @@ class ScheduledNotification {
             set(Calendar.HOUR_OF_DAY, 19)
         }
 
-//        println("Date Now: " + System.currentTimeMillis())
-//        println("Alarm Date: " + calendar.timeInMillis)
+        println("Date Now: " + System.currentTimeMillis())
+        println("Alarm Date: " + calendar.timeInMillis)
 
         // Make alarm repeat everyday
         alarmManager.setInexactRepeating(
@@ -37,6 +37,8 @@ class ScheduledNotification {
             AlarmManager.INTERVAL_DAY,
             pendingIntent
         )
+
+
 
     }
 

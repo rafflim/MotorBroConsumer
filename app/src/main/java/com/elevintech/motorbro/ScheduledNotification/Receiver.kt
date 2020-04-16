@@ -20,7 +20,9 @@ class Receiver: BroadcastReceiver(){
 
     override fun onReceive(p0: Context?, p1: Intent?) {
 
-//        println("Alarm Triggered!")
+
+
+        println("Alarm Triggered!")
 
         val intent = Intent(p0, AddOdometerActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(p0, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT)
