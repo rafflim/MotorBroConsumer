@@ -75,6 +75,7 @@ class AddPartsActivity : AppCompatActivity() {
                 noteText.setText(bikeParts.note)
                 if (bikeParts.bikeId != ""){
                     MotoroBroDatabase().getBikeById(bikeParts.bikeId){
+                        selectedBike = it
                         bikeText.setText(it.brand + " " + it.model + " (${it.nickname})")
                     }
                 }
