@@ -17,9 +17,13 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_chat_list.*
+import kotlinx.android.synthetic.main.row_chat.*
 import kotlinx.android.synthetic.main.row_chat.view.*
+import kotlinx.android.synthetic.main.row_chat.view.unreadDot
 
 class ChatListActivity : AppCompatActivity() {
+
+    val uid = FirebaseAuth.getInstance().uid
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,16 +85,17 @@ class ChatListActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
-//            // Display the fire emoji (if the users matched)
-//            DateFilipinaDatabase().hasMatched(chat.fromId, chat.toId) {
-//                if (it){
-//                    imgHasMatched.visibility = View.VISIBLE
-//                }
-//            }
-
             // Display the profile image (if they have one)
             if (shop.imageUrl != "")
                 Glide.with(applicationContext).load(shop.imageUrl).into(viewHolder.itemView.imgMainProfile)
+
+
+            if (chatRoom.lastMessage.toId == uid) {
+                if(chatRoom.lastMessage.read == false){
+                    viewHolder.itemView.unreadDot.visibility = View.VISIBLE
+                }
+            }
+
 
 
             // Display unread message (if the last message is not from user and not yet read)
