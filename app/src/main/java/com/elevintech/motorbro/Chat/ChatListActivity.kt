@@ -29,12 +29,19 @@ class ChatListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_list)
 
-        // get all chat rooms where user is a participant of
-        getUserChatRooms()
+//        // get all chat rooms where user is a participant of
+          // move this function to onResume hindi kasi naloload ng maayos kapag nag-back mula sa conversation
+//        getUserChatRooms()
 
         backButton.setOnClickListener {
             finish()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        getUserChatRooms()
     }
 
     private fun getUserChatRooms(){
@@ -73,7 +80,6 @@ class ChatListActivity : AppCompatActivity() {
     inner class ChatItem(val chatRoom: ChatRoom, val shop: Shop): Item<ViewHolder>() {
         override fun bind(viewHolder: ViewHolder, position: Int) {
 
-//            viewHolder.itemView.userName.text = shop.name.capitalize()
             viewHolder.itemView.chatPreview.text = chatRoom.lastMessage.message
             viewHolder.itemView.chatPreviewUnread.text = chatRoom.lastMessage.message
             viewHolder.itemView.shopName.text = shop.name
@@ -95,33 +101,6 @@ class ChatListActivity : AppCompatActivity() {
                     viewHolder.itemView.unreadDot.visibility = View.VISIBLE
                 }
             }
-
-
-
-            // Display unread message (if the last message is not from user and not yet read)
-//            val loggedInUser = FirebaseAuth.getInstance().uid
-//            println("chat.fromId: " + chat.fromId)
-//            println("chat.message: " + chat.message)
-//            if (chat.fromId != loggedInUser && !chat.read){
-//                viewHolder.itemView.chatPreview.visibility = View.GONE
-//                viewHolder.itemView.chatPreviewUnread.visibility = View.VISIBLE
-//
-//                viewHolder.itemView.chatPreview.text = chat.message
-//                viewHolder.itemView.chatPreviewUnread.text = chat.message
-//
-//                viewHolder.itemView.unreadDot.visibility = View.VISIBLE
-//
-//            } else {
-//                viewHolder.itemView.chatPreview.visibility = View.VISIBLE
-//                viewHolder.itemView.chatPreviewUnread.visibility = View.GONE
-//
-//                viewHolder.itemView.chatPreview.text = chat.message
-//                viewHolder.itemView.chatPreviewUnread.text = chat.message
-//
-//
-//                viewHolder.itemView.unreadDot.visibility = View.GONE
-//            }
-
 
         }
 
