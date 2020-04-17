@@ -1194,5 +1194,32 @@ class MotoroBroDatabase {
 
     }
 
+    fun getUnreadMessageCount(callback: (Int) -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val chatRoomRef = db.collection("chat-rooms")
+                            .whereEqualTo("participants.user", uid )
+
+        chatRoomRef.get().addOnSuccessListener {
+
+            var unreadMessageCount = 0
+
+            for (documentSnapshot in it){
+                val chatRoom = documentSnapshot.toObject(ChatRoom::class.java)!!
+
+                if (chatRoom.lastMessage.toId == uid){
+                    if (chatRoom.lastMessage.read == false){
+                        unreadMessageCount++
+                    }
+                }
+            }
+
+            callback(unreadMessageCount)
+
+        }
+
+    }
+
 
 }

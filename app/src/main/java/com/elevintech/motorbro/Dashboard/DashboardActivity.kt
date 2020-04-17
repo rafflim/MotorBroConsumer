@@ -69,6 +69,8 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         setUpBottomNav()
         buildBottomSheetDialog()
         setUpFabClick()
+        createNotificationChannel()
+        displayMessageBadge()
 
         shopImageView.setOnClickListener {
             val intent = Intent(this, ShopActivity::class.java)
@@ -84,7 +86,16 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         ScheduledNotification().startAlarm(this)
         CloudFunctions().checkRegistrationToken()
 
-        createNotificationChannel()
+
+    }
+
+    private fun displayMessageBadge(){
+
+        MotoroBroDatabase().getUnreadMessageCount{ unreadMessageCount ->
+
+            chatImageView.setBadgeValue(unreadMessageCount)
+
+        }
 
     }
 
