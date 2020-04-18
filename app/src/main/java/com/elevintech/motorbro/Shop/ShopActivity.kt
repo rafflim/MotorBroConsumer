@@ -135,7 +135,10 @@ class ShopActivity : AppCompatActivity() {
             val sortedList = it.sortedWith(compareBy { it.spotlight })
             val reversedList = sortedList.reversed()
             for (shop in reversedList) {
-                shopAdapter.add(shopItem(shop))
+                // For now check if the shop has device tokens if not don't show it
+                if (shop.deviceTokens.count() != 0) {
+                    shopAdapter.add(shopItem(shop))
+                }
             }
 
         }

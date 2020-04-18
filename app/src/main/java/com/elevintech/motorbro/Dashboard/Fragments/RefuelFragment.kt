@@ -126,6 +126,11 @@ class RefuelFragment : Fragment() {
                 startActivity(intent)
             }
 
+//                if (refuel != "") {
+//                    MotoroBroDatabase().getBikeById(bikePart.bikeId) {
+//                        viewHolder.itemView.primaryBikeName.text = it.yearBought + " " + it.brand + " " + it.model
+//                    }
+//                }
         }
 
         override fun getLayout(): Int {

@@ -2,6 +2,7 @@ package com.elevintech.motorbro.BikeRegistration
 
 import android.Manifest
 import android.app.ProgressDialog
+import android.content.ContentResolver
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -40,7 +41,12 @@ class BikeRegistrationActivity : AppCompatActivity() {
 
         openedFromWhatActivity = intent.getStringExtra("previousActivity")!!
 
-        createAccountBackImageView.visibility = View.GONE
+        if (openedFromWhatActivity == "garage") {
+            createAccountBackImageView.visibility = View.VISIBLE
+        } else {
+            createAccountBackImageView.visibility = View.GONE
+        }
+
 
         imgBikeProfile.setOnClickListener {
             askUploadSource()
@@ -155,10 +161,10 @@ class BikeRegistrationActivity : AppCompatActivity() {
             return false
         }
 
-        if (imageUri == null){
-            Toast.makeText(this, "Please upload a bike image", Toast.LENGTH_LONG).show()
-            return false
-        }
+//        if (imageUri == null){
+//            Toast.makeText(this, "Please upload a bike image", Toast.LENGTH_LONG).show()
+//            return false
+//        }
 
         return true
 
@@ -187,23 +193,50 @@ class BikeRegistrationActivity : AppCompatActivity() {
         val progressDialog = Utils().easyProgressDialog(this, "Registering Bike...")
         progressDialog.show()
 
-        database.uploadImageToFirebaseStorage(imageUri!!) { imageUrl ->
-            bike.imageUrl = imageUrl
-            database.saveBikeInfo(bike) {
-                if (openedFromWhatActivity == "splashPage" || openedFromWhatActivity == "createAccount"){
-                    database.updateUserRegistrationProgress(2) {
+        if (imageUri == null) {
+
+            val resourceId = R.drawable.motor_empty_one
+            val imageUriEmpty = Uri.Builder().scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
+                .authority(resources.getResourcePackageName(resourceId))
+                .appendPath(resources.getResourceTypeName(resourceId))
+                .appendPath(resources.getResourceEntryName(resourceId))
+                .build()
+
+            database.uploadImageToFirebaseStorage(imageUriEmpty!!) { imageUrl ->
+                bike.imageUrl = imageUrl
+                database.saveBikeInfo(bike) {
+                    if (openedFromWhatActivity == "splashPage" || openedFromWhatActivity == "createAccount"){
+                        database.updateUserRegistrationProgress(2) {
                             progressDialog.dismiss()
                             Toast.makeText(this, "Bike Registration Successful!", Toast.LENGTH_LONG).show()
                             val intent = Intent(applicationContext, DashboardActivity::class.java)
                             startActivity(intent)
+                        }
+                    } else if (openedFromWhatActivity == "garage"){
+                        progressDialog.dismiss()
+                        finish()
                     }
-                } else if (openedFromWhatActivity == "garage"){
-                    progressDialog.dismiss()
-                    finish()
                 }
             }
-
+        } else {
+            database.uploadImageToFirebaseStorage(imageUri!!) { imageUrl ->
+                bike.imageUrl = imageUrl
+                database.saveBikeInfo(bike) {
+                    if (openedFromWhatActivity == "splashPage" || openedFromWhatActivity == "createAccount"){
+                        database.updateUserRegistrationProgress(2) {
+                            progressDialog.dismiss()
+                            Toast.makeText(this, "Bike Registration Successful!", Toast.LENGTH_LONG).show()
+                            val intent = Intent(applicationContext, DashboardActivity::class.java)
+                            startActivity(intent)
+                        }
+                    } else if (openedFromWhatActivity == "garage"){
+                        progressDialog.dismiss()
+                        finish()
+                    }
+                }
+            }
         }
+
 
     }
 }

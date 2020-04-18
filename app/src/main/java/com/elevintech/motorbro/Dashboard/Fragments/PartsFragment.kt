@@ -138,6 +138,12 @@ class PartsFragment : Fragment() {
                 intent.putExtra("isForEditParts", true)
                 startActivity(intent)
             }
+
+            if (bikePart.bikeId != "") {
+                MotoroBroDatabase().getBikeById(bikePart.bikeId) {
+                    viewHolder.itemView.primaryBikeName.text = it.yearBought + " " + it.brand + " " + it.model
+                }
+            }
             // Get date bought
         }
 

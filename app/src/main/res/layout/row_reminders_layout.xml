@@ -125,6 +125,34 @@
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:layout_marginTop="10dp"
+                        android:src="@drawable/bike_icon"
+                        android:tint="#1B1B1B" />
+
+                    <TextView
+                        android:id="@+id/primaryBikeName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/open_sans"
+                        android:text=""
+                        android:textColor="@color/textColorBlack"
+
+                        android:textSize="11sp"
+
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginTop="10dp"
                         android:src="@drawable/pencil_new_icon" />
 
                     <TextView

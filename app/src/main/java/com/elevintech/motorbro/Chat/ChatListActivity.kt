@@ -57,7 +57,12 @@ class ChatListActivity : AppCompatActivity() {
 
             db.getShop(shopId) {
                 val shop = it
-                chatListAdapter.add( ChatItem(chatRoom, shop) )
+
+                // This checks if the shop exist or not
+                if (shop.name != "") {
+                    chatListAdapter.add( ChatItem(chatRoom, shop) )
+                }
+
             }
 
         }

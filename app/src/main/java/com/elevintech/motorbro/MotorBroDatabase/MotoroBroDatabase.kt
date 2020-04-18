@@ -375,7 +375,6 @@ class MotoroBroDatabase {
 
                 if (it != null && it.exists()) {
                     shop = it.toObject(Shop::class.java)!!
-
                 }
 
                 callback(shop)
