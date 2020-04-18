@@ -12,8 +12,12 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.elevintech.motorbro.Achievements.AchievementManager
 import com.elevintech.motorbro.Model.Achievement
+import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Model.History
 import com.elevintech.motorbro.Model.Refueling
@@ -23,8 +27,11 @@ import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
 import com.elevintech.motorbro.Utils.Constants
 import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_add_parts.*
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.Item
+import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_add_refueling.*
 import kotlinx.android.synthetic.main.activity_add_refueling.backButton
 import kotlinx.android.synthetic.main.activity_add_refueling.checkMarkButton
@@ -32,16 +39,19 @@ import kotlinx.android.synthetic.main.activity_add_refueling.dateText
 import kotlinx.android.synthetic.main.activity_add_refueling.deleteLayout
 import kotlinx.android.synthetic.main.activity_add_refueling.noteText
 import kotlinx.android.synthetic.main.activity_add_refueling.odometerText
+import kotlinx.android.synthetic.main.row_bike.view.*
 import java.text.DecimalFormat
 import java.util.*
 
 class AddRefuelingActivity : AppCompatActivity() {
 
+    var selectedBike = BikeInfo()
     var birthDayInMilliseconds = 0.toLong()
 
     lateinit var mDateSetListener: DatePickerDialog.OnDateSetListener
     private var isForEditRefuel = false
     private var refuelId = ""
+    lateinit var bottomSheetDialog: BottomSheetDialog
 
     companion object {
         val SELECT_PART_TYPE = 1
@@ -51,6 +61,7 @@ class AddRefuelingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_refueling)
 
+        bottomSheetDialog = BottomSheetDialog(this)
         isForEditRefuel = intent.getBooleanExtra("editRefuel", false)
 
         if (isForEditRefuel) {
@@ -66,7 +77,12 @@ class AddRefuelingActivity : AppCompatActivity() {
                 litersText.setText(refuel.priceGallons.toString())
                 locationText.setText(refuel.location)
                 noteText.setText(refuel.note)
-
+                if (refuel.bikeId != ""){
+                    MotoroBroDatabase().getBikeById(refuel.bikeId){
+                        selectedBike = it
+                        bikeText.setText(it.brand + " " + it.model + " (${it.nickname})")
+                    }
+                }
                 refuelId = refuel.id
 
                 disableAllCostButtons()
@@ -123,6 +139,36 @@ class AddRefuelingActivity : AppCompatActivity() {
             clearPriceValues.visibility = View.GONE
         }
 
+        bikeText.setOnClickListener {
+            openBikePicker()
+        }
+
+    }
+
+    private fun openBikePicker(){
+
+        val progressDialog = Utils().easyProgressDialog(this, "Gathering your bikes...")
+        progressDialog.show()
+
+        MotoroBroDatabase().getUserBikes { bikes ->
+
+            val view = layoutInflater.inflate(R.layout.bottom_sheet_dialog_select_bike, null)
+            val bikeAdapter = GroupAdapter<ViewHolder>()
+
+            for (bike in bikes.filter { !it.deleted }){
+                bikeAdapter.add(BikeItem(bike))
+            }
+
+            view.findViewById<RecyclerView>(R.id.bikeRecyclerView).isNestedScrollingEnabled = false
+            view.findViewById<RecyclerView>(R.id.bikeRecyclerView).layoutManager = LinearLayoutManager(this)
+            view.findViewById<RecyclerView>(R.id.bikeRecyclerView).adapter = bikeAdapter
+
+            bottomSheetDialog.setContentView(view)
+            bottomSheetDialog.show()
+
+            progressDialog.dismiss()
+
+        }
 
     }
 
@@ -302,6 +348,7 @@ class AddRefuelingActivity : AppCompatActivity() {
             refueling.location = locationText.text.toString()
             refueling.userId =  FirebaseAuth.getInstance().uid!!
             refueling.note = noteText.text.toString()
+            refueling.bikeId = selectedBike.bikeId
 
             if (refuelId != "") {
                 refueling.id = refuelId
@@ -349,8 +396,37 @@ class AddRefuelingActivity : AppCompatActivity() {
                     typeOfFuelText.text.toString()== "" ||
                     pricePerGallonText.text.toString()== "" ||
                     totalCostText.text.toString()== "" ||
-                    litersText.text.toString()== ""
+                    litersText.text.toString()== "" ||
+                    bikeText.text.toString()== ""
                 ))
+    }
+
+    private fun onBikeSelect(bike: BikeInfo){
+        selectedBike = bike
+        bikeText.setText(bike.brand + " " + bike.model + " (${bike.nickname})")
+        bottomSheetDialog.dismiss()
+    }
+
+    inner class BikeItem(val bike: BikeInfo): Item<ViewHolder>() {
+        override fun bind(viewHolder: ViewHolder, position: Int) {
+            viewHolder.itemView.bikeName.text = bike.nickname
+            viewHolder.itemView.plateNumberText.text = bike.plateNumber
+            viewHolder.itemView.deleteButton.visibility = View.INVISIBLE
+
+            viewHolder.itemView.setOnClickListener { onBikeSelect(bike) }
+
+            if (bike.imageUrl != "")
+                Glide.with(this@AddRefuelingActivity).load(bike.imageUrl).into(viewHolder.itemView.bikeImageView)
+
+            if (bike.primary)
+                viewHolder.itemView.isPrimary.visibility = View.VISIBLE
+
+        }
+
+        override fun getLayout(): Int {
+            return R.layout.row_bike
+
+        }
     }
 
 }

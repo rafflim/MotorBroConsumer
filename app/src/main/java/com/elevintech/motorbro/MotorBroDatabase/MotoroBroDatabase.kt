@@ -179,6 +179,20 @@ class MotoroBroDatabase {
             }
     }
 
+    fun editBikePartsImageUrl(bikePartId: String, imageUrl: String, callback: (String?) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("bike-parts").document(bikePartId)
+            .update("imageUrl", imageUrl)
+            .addOnSuccessListener {
+                callback("Success")
+            }
+            .addOnFailureListener {
+                    e -> println(e)
+                callback(null)
+            }
+    }
+
     fun deleteBikeParts(bikeParts: BikeParts, callback: (String?) -> Unit) {
         val db = FirebaseFirestore.getInstance()
 
@@ -1177,6 +1191,55 @@ class MotoroBroDatabase {
             .addOnSuccessListener { callback() }
             .addOnFailureListener { e -> println("error updating bike odometer: $e") }
 
+    }
+
+    fun getUnreadMessageCount(callback: (Int) -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val chatRoomRef = db.collection("chat-rooms")
+                            .whereEqualTo("participants.user", uid )
+
+        chatRoomRef.get().addOnSuccessListener {
+
+            var unreadMessageCount = 0
+
+            for (documentSnapshot in it){
+                val chatRoom = documentSnapshot.toObject(ChatRoom::class.java)!!
+
+                if (chatRoom.lastMessage.toId == uid){
+                    if (chatRoom.lastMessage.read == false){
+                        unreadMessageCount++
+                    }
+                }
+            }
+
+            callback(unreadMessageCount)
+
+        }
+
+    }
+
+    fun getChatRoomById(chatRoomId: String, callback: (ChatRoom) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val chatRoomRef = db.collection("chat-rooms").document(chatRoomId)
+
+        chatRoomRef.get()
+            .addOnSuccessListener {
+                val chatRoom = it.toObject(ChatRoom::class.java)!!
+                callback(chatRoom)
+            }
+            .addOnFailureListener { e-> println("error getting chat room with ID: $chatRoomId") }
+
+    }
+
+    fun updateLastMessageAsRead(chatRoomId: String) {
+        val db = FirebaseFirestore.getInstance()
+        val chatRoomRef = db.collection("chat-rooms").document(chatRoomId)
+
+        chatRoomRef.update("lastMessage.read" , true)
+            .addOnSuccessListener { }
+            .addOnFailureListener { e-> println("error getting chat room with ID: $chatRoomId") }
     }
 
 

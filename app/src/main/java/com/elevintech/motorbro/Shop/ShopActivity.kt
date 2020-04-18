@@ -126,19 +126,11 @@ class ShopActivity : AppCompatActivity() {
 
         val db = MotoroBroDatabase()
         db.getShops {
-//            for (shop in it) {
-//                shopAdapter.add(shopItem(shop))
-//            }
-//
-//            it.sortBy {  }
-
             val sortedList = it.sortedWith(compareBy { it.spotlight })
             val reversedList = sortedList.reversed()
             for (shop in reversedList) {
-                // For now check if the shop has device tokens if not don't show it
-                if (shop.deviceTokens.count() != 0) {
+                if (shop.deviceTokens.isNotEmpty())
                     shopAdapter.add(shopItem(shop))
-                }
             }
 
         }

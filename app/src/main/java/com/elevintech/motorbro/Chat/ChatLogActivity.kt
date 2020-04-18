@@ -26,6 +26,7 @@ class ChatLogActivity : AppCompatActivity() {
     var paginationStartAt = 0 // https://www.youtube.com/watch?v=poqTHxtDXwU&t=316s
     val adapter = GroupAdapter<ViewHolder>()
     var recipientTokenArray: List<String> = listOf()
+    val uid = FirebaseAuth.getInstance().uid
     lateinit var shop: Shop
     lateinit var chatRoomId: String
     lateinit var shopId: String
@@ -38,6 +39,7 @@ class ChatLogActivity : AppCompatActivity() {
         shopId = intent.getStringExtra("shopId")
         chatRoomId = intent.getStringExtra("chatRoomId")!!
 
+        setAsRead()
         getShop()
         getChats()
         getUser()
@@ -51,7 +53,37 @@ class ChatLogActivity : AppCompatActivity() {
         btnBack.setOnClickListener {
             finish()
         }
+
+
     }
+
+    private fun getChats(){
+
+        if(chatRoomId != ""){
+            val chatDatabase = ChatDatabase()
+            chatDatabase.getChatRoomMessages(chatRoomId){
+
+                val chatList = it
+                displayChats(chatList)
+
+            }
+        }
+
+    }
+
+    private fun setAsRead() {
+        if(chatRoomId != ""){
+            MotoroBroDatabase().getChatRoomById(chatRoomId){ chatRoom ->
+                if (chatRoom.lastMessage.toId == uid) {
+                    if(chatRoom.lastMessage.read == false){
+                        MotoroBroDatabase().updateLastMessageAsRead(chatRoomId)
+                    }
+                }
+            }
+        }
+
+    }
+
 
     private fun getUser(){
         MotoroBroDatabase().getUser {
@@ -127,19 +159,7 @@ class ChatLogActivity : AppCompatActivity() {
 
     }
 
-    fun getChats(){
 
-        if(chatRoomId != ""){
-            val chatDatabase = ChatDatabase()
-            chatDatabase.getChatRoomMessages(chatRoomId){
-
-                val chatList = it
-                displayChats(chatList)
-
-            }
-        }
-
-    }
 
     fun getPreviousChats(){
 
