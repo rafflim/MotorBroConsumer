@@ -66,7 +66,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         setContentView(R.layout.drawer_dashboard)
 
         buildNavigationDrawer()
-        setUpBottomNav()
+
         buildBottomSheetDialog()
         setUpFabClick()
         createNotificationChannel()
@@ -135,6 +135,8 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     override fun onResume() {
         super.onResume()
 
+        setUpBottomNav()
+
         if (bottomSheetDialog.isShowing)
             bottomSheetDialog.dismiss()
 
@@ -144,6 +146,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         db.getUser {
             setValuesNavHeader(it)
         }
+
     }
 
     private fun setUpFabClick() {
