@@ -18,4 +18,5 @@ class BikeInfo():Serializable {
     var bikeId: String = ""
     var deleted: Boolean = false
     var primary: Boolean = false
+    var lastOdometerUpdate: String = ""
 }

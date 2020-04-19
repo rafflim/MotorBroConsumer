@@ -1186,8 +1186,10 @@ class MotoroBroDatabase {
 
         val db = FirebaseFirestore.getInstance()
         val bikeRef = db.collection("bikes").document(selectedBike.bikeId)
+        val dateNow = System.currentTimeMillis() / 1000
 
-        bikeRef.update("odometer", "$odometerValue")
+        bikeRef.update(mapOf("odometer" to "$odometerValue",
+                              "lastOdometerUpdate" to "$dateNow"))
             .addOnSuccessListener { callback() }
             .addOnFailureListener { e -> println("error updating bike odometer: $e") }
 

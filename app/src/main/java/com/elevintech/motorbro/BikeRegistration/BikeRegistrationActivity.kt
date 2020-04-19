@@ -188,6 +188,7 @@ class BikeRegistrationActivity : AppCompatActivity() {
         bike.userId = FirebaseAuth.getInstance().uid!!
         bike.bikeId = FirebaseFirestore.getInstance().collection("bikes").document().id
         bike.primary = (openedFromWhatActivity == "splashPage" || openedFromWhatActivity == "createAccount") // set to true if created from splash page or create account activity
+        bike.lastOdometerUpdate = Utils().getCurrentTimestamp().toString()
 
         val database = MotoroBroDatabase()
         val progressDialog = Utils().easyProgressDialog(this, "Registering Bike...")

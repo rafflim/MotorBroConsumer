@@ -59,15 +59,6 @@ class HomeFragment : Fragment() {
                 view.odometerStatementText.text = "Odometer : $firstOdoDistance km updated as of ${firstOdo.date}"
             }
 
-            //db.getUserBike { setBikeValues(it) }
-//            db.getMainBike { mainBike ->
-//                if (!isAdded) {
-//                    return@getMainBike
-//                }
-//
-//                setBikeValues(view, mainBike)
-//            }
-
             db.getUserBikes {
                 if (!isAdded) {
                     return@getUserBikes
@@ -96,6 +87,8 @@ class HomeFragment : Fragment() {
                         }
                         // then setup the views with the bike
                         setBikeValues(view, it[0])
+
+
                     }
                 } else {
                     setBikeValues(view, primaryBike)
@@ -125,8 +118,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun setBikeValues(v: View, bike: BikeInfo) {
+
         v.motorNameText.setText(bike.yearBought + " " + bike.brand.capitalize() + " " + bike.model.capitalize())
         v.plateNumberText.setText("#" + bike.plateNumber.toUpperCase())
+        if (bike.lastOdometerUpdate != ""){
+            val lastOdometerUpdate = Utils().convertMillisecondsToDate( bike.lastOdometerUpdate.toLong(),  "MMM d, yyyy")
+            v.odometerStatementText.text = "Odometer : ${bike.odometer} km updated as of ${lastOdometerUpdate}"
+        }
 
         MotoroBroDatabase().getUserBikes {
             if (!isAdded) { return@getUserBikes }
@@ -156,6 +154,8 @@ class HomeFragment : Fragment() {
             startActivity(intent)
 
         }
+
+
 
 
     }
