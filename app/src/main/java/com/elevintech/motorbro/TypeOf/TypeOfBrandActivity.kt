@@ -111,17 +111,39 @@ class TypeOfBrandActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val totalArrayList = ArrayList<CheckboxObj>(filteredList)
-            totalList.clear()
-            totalList.addAll(totalArrayList)
-            viewAdapter.notifyDataSetChanged()
-
+            val defaultBrands = Constants.TYPE_OF.brands
+            var hasSelectedDefaultBrand = false
             for (part in listToDelete) {
-                val db = MotoroBroDatabase()
-                db.saveDeletedBrands(part.name) {
-                    println("deleted ${part.name}")
+                if (defaultBrands.contains(part.name))
+                    hasSelectedDefaultBrand = true
+            }
+
+
+            if (hasSelectedDefaultBrand){
+
+                Snackbar.make(addItemsButton, "Default brands cannot be deleted", Snackbar.LENGTH_LONG).show()
+
+            } else {
+
+                val totalArrayList = ArrayList<CheckboxObj>(filteredList)
+                totalList.clear()
+                totalList.addAll(totalArrayList)
+                viewAdapter.notifyDataSetChanged()
+
+                for (part in listToDelete) {
+                    val db = MotoroBroDatabase()
+                    db.saveDeletedBrands(part.name) {
+                        println("deleted ${part.name}")
+                    }
                 }
             }
+
+
+
+
+
+
+
         }
     }
 
@@ -235,8 +257,7 @@ class TypeOfBrandActivity : AppCompatActivity() {
 
             // HIDE CHECKBOX IF IT IS ONE
             if ( defaultBrands.contains(part.name) ){
-//                viewHolder.itemView.defaultBrandText.visibility = View.VISIBLE
-                //viewHolder.itemView.checkbox.visibility = View.GONE
+                viewHolder.itemView.defaultBrandText.visibility = View.VISIBLE
             }
 
         }
