@@ -26,7 +26,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/open_sans"
-            android:text="Wed, Feb 19, 2020"
             android:textColor="@color/textColorBlack"
             android:textSize="17sp" />
 
@@ -54,7 +53,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/open_sans_semibold"
-                    android:text="2019 Posh Brakes"
                     android:textColor="@color/textColorBlack"
                     android:textSize="15sp"
 
@@ -78,7 +76,6 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/open_sans_semibold"
-                        android:text="25,000"
                         android:textColor="@color/textColorBlack"
 
                         android:textSize="11sp"
@@ -134,7 +131,35 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/open_sans"
-                        android:text=""
+                        android:text="Bike: Unassigned"
+                        android:textColor="@color/textColorBlack"
+
+                        android:textSize="11sp"
+
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/createdByShopLayout"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/shopheadericon" />
+
+                    <TextView
+                        android:id="@+id/createdByShopText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/open_sans"
                         android:textColor="@color/textColorBlack"
 
                         android:textSize="11sp"

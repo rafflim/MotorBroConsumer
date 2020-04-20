@@ -26,7 +26,6 @@ import kotlinx.android.synthetic.main.row_parts.view.*
  */
 class PartsFragment : Fragment() {
 
-    var listOfParts = listOf<String>("Headlight", "Tires", "Brakes", "Helmet", "Back Seat", "Front Seat", "Accelerator", "Battery")
     val partsListAdapter = GroupAdapter<ViewHolder>()
 
     override fun onCreateView(
@@ -141,9 +140,18 @@ class PartsFragment : Fragment() {
 
             if (bikePart.bikeId != "") {
                 MotoroBroDatabase().getBikeById(bikePart.bikeId) {
-                    viewHolder.itemView.primaryBikeName.text = it.yearBought + " " + it.brand + " " + it.model
+                    viewHolder.itemView.primaryBikeName.text = "Bike: " + it.yearBought + " " + it.brand + " " + it.model
                 }
             }
+
+            if (bikePart.createdByShop){
+                MotoroBroDatabase().getShop(bikePart.shopId) {
+                    viewHolder.itemView.createdByShopLayout.visibility = View.VISIBLE
+                    viewHolder.itemView.createdByShopText.text = "Shop: " + it.name
+                }
+            }
+
+
             // Get date bought
         }
 

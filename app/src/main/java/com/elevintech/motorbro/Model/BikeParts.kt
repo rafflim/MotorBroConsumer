@@ -15,6 +15,7 @@ class BikeParts(
     var brand: String = "",
     var note: String = "",
     var price: Double = 0.0,
-    var createdByShop: Boolean = false,
     var bikeId: String = "",
-    var imageUrl: String ="") : Parcelable
+    var imageUrl: String ="",
+    var createdByShop: Boolean = false,
+    var shopId: String = "") : Parcelable
