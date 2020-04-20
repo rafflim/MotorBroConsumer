@@ -23,7 +23,6 @@
             android:layout_height="60dp"
             android:layout_margin="3dp"
             android:padding="4dp"
-            android:src="@drawable/sample_shop"
             android:background="@drawable/circle_gradient_border"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +56,6 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/open_sans"
-        android:text="Motor Cars and Co."
         android:textColor="@android:color/black"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -82,7 +80,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:fontFamily="@font/open_sans_semibold"
-        android:text="Hi there"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/layoutImgProfile"
         app:layout_constraintTop_toBottomOf="@+id/shopName" />
@@ -94,7 +91,6 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:fontFamily="@font/open_sans_semibold"
-        android:text="3:52 pm"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

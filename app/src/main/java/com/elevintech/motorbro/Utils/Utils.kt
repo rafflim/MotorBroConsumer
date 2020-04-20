@@ -137,4 +137,11 @@ class Utils {
         return NumberFormat.getNumberInstance(Locale.US).format(number)
 
     }
+
+    fun getCurrentTime(): String {
+
+        return convertMillisecondsToDate(System.currentTimeMillis(), "hh:mm a")
+
+
+    }
 }
