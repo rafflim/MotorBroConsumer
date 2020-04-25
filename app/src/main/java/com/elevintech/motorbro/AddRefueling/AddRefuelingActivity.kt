@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.elevintech.motorbro.Achievements.AchievementManager
+import com.elevintech.motorbro.AdsView.AdsViewActivity
 import com.elevintech.motorbro.Model.Achievement
 import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
@@ -63,6 +64,17 @@ class AddRefuelingActivity : AppCompatActivity() {
 
         bottomSheetDialog = BottomSheetDialog(this)
         isForEditRefuel = intent.getBooleanExtra("editRefuel", false)
+
+        MotoroBroDatabase().getUserMainBikeFromBikes {
+            if (it != null) {
+                selectedBike = it
+            }
+        }
+
+        adsLayoutRefueling.setOnClickListener {
+            val intent = Intent(this, AdsViewActivity::class.java)
+            startActivity(intent)
+        }
 
         if (isForEditRefuel) {
             val refuel: Refueling? = intent.getParcelableExtra("refuelObject")
@@ -202,6 +214,7 @@ class AddRefuelingActivity : AppCompatActivity() {
         val showDialog = Utils().showProgressDialog(this, "Deleting refueling data")
         MotoroBroDatabase().deleteRefuel(refuel) {
             if (Constants.RESULT_STRING.SUCCESS == it) {
+                MotoroBroDatabase().deleteUserHistoryFromItemId(refuel.id) { }
                 showDialog.dismiss()
                 finish()
             } else {
@@ -333,7 +346,6 @@ class AddRefuelingActivity : AppCompatActivity() {
 
         if (validateFields()){
 
-
             var showDialog = Utils().showProgressDialog(this, "Saving Refueling Data")
 
             var refueling = Refueling()
@@ -354,7 +366,6 @@ class AddRefuelingActivity : AppCompatActivity() {
                 refueling.id = refuelId
             }
 
-
             val database = MotoroBroDatabase()
 
             if (isForEditRefuel) {
@@ -369,7 +380,7 @@ class AddRefuelingActivity : AppCompatActivity() {
                 }
             } else {
                 database.saveRefueling(refueling) {
-                    database.saveHistory("refueling", it!!, refueling.typeOfFuel) {
+                    database.saveHistory(selectedBike.bikeId,"refueling", it!!, refueling.typeOfFuel) {
                         AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_FUEL )
                         AchievementManager().incrementAchievementProgress( Achievement.Names.REFUEL_TIMES, 1)
                         showDialog.dismiss()
@@ -396,8 +407,7 @@ class AddRefuelingActivity : AppCompatActivity() {
                     typeOfFuelText.text.toString()== "" ||
                     pricePerGallonText.text.toString()== "" ||
                     totalCostText.text.toString()== "" ||
-                    litersText.text.toString()== "" ||
-                    bikeText.text.toString()== ""
+                    litersText.text.toString()== ""
                 ))
     }
 

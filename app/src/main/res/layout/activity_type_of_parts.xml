@@ -130,10 +130,64 @@
 
     </LinearLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/searchBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/linearLayout2"
+        android:visibility="gone"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/searchButton"
+            android:text="Search"
+            android:textAllCaps="false"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toStartOf="@id/searchButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/clearButton"
+            android:text="Clear"
+            android:textAllCaps="false"
+            />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/clearButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/searchTextView"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bordered_edit_text"
+            android:hint="Search here"
+            android:layout_marginLeft="10dp"
+            android:textSize="15sp"
+            android:fontFamily="@font/open_sans"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_marginBottom="150dp"
-        android:layout_below="@+id/linearLayout2"
+        android:layout_below="@+id/searchBarLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F7F7F7"
@@ -174,7 +228,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <FrameLayout
+    <LinearLayout
+        android:id="@+id/adsLayoutParts"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_margin="10dp"
@@ -194,7 +249,7 @@
 <!--            android:text="AD SPACE" />-->
 
 
-    </FrameLayout>
+    </LinearLayout>
 
 
 

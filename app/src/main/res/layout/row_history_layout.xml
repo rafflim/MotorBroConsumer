@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:paddingBottom="25dp"
+        android:paddingBottom="18dp"
         android:background="@drawable/shadow_background">
 
         <ImageView
@@ -23,7 +23,7 @@
             android:src="@drawable/history_icon_two"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
             />
 
@@ -31,14 +31,31 @@
             android:id="@+id/historyTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Added Posh Break"
+            android:text=""
             app:layout_constraintStart_toEndOf="@id/icon_main"
             app:layout_constraintTop_toTopOf="@id/icon_main"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/open_sans"
+            android:textSize="15sp"
+            android:textColor="@color/textColorBlack"
+            />
+
+        <TextView
+            android:id="@+id/historySecondTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            app:layout_constraintStart_toEndOf="@id/icon_main"
+            app:layout_constraintTop_toBottomOf="@+id/historyTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
             android:textSize="14sp"
+            android:fontFamily="@font/open_sans"
             android:textColor="@color/textColorBlack"
             />
 
@@ -52,6 +69,7 @@
             app:layout_constraintTop_toBottomOf="@id/historyTitle"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:visibility="gone"
             />
 
 <!--        <TextView-->
@@ -77,6 +95,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="8dp"
             android:textColor="@color/textColorBlack"
+            android:visibility="gone"
             />
 
 

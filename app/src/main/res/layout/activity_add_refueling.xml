@@ -151,6 +151,7 @@
 
             >
             <LinearLayout
+                android:id="@+id/adsLayoutRefueling"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -193,7 +194,7 @@
                     android:layout_height="25dp"
                     android:tint="#808FDF"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/calendar_small_icon"
+                    android:src="@drawable/calendar_fixed_icon"
 
                     />
 
@@ -237,7 +238,7 @@
                     android:layout_height="25dp"
                     android:tint="#808FDF"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/odometer_icon"
+                    android:src="@drawable/odometer_fixed_icon"
 
                     />
 
@@ -490,7 +491,7 @@
                     android:layout_height="25dp"
                     android:tint="#808FDF"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/pencil_new_icon"
+                    android:src="@drawable/note_fixed_icon"
 
                     />
 
@@ -518,6 +519,7 @@
                 android:text="Bike"
                 android:textSize="15sp"
                 android:textColor="#182463"
+                android:visibility="gone"
                 />
 
             <LinearLayout
@@ -526,7 +528,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
-
+                android:visibility="gone"
                 >
 
                 <ImageView

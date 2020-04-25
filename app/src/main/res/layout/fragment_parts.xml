@@ -71,6 +71,7 @@
             app:layout_constraintEnd_toEndOf="@id/topHeaderLayout"
             app:layout_constraintStart_toStartOf="@id/topHeaderLayout"
             android:background="@drawable/shadow_gray_background"
+            android:visibility="gone"
             >
 
             <TextView
@@ -183,6 +184,24 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:id="@+id/adsLayout"
+            >
+            <ImageView
+                android:layout_width="350dp"
+                android:layout_height="80dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ads_image_gpc"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/noDataLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -206,10 +225,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/textColorBlack"
-                android:fontFamily="@font/open_sans_bold"
+                android:fontFamily="@font/open_sans"
                 android:layout_marginTop="10dp"
-                android:textSize="19sp"
-                android:text="No Data Found" />
+                android:layout_margin="20dp"
+                android:textSize="15sp"
+                android:text="No Parts / Services Found. Start adding by clicking the middle blue button at the tab." />
 
         </LinearLayout>
 
@@ -223,7 +243,7 @@
             app:layout_constraintTop_toBottomOf="@id/topCountParts"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
 
             />
 

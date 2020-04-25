@@ -8,7 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.elevintech.motorbro.AddParts.AddPartsActivity
+import com.elevintech.motorbro.AdsView.AdsViewActivity
+import com.elevintech.motorbro.Dashboard.DashboardActivity
 import com.elevintech.motorbro.Model.BikeParts
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Utils.Utils
@@ -43,6 +46,10 @@ class PartsFragment : Fragment() {
 
         setupRecyclerView()
 
+        adsLayout.setOnClickListener {
+            val intent = Intent(context, AdsViewActivity::class.java)
+            startActivity(intent)
+        }
 //        add_parts_floating_button.setOnClickListener {
 //            val intent = Intent(context, AddPartsActivity::class.java)
 //            startActivity(intent)
@@ -68,63 +75,85 @@ class PartsFragment : Fragment() {
     }
 
     private fun displayBikeCount(v: View) {
-        MotoroBroDatabase().getUserBikeParts {
-            val bikePartsList = it
-            val userPartsCountString = bikePartsList.filter { bike -> !bike.createdByShop }.count().toString()
-            var shopPartsCountString = bikePartsList.filter { bike -> bike.createdByShop }.count().toString()
 
-            if (userPartsCountString == "") {
-                v.userPartsCount.setText("0")
-            } else {
-                v.userPartsCount.setText(userPartsCountString)
-            }
+        MotoroBroDatabase().getUserMainBikeFromBikes {
+            if (it != null) {
+                MotoroBroDatabase().getUserBikeParts(it.id) {
+                    val bikePartsList = it
+                    val userPartsCountString = bikePartsList.filter { bike -> !bike.createdByShop }.count().toString()
+                    var shopPartsCountString = bikePartsList.filter { bike -> bike.createdByShop }.count().toString()
 
-            if (shopPartsCountString == "") {
-                v.shopPartsCount.setText("0")
-            } else {
-                v.shopPartsCount.setText(shopPartsCountString)
+                    if (userPartsCountString == "") {
+                        v.userPartsCount.setText("0")
+                    } else {
+                        v.userPartsCount.setText(userPartsCountString)
+                    }
+
+                    if (shopPartsCountString == "") {
+                        v.shopPartsCount.setText("0")
+                    } else {
+                        v.shopPartsCount.setText(shopPartsCountString)
+                    }
+                }
             }
         }
     }
 
     private fun displayParts() {
 
-        MotoroBroDatabase().getUserBikeParts {
 
-            println(it)
+        MotoroBroDatabase().getUserMainBikeFromBikes {
+            if (it != null) {
+                MotoroBroDatabase().getUserBikeParts(it.id) {
+                    println(it)
 
-            val bikePartsList = it
-            if(bikePartsList.isNotEmpty()) {
+                    val bikePartsList = it
+                    if(bikePartsList.isNotEmpty()) {
+                        if (noDataLayout != null) {
+                            noDataLayout.visibility = GONE
+                        }
+                    } else {
+                        if (noDataLayout != null) {
+                            noDataLayout.visibility = VISIBLE
+                        }
+                    }
 
-                if (noDataLayout != null) {
-                    noDataLayout.visibility = GONE
+                    bikePartsList.reversed()
+                    for (bikePart in bikePartsList){
+                        println("bike23 " + bikePart)
+                        partsListAdapter.add(PartsItem(bikePart))
+                    }
                 }
-
-            } else {
-                if (noDataLayout != null) {
-                    noDataLayout.visibility = VISIBLE
-                }
-            }
-
-            bikePartsList.reversed()
-            for (bikePart in bikePartsList){
-                println("bike23 " + bikePart)
-                partsListAdapter.add(PartsItem(bikePart))
             }
         }
+
     }
 
     inner class PartsItem(val bikePart: BikeParts): Item<ViewHolder>() {
 
 
         override fun bind(viewHolder: ViewHolder, position: Int) {
-            viewHolder.itemView.partsName.text = bikePart.typeOfParts
+//            viewHolder.itemView.partsName.text = bikePart.typeOfParts
             viewHolder.itemView.odometerText.text = "Brand: " + bikePart.brand
-            viewHolder.itemView.cashText.text = " ₱" + bikePart.price.toString()
-            viewHolder.itemView.noteText.text = bikePart.note
+//            viewHolder.itemView.cashText.text = " ₱" + bikePart.price.toString()
+
+            val dateString = Utils().convertMillisecondsToDate(bikePart.dateLong, "MMM d, yyyy")
+
+            viewHolder.itemView.partsNameCombine.text = "$dateString - ${bikePart.typeOfParts} - ${bikePart.brand} - ${bikePart.price}"
+            viewHolder.itemView.partsOdoCombine.text = "Odo = ${bikePart.odometer} km"
+
+            var note = ""
+
+            if (bikePart.note.isEmpty()) {
+                note = "No note"
+            } else {
+                note = bikePart.note
+            }
+
+            viewHolder.itemView.noteText.text = note
 
             if (bikePart.dateLong != 0.toLong()) {
-                viewHolder.itemView.dateText.text = Utils().convertMillisecondsToDate(bikePart.dateLong, "MMM d, yyyy")
+                viewHolder.itemView.dateText.text = dateString
             } else {
                 viewHolder.itemView.dateText.text = "Date not supported"
             }
@@ -149,6 +178,13 @@ class PartsFragment : Fragment() {
                     viewHolder.itemView.createdByShopLayout.visibility = View.VISIBLE
                     viewHolder.itemView.createdByShopText.text = "Shop: " + it.name
                 }
+            }
+
+            if (bikePart.imageUrl.isNotEmpty()) {
+                viewHolder.itemView.productImage.visibility = View.VISIBLE
+                Glide.with(activity as DashboardActivity).load(bikePart.imageUrl).into(viewHolder.itemView.productImage)
+            } else {
+                viewHolder.itemView.productImage.visibility = View.GONE
             }
 
 

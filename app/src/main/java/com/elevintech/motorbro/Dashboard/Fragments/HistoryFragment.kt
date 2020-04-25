@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.elevintech.motorbro.AdsView.AdsViewActivity
 import com.elevintech.motorbro.Model.BikeParts
 import com.elevintech.motorbro.Model.History
 import com.elevintech.motorbro.Model.OdometerUpdate
@@ -24,6 +25,9 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_history.*
+import kotlinx.android.synthetic.main.fragment_history.adsLayout
+import kotlinx.android.synthetic.main.fragment_history.noDataLayout
+import kotlinx.android.synthetic.main.fragment_parts.*
 import kotlinx.android.synthetic.main.row_history_layout.view.*
 
 
@@ -47,6 +51,11 @@ class HistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
+
+        adsLayout.setOnClickListener {
+            val intent = Intent(context, AdsViewActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onResume() {
@@ -54,7 +63,13 @@ class HistoryFragment : Fragment() {
         //historyAdapter.clear()
         //historyAdapter
         listOfHistory.clear()
-        setupViews()
+
+        MotoroBroDatabase().getUserMainBikeFromBikes {
+            if (it != null) {
+                setupViews(it.id)
+            }
+        }
+
     }
 
     override fun onDestroy() {
@@ -74,10 +89,10 @@ class HistoryFragment : Fragment() {
         //historyRecyclerView.adapter = newHistoryAdapter
     }
 
-    private fun setupViews() {
+    private fun setupViews(mainBikeId: String) {
 
         val db = MotoroBroDatabase()
-        db.getUserHistory {
+        db.getUserHistory(mainBikeId) {
             // TODO: somehow get the last value only
             val historyList = it
             if(historyList.isNotEmpty()){
@@ -151,22 +166,56 @@ class HistoryFragment : Fragment() {
             // - replace the contents of the view with that element
             val history = myDataset[position]
 
-            var historyTitle = ""
-
             when(history.typeOfHistory){
-                "bike-parts" -> { historyTitle = "Added ${history.value}"}
-                "odometer" -> { historyTitle = "Updated odometer to ${history.value} km " }
-                "refueling" -> { historyTitle = "Refueled ${history.value}"}
-            }
+                "bike-parts" -> {
+                    getBikePartsView(history, viewHolder)
+                }
 
-            viewHolder.itemView.historyDate.text = Utils().convertMillisecondsToDate(history.dateLong, "MMM d, yyyy")
+                "odometer" -> {
+                    getOdoView(history, history.value, viewHolder)
+                }
+
+                "refueling" -> {
+                    getRefuelView(history, viewHolder)
+                }
+            }
+            //viewHolder.itemView.historyDate.text = date
+//            viewHolder.itemView.deleteHistory.setOnClickListener {
+//                // delete the item
+//                createAlertDialog(position, history)
+//            }
+        }
+
+        private fun getBikePartsView(history: History, viewHolder: MyViewHolder) {
+
+            val date = Utils().convertMillisecondsToDate(history.dateLong, "MMM d, yyyy")
+
+            MotoroBroDatabase().getUserBikePartsById(history.itemId) {
+                var historyTitle = "$date - ${it.brand} - ${it.typeOfParts} - P${it.price}"
+                var secondaryTitle = "Odo = ${it.odometer}km"
+
+                viewHolder.itemView.historyTitle.text = historyTitle
+                viewHolder.itemView.historySecondTitle.text = secondaryTitle
+            }
+        }
+
+        private fun getRefuelView(history: History, viewHolder: MyViewHolder) {
+            val date = Utils().convertMillisecondsToDate(history.dateLong, "MMM d, yyyy")
+
+            MotoroBroDatabase().getUserRefuelById(history.itemId) {
+                var historyTitle = "$date - ${it.priceGallons} liters - ${it.pricePerGallon} [Odo = ${it.kilometers}km]"
+
+                viewHolder.itemView.historyTitle.text = historyTitle
+                viewHolder.itemView.historySecondTitle.visibility = View.GONE
+            }
+        }
+
+        private fun getOdoView(history: History, value: String, viewHolder: MyViewHolder) {
+            val date = Utils().convertMillisecondsToDate(history.dateLong, "MMM d, yyyy")
+            var historyTitle = "$date - [Odometer - $value km]"
+
             viewHolder.itemView.historyTitle.text = historyTitle
-
-            viewHolder.itemView.deleteHistory.setOnClickListener {
-                // delete the item
-                createAlertDialog(position, history)
-            }
-
+            viewHolder.itemView.historySecondTitle.visibility = View.GONE
         }
 
         private fun deleteHistory(position: Int, history: History) {

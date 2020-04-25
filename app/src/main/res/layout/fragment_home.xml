@@ -555,29 +555,15 @@
             android:background="@drawable/shadow_background"
             >
 
-            <TextView
-                android:id="@+id/qrCodeSampleHeader"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:text="Your QR Code"
-                android:fontFamily="@font/open_sans_semibold"
-                android:textColor="#1A1A1A"
-                android:textSize="19sp"
-                android:layout_marginTop="10dp"
-                />
-
             <ImageView
                 android:id="@+id/qrCodeImage"
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:scaleType="centerCrop"
-                app:layout_constraintTop_toBottomOf="@id/qrCodeSampleHeader"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 />
 
             <TextView
@@ -589,11 +575,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:text="This QR Code is for scanning your vehicle to our certified motorbro partners"
+                android:text="This is your personal QR Code that can be scanned by accredited MotorBro merchants."
                 android:fontFamily="@font/open_sans"
                 android:textColor="@color/textColorBlack"
                 android:textSize="13sp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 />
 
 

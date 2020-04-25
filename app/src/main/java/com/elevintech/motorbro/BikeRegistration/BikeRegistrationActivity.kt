@@ -1,9 +1,12 @@
 package com.elevintech.motorbro.BikeRegistration
 
 import android.Manifest
+import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.ContentResolver
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +17,7 @@ import android.widget.Toast
 import com.elevintech.motorbro.Dashboard.DashboardActivity
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.Model.BikeInfo
+import com.elevintech.motorbro.Model.OdometerUpdate
 import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
 import com.github.florent37.runtimepermission.RuntimePermission
@@ -21,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_bike_registration.*
 import java.io.File
+import java.text.DecimalFormat
 import java.util.*
 
 class BikeRegistrationActivity : AppCompatActivity() {
@@ -30,6 +35,9 @@ class BikeRegistrationActivity : AppCompatActivity() {
     private var OPEN_GALLERY = 11
 
     private var openedFromWhatActivity = ""
+
+    lateinit var mDateSetListener: DatePickerDialog.OnDateSetListener
+    var birthDayInMilliseconds = 0.toLong()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +66,11 @@ class BikeRegistrationActivity : AppCompatActivity() {
 
         createAccountBackImageView.setOnClickListener {
             finish()
+        }
+
+        yearBoughtEditText.setOnClickListener {
+            setDatePickerAction()
+            openDatePicker()
         }
 
     }
@@ -130,6 +143,52 @@ class BikeRegistrationActivity : AppCompatActivity() {
 
     }
 
+    private fun setDatePickerAction(){
+
+
+        // SET ACTION AFTER SELECTING THE DATE
+        mDateSetListener = DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
+
+            // FORMAT  DAY and MONTH to always show two digits (add zero if single digit)
+            var mFormat = DecimalFormat("00");
+            var monthString = mFormat.format(month + 1)
+            var dayString = mFormat.format(day)
+
+            birthDayInMilliseconds = Utils().convertDateToMilliseconds(year,month,day,12, 0, 0)
+
+            // PUT THE SELECTED DATE ON THE DATE PLACEHOLDER
+            yearBoughtEditText.setText("${year}-${monthString}-${dayString}")
+
+            // TODO: How to get current AGE??
+
+            // If todays month is greater than current month
+            // if todays day is greater than or equals to day
+
+        }
+
+    }
+
+    private fun openDatePicker() {
+
+        // INSTANTIATE CALENDAR
+        var cal = Calendar.getInstance()
+        cal.add(Calendar.YEAR, 0)
+
+        var year = cal.get(Calendar.YEAR)
+        var month = cal.get(Calendar.MONTH)
+        var day = cal.get(Calendar.DAY_OF_MONTH)
+
+        // INSTANTIATE DATE PICKER DIALOG
+        var dialog = DatePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, mDateSetListener, year, month, day)
+
+        // SET DATE PICKER DIALOG STYLE
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // SHOW THE DATE PICKER DIALOG
+        dialog.show()
+
+    }
+
     private fun validateFields(): Boolean {
         if (editBrandText.text.isEmpty()) {
             Toast.makeText(this, "Brand Text Field is Empty", Toast.LENGTH_LONG).show()
@@ -178,6 +237,7 @@ class BikeRegistrationActivity : AppCompatActivity() {
         }
 
         val bike = BikeInfo()
+        val odometerValue = editOdometerText.text.toString().toDouble()
 
         bike.brand = editBrandText.text.toString()
         bike.model = editModelText.text.toString()
@@ -206,6 +266,20 @@ class BikeRegistrationActivity : AppCompatActivity() {
             database.uploadImageToFirebaseStorage(imageUriEmpty!!) { imageUrl ->
                 bike.imageUrl = imageUrl
                 database.saveBikeInfo(bike) {
+
+
+                    // TODO: save the odometer here
+                    val odometerDetails = OdometerUpdate()
+                    odometerDetails.odometer = odometerValue
+                    odometerDetails.date = Utils().getCurrentDate()
+                    odometerDetails.dateLong = Utils().getCurrentTimestamp()
+                    odometerDetails.userId =  FirebaseAuth.getInstance().uid!!
+                    odometerDetails.bikeId = bike.bikeId
+
+                    database.saveOdometerUpdate(odometerDetails) {
+                        // do something here?
+                    }
+
                     if (openedFromWhatActivity == "splashPage" || openedFromWhatActivity == "createAccount"){
                         database.updateUserRegistrationProgress(2) {
                             progressDialog.dismiss()

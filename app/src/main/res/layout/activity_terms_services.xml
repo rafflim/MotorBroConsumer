@@ -249,6 +249,68 @@
                 android:fontFamily="@font/open_sans"
                 />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/privacyPolicy11"
+                android:textColor="@color/textColorBlack"
+                android:textSize="14sp"
+                android:fontFamily="@font/open_sans_semibold"
+                android:layout_marginTop="20dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/privacyPolicy11Desc"
+                android:textColor="@color/textColorBlack"
+                android:textSize="13sp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/open_sans"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/privacyPol12"
+                android:textColor="@color/textColorBlack"
+                android:textSize="14sp"
+                android:fontFamily="@font/open_sans_semibold"
+                android:layout_marginTop="20dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/privacyPolDesc12"
+                android:textColor="@color/textColorBlack"
+                android:textSize="13sp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/open_sans"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/privacyPol13"
+                android:textColor="@color/textColorBlack"
+                android:textSize="14sp"
+                android:fontFamily="@font/open_sans_semibold"
+                android:layout_marginTop="20dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/privacyPolDesc13"
+                android:textColor="@color/textColorBlack"
+                android:textSize="13sp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/open_sans"
+                />
+
+
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

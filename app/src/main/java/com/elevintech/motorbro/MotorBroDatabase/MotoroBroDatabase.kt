@@ -237,7 +237,7 @@ class MotoroBroDatabase {
     }
 
 
-    fun saveHistory(historyType: String, historyItemId: String, historyItemValue: Any, callback: () -> Unit) {
+    fun saveHistory(bikeId: String, historyType: String, historyItemId: String, historyItemValue: Any, callback: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
 
         val history = History()
@@ -246,6 +246,7 @@ class MotoroBroDatabase {
         history.typeOfHistory = historyType
         history.itemId = historyItemId
         history.value = historyItemValue.toString()
+        history.bikeId = bikeId
 
         db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("history")
             .document()
@@ -361,7 +362,6 @@ class MotoroBroDatabase {
 
                 it.forEachIndexed { index, minShop ->
                     val shop = minShop.toObject(Shop::class.java)
-                    //TODO: This is for testing putting a spotlihgt in here
                     if (index <= 1) { shop.spotlight = true }
                     shop.shopId = minShop.id
                     list.add(shop)
@@ -395,11 +395,12 @@ class MotoroBroDatabase {
             }
     }
 
-    fun getUserHistory(callback: (ArrayList<History>) -> Unit) {
+    // TODO: Fix this
+    fun getUserHistory(bikeId: String, callback: (ArrayList<History>) -> Unit) {
 
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val docRef = db.collection("customers").document(uid).collection("history").orderBy("dateLong", Query.Direction.DESCENDING)
+        val docRef = db.collection("customers").document(uid).collection("history").whereEqualTo("bikeId", bikeId).orderBy("dateLong", Query.Direction.DESCENDING)
         val list = ArrayList<History>()
 
         docRef.get()
@@ -415,6 +416,45 @@ class MotoroBroDatabase {
                 callback(list)
 
             }
+
+            .addOnFailureListener {
+                callback(list)
+                println(it.localizedMessage)
+            }
+    }
+
+    fun deleteUserHistoryFromItemId(itemId: String, callback: () -> Unit) {
+
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+
+        val docRef = db.collection("customers").document(uid).collection("history").whereEqualTo("itemId", itemId)
+
+        docRef.get()
+            .addOnSuccessListener {
+
+                val list = ArrayList<History>()
+
+                for (historyObj in it){
+                    val history = historyObj.toObject(History::class.java)
+                    history.id = historyObj.id
+                    list.add(history)
+                }
+
+
+                for (history in list) {
+                    deleteUserHistory(history) {
+                        println("deleted history")
+                        //callback()
+                    }
+                }
+            }
+
+            .addOnFailureListener {
+                println(it.localizedMessage)
+            }
+
+
     }
 
     fun deleteUserHistory(history: History, callback: (String) -> Unit) {
@@ -433,10 +473,10 @@ class MotoroBroDatabase {
             }
     }
 
-    fun getUserBikeParts(callback: (MutableList<BikeParts>) -> Unit) {
+    fun getUserBikeParts(bikeId: String, callback: (MutableList<BikeParts>) -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val docRef = db.collection("customers").document(uid).collection("bike-parts")
+        val docRef = db.collection("customers").document(uid).collection("bike-parts").whereEqualTo("bikeId", bikeId)
         val list = mutableListOf<BikeParts>()
 
         docRef.get()
@@ -451,10 +491,29 @@ class MotoroBroDatabase {
             }
     }
 
-    fun getUserRefueling(callback: (MutableList<Refueling>) -> Unit) {
+    // TODO: Finish this
+    fun getUserBikePartsById(bikePartsId: String ,callback: (BikeParts) -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val docRef = db.collection("customers").document(uid).collection("refueling")
+        val docRef = db.collection("customers").document(uid).collection("bike-parts").document(bikePartsId)
+
+        docRef.get().addOnSuccessListener { documentSnapshot ->
+
+            var parts = BikeParts()
+
+            if (documentSnapshot != null && documentSnapshot.exists()) {
+                parts = documentSnapshot.toObject(BikeParts::class.java)!!
+
+            }
+
+            callback( parts )
+        }
+    }
+
+    fun getUserRefueling(bikeId: String, callback: (MutableList<Refueling>) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val docRef = db.collection("customers").document(uid).collection("refueling").whereEqualTo("bikeId", bikeId)
         val list = mutableListOf<Refueling>()
 
         docRef.get()
@@ -467,6 +526,24 @@ class MotoroBroDatabase {
 
                 callback(list)
 
+            }
+    }
+
+
+    fun getUserRefuelById(refuelId: String, callback: (Refueling) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().uid!!
+        val docRef = db.collection("customers").document(uid).collection("refueling").document(refuelId)
+
+        docRef.get()
+            .addOnSuccessListener { documentSnapshot ->
+
+                var refuel = Refueling()
+                if (documentSnapshot != null && documentSnapshot.exists()) {
+                    refuel = documentSnapshot.toObject(Refueling::class.java)!!
+                }
+
+                callback( refuel )
             }
     }
 
@@ -509,7 +586,7 @@ class MotoroBroDatabase {
     fun saveOdometerUpdate(odometerUpdate: OdometerUpdate, callback: (String?) -> Unit) {
         val db = FirebaseFirestore.getInstance()
 
-        db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("odometerUpdate")
+         db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("odometerUpdate")
             .add(odometerUpdate)
             .addOnSuccessListener {
                 callback(it.id)
@@ -517,6 +594,32 @@ class MotoroBroDatabase {
             .addOnFailureListener {
                     e -> println(e)
                 callback(null)
+            }
+    }
+
+    // TODO: Fix this
+    fun getLastOdometerUpdate(callback: (OdometerUpdate) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        val list = ArrayList<OdometerUpdate>()
+
+        var lastOdo = OdometerUpdate()
+        val docRef = db.collection("customers").document(FirebaseAuth.getInstance().uid!!).collection("odometerUpdate").orderBy("dateLong", Query.Direction.DESCENDING)
+
+                docRef.get()
+            .addOnSuccessListener {
+                for (odoUpdateObj in it){
+                    val odoUpdate = odoUpdateObj.toObject(OdometerUpdate::class.java)
+                    odoUpdate.id = odoUpdateObj.id
+                    list.add(odoUpdate)
+                }
+
+                lastOdo = list[0]
+                callback(lastOdo)
+
+            }
+            .addOnFailureListener {
+                    e -> println(e)
+                callback(lastOdo)
             }
     }
 
@@ -715,8 +818,16 @@ class MotoroBroDatabase {
                     list.add(bike)
                 }
 
-                if (list.count() >= 1) {
+                if (list.count() <= 1) {
                     callback(list[0])
+                    return@addOnSuccessListener
+                }
+
+                for (bike in list) {
+                    if (bike.primary) {
+                        callback(bike)
+                        return@addOnSuccessListener
+                    }
                 }
 
                 callback(null)

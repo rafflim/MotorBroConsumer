@@ -24,7 +24,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-
+                android:visibility="gone"
                 >
 
                 <RelativeLayout
@@ -48,6 +48,7 @@
                     app:layout_constraintEnd_toEndOf="@id/linearLayoutTop"
                     app:layout_constraintStart_toStartOf="@id/linearLayoutTop"
                     android:background="@drawable/shadow_gray_background"
+                    android:visibility="gone"
                     >
 
                     <ImageView
@@ -85,6 +86,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
+                android:id="@+id/adsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"

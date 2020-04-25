@@ -175,6 +175,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <FrameLayout
+        android:id="@+id/adsLayoutBrand"
         android:layout_width="match_parent"
         android:layout_margin="10dp"
         android:layout_height="70dp"

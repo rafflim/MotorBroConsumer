@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="#FF6E40"
+        android:background="#448AFF"
         android:paddingTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,6 +91,7 @@
             >
 
             <LinearLayout
+                android:id="@+id/adsLayoutOdo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -112,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="30dp"
-                android:fontFamily="@font/open_sans_semibold"
+                android:fontFamily="@font/open_sans"
                 android:text="Odometer"
                 android:textSize="15sp"
                 android:textColor="#2E2C2A"
@@ -132,20 +133,20 @@
                     android:layout_height="25dp"
 
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/odometer_icon"
+                    android:src="@drawable/odometer_fixed_icon"
                     android:tint="#4E4E4E"
                     />
 
                 <EditText
                     android:id="@+id/odometerText"
                     android:layout_width="0dp"
-                    android:layout_height="35dp"
+                    android:layout_height="38dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:text=""
                     android:inputType="number"
-                    android:textSize="13sp"
+                    android:textSize="14sp"
                     />
 
             </LinearLayout>
@@ -187,19 +188,19 @@
                     android:layout_height="25dp"
 
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/calendar_small_icon"
+                    android:src="@drawable/calendar_fixed_icon"
                     android:tint="#4E4E4E"
                     />
 
                 <EditText
                     android:id="@+id/dateText"
                     android:layout_width="0dp"
-                    android:layout_height="35dp"
+                    android:layout_height="38dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:text=""
-                    android:textSize="13sp"
+                    android:textSize="14sp"
                     android:inputType="datetime"
                     android:focusable="false"
                     />
@@ -215,6 +216,7 @@
                 android:text="Bike"
                 android:textSize="15sp"
                 android:textColor="#2E2C2A"
+                android:visibility="gone"
                 />
 
             <LinearLayout
@@ -223,7 +225,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
-
+                android:visibility="gone"
                 >
 
                 <ImageView
