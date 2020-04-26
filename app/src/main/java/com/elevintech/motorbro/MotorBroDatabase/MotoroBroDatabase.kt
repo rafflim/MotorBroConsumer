@@ -1244,5 +1244,48 @@ class MotoroBroDatabase {
             .addOnFailureListener { e-> println("error getting chat room with ID: $chatRoomId") }
     }
 
+    fun getShopsByCity(city: String, callback: (MutableList<Shop>, MutableList<Shop>) -> Unit) {
+
+
+        val db = FirebaseFirestore.getInstance()
+
+        val shopsByCity = db.collection("shops").whereEqualTo("fullAddress.city", city)
+        val shopsNotCity = db.collection("shops") // Firestore doesn't provide inequality checks (i.e. "not equal to" query), i-remove nalang locally kung may ma-select na shop within the city
+
+        val shopsByCityList = mutableListOf<Shop>()
+        val shopsNotCityList = mutableListOf<Shop>()
+
+        shopsByCity.get()
+            .addOnSuccessListener {
+
+                println("Shop found withing city: ${it.count()}")
+
+                it.forEach { minShop ->
+                    val shop = minShop.toObject(Shop::class.java)
+                    shop.shopId = minShop.id
+                    shopsByCityList.add(shop)
+                }
+
+                shopsNotCity.get()
+                    .addOnSuccessListener {
+
+                        println("Shop found outside city: ${it.count()}")
+
+                        it.forEach { minShop ->
+                            val shop = minShop.toObject(Shop::class.java)
+                            shop.shopId = minShop.id
+
+                            if (shop.fullAddress.city != city)
+                                shopsNotCityList.add(shop)
+                        }
+
+                        callback(shopsByCityList, shopsNotCityList)
+                }
+
+            }
+
+
+    }
+
 
 }
