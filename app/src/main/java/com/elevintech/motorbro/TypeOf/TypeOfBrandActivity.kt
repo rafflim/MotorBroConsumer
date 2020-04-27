@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.elevintech.motorbro.AddBrand.AddBrandActivity
+import com.elevintech.motorbro.AdsView.AdsViewActivity
 import com.elevintech.motorbro.Constants
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.myapplication.R
@@ -54,6 +55,11 @@ class TypeOfBrandActivity : AppCompatActivity() {
             //this.adapter = partsListAdapter
             this.adapter = viewAdapter
             setHasFixedSize(true)
+        }
+
+        adsLayoutBrand.setOnClickListener {
+            val intent = Intent(this, AdsViewActivity::class.java)
+            startActivity(intent)
         }
 
         addItemsButton.setOnClickListener {

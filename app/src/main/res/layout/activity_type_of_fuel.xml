@@ -175,6 +175,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <FrameLayout
+        android:id="@+id/adsLayoutFuel"
         android:background="@color/loginRedButtonBackground"
         android:layout_width="match_parent"
         android:layout_height="70dp"

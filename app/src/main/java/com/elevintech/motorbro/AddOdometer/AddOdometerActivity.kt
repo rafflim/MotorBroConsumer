@@ -2,6 +2,7 @@ package com.elevintech.motorbro.AddOdometer
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.elevintech.motorbro.Achievements.AchievementManager
+import com.elevintech.motorbro.AdsView.AdsViewActivity
 import com.elevintech.motorbro.Model.Achievement
 import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.Model.OdometerUpdate
@@ -45,6 +47,17 @@ class AddOdometerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_odometer)
 
         bottomSheetDialog = BottomSheetDialog(this)
+
+        MotoroBroDatabase().getUserMainBikeFromBikes {
+            if (it != null) {
+                selectedBike = it
+            }
+        }
+
+        adsLayoutOdo.setOnClickListener {
+            val intent = Intent(this, AdsViewActivity::class.java)
+            startActivity(intent)
+        }
 
         backButton.setOnClickListener {
             finish()
@@ -145,34 +158,41 @@ class AddOdometerActivity : AppCompatActivity() {
 
     private fun saveOdometerDetails(){
 
-        if (validateFields()){
-            val showDialog = Utils().showProgressDialog(this, "Updating Odometer")
+        MotoroBroDatabase().getLastOdometerUpdate {
             val odometerValue = odometerText.text.toString().toDouble()
 
-            val odometerDetails = OdometerUpdate()
-            odometerDetails.odometer = odometerValue
-            odometerDetails.date = dateText.text.toString()
-            odometerDetails.dateLong = Utils().convertDateToTimestamp(dateText.text.toString(), "yyyy-MM-dd")
-            odometerDetails.userId =  FirebaseAuth.getInstance().uid!!
+            if (it.odometer >= odometerValue ) {
+                // this means past odo is better show a toast
+                Toast.makeText(this, "Your Odometer value should be higher than your past odometer value. Your past odometer value is ${it.odometer}km", Toast.LENGTH_LONG).show()
+            } else {
+                if (validateFields()){
+                    val showDialog = Utils().showProgressDialog(this, "Updating Odometer")
 
-            val database = MotoroBroDatabase()
-            database.saveOdometerUpdate(odometerDetails) {
-                database.saveHistory("odometer", it!!, odometerValue){
-                    database.updateBikeOdometer(selectedBike, odometerValue){
-                        AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_ODOMETER )
-                        AchievementManager().incrementAchievementProgress( Achievement.Names.DISTANCE_TRAVELED, odometerValue.toInt())
+                    val odometerDetails = OdometerUpdate()
+                    odometerDetails.odometer = odometerValue
+                    odometerDetails.date = dateText.text.toString()
+                    odometerDetails.dateLong = Utils().convertDateToTimestamp(dateText.text.toString(), "yyyy-MM-dd")
+                    odometerDetails.userId =  FirebaseAuth.getInstance().uid!!
+                    odometerDetails.bikeId = selectedBike.id
 
-                        showDialog.dismiss()
-                        Toast.makeText(this, "Successfully updated Odometer", Toast.LENGTH_SHORT).show()
-                        finish()
+                    val database = MotoroBroDatabase()
+                    database.saveOdometerUpdate(odometerDetails) {
+                        database.saveHistory(selectedBike.id, "odometer", it!!, odometerValue){
+                            database.updateBikeOdometer(selectedBike, odometerValue){
+                                AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_ODOMETER )
+                                AchievementManager().incrementAchievementProgress( Achievement.Names.DISTANCE_TRAVELED, odometerValue.toInt())
+
+                                showDialog.dismiss()
+                                Toast.makeText(this, "Successfully updated Odometer", Toast.LENGTH_SHORT).show()
+                                finish()
+                            }
+                        }
                     }
+                } else {
+                    Toast.makeText(this, "Please fill up all the fields", Toast.LENGTH_SHORT).show()
                 }
             }
-        } else {
-            Toast.makeText(this, "Please fill up all the fields", Toast.LENGTH_SHORT).show()
-
         }
-
     }
 
     private fun validateFields(): Boolean {
@@ -181,8 +201,6 @@ class AddOdometerActivity : AppCompatActivity() {
                 dateText.text.toString() == "" ||
                         odometerText.text.toString()== ""
                 ))
-
-
     }
 
     inner class BikeItem(val bike: BikeInfo): Item<ViewHolder>() {

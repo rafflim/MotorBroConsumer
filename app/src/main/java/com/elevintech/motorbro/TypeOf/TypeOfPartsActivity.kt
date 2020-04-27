@@ -17,6 +17,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.elevintech.motorbro.AdsView.AdsViewActivity
 import com.elevintech.motorbro.Constants
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.google.android.material.snackbar.Snackbar
@@ -32,6 +33,8 @@ class TypeOfPartsActivity : AppCompatActivity() {
     private lateinit var viewAdapter : RecyclerView.Adapter<*>
     val totalList = ArrayList<CheckboxObj>()
     var selectedParts = ArrayList<String>()
+    var beforeFiltered = ArrayList<CheckboxObj>()
+
     //private val partsListAdapter = MyAdapter<MyAdapter.MyViewHolder>()
 
     var isFromAddParts = false
@@ -53,7 +56,6 @@ class TypeOfPartsActivity : AppCompatActivity() {
                 selectedParts.add(trimmedPart)
             }
         }
-
 
         viewAdapter = MyAdapter(totalList)
 
@@ -99,6 +101,11 @@ class TypeOfPartsActivity : AppCompatActivity() {
             }
         }
 
+        adsLayoutParts.setOnClickListener {
+            val intent = Intent(this, AdsViewActivity::class.java)
+            startActivity(intent)
+        }
+
         addItemsButton.setOnClickListener {
             val listToAdd = totalList.filter { it.isChecked }
 
@@ -122,6 +129,20 @@ class TypeOfPartsActivity : AppCompatActivity() {
                 returnIntent.putExtra("selectedPart", partsRemaining)
                 setResult(Activity.RESULT_OK, returnIntent)
                 finish()
+        }
+
+        searchButton.setOnClickListener {
+            // basically filter whatever is on edittext
+
+            var searchText = searchTextView.text.toString()
+
+            totalList.filter { it.name.contains(searchText) }
+            viewAdapter.notifyDataSetChanged()
+        }
+
+        clearButton.setOnClickListener {
+            totalList.clear()
+            totalList.addAll(beforeFiltered)
         }
 
     }
@@ -165,7 +186,9 @@ class TypeOfPartsActivity : AppCompatActivity() {
                 totalList.add(part)
             }
 
+
             totalList.sortBy { it.name }
+            beforeFiltered.addAll(totalList)
 
             viewAdapter.notifyDataSetChanged()
 

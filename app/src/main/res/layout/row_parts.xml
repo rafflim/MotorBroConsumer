@@ -14,6 +14,7 @@
         android:background="@drawable/shadow_gray_background"
         android:orientation="vertical"
         android:paddingBottom="40dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -27,13 +28,15 @@
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/open_sans"
             android:textColor="@color/textColorBlack"
+            android:visibility="gone"
             android:textSize="17sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -45,6 +48,76 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
+
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/partsNameCombine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="14sp"
+                    android:text="April 18, 2020 - GPC Air Filter - P140.00"
+                    />
+
+                <TextView
+                    android:id="@+id/partsOdoCombine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="14sp"
+                    android:text="Odometer = 1.00km"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/pencil_new_icon" />
+
+                    <TextView
+                        android:id="@+id/noteText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/open_sans"
+                        android:text="Note"
+                        android:textColor="@color/textColorBlack"
+
+                        android:textSize="11sp"
+
+                        />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/productImage"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:visibility="visible"
+                    android:src="@drawable/address_icon"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <TextView
@@ -168,33 +241,34 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
 
-                    <ImageView
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/pencil_new_icon" />
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:visibility="gone">-->
 
-                    <TextView
-                        android:id="@+id/noteText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="@font/open_sans"
-                        android:text="Fueling is really exciting today for this day dadadadadadadadad dadad dadada"
-                        android:textColor="@color/textColorBlack"
+<!--                    <ImageView-->
+<!--                        android:layout_width="15dp"-->
+<!--                        android:layout_height="15dp"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:src="@drawable/pencil_new_icon" />-->
 
-                        android:textSize="11sp"
+<!--                    <TextView-->
+<!--                        android:id="@+id/noteText"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="8dp"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:fontFamily="@font/open_sans"-->
+<!--                        android:text="Fueling is really exciting today for this day dadadadadadadadad dadad dadada"-->
+<!--                        android:textColor="@color/textColorBlack"-->
 
-                        />
+<!--                        android:textSize="11sp"-->
 
-                </LinearLayout>
+<!--                        />-->
+
+<!--                </LinearLayout>-->
 
 
             </LinearLayout>

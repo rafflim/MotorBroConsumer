@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.elevintech.motorbro.AdsView.AdsViewActivity
 import com.elevintech.motorbro.Constants
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.myapplication.R
@@ -59,6 +60,11 @@ class TypeOfFuelActivity : AppCompatActivity() {
 
             }
 
+        }
+
+        adsLayoutFuel.setOnClickListener {
+            val intent = Intent(this, AdsViewActivity::class.java)
+            startActivity(intent)
         }
 
         add_parts_floating_button.setOnClickListener {

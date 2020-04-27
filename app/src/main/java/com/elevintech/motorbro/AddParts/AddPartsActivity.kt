@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.elevintech.motorbro.Achievements.AchievementManager
+import com.elevintech.motorbro.AdsView.AdsViewActivity
 import com.elevintech.motorbro.Model.Achievement
 import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.TypeOf.TypeOfBrandActivity
@@ -75,6 +76,17 @@ class AddPartsActivity : AppCompatActivity() {
 
         // get the intent if from parts fragment edit
         isForEditParts = intent.getBooleanExtra("isForEditParts", false)
+
+        MotoroBroDatabase().getUserMainBikeFromBikes {
+            if (it != null) {
+                selectedBike = it
+            }
+        }
+
+        adsLayoutAddParts.setOnClickListener {
+            val intent = Intent(this, AdsViewActivity::class.java)
+            startActivity(intent)
+        }
 
         if (isForEditParts) {
             // assign the values and assign parts details
@@ -200,6 +212,9 @@ class AddPartsActivity : AppCompatActivity() {
         MotoroBroDatabase().deleteBikeParts(bikeParts) {
             if (Constants.RESULT_STRING.SUCCESS == it) {
                 // Add on activity result here
+                // delete the history here too
+                MotoroBroDatabase().deleteUserHistoryFromItemId(bikeParts.id) { }
+
                 showDialog.dismiss()
                 finish()
             } else {
@@ -359,7 +374,7 @@ class AddPartsActivity : AppCompatActivity() {
         builder.show()
     }
 
-    fun openCamera(){
+    private fun openCamera(){
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         var filename = UUID.randomUUID().toString() + ".jpg"
         var file = File(this.externalCacheDir, filename)
@@ -368,13 +383,13 @@ class AddPartsActivity : AppCompatActivity() {
         startActivityForResult(intent, OPEN_CAMERA)
     }
 
-    fun openGallery(){
+    private fun openGallery(){
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, OPEN_GALLERY)
     }
 
-    fun saveBikePartsData() {
+    private fun saveBikePartsData() {
 
         if (validateFields()){
 
@@ -385,11 +400,11 @@ class AddPartsActivity : AppCompatActivity() {
 
             // Based on Raff Lim's changes change this to the current timestamp instead.
             bikeParts.dateLong = Utils().getCurrentTimestamp()
-            //bikeParts.odometer = odometerText.text.toString().toDouble()
+            bikeParts.odometer = odometerText.text.toString().toDouble()
             bikeParts.typeOfParts = typeOfPartsText.text.toString()
             bikeParts.brand = brandText.text.toString()
             bikeParts.price = priceText.text.toString().toDouble()
-            //bikeParts.note = noteText.text.toString()
+            bikeParts.note = noteText.text.toString()
             bikeParts.userId = FirebaseAuth.getInstance().uid!!
             bikeParts.bikeId = selectedBike.bikeId
             bikeParts.imageUrl = editBikeImageUrl
@@ -400,7 +415,7 @@ class AddPartsActivity : AppCompatActivity() {
             if (isForEditParts) {
                 database.editBikeParts(bikeParts) {
                     if (it == "Success") {
-                        database.saveHistory("bike-parts", it!!, bikeParts.typeOfParts){
+                        database.saveHistory(selectedBike.bikeId, "bike-parts", it!!, bikeParts.typeOfParts){
 
                             // ADDITIONAL STEP, UPLOAD IMAGE IF IT EXIST
                             if(imageUri != null){
@@ -426,7 +441,7 @@ class AddPartsActivity : AppCompatActivity() {
             } else {
                 database.saveBikeParts(bikeParts) { bikePartId ->
                     if (bikePartId != null) {
-                        database.saveHistory("bike-parts", bikePartId!!, bikeParts.typeOfParts){
+                        database.saveHistory(selectedBike.bikeId, "bike-parts", bikePartId, bikeParts.typeOfParts){
                             if(imageUri != null){
                                 database.uploadImageToFirebaseStorage(imageUri!!){imageUrl ->
                                     database.editBikePartsImageUrl(bikePartId, imageUrl){
