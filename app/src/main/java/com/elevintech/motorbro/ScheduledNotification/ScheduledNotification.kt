@@ -10,7 +10,7 @@ import java.util.*
 
 class ScheduledNotification {
 
-    val whatTimeToTriggerAlarm = 19 // 24 hour format = 7pm
+    val whatHourToTriggerAlarm = 19 // 24 hour format = 7pm
     val whatMinuteToTriggerAlarm = 0 //
 
     fun startAlarm(context: Context){
@@ -18,7 +18,7 @@ class ScheduledNotification {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         val intent = Intent(context, Receiver::class.java)
-        intent.putExtra("HOUR_OF_DAY", whatTimeToTriggerAlarm);
+        intent.putExtra("HOUR_OF_DAY", whatHourToTriggerAlarm);
         intent.putExtra("MINUTE", whatMinuteToTriggerAlarm);
 
         val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
@@ -26,7 +26,7 @@ class ScheduledNotification {
         // Set the alarm to start at approximately 7:00 p.m.
         val calendar: Calendar = Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, whatTimeToTriggerAlarm)
+            set(Calendar.HOUR_OF_DAY, whatHourToTriggerAlarm)
             set(Calendar.MINUTE, whatMinuteToTriggerAlarm)
         }
 
@@ -49,7 +49,7 @@ class ScheduledNotification {
             pendingIntent
         )
 
-
+/*
         val t = System.currentTimeMillis();
         if (t <= calendar.timeInMillis) {
 
@@ -61,7 +61,7 @@ class ScheduledNotification {
             println("alarm has passed")
 
 
-        }
+        }*/
 
 
     }
