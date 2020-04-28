@@ -136,7 +136,8 @@ class ChatListActivity : AppCompatActivity() {
                 viewHolder.itemView.chatPreview.text = chatRoom.lastMessage.message
                 viewHolder.itemView.chatPreviewUnread.text = chatRoom.lastMessage.message
                 viewHolder.itemView.shopName.text = shop.name
-                viewHolder.itemView.chatDate.text = Utils().convertMillisecondsToDate(chatRoom.lastMessage.createdDate * 1000, "MMM dd - hh:mm a")
+                viewHolder.itemView.chatDate.text = Utils().convertMillisecondsToDate(chatRoom.lastMessage.createdDate, "MMM dd")
+                viewHolder.itemView.chatTime.text = Utils().convertMillisecondsToDate(chatRoom.lastMessage.createdDate, "hh:mm a")
 
                 viewHolder.itemView.setOnClickListener {
                     val intent = Intent(this@ChatListActivity, ChatLogActivity::class.java)
