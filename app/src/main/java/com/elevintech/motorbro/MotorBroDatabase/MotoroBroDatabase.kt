@@ -1313,11 +1313,11 @@ class MotoroBroDatabase {
         val chatRoomRef = db.collection("chat-rooms")
                             .whereEqualTo("participants.user", uid )
 
-        chatRoomRef.get().addOnSuccessListener {
+        chatRoomRef.addSnapshotListener { querysnapshot, e ->
 
             var unreadMessageCount = 0
 
-            for (documentSnapshot in it){
+            for (documentSnapshot in querysnapshot!!.documents){
                 val chatRoom = documentSnapshot.toObject(ChatRoom::class.java)!!
 
                 if (chatRoom.lastMessage.toId == uid){
