@@ -24,6 +24,8 @@ class ShopViewActivity : AppCompatActivity() {
         // Add the shop data here
         shop = intent.getSerializableExtra("shop") as Shop
 
+        println("shopId: ${shop.shopId}")
+
         if (shop.imageUrl != ""){
             Glide.with(this).load(shop.imageUrl).into(shopImageView)
         }

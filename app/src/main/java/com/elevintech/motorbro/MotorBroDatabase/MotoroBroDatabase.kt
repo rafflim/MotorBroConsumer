@@ -1313,11 +1313,11 @@ class MotoroBroDatabase {
         val chatRoomRef = db.collection("chat-rooms")
                             .whereEqualTo("participants.user", uid )
 
-        chatRoomRef.get().addOnSuccessListener {
+        chatRoomRef.addSnapshotListener { querysnapshot, e ->
 
             var unreadMessageCount = 0
 
-            for (documentSnapshot in it){
+            for (documentSnapshot in querysnapshot!!.documents){
                 val chatRoom = documentSnapshot.toObject(ChatRoom::class.java)!!
 
                 if (chatRoom.lastMessage.toId == uid){
@@ -1357,44 +1357,60 @@ class MotoroBroDatabase {
 
     fun getShopsByCity(city: String, callback: (MutableList<Shop>, MutableList<Shop>) -> Unit) {
 
-
         val db = FirebaseFirestore.getInstance()
-
-        val shopsByCity = db.collection("shops").whereEqualTo("fullAddress.city", city)
-        val shopsNotCity = db.collection("shops") // Firestore doesn't provide inequality checks (i.e. "not equal to" query), i-remove nalang locally kung may ma-select na shop within the city
+        val shopsRef = db.collection("shops")
 
         val shopsByCityList = mutableListOf<Shop>()
         val shopsNotCityList = mutableListOf<Shop>()
 
-        shopsByCity.get()
-            .addOnSuccessListener {
+        shopsRef.get()
+            .addOnSuccessListener { shops ->
 
-                println("Shop found withing city: ${it.count()}")
-
-                it.forEach { minShop ->
+                shops.forEach { minShop ->
                     val shop = minShop.toObject(Shop::class.java)
                     shop.shopId = minShop.id
-                    shopsByCityList.add(shop)
+
+                    if (shop.fullAddress.city == city)
+                        shopsByCityList.add(shop)
+                    else
+                        shopsNotCityList.add(shop)
                 }
 
-                shopsNotCity.get()
-                    .addOnSuccessListener {
+                val branchesRef = db.collection("branches")
+                branchesRef.get()
+                    .addOnSuccessListener { branches ->
 
-                        println("Shop found outside city: ${it.count()}")
+                        branches.forEach { minBrach ->
+                            val branch = minBrach.toObject(Branch::class.java)
 
-                        it.forEach { minShop ->
-                            val shop = minShop.toObject(Shop::class.java)
-                            shop.shopId = minShop.id
-
-                            if (shop.fullAddress.city != city)
-                                shopsNotCityList.add(shop)
+                            if (branch.fullAddress.city == city)
+                                shopsByCityList.add(branch)
+                            else
+                                shopsNotCityList.add(branch)
                         }
 
                         callback(shopsByCityList, shopsNotCityList)
                 }
 
-            }
+        }
 
+
+
+        // GET SHOPS
+
+            /* IF SHOP IS WITHIN CITY */
+            // ADD TO WITHIN CITY ARRAY
+
+            /* ELSE */
+            // ADD TO OUTSIDE CITY ARRAY
+
+            // AND THEIR BRANCHES
+
+                /* IF BRANCH IS WITHIN CITY */
+                // ADD TO WITHIN CITY ARRAY
+
+                /* ELSE */
+                // ADD TO OUTSIDE CITY ARRAY
 
     }
 

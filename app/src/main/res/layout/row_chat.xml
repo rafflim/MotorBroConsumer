@@ -85,6 +85,16 @@
         app:layout_constraintTop_toBottomOf="@+id/shopName" />
 
     <TextView
+        android:id="@+id/chatTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/layoutImgProfile"
+        app:layout_constraintTop_toBottomOf="@+id/chatPreviewUnread"  />
+
+    <TextView
         android:id="@+id/chatDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
