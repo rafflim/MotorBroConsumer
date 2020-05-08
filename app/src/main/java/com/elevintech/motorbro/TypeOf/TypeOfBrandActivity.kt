@@ -59,6 +59,7 @@ class TypeOfBrandActivity : AppCompatActivity() {
 
         adsLayoutBrand.setOnClickListener {
             val intent = Intent(this, AdsViewActivity::class.java)
+            intent.putExtra("adType", com.elevintech.motorbro.Utils.Constants.AD_TYPE.TSR)
             startActivity(intent)
         }
 
@@ -143,12 +144,6 @@ class TypeOfBrandActivity : AppCompatActivity() {
                     }
                 }
             }
-
-
-
-
-
-
 
         }
     }

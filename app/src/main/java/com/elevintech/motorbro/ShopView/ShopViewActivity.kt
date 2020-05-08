@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
+import com.elevintech.motorbro.AdsView.AdsViewActivity
 import com.elevintech.motorbro.Chat.ChatLogActivity
 import com.elevintech.motorbro.Model.Shop
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
@@ -61,6 +62,11 @@ class ShopViewActivity : AppCompatActivity() {
             finish()
         }
 
+        adsLayout.setOnClickListener {
+            val intent = Intent(this, AdsViewActivity::class.java)
+            intent.putExtra("adType", com.elevintech.motorbro.Utils.Constants.AD_TYPE.POSH)
+            startActivity(intent)
+        }
 
 
         MotoroBroDatabase().checkIfFavoriteOrNot(shop.shopId){ isFavorite ->

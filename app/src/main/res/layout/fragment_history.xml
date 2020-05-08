@@ -97,7 +97,8 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    android:src="@drawable/ads_image_gpc"
+                    android:src="@drawable/ads_comstar"
+                    android:scaleType="fitCenter"
                     />
 
             </LinearLayout>

@@ -103,7 +103,7 @@
                     android:layout_width="350dp"
                     android:layout_height="80dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ads_image_gpc"
+                    android:src="@drawable/ads_motmot"
                     />
 
             </LinearLayout>

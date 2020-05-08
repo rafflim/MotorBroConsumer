@@ -44,11 +44,7 @@ class ChatLogActivity : AppCompatActivity() {
         getChats()
         getUser()
 
-        btnSendChat.setOnClickListener {
-            val message = txtChatMessage.text.toString()
-            if ( message != "" && user.firstName != "" && recipientTokenArray.isNotEmpty() )
-                sendChat()
-        }
+
 
         btnBack.setOnClickListener {
             finish()
@@ -98,6 +94,12 @@ class ChatLogActivity : AppCompatActivity() {
 
             updateUi()
 
+            // MARK: Need to move it here because the recipient token array can be empty?
+            btnSendChat.setOnClickListener {
+                val message = txtChatMessage.text.toString()
+                if ( message != "" && user.firstName != "" && recipientTokenArray.isNotEmpty() )
+                    sendChat()
+            }
         }
     }
 
@@ -157,34 +159,16 @@ class ChatLogActivity : AppCompatActivity() {
             }
         }
 
-    }
-
-
-
-    fun getPreviousChats(){
-
-        val fromId = FirebaseAuth.getInstance().uid!!
-        val toId = shop.shopId
-
-        val chatDatabase = ChatDatabase()
-        chatDatabase.getPreviousChatLog(fromId, toId, paginationStartAt){
-
-            val chatList = it
-
-            if (chatList.isNotEmpty()){
-                paginationStartAt = chatList.last().createdDate.toInt()
-
-                displayPreviousChats(chatList.asReversed())
-
+        recycler_view_chat_logs.addOnLayoutChangeListener { view, left, top, right, bottom, odlLeft, oldTop, oldRight, oldBottom ->
+            if (bottom < oldBottom) {
+                recycler_view_chat_logs.scrollBy(0, oldBottom - bottom);
             }
-
-//            chatSwipeRefreshLayout.isRefreshing = false
-
         }
 
     }
 
-    fun displayPreviousChats(chatLogList : MutableList<ChatMessage>){
+
+    private fun displayPreviousChats(chatLogList : MutableList<ChatMessage>){
 
         val uid = FirebaseAuth.getInstance().uid
         for ((index, chatMessage) in chatLogList.withIndex()) {
@@ -206,7 +190,7 @@ class ChatLogActivity : AppCompatActivity() {
         recycler_view_chat_logs.scrollToPosition(7 - 1)
     }
 
-    fun displayChats(chatLogList : MutableList<ChatMessage>){
+    private fun displayChats(chatLogList : MutableList<ChatMessage>){
         recycler_view_chat_logs.adapter = adapter
         val uid = FirebaseAuth.getInstance().uid
 

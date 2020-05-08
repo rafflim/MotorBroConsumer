@@ -10,6 +10,7 @@ import com.elevintech.motorbro.AddRefueling.AddRefuelingActivity
 import com.elevintech.motorbro.AdsView.AdsViewActivity
 import com.elevintech.motorbro.Model.Refueling
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
+import com.elevintech.motorbro.Utils.Constants
 import com.elevintech.motorbro.Utils.Utils
 
 import com.elevintech.myapplication.R
@@ -72,6 +73,7 @@ class RefuelFragment : Fragment() {
 
         adsLayout.setOnClickListener {
             val intent = Intent(context, AdsViewActivity::class.java)
+            intent.putExtra("adType", Constants.AD_TYPE.TIGER)
             startActivity(intent)
         }
     }

@@ -69,7 +69,7 @@ class AddPartsActivity : AppCompatActivity() {
         setContentView(com.elevintech.myapplication.R.layout.activity_add_parts)
 
         // uri exposure fix
-        var builder = StrictMode.VmPolicy.Builder()
+        val builder = StrictMode.VmPolicy.Builder()
         StrictMode.setVmPolicy(builder.build())
 
         bottomSheetDialog = BottomSheetDialog(this)
@@ -85,6 +85,8 @@ class AddPartsActivity : AppCompatActivity() {
 
         adsLayoutAddParts.setOnClickListener {
             val intent = Intent(this, AdsViewActivity::class.java)
+            //in
+            intent.putExtra("adType", Constants.AD_TYPE.E_POWER)
             startActivity(intent)
         }
 

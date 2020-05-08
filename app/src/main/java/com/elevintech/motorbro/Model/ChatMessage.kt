@@ -13,11 +13,14 @@ class ChatMessage(val createdDate: Long = 0,
                   val senderName: String = "") : Serializable {
 
     fun getDate() : String {
-        return Utils().convertMillisecondsToDate(createdDate * 1000, "MMM d yyyy")
+        return Utils().convertMillisecondsToDate(createdDate, "MMM d yyyy")
     }
 
     // TODO convert to local time
     fun getTime(): String {
-        return Utils().convertMillisecondsToDate(createdDate * 1000, "h:mm a")
+        var time = Utils().convertMillisecondsToDate(createdDate, "h:mm a")
+        println(time)
+
+        return time
     }
 }

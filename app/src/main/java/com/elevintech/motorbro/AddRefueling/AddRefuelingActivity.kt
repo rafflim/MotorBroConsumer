@@ -73,6 +73,7 @@ class AddRefuelingActivity : AppCompatActivity() {
 
         adsLayoutRefueling.setOnClickListener {
             val intent = Intent(this, AdsViewActivity::class.java)
+            intent.putExtra("adType", Constants.AD_TYPE.OKK)
             startActivity(intent)
         }
 

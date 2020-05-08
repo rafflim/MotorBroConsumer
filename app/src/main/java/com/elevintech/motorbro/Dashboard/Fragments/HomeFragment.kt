@@ -10,11 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.elevintech.motorbro.AddOdometer.AddOdometerActivity
+import com.elevintech.motorbro.AdsView.AdsViewActivity
 import com.elevintech.motorbro.Garage.GarageActivity
 import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.MotorcycleEditGeneralInformation.EditGeneralInformationActivity
 import com.elevintech.motorbro.MyAccount.MyAccountActivity
+import com.elevintech.motorbro.Utils.Constants
 import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.motorbro.ViewBike.ViewBikeActivity
 
@@ -57,6 +59,18 @@ class HomeFragment : Fragment() {
                 val firstOdo = it.first()
                 val firstOdoDistance = Utils().numberFormatWithComma( firstOdo.odometer )
                 view.odometerStatementText.text = "Odometer : $firstOdoDistance km updated as of ${firstOdo.date}"
+            }
+
+            adsLayout1.setOnClickListener {
+                val intent = Intent(context, AdsViewActivity::class.java)
+                intent.putExtra("adType", Constants.AD_TYPE.SAMURAI_PAINT)
+                startActivity(intent)
+            }
+
+            adsLayout2.setOnClickListener {
+                val intent = Intent(context, AdsViewActivity::class.java)
+                intent.putExtra("adType", Constants.AD_TYPE.OWENS)
+                startActivity(intent)
             }
 
             db.getUserBikes {

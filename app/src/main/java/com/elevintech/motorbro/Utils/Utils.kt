@@ -26,8 +26,8 @@ class Utils {
 
         val sdf = SimpleDateFormat("$datePatternFormat") // sample date format: MM/dd/yyyy hh:mm
         val netDate = Date(dateInMilliseconds * 1000)
-
-        return sdf.format(netDate).toString()
+        val format = sdf.format(netDate).toString()
+        return format
     }
 
     fun getMonthsFromNow(dateInMilliseconds: Long): Int{

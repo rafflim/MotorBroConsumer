@@ -18,6 +18,7 @@ import com.elevintech.motorbro.Model.History
 import com.elevintech.motorbro.Model.OdometerUpdate
 import com.elevintech.motorbro.Model.Reminders
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
+import com.elevintech.motorbro.Utils.Constants
 import com.elevintech.motorbro.Utils.Utils
 
 import com.elevintech.myapplication.R
@@ -54,6 +55,7 @@ class HistoryFragment : Fragment() {
 
         adsLayout.setOnClickListener {
             val intent = Intent(context, AdsViewActivity::class.java)
+            intent.putExtra("adType", Constants.AD_TYPE.COMSTAR)
             startActivity(intent)
         }
     }

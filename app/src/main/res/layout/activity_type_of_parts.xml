@@ -238,8 +238,8 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ads_image_gpc"
-            android:scaleType="centerCrop"
+            android:src="@drawable/ads_osaki"
+            android:scaleType="fitCenter"
             />
 <!--        <TextView-->
 <!--            android:layout_gravity="center"-->

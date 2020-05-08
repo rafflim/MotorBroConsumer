@@ -430,7 +430,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/shadow_background"
                 android:layout_weight="2"
-
+                android:id="@+id/adsLayout1"
 
                 >
                 
@@ -438,7 +438,7 @@
                     android:id="@+id/motorAds1"
                     android:layout_width="180dp"
                     android:layout_height="200dp"
-                    android:src="@drawable/blackmotorads1"
+                    android:src="@drawable/ads_samurai"
                     android:scaleType="centerCrop"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -449,10 +449,10 @@
                     android:id="@+id/poshAdsTitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Posh Ads"
+                    android:text="SAMURAI PAINT"
                     android:fontFamily="@font/montserrat"
                     android:textColor="@color/textColorBlack"
-                    android:textSize="21sp"
+                    android:textSize="16sp"
                     app:layout_constraintTop_toBottomOf="@id/motorAds1"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginLeft="10dp"
@@ -464,10 +464,10 @@
                     android:id="@+id/poshAdsBody1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Buy multiple breaks for a price of $2."
+                    android:text="Samurai is the first brand of spray specifically designed for the motorcycle market. "
                     android:fontFamily="@font/open_sans"
                     android:textColor="@color/textColorBlack"
-                    android:textSize="15sp"
+                    android:textSize="13sp"
                     app:layout_constraintTop_toBottomOf="@id/poshAdsTitle1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -485,14 +485,14 @@
                 android:layout_weight="0.2"
 
 
-                ></androidx.constraintlayout.widget.ConstraintLayout>
+                />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/shadow_background"
                 android:layout_weight="2"
-
+                android:id="@+id/adsLayout2"
 
                 >
 
@@ -500,7 +500,7 @@
                     android:id="@+id/motorAds2"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:src="@drawable/blackmotorads1"
+                    android:src="@drawable/ads_owens"
                     android:scaleType="centerCrop"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -511,10 +511,10 @@
                     android:id="@+id/poshAdsTitle2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Posh Ads"
+                    android:text="OWENS"
                     android:fontFamily="@font/montserrat"
                     android:textColor="@color/textColorBlack"
-                    android:textSize="21sp"
+                    android:textSize="16sp"
                     app:layout_constraintTop_toBottomOf="@id/motorAds2"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginLeft="10dp"
@@ -526,10 +526,10 @@
                     android:id="@+id/poshAdsBody2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Buy multiple breaks for a price of $2."
+                    android:text="Owens is the go-to brand for high quality motorcycle front and rear shock absorbers. "
                     android:fontFamily="@font/open_sans"
                     android:textColor="@color/textColorBlack"
-                    android:textSize="15sp"
+                    android:textSize="13sp"
                     app:layout_constraintTop_toBottomOf="@id/poshAdsTitle2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

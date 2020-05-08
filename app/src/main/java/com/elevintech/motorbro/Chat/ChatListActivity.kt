@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
+import com.elevintech.motorbro.AdsView.AdsViewActivity
 import com.elevintech.motorbro.Model.ChatLastMessage
 import com.elevintech.motorbro.Model.ChatMessage
 import com.elevintech.motorbro.Model.ChatRoom
@@ -36,6 +37,12 @@ class ChatListActivity : AppCompatActivity() {
 
         backButton.setOnClickListener {
             finish()
+        }
+
+        adsLayoutFuel.setOnClickListener {
+            val intent = Intent(this, AdsViewActivity::class.java)
+            intent.putExtra("adType", com.elevintech.motorbro.Utils.Constants.AD_TYPE.POSH)
+            startActivity(intent)
         }
     }
 
@@ -136,7 +143,7 @@ class ChatListActivity : AppCompatActivity() {
                 viewHolder.itemView.chatPreview.text = chatRoom.lastMessage.message
                 viewHolder.itemView.chatPreviewUnread.text = chatRoom.lastMessage.message
                 viewHolder.itemView.shopName.text = shop.name
-                viewHolder.itemView.chatDate.text = Utils().convertMillisecondsToDate(chatRoom.lastMessage.createdDate * 1000, "MMM dd - hh:mm a")
+                viewHolder.itemView.chatDate.text = Utils().convertMillisecondsToDate(chatRoom.lastMessage.createdDate, "MMM dd - hh:mm a")
 
                 viewHolder.itemView.setOnClickListener {
                     val intent = Intent(this@ChatListActivity, ChatLogActivity::class.java)

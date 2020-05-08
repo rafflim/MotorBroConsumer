@@ -44,268 +44,298 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        >
 
-        <ImageView
-            android:id="@+id/shopImageView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/shop1_sample" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/shopImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/shop1_sample" />
 
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <FrameLayout
+                android:id="@+id/adsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_margin="10dp"
+                android:layout_alignParentBottom="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ads_posh"
+                    android:scaleType="fitCenter"
+                    />
+
+            </FrameLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/location_small_icon" />
+
+                <LinearLayout
+                    android:layout_weight="20"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="3dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/mainLocationText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="Main - Quezon City"
+                        android:textColor="#394887"
+                        android:fontFamily="@font/open_sans"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toBottomOf="@id/shopImageView"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/branchesLocationText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="Branches - Makati, Manila, Antipolo"
+                        android:textColor="#394887"
+                        android:fontFamily="@font/open_sans"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toBottomOf="@id/shopImageView"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+
+                </LinearLayout>
+
+                <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/favoriteYesIcon"
+                    android:paddingBottom="10dp"
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/heart_filled"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="3dp"
+                    />
+
+                <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/favoriteNoIcon"
+                    android:paddingBottom="10dp"
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/heart_outline"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="3dp"
+                    />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/shopName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bike and Coffee"
+                android:textSize="18sp"
+                android:fontFamily="@font/open_sans_semibold"
+                android:textColor="@color/textColorBlack"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp">
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/verified_icon"
+                    />
+
+                <TextView
+                    android:id="@+id/verifiedText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Verified"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp">
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/calendar_shop_icon"
+                    />
+
+                <TextView
+                    android:id="@+id/calendarText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Founded: Dec 2019"
+                    android:textColor="@color/textColorBlack"
+                    android:fontFamily="@font/open_sans_light"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Description"
+                android:textSize="15sp"
+                android:fontFamily="@font/open_sans_semibold"
+                android:textColor="@color/textColorBlack"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                />
+
+            <TextView
+                android:id="@+id/shopDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text=""
+                android:layout_marginRight="20dp"
+                android:textSize="11sp"
+                android:fontFamily="@font/open_sans"
+                android:textColor="@color/textColorBlack"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="8dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Parts"
+                android:textSize="15sp"
+                android:fontFamily="@font/open_sans_semibold"
+                android:textColor="@color/textColorBlack"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp">
+                <ImageView
+                    android:layout_width="31dp"
+                    android:layout_height="31dp"
+                    android:src="@drawable/parts_shop_icon"
+                    android:visibility="gone"
+                    />
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/listOfPartsText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Gears, Motor Brakes, Oil Filter"
+                    android:textColor="@color/textColorBlack"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/chatButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="30dp"
+                android:layout_marginTop="20dp"
+                android:background="#2177CE"
+                android:fontFamily="@font/open_sans_semibold"
+                android:text="Chat"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="32sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="14sp" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="15dp"
-            android:src="@drawable/location_small_icon"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="3dp"
-            />
-
-        <LinearLayout
-            android:layout_weight="20"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="3dp"
-            >
-
-            <TextView
-                android:id="@+id/mainLocationText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:text="Main - Quezon City"
-                android:textColor="#394887"
-                android:fontFamily="@font/open_sans"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/shopImageView"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/branchesLocationText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:text="Branches - Makati, Manila, Antipolo"
-                android:textColor="#394887"
-                android:fontFamily="@font/open_sans"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/shopImageView"
-                app:layout_constraintStart_toStartOf="parent" />
 
 
         </LinearLayout>
 
-        <ImageView
-            android:visibility="gone"
-            android:id="@+id/favoriteYesIcon"
-            android:paddingBottom="10dp"
-            android:layout_weight="3"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:src="@drawable/heart_filled"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="3dp"
-            />
-
-        <ImageView
-            android:visibility="gone"
-            android:id="@+id/favoriteNoIcon"
-            android:paddingBottom="10dp"
-            android:layout_weight="3"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:src="@drawable/heart_outline"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="3dp"
-            />
+    </ScrollView>
 
 
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/shopName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bike and Coffee"
-        android:textSize="18sp"
-        android:fontFamily="@font/open_sans_semibold"
-        android:textColor="@color/textColorBlack"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp">
-        <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:src="@drawable/verified_icon"
-            />
-
-        <TextView
-            android:id="@+id/verifiedText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
-            android:fontFamily="@font/open_sans"
-            android:text="Verified"
-            android:textColor="@color/textColorBlack"
-            android:textSize="9sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp">
-        <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:src="@drawable/calendar_shop_icon"
-            />
-
-        <TextView
-            android:id="@+id/calendarText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:text="Founded: Dec 2019"
-            android:textColor="@color/textColorBlack"
-            android:fontFamily="@font/open_sans_light"
-            android:textSize="9sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Description"
-        android:textSize="15sp"
-        android:fontFamily="@font/open_sans_semibold"
-        android:textColor="@color/textColorBlack"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        />
-
-    <TextView
-        android:id="@+id/shopDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-eiusmod tempor incididunt ut labore et dolore magna aliqua.
- Ut enim ad minim veniam, quis nostrud exercitation ullamco
-laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
- dolor in reprehenderit in voluptate velit esse cillum dolore
- eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
- non proident, sunt in culpa qui officia deserunt mollit anim
-id est laborum."
-        android:layout_marginRight="20dp"
-        android:textSize="11sp"
-        android:fontFamily="@font/open_sans"
-        android:textColor="@color/textColorBlack"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="8dp"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Parts"
-        android:textSize="15sp"
-        android:fontFamily="@font/open_sans_semibold"
-        android:textColor="@color/textColorBlack"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp">
-        <ImageView
-            android:layout_width="31dp"
-            android:layout_height="31dp"
-            android:src="@drawable/parts_shop_icon"
-            />
-
-        <TextView
-            android:id="@+id/listOfPartsText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:text="Gears, Motor Brakes, Oil Filter"
-            android:textColor="@color/textColorBlack"
-            android:fontFamily="@font/open_sans_semibold"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/chatButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="30dp"
-        android:layout_marginTop="20dp"
-        android:background="#2177CE"
-        android:fontFamily="@font/open_sans_semibold"
-        android:text="Chat"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="14sp" />
     <!--    -->
 <!--    <LinearLayout-->
 <!--        android:layout_width="match_parent"-->

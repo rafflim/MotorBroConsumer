@@ -111,6 +111,23 @@ Go ahead start a conversation!"
 
     </LinearLayout>
 
+    <FrameLayout
+        android:id="@+id/adsLayoutFuel"
+        android:background="@color/loginRedButtonBackground"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ads_posh"
+            android:scaleType="fitXY"
+            />
+
+    </FrameLayout>
+
     <LinearLayout
         android:layout_margin="5dp"
         android:layout_width="match_parent"

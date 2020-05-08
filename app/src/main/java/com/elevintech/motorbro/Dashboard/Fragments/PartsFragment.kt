@@ -14,6 +14,7 @@ import com.elevintech.motorbro.AdsView.AdsViewActivity
 import com.elevintech.motorbro.Dashboard.DashboardActivity
 import com.elevintech.motorbro.Model.BikeParts
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
+import com.elevintech.motorbro.Utils.Constants
 import com.elevintech.motorbro.Utils.Utils
 
 import com.elevintech.myapplication.R
@@ -48,6 +49,7 @@ class PartsFragment : Fragment() {
 
         adsLayout.setOnClickListener {
             val intent = Intent(context, AdsViewActivity::class.java)
+            intent.putExtra("adType", Constants.AD_TYPE.GPC)
             startActivity(intent)
         }
 //        add_parts_floating_button.setOnClickListener {

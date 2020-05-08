@@ -19,6 +19,7 @@ import com.elevintech.motorbro.Model.Achievement
 import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.Model.OdometerUpdate
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
+import com.elevintech.motorbro.Utils.Constants
 import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.myapplication.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -56,6 +57,7 @@ class AddOdometerActivity : AppCompatActivity() {
 
         adsLayoutOdo.setOnClickListener {
             val intent = Intent(this, AdsViewActivity::class.java)
+            intent.putExtra("adType", Constants.AD_TYPE.MOTMOT)
             startActivity(intent)
         }
 

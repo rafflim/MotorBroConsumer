@@ -103,6 +103,7 @@ class TypeOfPartsActivity : AppCompatActivity() {
 
         adsLayoutParts.setOnClickListener {
             val intent = Intent(this, AdsViewActivity::class.java)
+            intent.putExtra("adType", com.elevintech.motorbro.Utils.Constants.AD_TYPE.OSAKI)
             startActivity(intent)
         }
 

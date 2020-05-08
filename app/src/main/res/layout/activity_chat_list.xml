@@ -55,54 +55,70 @@
 
             </androidx.appcompat.widget.Toolbar>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:paddingBottom="30dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/shadow_gray_background"
-                android:orientation="vertical"
-                >
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingTop="10dp"-->
+<!--                android:paddingBottom="30dp"-->
+<!--                android:paddingLeft="10dp"-->
+<!--                android:paddingRight="10dp"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:background="@drawable/shadow_gray_background"-->
+<!--                android:orientation="vertical"-->
+<!--                >-->
 
-                <TextView
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Welcome to MotorBro Chat"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:fontFamily="@font/open_sans_light"-->
+<!--                    android:textColor="@color/textColorBlack"-->
+<!--                    />-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    >-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="35dp"-->
+<!--                        android:layout_height="35dp"-->
+<!--                        android:src="@drawable/chat_list_header_icon"-->
+<!--                        android:layout_marginLeft="10dp"-->
+<!--                        />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="You can chat with shops from the shops page!-->
+<!--Go ahead start a conversation!"-->
+<!--                        android:layout_marginLeft="10dp"-->
+<!--                        android:layout_marginTop="3dp"-->
+<!--                        android:textSize="11sp"-->
+<!--                        android:fontFamily="@font/open_sans"-->
+<!--                        android:textColor="@color/textColorBlack"-->
+<!--                        />-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+
+            <FrameLayout
+                android:id="@+id/adsLayoutFuel"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_margin="10dp"
+                android:layout_alignParentBottom="true">
+
+                <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Welcome to MotorBro Chat"
-                    android:layout_margin="10dp"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/open_sans_light"
-                    android:textColor="@color/textColorBlack"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ads_posh"
+                    android:scaleType="fitCenter"
                     />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:src="@drawable/chat_list_header_icon"
-                        android:layout_marginLeft="10dp"
-                        />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="You can chat with shops from the shops page!
-Go ahead start a conversation!"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="3dp"
-                        android:textSize="11sp"
-                        android:fontFamily="@font/open_sans"
-                        android:textColor="@color/textColorBlack"
-                        />
-                </LinearLayout>
-            </LinearLayout>
+            </FrameLayout>
 
             <TextView
                 android:layout_width="wrap_content"
