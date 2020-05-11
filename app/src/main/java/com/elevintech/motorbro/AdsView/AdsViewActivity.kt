@@ -19,7 +19,9 @@ class AdsViewActivity : AppCompatActivity() {
     val okk_par = "Tiger brand of gaskets are 100% made in Thailand. They are made by the factory which makes gaskets for the Japanese manufacturers. All gaskets are made up to original manufacturer specifcations. They are oil and heat resistant as well. Since all the gaskets are precise in size, there is no need to put gasket glue when installing Tiger gaskets. "
     val motmot_par = "Motmot products are made specially with the Filipino riders in mind. Motmot is a proudly Pinoy brand. Initial products brake shoes, bulbs, handle levers, etc. Please stay tuned for more information. "
     val posh_par = "Posh Motorcycle Shop is the largest wholesale and retail motorcycle parts and service center in Metro Manila. Posh carries the most models of parts and famous brands such as Samurai, Osaki, Comstar, OKK, Tiger, Owens, TSR, etc. Posh Motorcycle Shop is also available on Lazada and Shopee. "
+    val gpc_par = "The GPC brand has been in the Philippine market for over 20 years. GPC stands for Genuine Parts Company. This means that all GPC parts follow the OEM specifications of the original parts manufacturers. GPC products includes brakes, clutches, CVT parts, engine parts, etc."
 
+    val gpcHeader = "GPC"
     val samPaintHeader = "SAMURAI PAINT"
     val owensHeader = "OWENS"
     val tsrHeader = "TSR"
@@ -124,8 +126,10 @@ class AdsViewActivity : AppCompatActivity() {
             }
 
             Constants.AD_TYPE.GPC -> {
-                adsHeader.text = "GPC"
-                adsBody.text = "No description"
+                adsHeader.text = gpcHeader
+                adsBody.text = gpc_par
+                hyperLink1.text = "https://www.facebook.com/GPC.Ph/"
+
                 adsImageView.setImageResource(R.drawable.ads_gpc)
             }
         }

@@ -27,11 +27,11 @@
         <item
             android:id="@+id/parts_menu"
             android:icon="@drawable/parts_menu_icon"
-            android:title="Types of Parts" />
+            android:title="Parts and Services List" />
         <item
             android:id="@+id/brands"
             android:icon="@drawable/parts_menu_icon"
-            android:title="Types of Brands" />
+            android:title="Brands List" />
 
         <item
             android:id="@+id/fuels"
