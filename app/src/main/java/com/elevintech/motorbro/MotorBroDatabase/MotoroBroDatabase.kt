@@ -476,8 +476,10 @@ class MotoroBroDatabase {
     fun getUserBikeParts(bikeId: String, callback: (MutableList<BikeParts>) -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().uid!!
-        val docRef = db.collection("customers").document(uid).collection("bike-parts").whereEqualTo("bikeId", bikeId)
+        val docRef = db.collection("customers").document(uid).collection("bike-parts")
+//            .whereEqualTo("bikeId", bikeId)
         val list = mutableListOf<BikeParts>()
+        var listToPass = mutableListOf<BikeParts>()
 
         docRef.get()
             .addOnSuccessListener {
@@ -487,7 +489,14 @@ class MotoroBroDatabase {
                     list.add(bikePart)
                 }
 
-                callback(list)
+                //Get the bikes from the actual parts list
+                for ( part in list) {
+                    if (part.bikeId == bikeId || part.shopId != "") {
+                        listToPass.add(part)
+                    }
+                }
+
+                callback(listToPass)
             }
     }
 

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.elevintech.motorbro.AddParts.AddPartsActivity
 import com.elevintech.motorbro.AdsView.AdsViewActivity
@@ -139,6 +140,22 @@ class PartsFragment : Fragment() {
             viewHolder.itemView.odometerText.text = "Brand: " + bikePart.brand
 //            viewHolder.itemView.cashText.text = " ₱" + bikePart.price.toString()
 
+
+            if (bikePart.shopId != "") {
+                viewHolder.itemView.partsShopName.visibility = View.VISIBLE
+
+                MotoroBroDatabase().getShop(bikePart.shopId) {
+                    if (it.name != "") {
+                        viewHolder.itemView.partsShopName.text = "Shop: " + it.name
+                    } else {
+                        viewHolder.itemView.partsShopName.text = "Error getting name"
+                    }
+
+                }
+
+            }
+
+
             val dateString = Utils().convertMillisecondsToDate(bikePart.dateLong, "MMM d, yyyy")
 
             viewHolder.itemView.partsNameCombine.text = "$dateString - ${bikePart.typeOfParts} - ${bikePart.brand} - ${bikePart.price}"
@@ -161,12 +178,19 @@ class PartsFragment : Fragment() {
             }
 
 
+
             viewHolder.itemView.setOnClickListener {
-                // intent to go to parts edit page
-                val intent = Intent(activity, AddPartsActivity::class.java)
-                intent.putExtra("bikeParts", bikePart)
-                intent.putExtra("isForEditParts", true)
-                startActivity(intent)
+
+                if (bikePart.shopId.isEmpty()) {
+                    // intent to go to parts edit page
+                    val intent = Intent(activity, AddPartsActivity::class.java)
+                    intent.putExtra("bikeParts", bikePart)
+                    intent.putExtra("isForEditParts", true)
+                    startActivity(intent)
+                } else {
+//                    Toast.makeText(this@PartsFragment, "This is a shop made part/service please contact them to delete and make a new one", Toast.LENGTH_SHORT).show()
+                }
+
             }
 
             if (bikePart.bikeId != "") {
