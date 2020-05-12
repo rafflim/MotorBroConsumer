@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.forEach
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.elevintech.motorbro.Achievements.AchievementManager
 import com.elevintech.motorbro.Achievements.AchievementsActivity
@@ -59,7 +60,8 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     private lateinit var refuelFragment: RefuelFragment
     private lateinit var historyFragment: HistoryFragment
 
-    lateinit var bottomSheetDialog: BottomSheetDialog
+    private lateinit var bottomSheetDialog: BottomSheetDialog
+    var lastActiveTab: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -356,6 +358,8 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                         .replace(R.id.frame_layout, homeFragment, "homeFragmentTag")
                         //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
+
+                    lastActiveTab = R.id.tabhome
                 }
 
                 R.id.tabparts -> {
@@ -364,6 +368,8 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                         .replace(R.id.frame_layout, partsFragment, "partsFragmentTag")
                         //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
+
+                    lastActiveTab = R.id.tabparts
                 }
 
                 R.id.tabshop -> {
@@ -375,6 +381,9 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 //                        .replace(R.id.frame_layout, shopFragment, "shopFragmentTag")
 //                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
 //                        .commit()
+
+                    lastActiveTab = null
+
                 }
 
                 R.id.tabreminders -> {
@@ -383,6 +392,8 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                         .replace(R.id.frame_layout, refuelFragment, "remindersFragmentTag")
                         //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
+
+                    lastActiveTab = R.id.tabreminders
                 }
 
                 R.id.tabhistory -> {
@@ -392,6 +403,8 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                         .replace(R.id.frame_layout, historyFragment, "historyFragmentTag")
                         //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit()
+
+                    lastActiveTab = R.id.tabhistory
                 }
 
             }
@@ -399,8 +412,13 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             true
         }
 
-        // default fragment
-        bottomNavigation.selectedItemId = R.id.tabhome
+        if (lastActiveTab == null){
+            // default fragment
+            bottomNavigation.selectedItemId = R.id.tabhome
+        } else {
+            bottomNavigation.selectedItemId = lastActiveTab!!
+        }
+
 
     }
 }
