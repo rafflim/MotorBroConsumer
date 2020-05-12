@@ -25,6 +25,7 @@ import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_parts.*
 import kotlinx.android.synthetic.main.fragment_parts.view.*
 import kotlinx.android.synthetic.main.row_parts.view.*
+import java.text.NumberFormat
 
 /**
  * A simple [Fragment] subclass.
@@ -158,7 +159,9 @@ class PartsFragment : Fragment() {
 
             val dateString = Utils().convertMillisecondsToDate(bikePart.dateLong, "MMM d, yyyy")
 
-            viewHolder.itemView.partsNameCombine.text = "$dateString - ${bikePart.typeOfParts} - ${bikePart.brand} - ${bikePart.price}"
+            //val formattedPrice = NumberFormat.getCurrencyInstance().format(bikePart.price)
+            val formattedPrice = Utils().numberFormatWithComma(bikePart.price)
+            viewHolder.itemView.partsNameCombine.text = "$dateString - ${bikePart.typeOfParts} - ${bikePart.brand} - ₱$formattedPrice"
             viewHolder.itemView.partsOdoCombine.text = "Odo = ${bikePart.odometer} km"
 
             var note = ""

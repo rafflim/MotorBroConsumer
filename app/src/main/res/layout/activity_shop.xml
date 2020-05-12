@@ -113,7 +113,6 @@ Go ahead start a conversation!"
 
     <FrameLayout
         android:id="@+id/adsLayoutFuel"
-        android:background="@color/loginRedButtonBackground"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_margin="10dp"
@@ -123,7 +122,7 @@ Go ahead start a conversation!"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/ads_posh"
-            android:scaleType="fitXY"
+            android:scaleType="fitCenter"
             />
 
     </FrameLayout>
