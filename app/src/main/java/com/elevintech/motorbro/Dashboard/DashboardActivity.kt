@@ -8,13 +8,16 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.forEach
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import com.elevintech.motorbro.Achievements.AchievementManager
 import com.elevintech.motorbro.Achievements.AchievementsActivity
@@ -68,12 +71,11 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         setContentView(R.layout.drawer_dashboard)
 
         buildNavigationDrawer()
-
         buildBottomSheetDialog()
         setUpFabClick()
         createNotificationChannel()
         displayMessageBadge()
-
+        showDashboardDialog()
         shopImageView.setOnClickListener {
             val intent = Intent(this, ShopActivity::class.java)
             startActivity(intent)
@@ -126,6 +128,30 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
+    }
+
+    private fun showDashboardDialog() {
+        // DO AFTER 2 SECONDS
+        val handler = Handler()
+        handler.postDelayed({
+
+
+            val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
+            val prev: Fragment? = supportFragmentManager.findFragmentByTag("dialogTag")
+            if (prev != null) {
+                ft.remove(prev)
+            }
+            ft.addToBackStack(null)
+
+            // Create and show the dialog.
+            val newFragment: DialogFragment = DashboardDialog()
+            newFragment.show(ft, "dialogTag")
+
+
+
+
+
+        }, 2000 )
     }
 
     private fun buildBottomSheetDialog() {
