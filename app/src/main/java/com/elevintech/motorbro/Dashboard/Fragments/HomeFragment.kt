@@ -24,6 +24,8 @@ import com.elevintech.myapplication.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
+import java.text.NumberFormat
+import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -58,7 +60,14 @@ class HomeFragment : Fragment() {
             if (it.isNotEmpty()){
                 val firstOdo = it.first()
                 val firstOdoDistance = Utils().numberFormatWithComma( firstOdo.odometer )
-                view.odometerStatementText.text = "Odometer : $firstOdoDistance km updated as of ${firstOdo.date}"
+                var numberFormatted = NumberFormat.getCurrencyInstance().format(firstOdo.odometer)
+
+//               var equals = NumberFormat.getNumberInstance(Locale.US).format(35634646)
+//                var cib = NumberFormat.getNumberInstance(Locale.US).format(firstOdo.odometer)
+
+                view.odometerStatementText.text = "Odometer : $numberFormatted km updated as of ${firstOdo.date}"
+
+
             }
 
             adsLayout1.setOnClickListener {
@@ -137,7 +146,14 @@ class HomeFragment : Fragment() {
         v.plateNumberText.setText("#" + bike.plateNumber.toUpperCase())
         if (bike.lastOdometerUpdate != ""){
             val lastOdometerUpdate = Utils().convertMillisecondsToDate( bike.lastOdometerUpdate.toLong(),  "MMM d, yyyy")
-            v.odometerStatementText.text = "Odometer : ${bike.odometer} km updated as of ${lastOdometerUpdate}"
+
+            val doubleOdo = bike.odometer.toDoubleOrNull()
+
+            println(doubleOdo)
+
+            val formattedOdo = doubleOdo?.let { Utils().numberFormatWithComma(it) }
+
+            v.odometerStatementText.text = "Odometer : ${formattedOdo}km updated as of ${lastOdometerUpdate}"
         }
 
         MotoroBroDatabase().getUserBikes {
