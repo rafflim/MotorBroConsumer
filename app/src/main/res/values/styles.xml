@@ -49,4 +49,13 @@
         <item name="android:minWidth">200dp</item>
     </style>
 
+    <style name="SlideInDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowAnimationStyle">@style/SlideInDialogAnimation</item>
+    </style>
+
+    <style name="SlideInDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_down</item>
+        <item name="android:windowExitAnimation">@anim/slide_up</item>
+    </style>
+
 </resources>
