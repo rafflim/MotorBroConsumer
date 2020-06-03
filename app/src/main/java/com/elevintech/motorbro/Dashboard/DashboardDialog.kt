@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.elevintech.myapplication.R
+import kotlinx.android.synthetic.main.fragment_dashboard_dialog.*
 
 
 /**
@@ -27,6 +28,9 @@ class DashboardDialog : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // CLICK LISTENERS HERE
+        backButton.setOnClickListener {
+            dismiss()
+        }
     }
 
     override fun onStart() {

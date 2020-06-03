@@ -10,6 +10,7 @@
     <color name="loginRedButtonBackground">#CA2929</color>
 
     <color name="gray">#979797</color>
+    <color name="normalGray">#EFEFEF</color>
     <color name="lightGray">#E2E2E2</color>
 
     <color name="lightPink">#F3E8F0</color>
