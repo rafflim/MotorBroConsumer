@@ -62,6 +62,10 @@ class MainActivity : AppCompatActivity() {
             createAlertDialog()
         }
 
+        fbLoginButton.setOnClickListener {
+            facebookLoginButton.performClick()
+        }
+
         setupFacebookLogin()
 
 
@@ -82,6 +86,8 @@ class MainActivity : AppCompatActivity() {
     private fun setupFacebookLogin() {
 
         val loginButton = facebookLoginButton
+
+
         val userFacebookPermissions =  listOf("email", "public_profile")
         // Initialize Facebook Login button
 

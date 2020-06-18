@@ -134,8 +134,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         // DO AFTER 2 SECONDS
         val handler = Handler()
         handler.postDelayed({
-
-
+            
             val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
             val prev: Fragment? = supportFragmentManager.findFragmentByTag("dialogTag")
             if (prev != null) {
@@ -146,10 +145,6 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             // Create and show the dialog.
             val newFragment: DialogFragment = DashboardDialog()
             newFragment.show(ft, "dialogTag")
-
-
-
-
 
         }, 2000 )
     }

@@ -8,6 +8,7 @@ import com.elevintech.motorbro.MainActivity
 import com.elevintech.motorbro.PrivacyPolicy.PrivacyPolicyActivity
 import com.elevintech.motorbro.TermsServices.TermsServicesActivity
 import com.elevintech.myapplication.R
+import com.facebook.login.LoginManager
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_more.*
 
@@ -45,6 +46,8 @@ class MoreActivity : AppCompatActivity() {
     private fun logOut() {
 
         FirebaseAuth.getInstance().signOut()
+        LoginManager.getInstance().logOut()
+
         val intent = Intent(this, MainActivity::class.java)
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)

@@ -4,6 +4,7 @@
 
     <!-- The radius makes the corners rounded -->
     <corners android:radius="4dp"/>
+    <stroke android:color="#fff" android:width="1dp" />
 
-    <solid android:color="#0162FF"/>
+    <solid android:color="#000162FF"/>
 </shape>
