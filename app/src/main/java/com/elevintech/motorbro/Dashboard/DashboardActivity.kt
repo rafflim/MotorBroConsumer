@@ -70,21 +70,21 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         super.onCreate(savedInstanceState)
         setContentView(R.layout.drawer_dashboard)
 
-        buildNavigationDrawer()
+//        buildNavigationDrawer()
         buildBottomSheetDialog()
         setUpFabClick()
         createNotificationChannel()
         displayMessageBadge()
         showDashboardDialog()
-        shopImageView.setOnClickListener {
-            val intent = Intent(this, ShopActivity::class.java)
-            startActivity(intent)
-        }
-
-        chatImageView.setOnClickListener {
-            val intent = Intent(this, ChatListActivity::class.java)
-            startActivity(intent)
-        }
+//        shopImageView.setOnClickListener {
+//            val intent = Intent(this, ShopActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        chatImageView.setOnClickListener {
+//            val intent = Intent(this, ChatListActivity::class.java)
+//            startActivity(intent)
+//        }
 
         AchievementManager().setAchievementAsAchieved( Achievement.Names.FIRST_MONITOR )
         ScheduledNotification().startAlarm(this)
@@ -95,12 +95,9 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
     private fun displayMessageBadge(){
 
-        MotoroBroDatabase().getUnreadMessageCount{ unreadMessageCount ->
-
-            chatImageView.setBadgeValue(unreadMessageCount)
-
-        }
-
+//        MotoroBroDatabase().getUnreadMessageCount{ unreadMessageCount ->
+//            chatImageView.setBadgeValue(unreadMessageCount)
+//        }
     }
 
     var channelId = "com.elevintech.motorbro"
@@ -222,52 +219,24 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
 
     // Navigation Drawer
-    private fun buildNavigationDrawer(){
-
-        // set toolbar as our created view
-        setSupportActionBar(toolbar)
-
-        // remove default title, so we can set it through XML
-        getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
-
-        val drawerLayout = drawer_layout
-
-        // create navigation drawer
-        var toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer)
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-
-//        // get menu from navigationView
-//        val nav_menu = nav_view.menu
+//    private fun buildNavigationDrawer(){
 //
-//        // find MenuItem you want to change
-//        val nav_profile_status = nav_menu.findItem(R.id.profile_status)
+//        // set toolbar as our created view
+//        setSupportActionBar(toolbar)
 //
-//        // set new title to the MenuItem
-//        nav_profile_status.title = "NewTitleForCamera"
+//        // remove default title, so we can set it through XML
+//        getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
 //
-//        // do the same for other MenuItems
-//        val nav_meeting = nav_menu.findItem(R.id.next_meeting)
-//        nav_meeting.title = "NewTitleForGallery"
+//        val drawerLayout = drawer_layout
 //
-//        // get header from navigationView
-//        val nav_header = nav_view.getHeaderView(0)
+//        // create navigation drawer
+//        var toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer)
+//        drawerLayout.addDrawerListener(toggle)
+//        toggle.syncState()
 //
-//        // find headerItem you want to change
-//        val nav_user = nav_header.user_first_name
+//        nav_view.setNavigationItemSelectedListener(this)
 //
-//        // set text to the headerItem
-//        nav_user.setText("Gotcha")
-//
-//        val nav_user_image = nav_header.profileImage
-
-
-//        updateUserImage(nav_user_image)
-
-        nav_view.setNavigationItemSelectedListener(this)
-
-    }
-
+//    }
 
 
     // On select of Navigation Drawer Menu
@@ -276,7 +245,6 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         println("${item.itemId}")
 
         when(item.itemId){
-
 
             R.id.parts_menu-> {
                 // TODO: There's a bug here make these unclickable when from here

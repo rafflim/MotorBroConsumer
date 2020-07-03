@@ -10,8 +10,8 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="#3C4CA8"
+        android:layout_height="80dp"
+        android:background="@color/colorPrimary"
         android:paddingTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,10 +27,8 @@
             >
 
             <ImageView
-                android:layout_marginTop="25dp"
-
                 android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_height="37dp"
                 android:layout_gravity="start"
                 android:layout_marginRight="20dp"
                 android:src="@drawable/white_back_icon"
@@ -41,15 +39,16 @@
         <TextView
             android:id="@+id/dashboardLabel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginBottom="16dp"
-            android:fontFamily="@font/lato"
+            android:fontFamily="@font/roboto_bold"
             android:text="Add Refueling"
             android:textColor="#fff"
-            android:textSize="16sp"
+            android:textSize="17sp"
             android:textStyle="bold"
             android:layout_gravity="left"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="8dp"
             />
 
         <LinearLayout
@@ -61,22 +60,20 @@
             >
 
             <ImageView
-                android:layout_marginTop="15dp"
-
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 app:srcCompat="@drawable/check_mark_icon"
-                android:tint="#4CAF50" />
+                android:tint="#FFFFFF" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Save"
                 android:layout_marginTop="5dp"
                 android:layout_gravity="center"
-                android:fontFamily="@font/open_sans_bold"
-                android:textSize="11sp"
-                android:textColor="#4CAF50"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="13sp"
+                android:textColor="#FFFFFF"
                 />
 
         </LinearLayout>
@@ -176,7 +173,7 @@
                 android:fontFamily="@font/open_sans_semibold"
                 android:text="Date"
                 android:textSize="15sp"
-                android:textColor="#182463"
+                android:textColor="#232323"
 
                 />
 
@@ -192,7 +189,7 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:tint="#808FDF"
+                    android:tint="#4E4E4E"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/calendar_fixed_icon"
 
@@ -221,7 +218,7 @@
                 android:fontFamily="@font/open_sans_semibold"
                 android:text="Odometer"
                 android:textSize="15sp"
-                android:textColor="#182463"
+                android:textColor="#232323"
                 />
 
             <LinearLayout
@@ -236,7 +233,7 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:tint="#808FDF"
+                    android:tint="#4E4E4E"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/odometer_fixed_icon"
 
@@ -283,7 +280,7 @@
                 android:fontFamily="@font/open_sans_semibold"
                 android:text="Price"
                 android:textSize="15sp"
-                android:textColor="#182463"
+                android:textColor="#232323"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -325,7 +322,7 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:tint="#808FDF"
+                    android:tint="#4E4E4E"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/cash_wallet_icon"
 
@@ -380,7 +377,7 @@
                 android:fontFamily="@font/open_sans_semibold"
                 android:text="Location"
                 android:textSize="15sp"
-                android:textColor="#182463"
+                android:textColor="#232323"
                 />
 
             <LinearLayout
@@ -395,7 +392,7 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:tint="#808FDF"
+                    android:tint="#4E4E4E"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/lcoation_colored_icon"
 
@@ -430,7 +427,7 @@
                 android:fontFamily="@font/open_sans_semibold"
                 android:text="Fuel Type"
                 android:textSize="15sp"
-                android:textColor="#182463"
+                android:textColor="#232323"
                 />
 
             <LinearLayout
@@ -445,7 +442,7 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:tint="#808FDF"
+                    android:tint="#4E4E4E"
 
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/wrenchicon"
@@ -474,7 +471,7 @@
                 android:fontFamily="@font/open_sans_semibold"
                 android:text="Note"
                 android:textSize="15sp"
-                android:textColor="#182463"
+                android:textColor="#232323"
                 />
 
             <LinearLayout
@@ -489,7 +486,7 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:tint="#808FDF"
+                    android:tint="#4E4E4E"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/note_fixed_icon"
 

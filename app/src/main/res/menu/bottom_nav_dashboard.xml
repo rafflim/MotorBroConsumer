@@ -3,12 +3,12 @@
 
     <item
         android:id="@+id/tabhome"
-        android:icon="@drawable/homeicon"
+        android:icon="@drawable/home_navicon"
         android:title="Home" />
 
     <item
         android:id="@+id/tabparts"
-        android:icon="@drawable/wrenchicon"
+        android:icon="@drawable/parts_navicon"
         android:title="Parts" />
 
     <item
@@ -18,12 +18,12 @@
 
     <item
         android:id="@+id/tabreminders"
-        android:icon="@drawable/tab_refuel_icon"
+        android:icon="@drawable/refuel_navicon"
         android:title="Refuel" />
 
     <item
         android:id="@+id/tabhistory"
-        android:icon="@drawable/clockicon"
+        android:icon="@drawable/history_navicon"
         android:title="History" />
 
 

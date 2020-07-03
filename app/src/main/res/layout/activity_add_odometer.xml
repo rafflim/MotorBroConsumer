@@ -10,25 +10,22 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="#448AFF"
+        android:layout_height="80dp"
+        android:background="@color/colorPrimary"
         android:paddingTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_marginLeft="0dp"
             android:id="@+id/backButton"
             android:layout_width="40dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_gravity="start"
-            >
+            android:layout_marginLeft="0dp"
+            android:orientation="vertical">
 
             <ImageView
-                android:layout_marginTop="25dp"
-
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="start"
@@ -41,27 +38,44 @@
         <TextView
             android:id="@+id/dashboardLabel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginBottom="16dp"
-            android:fontFamily="@font/open_sans_semibold"
+            android:fontFamily="@font/roboto_bold"
             android:text="Update Odometer"
             android:textColor="#fff"
-            android:textSize="16sp"
+            android:textSize="17sp"
             android:textStyle="bold"
             android:layout_gravity="left"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="8dp"
             />
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/checkMarkButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="24dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="15dp"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             android:layout_gravity="right"
+            >
 
-            app:srcCompat="@drawable/check_mark_icon" />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/check_mark_icon"
+                android:tint="#FFFFFF" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="13sp"
+                android:textColor="#FFFFFF"
+                />
+
+        </LinearLayout>
 
 
     </androidx.appcompat.widget.Toolbar>

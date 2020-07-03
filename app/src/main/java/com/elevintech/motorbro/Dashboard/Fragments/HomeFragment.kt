@@ -11,11 +11,13 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.elevintech.motorbro.AddOdometer.AddOdometerActivity
 import com.elevintech.motorbro.AdsView.AdsViewActivity
+import com.elevintech.motorbro.Chat.ChatListActivity
 import com.elevintech.motorbro.Garage.GarageActivity
 import com.elevintech.motorbro.Model.BikeInfo
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.MotorcycleEditGeneralInformation.EditGeneralInformationActivity
 import com.elevintech.motorbro.MyAccount.MyAccountActivity
+import com.elevintech.motorbro.Shop.ShopActivity
 import com.elevintech.motorbro.Utils.Constants
 import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.motorbro.ViewBike.ViewBikeActivity
@@ -48,6 +50,16 @@ class HomeFragment : Fragment() {
             val intent = Intent(context, AddOdometerActivity::class.java)
             startActivity(intent)
         }
+
+        shopButton2.setOnClickListener {
+            val intent = Intent(context, ShopActivity::class.java)
+            startActivity(intent)
+        }
+
+        chatButton1.setOnClickListener {
+            val intent = Intent(context, ChatListActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setupViews(view: View){
@@ -56,6 +68,7 @@ class HomeFragment : Fragment() {
             if (!isAdded) {
                 return@getUserOdometers
             }
+
 
             if (it.isNotEmpty()){
                 val firstOdo = it.first()
@@ -66,7 +79,6 @@ class HomeFragment : Fragment() {
 //                var cib = NumberFormat.getNumberInstance(Locale.US).format(firstOdo.odometer)
 
                 view.odometerStatementText.text = "Odometer : $numberFormatted km updated as of ${firstOdo.date}"
-
 
             }
 
@@ -140,6 +152,14 @@ class HomeFragment : Fragment() {
         view.qrCodeImage.setImageBitmap(qrCodeBitmap)
     }
 
+    private fun displayMessageBadge(){
+
+        MotoroBroDatabase().getUnreadMessageCount{ unreadMessageCount ->
+            // TODO: Fix this
+            //chatButton1.setBadgeValue(unreadMessageCount)
+        }
+    }
+
     private fun setBikeValues(v: View, bike: BikeInfo) {
 
         v.motorNameText.setText(bike.yearBought + " " + bike.brand.capitalize() + " " + bike.model.capitalize())
@@ -163,26 +183,22 @@ class HomeFragment : Fragment() {
                 changePrimaryBike.visibility = View.VISIBLE
         }
 
-        if (bike.imageUrl != "") {
-            Glide.with(this).load(bike.imageUrl).into(v.motorcycleImage)
-        } else {
-            // Put an empty image here
-            Glide.with(this).load(R.drawable.new_empty_data_icon).into(v.motorcycleImage)
-        }
+//        if (bike.imageUrl != "") {
+//            Glide.with(this).load(bike.imageUrl).into(v.motorcycleImage)
+//        } else {
+//            // Put an empty image here
+//            Glide.with(this).load(R.drawable.new_empty_data_icon).into(v.motorcycleImage)
+//        }
 
         motorcycleLayout.setOnClickListener {
-
             val intent = Intent(activity, ViewBikeActivity::class.java)
             intent.putExtra("bike", bike)
             startActivity(intent)
-
         }
 
         changePrimaryBike.setOnClickListener {
-
             val intent = Intent(activity, GarageActivity::class.java)
             startActivity(intent)
-
         }
 
     }

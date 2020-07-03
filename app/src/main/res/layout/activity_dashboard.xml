@@ -7,68 +7,68 @@
 
 
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/background_white_bottom_shadow_only"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/toolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:background="@drawable/background_white_bottom_shadow_only"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
 
 
 
-        <ImageView
-            android:id="@+id/motorBroMainImage"
-            android:layout_width="65dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/motorbroinicon" />
-
-
-<!--        <TextView-->
-<!--            android:id="@+id/dashboardLabel"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginBottom="16dp"-->
-<!--            android:fontFamily="@font/lato"-->
-<!--            android:text="Dashboard"-->
-<!--            android:textColor="#fff"-->
-<!--            android:textSize="18sp"-->
-<!--            android:textStyle="bold"-->
+<!--        <ImageView-->
+<!--            android:id="@+id/motorBroMainImage"-->
+<!--            android:layout_width="65dp"-->
+<!--            android:layout_height="60dp"-->
 <!--            android:layout_gravity="center"-->
+<!--            app:srcCompat="@drawable/motorbroinicon" />-->
+
+
+<!--&lt;!&ndash;        <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/dashboardLabel"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_marginBottom="16dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:fontFamily="@font/lato"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:text="Dashboard"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:textColor="#fff"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:textSize="18sp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:textStyle="bold"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;            />&ndash;&gt;-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/shopImageView"-->
+<!--            android:padding="13dp"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_gravity="right"-->
+<!--            app:srcCompat="@drawable/shop_new_icon"-->
+<!--            android:tint="#4D4D4D"-->
+<!--            android:visibility="visible"-->
 <!--            />-->
 
-        <ImageView
-            android:id="@+id/shopImageView"
-            android:padding="13dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="10dp"
-            android:layout_gravity="right"
-            app:srcCompat="@drawable/shop_new_icon"
-            android:tint="#4D4D4D"
-            android:visibility="visible"
-            />
+<!--        <ru.nikartm.support.ImageBadgeView-->
+<!--            android:id="@+id/chatImageView"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_gravity="right"-->
+<!--            android:padding="13dp"-->
 
-        <ru.nikartm.support.ImageBadgeView
-            android:id="@+id/chatImageView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="right"
-            android:padding="13dp"
+<!--            android:tint="#4D4D4D"-->
+<!--            app:ibv_badgeTextSize="12sp"-->
+<!--            app:ibv_fixedBadgeRadius="11dp"-->
+<!--            app:ibv_badgeTextStyle="bold"-->
+<!--            app:ibv_badgeTextColor="@color/white"-->
+<!--            app:ibv_badgeBackground="@drawable/message_badge_green"-->
+<!--            app:ibv_badgeLimitValue="false"-->
+<!--            app:ibv_badgePosition="top_right"-->
+<!--            android:src="@drawable/chat_icon" />-->
 
-            android:tint="#4D4D4D"
-            app:ibv_badgeTextSize="12sp"
-            app:ibv_fixedBadgeRadius="11dp"
-            app:ibv_badgeTextStyle="bold"
-            app:ibv_badgeTextColor="@color/white"
-            app:ibv_badgeBackground="@drawable/message_badge_green"
-            app:ibv_badgeLimitValue="false"
-            app:ibv_badgePosition="top_right"
-            android:src="@drawable/chat_icon" />
-
-    </androidx.appcompat.widget.Toolbar>
+<!--    </androidx.appcompat.widget.Toolbar>-->
 
 
 
@@ -103,26 +103,18 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floating_button"
             style="@style/Widget.MaterialComponents.FloatingActionButton"
-
             android:layout_gravity="end"
             android:layout_margin="16dp"
-
-
             app:elevation="10dp"
             app:layout_constraintBottom_toBottomOf="@id/bottom_nav"
             app:layout_constraintLeft_toRightOf="@id/bottom_nav"
             app:layout_constraintRight_toLeftOf="@id/bottom_nav"
-
-
-
             app:backgroundTint="@color/white"
-
-
             app:fabCustomSize="60dp"
             app:maxImageSize="60dp"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/blue_plus_icon"/>
+            android:src="@drawable/plus_navicon"/>
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -135,6 +127,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:itemIconTint="@color/bnv_tab_item_foreground"
+            app:itemTextColor="@color/bnv_tab_item_foreground"
             app:menu="@menu/bottom_nav_dashboard" />
 
 

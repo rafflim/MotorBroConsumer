@@ -10,6 +10,8 @@
     <string name="facebook_app_id">238165707334677</string>
     <string name="fb_login_protocol_scheme">fb238165707334677</string>
 
+    <string name="changePrimaryBike"><u>Change Primary Bike</u></string>
+    <string name="updateOdometer"><u>Update Odometer</u></string>
     <string name="privacyPolicy1">
         MotorBro Privacy Policy
     </string>

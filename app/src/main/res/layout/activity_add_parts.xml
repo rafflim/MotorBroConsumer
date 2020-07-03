@@ -10,8 +10,8 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="#364f6b"
+        android:layout_height="80dp"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:paddingTop="20dp"
@@ -27,10 +27,8 @@
             >
 
             <ImageView
-                android:layout_marginTop="25dp"
-
                 android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_height="37dp"
                 android:layout_gravity="start"
                 android:layout_marginRight="20dp"
                 android:src="@drawable/white_back_icon"
@@ -42,15 +40,16 @@
         <TextView
             android:id="@+id/dashboardLabel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginBottom="16dp"
-            android:fontFamily="@font/lato"
+            android:fontFamily="@font/roboto_bold"
             android:text="Add Parts and Services"
             android:textColor="#fff"
-            android:textSize="16sp"
+            android:textSize="17sp"
             android:textStyle="bold"
             android:layout_gravity="left"
             android:layout_marginLeft="23dp"
+            android:layout_marginTop="8dp"
             />
 
 
@@ -64,22 +63,20 @@
             >
 
             <ImageView
-                android:layout_marginTop="15dp"
-
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 app:srcCompat="@drawable/check_mark_icon"
-                android:tint="#4CAF50" />
+                android:tint="#FFFFFF" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Save"
                 android:layout_marginTop="5dp"
                 android:layout_gravity="center"
-                android:fontFamily="@font/open_sans_bold"
-                android:textSize="11sp"
-                android:textColor="#4CAF50"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="13sp"
+                android:textColor="#FFFFFF"
                 />
 
         </LinearLayout>
@@ -94,14 +91,14 @@
             >
 
             <ImageView
-                android:layout_width="34dp"
+                android:layout_width="30dp"
 
-                android:layout_height="34dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="0dp"
                 android:fontFamily="@font/open_sans_bold"
                 android:textSize="11sp"
-                android:tint="#DD4C4C"
+                android:tint="#FD0000"
                 app:srcCompat="@drawable/trash_icon" />
             <TextView
                 android:layout_width="wrap_content"
@@ -109,9 +106,9 @@
                 android:text="Delete"
                 android:layout_marginTop="5dp"
                 android:layout_gravity="center"
-                android:fontFamily="@font/open_sans_bold"
-                android:textSize="11sp"
-                android:textColor="#DD4C4C"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="13sp"
+                android:textColor="#FD0000"
                 />
 
         </LinearLayout>
