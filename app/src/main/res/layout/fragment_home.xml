@@ -160,6 +160,7 @@
                 >
 
                 <LinearLayout
+                    android:id="@+id/home_garage_layout"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
@@ -182,6 +183,7 @@
                         />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/home_glovebox_layout"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
@@ -205,6 +207,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/home_myaccount_layout"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
@@ -228,6 +231,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/home_achievements_layout"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
@@ -265,6 +269,7 @@
                 >
 
                 <LinearLayout
+                    android:id="@+id/home_parts_layout"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
@@ -287,6 +292,7 @@
                         />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/home_brandslist_layout"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
@@ -312,6 +318,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/home_typesfuel_layout"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
@@ -337,6 +344,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/home_settings_layout"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
@@ -406,7 +414,7 @@
                         android:id="@+id/motorNameText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2365 Yamaha Mia Mitsubishi"
+                        android:text=""
                         android:layout_marginLeft="40dp"
                         android:textColor="@color/white"
                         android:layout_marginRight="10dp"
@@ -428,7 +436,7 @@
                             android:id="@+id/plateNumberText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="#231"
+                            android:text=""
                             android:textSize="13sp"
                             android:fontFamily="@font/roboto_bold"
                             android:textColor="#2E259A"
@@ -485,7 +493,7 @@
                         android:id="@+id/odometerStatementText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="23,132km updated as of May 8, 2020"
+                        android:text=""
                         android:layout_marginLeft="40dp"
                         android:textColor="@color/white"
                         android:layout_marginRight="10dp"
@@ -536,7 +544,7 @@
                     android:layout_width="180dp"
                     android:layout_height="200dp"
                     android:src="@drawable/ads_samurai"
-                    android:scaleType="centerCrop"
+                    android:scaleType="fitXY"
                     />
                 
                 <LinearLayout
@@ -609,7 +617,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:src="@drawable/ads_owens"
-                    android:scaleType="centerCrop"
+                    android:scaleType="fitXY"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

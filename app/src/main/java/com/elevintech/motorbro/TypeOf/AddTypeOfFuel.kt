@@ -13,6 +13,10 @@ class AddTypeOfFuel : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_type_of_fuel)
 
+        backButton.setOnClickListener {
+            finish()
+        }
+
         saveButton.setOnClickListener{
 
             val showProgressDialog = Utils().showProgressDialog(this, "Saving custom fuel....")

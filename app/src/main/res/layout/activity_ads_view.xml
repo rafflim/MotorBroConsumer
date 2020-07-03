@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="#064283"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -44,10 +44,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="16dp"
-            android:fontFamily="@font/lato"
+            android:fontFamily="@font/roboto_bold"
             android:text="View Ads"
             android:textColor="#fff"
-            android:textSize="18sp"
+            android:textSize="21sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/scrollView2"
             app:layout_constraintEnd_toEndOf="@+id/toolbar"
@@ -81,7 +81,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:textSize="18sp"
-                android:fontFamily="@font/open_sans_semibold"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/textColorBlack"
                 />
 
@@ -89,13 +89,14 @@
                 android:id="@+id/adsBody"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/textColorBlack"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:lineHeight="19dp"
                 android:text="Genuine Parts Company is a motorcycle parts / services shop open 5 days a week. To contact us please email gpc@gmail.com"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 />
 
             <TextView

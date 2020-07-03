@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="#27589A"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -42,8 +42,8 @@
             android:layout_gravity="left"
             android:layout_marginLeft="30dp"
             android:layout_marginBottom="16dp"
-            android:fontFamily="@font/lato"
-            android:text="BRANDS"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Brands"
             android:textColor="#fff"
             android:textSize="21sp"
             android:textStyle="bold" />
@@ -70,6 +70,7 @@
                 android:layout_height="wrap_content"
                 android:text="Add new brand"
                 android:layout_gravity="center"
+                android:fontFamily="@font/roboto_bold"
                 android:textSize="10sp"
                 android:textColor="@color/white"
                 />
@@ -104,7 +105,6 @@
             android:id="@+id/deleteItemsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:alpha="0.65"
             android:background="@drawable/type_parts_delete_bg"
             android:orientation="horizontal"
             android:padding="10dp">
@@ -113,7 +113,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/delete_parts_icon"
-                android:tint="#A52222" />
+                android:tint="#FFFFFF" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -121,10 +121,10 @@
                 android:layout_gravity="center"
 
                 android:layout_marginLeft="5dp"
-                android:fontFamily="@font/open_sans"
+                android:fontFamily="@font/roboto_bold"
                 android:paddingRight="6dp"
                 android:text="Delete"
-                android:textColor="#A52222" />
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
 
@@ -160,13 +160,13 @@
         android:id="@+id/addItemsButton"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:alpha="0.65"
         android:background="@drawable/type_parts_add_bg"
         android:drawableStart="@drawable/smaller_add_icon"
         android:drawableTint="@color/white"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:text="Insert"
+        android:fontFamily="@font/roboto_bold"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="14sp"

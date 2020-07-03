@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-
-    android:background="#325B91"
+    android:background="#27548F"
     android:orientation="vertical">
 
 
@@ -14,7 +12,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="#073B81"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -121,7 +119,7 @@
                 android:layout_marginRight="20dp"
                 android:textSize="17sp"
                 android:layout_marginTop="30dp"
-                android:fontFamily="@font/open_sans_bold"
+                android:fontFamily="@font/roboto_bold"
                 android:layout_marginBottom="10dp"
                 />
 

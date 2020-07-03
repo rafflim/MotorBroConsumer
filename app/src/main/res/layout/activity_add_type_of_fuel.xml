@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="#3C7BCF"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:fontFamily="@font/lato"
+            android:fontFamily="@font/roboto_bold"
             android:text="Add Type of fuel"
             android:textColor="#fff"
             android:textSize="21sp"
@@ -81,7 +81,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/open_sans"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/textColorBlack"
                 android:text="Add name of fuel"
                 android:textSize="15sp"
 
@@ -125,6 +126,9 @@
                 android:id="@+id/saveButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/create_account_button_background"
                 android:text="Save" />
 
 

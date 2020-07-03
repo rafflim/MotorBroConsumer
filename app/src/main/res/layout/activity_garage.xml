@@ -27,7 +27,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="16dp"
-                android:fontFamily="@font/lato"
+                android:fontFamily="@font/roboto_bold"
                 android:text="Garage"
                 android:textColor="#fff"
                 android:textSize="21sp"
@@ -98,21 +98,20 @@
                         android:layout_height="35dp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:src="@drawable/new_garage_icon" />
+                        android:src="@drawable/garage_db_icon" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingBottom="5dp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="20dp"
                         android:fontFamily="@font/open_sans"
-                        android:gravity="center"
-                        android:textAlignment="viewStart"
                         android:text="This is the garage, you can add vehicle and manage them here."
                         android:textColor="@color/textColorBlack"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView

@@ -100,7 +100,7 @@ class TypeOfBrandActivity : AppCompatActivity() {
 
         // If from nav bar then set click will be different
         add_parts_floating_button.setOnClickListener {
-            val intent = Intent(applicationContext, AddBrandActivity::class.java)
+            val intent = Intent(this, AddBrandActivity::class.java)
             startActivity(intent)
         }
 

@@ -9,15 +9,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.elevintech.motorbro.Achievements.AchievementsActivity
 import com.elevintech.motorbro.AddOdometer.AddOdometerActivity
 import com.elevintech.motorbro.AdsView.AdsViewActivity
 import com.elevintech.motorbro.Chat.ChatListActivity
 import com.elevintech.motorbro.Garage.GarageActivity
+import com.elevintech.motorbro.Glovebox.GloveboxActivity
 import com.elevintech.motorbro.Model.BikeInfo
+import com.elevintech.motorbro.More.MoreActivity
 import com.elevintech.motorbro.MotorBroDatabase.MotoroBroDatabase
 import com.elevintech.motorbro.MotorcycleEditGeneralInformation.EditGeneralInformationActivity
 import com.elevintech.motorbro.MyAccount.MyAccountActivity
 import com.elevintech.motorbro.Shop.ShopActivity
+import com.elevintech.motorbro.TypeOf.TypeOfBrandActivity
+import com.elevintech.motorbro.TypeOf.TypeOfFuelActivity
+import com.elevintech.motorbro.TypeOf.TypeOfPartsActivity
 import com.elevintech.motorbro.Utils.Constants
 import com.elevintech.motorbro.Utils.Utils
 import com.elevintech.motorbro.ViewBike.ViewBikeActivity
@@ -58,6 +64,50 @@ class HomeFragment : Fragment() {
 
         chatButton1.setOnClickListener {
             val intent = Intent(context, ChatListActivity::class.java)
+            startActivity(intent)
+        }
+
+        setupHomeLinks()
+    }
+
+    private fun setupHomeLinks() {
+        home_garage_layout.setOnClickListener {
+            val intent = Intent(context, GarageActivity::class.java)
+            startActivity(intent)
+        }
+
+        home_glovebox_layout.setOnClickListener {
+            val intent = Intent(context, GloveboxActivity::class.java)
+            startActivity(intent)
+        }
+
+        home_myaccount_layout.setOnClickListener {
+            val intent = Intent(context, MyAccountActivity::class.java)
+            startActivity(intent)
+        }
+
+        home_achievements_layout.setOnClickListener {
+            val intent = Intent(context, AchievementsActivity::class.java)
+            startActivity(intent)
+        }
+
+        home_parts_layout.setOnClickListener {
+            val intent = Intent(context, TypeOfPartsActivity::class.java)
+            startActivity(intent)
+        }
+
+        home_brandslist_layout.setOnClickListener {
+            val intent = Intent(context, TypeOfBrandActivity::class.java)
+            startActivity(intent)
+        }
+
+        home_typesfuel_layout.setOnClickListener {
+            val intent = Intent(context, TypeOfFuelActivity::class.java)
+            startActivity(intent)
+        }
+
+        home_settings_layout.setOnClickListener {
+            val intent = Intent(context, MoreActivity::class.java)
             startActivity(intent)
         }
     }
@@ -190,11 +240,11 @@ class HomeFragment : Fragment() {
 //            Glide.with(this).load(R.drawable.new_empty_data_icon).into(v.motorcycleImage)
 //        }
 
-        motorcycleLayout.setOnClickListener {
-            val intent = Intent(activity, ViewBikeActivity::class.java)
-            intent.putExtra("bike", bike)
-            startActivity(intent)
-        }
+//        motorcycleLayout.setOnClickListener {
+//            val intent = Intent(activity, ViewBikeActivity::class.java)
+//            intent.putExtra("bike", bike)
+//            startActivity(intent)
+//        }
 
         changePrimaryBike.setOnClickListener {
             val intent = Intent(activity, GarageActivity::class.java)
