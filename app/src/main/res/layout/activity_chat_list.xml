@@ -124,8 +124,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Shop Conversations"
-                android:textSize="16sp"
-                android:fontFamily="@font/open_sans"
+                android:textSize="21sp"
+                android:fontFamily="@font/roboto_bold"
                 android:layout_margin="20dp"
                 android:textColor="@color/textColorBlack"
                 />
