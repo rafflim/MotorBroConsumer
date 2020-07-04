@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -104,7 +104,7 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/camera_compact_icon"
-                    android:tint="#4F6B91"
+                    android:tint="@color/colorPrimary"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -157,10 +157,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Email"
-                android:textColor="#3F3F3F"
-                android:fontFamily="@font/open_sans_semibold"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textColor="@color/textColorBlack"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -177,7 +176,7 @@
 
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/email_icon"
-                    android:tint="#4F6B91"
+                    android:tint="@color/colorPrimary"
                     />
 
                 <EditText
@@ -202,12 +201,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/open_sans_semibold"
+                android:fontFamily="@font/roboto_bold"
                 android:text="First Name"
-                android:textColor="#3F3F3F"
-
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textColor="@color/textColorBlack"
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -221,11 +218,10 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:textColor="#3F3F3F"
                     android:fontFamily="@font/open_sans_semibold"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/customer_icon"
-                    android:tint="#4F6B91"
+                    android:tint="@color/colorPrimary"
                     />
 
                 <EditText
@@ -251,10 +247,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Last Name"
-                android:textColor="#3F3F3F"
-                android:fontFamily="@font/open_sans_semibold"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textColor="@color/textColorBlack"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -268,10 +263,9 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/customer_icon"
-                    android:tint="#4F6B91"
+                    android:tint="@color/colorPrimary"
                     />
 
                 <EditText
@@ -297,10 +291,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Gender"
-                android:textColor="#3F3F3F"
-                android:fontFamily="@font/open_sans_semibold"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textColor="@color/textColorBlack"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="15sp" />
 
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -337,10 +330,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Password"
-                android:textColor="#3F3F3F"
-                android:fontFamily="@font/open_sans_semibold"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textColor="@color/textColorBlack"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -357,7 +349,7 @@
 
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/password_icon"
-                    android:tint="#4F6B91"
+                    android:tint="@color/colorPrimary"
                     />
 
                 <EditText
@@ -382,10 +374,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Confirm Password"
-                android:textColor="#3F3F3F"
-                android:fontFamily="@font/open_sans_semibold"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textColor="@color/textColorBlack"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -402,7 +393,7 @@
 
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/password_icon"
-                    android:tint="#4F6B91"
+                    android:tint="@color/colorPrimary"
                     />
 
                 <EditText

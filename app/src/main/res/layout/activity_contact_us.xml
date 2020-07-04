@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         android:elevation="10dp"
         android:paddingTop="5dp"
         >
@@ -46,6 +46,7 @@
         android:layout_height="wrap_content"
         android:text="You can contact us with our information below if you have any questions."
         android:layout_margin="20dp"
+        android:fontFamily="@font/roboto_bold"
         android:textColor="@color/textColorBlack"
         />
 
@@ -68,7 +69,7 @@
             android:layout_height="wrap_content"
             android:text="Email: motorbro@gmail.com"
             android:textColor="@color/textColorBlack"
-            android:fontFamily="@font/open_sans"
+            android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:textSize="14sp"
             />
@@ -94,7 +95,7 @@
             android:layout_height="wrap_content"
             android:text="Facebook: facebook.com/motorbro"
             android:textColor="@color/textColorBlack"
-            android:fontFamily="@font/open_sans"
+            android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:textSize="14sp"
             />
@@ -120,7 +121,7 @@
             android:layout_height="wrap_content"
             android:text="Website: motorbro.io"
             android:textColor="@color/textColorBlack"
-            android:fontFamily="@font/open_sans"
+            android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:textSize="14sp"
             />
