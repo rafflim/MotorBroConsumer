@@ -54,6 +54,7 @@ import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.drawer_dashboard.*
 import kotlinx.android.synthetic.main.drawer_header.view.*
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -74,7 +75,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         buildBottomSheetDialog()
         setUpFabClick()
         createNotificationChannel()
-        displayMessageBadge()
+//        displayMessageBadge()
         showDashboardDialog()
 //        shopImageView.setOnClickListener {
 //            val intent = Intent(this, ShopActivity::class.java)
@@ -93,12 +94,12 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
     }
 
-    private fun displayMessageBadge(){
-
+//    private fun displayMessageBadge(){
+//
 //        MotoroBroDatabase().getUnreadMessageCount{ unreadMessageCount ->
-//            chatImageView.setBadgeValue(unreadMessageCount)
+//            chatButton.setBadgeValue(unreadMessageCount)
 //        }
-    }
+//    }
 
     var channelId = "com.elevintech.motorbro"
 

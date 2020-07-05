@@ -75,11 +75,21 @@
                 android:layout_marginRight="20dp"
                 >
 
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginLeft="7dp"
+                <ru.nikartm.support.ImageBadgeView
+                    android:id="@+id/chatButton"
+
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="7dp"
+
+                    app:ibv_badgeTextSize="12sp"
+                    app:ibv_fixedBadgeRadius="9dp"
+                    app:ibv_badgeTextStyle="bold"
+                    app:ibv_badgeTextColor="@color/white"
+                    app:ibv_badgeBackground="@drawable/message_badge_green"
+                    app:ibv_badgeLimitValue="false"
+                    app:ibv_badgePosition="bottom_right"
                     android:src="@drawable/message_plain_icon" />
 
             </LinearLayout>

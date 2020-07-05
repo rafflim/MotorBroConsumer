@@ -62,7 +62,7 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
-        chatButton1.setOnClickListener {
+        chatButton.setOnClickListener {
             val intent = Intent(context, ChatListActivity::class.java)
             startActivity(intent)
         }
@@ -194,6 +194,8 @@ class HomeFragment : Fragment() {
 
             displayQrCode(view)
         }
+
+        displayMessageBadge(view)
     }
 
     private fun displayQrCode(view: View) {
@@ -202,11 +204,14 @@ class HomeFragment : Fragment() {
         view.qrCodeImage.setImageBitmap(qrCodeBitmap)
     }
 
-    private fun displayMessageBadge(){
+    private fun displayMessageBadge(view: View){
 
         MotoroBroDatabase().getUnreadMessageCount{ unreadMessageCount ->
-            // TODO: Fix this
-            //chatButton1.setBadgeValue(unreadMessageCount)
+
+            if (!isAdded) {
+                return@getUnreadMessageCount
+            }
+            view.chatButton.setBadgeValue(unreadMessageCount)
         }
     }
 
