@@ -248,7 +248,7 @@
                     android:fontFamily="@font/roboto_bold"
                     android:layout_margin="20dp"
                     android:textSize="17sp"
-                    android:text="No Parts / Services Found. Start adding by clicking the middle blue button at the tab." />
+                    android:text="No refuel data found. Start adding by clicking the middle blue button at the tab." />
 
             </LinearLayout>
 
