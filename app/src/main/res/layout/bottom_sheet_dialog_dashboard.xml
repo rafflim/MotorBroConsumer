@@ -11,20 +11,20 @@
         android:layout_height="wrap_content"
         android:text="Add to your MotorBro info here"
         android:textColor="@color/textColorBlack"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/roboto_bold"
         android:textSize="15sp"
         android:layout_margin="10dp"
         />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="150dp"
         android:orientation="horizontal"
         android:padding="10dp">
 
 
         <LinearLayout
             android:paddingTop="10dp"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:background="@drawable/shadow_gray_background"
             android:id="@+id/layoutParts"
             android:layout_width="0dp"
@@ -38,16 +38,16 @@
                 android:id="@+id/imageView1"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                app:srcCompat="@drawable/parts_newer_icon" />
+                android:src="@drawable/partsservices_subnavicon" />
 
             <TextView
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:fontFamily="@font/open_sans"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/textColorBlack"
-                android:text="Parts" />
+                android:text="Parts / Services " />
 
         </LinearLayout>
 
@@ -66,7 +66,7 @@
                 android:id="@+id/imageView2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                app:srcCompat="@drawable/odometer_new_icon" />
+                android:src="@drawable/odometer_subnavicon" />
 
             <TextView
                 android:layout_marginTop="5dp"
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Odometer"
-                android:fontFamily="@font/open_sans"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/textColorBlack"
                 />
 
@@ -95,8 +95,7 @@
                 android:id="@+id/imageView3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/gas_newer_icon" />
+                android:src="@drawable/refuel_subnavicon" />
 
             <TextView
                 android:layout_marginTop="5dp"
@@ -104,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Refueling"
-                android:fontFamily="@font/open_sans"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/textColorBlack"/>
 
         </LinearLayout>

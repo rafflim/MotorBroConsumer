@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#064283"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -70,7 +70,7 @@
                 android:gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="16dp"
-                android:fontFamily="@font/lato"
+                android:fontFamily="@font/roboto"
                 android:text="Please enter your bike information to proceed with the MotorBro App. This bike will be your primary bike and can be changed in the garage section."
                 android:textColor="#7A7A7A"
                 android:textSize="13sp"/>
@@ -82,7 +82,7 @@
                 android:gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="16dp"
-                android:fontFamily="@font/lato"
+                android:fontFamily="@font/roboto_bold"
                 android:text="Select Bike Image"
                 android:textColor="#064283"
                 android:textSize="15sp"
@@ -120,7 +120,7 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/camera_compact_icon"
-                    android:tint="#4F6B91"
+                    android:tint="@color/colorPrimary"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -138,7 +138,7 @@
                 android:text="Motor General Information"
                 android:textColor="#064283"
                 android:textSize="19sp"
-                android:textStyle="bold"
+                android:fontFamily="@font/roboto_bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -148,10 +148,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Brand"
-                android:textColor="#3F3F3F"
-                android:fontFamily="@font/open_sans_semibold"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:textColor="@color/textColorBlack"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="15sp"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -168,7 +168,7 @@
 
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/brand_icon"
-                    android:tint="#4F6B91"
+                    android:tint="@color/colorPrimary"
                     />
 
                 <EditText
@@ -194,10 +194,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Model"
-                android:textColor="#3F3F3F"
-                android:fontFamily="@font/open_sans_semibold"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:textColor="@color/textColorBlack"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -214,7 +213,7 @@
 
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/verified_icon"
-                    android:tint="#4F6B91"
+                    android:tint="@color/colorPrimary"
                     />
 
                 <EditText
@@ -249,10 +248,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Plate Number"
-                android:textColor="#3F3F3F"
-                android:fontFamily="@font/open_sans_semibold"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:textColor="@color/textColorBlack"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -266,7 +264,7 @@
                     android:layout_height="20dp"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/wrench_icon"
-                    android:tint="#4F6B91"
+                    android:tint="@color/colorPrimary"
                     />
 
                 <EditText
@@ -289,10 +287,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Odometer"
-                android:textColor="#3F3F3F"
-                android:fontFamily="@font/open_sans_semibold"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:textColor="@color/textColorBlack"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -306,7 +303,7 @@
                     android:layout_height="20dp"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/odometer_small_icon"
-                    android:tint="#4F6B91"
+                    android:tint="@color/colorPrimary"
                     />
 
                 <EditText
@@ -329,10 +326,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Nickname"
-                android:textColor="#3F3F3F"
-                android:fontFamily="@font/open_sans_semibold"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:textColor="@color/textColorBlack"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -346,7 +342,7 @@
                     android:layout_height="20dp"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/chat_icon"
-                    android:tint="#4F6B91"
+                    android:tint="@color/colorPrimary"
                     />
 
                 <EditText
@@ -370,7 +366,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Year Acquired"
                 android:textColor="#3F3F3F"
-                android:fontFamily="@font/open_sans_semibold"
+                android:fontFamily="@font/roboto_bold"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
@@ -386,7 +382,7 @@
                     android:layout_height="20dp"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/calendar_fixed_icon"
-                    android:tint="#4F6B91"
+                    android:tint="@color/colorPrimary"
                     />
 
                 <EditText

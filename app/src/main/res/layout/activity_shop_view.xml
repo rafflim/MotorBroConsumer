@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#00BCD4"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -96,7 +96,7 @@
             <FrameLayout
                 android:id="@+id/adsLayout"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="50dp"
                 android:layout_margin="10dp"
                 android:layout_alignParentBottom="true">
 
@@ -322,12 +322,12 @@
                 android:layout_gravity="center"
                 android:layout_margin="30dp"
                 android:layout_marginTop="20dp"
-                android:background="#2177CE"
-                android:fontFamily="@font/open_sans_semibold"
+                android:background="@color/colorPrimary"
+                android:fontFamily="@font/roboto_bold"
                 android:text="Chat"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="19sp" />
 
 
 
