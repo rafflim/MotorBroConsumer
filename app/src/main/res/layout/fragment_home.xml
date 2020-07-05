@@ -63,43 +63,55 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
 
-            <LinearLayout
-                android:id="@+id/chatButton1"
-                android:layout_width="38dp"
-                android:layout_height="38dp"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/blue_rounded_bg"
-                android:layout_marginRight="20dp"
-                >
+<!--            <LinearLayout-->
+<!--                android:id="@+id/chatButton1"-->
+<!--                android:layout_width="38dp"-->
+<!--                android:layout_height="38dp"-->
+<!--                android:orientation="vertical"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:background="@drawable/blue_rounded_bg"-->
+<!--                android:layout_marginRight="20dp"-->
+
+<!--                android:gravity="center"-->
+
+<!--                >-->
 
                 <ru.nikartm.support.ImageBadgeView
                     android:id="@+id/chatButton"
 
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="7dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
+
+                    android:paddingTop="5dp"
+                    android:paddingStart="7dp"
+                    android:paddingEnd="5dp"
 
                     app:ibv_badgeTextSize="12sp"
                     app:ibv_fixedBadgeRadius="9dp"
                     app:ibv_badgeTextStyle="bold"
                     app:ibv_badgeTextColor="@color/white"
-                    app:ibv_badgeBackground="@drawable/message_badge_green"
                     app:ibv_badgeLimitValue="false"
-                    app:ibv_badgePosition="bottom_right"
-                    android:src="@drawable/message_plain_icon" />
+                    app:ibv_badgePosition="top_right"
+                    android:src="@drawable/message_plain_icon"
 
-            </LinearLayout>
+                    android:background="@drawable/blue_rounded_bg"/>
+
+<!--            </LinearLayout>-->
 
             <LinearLayout
                 android:id="@+id/shopButton2"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:orientation="vertical"
-                app:layout_constraintEnd_toStartOf="@id/chatButton1"
+                app:layout_constraintEnd_toStartOf="@id/chatButton"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/blue_rounded_bg"
